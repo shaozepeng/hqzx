@@ -7,11 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HQZYTabBarController.h"
+#import "IQKeyboardManager.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate,UINavigationControllerDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-
-
+@property (strong, nonatomic) UINavigationController *nav;
+@property (strong, nonatomic) NSDictionary *launchOptions;
+@property (nonatomic,assign) NSInteger selectSum;
 @end
 

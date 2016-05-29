@@ -6,16 +6,18 @@
 //  Copyright (c) 2015年 zthz. All rights reserved.
 //
 
-#define WodehuojiaCellHeight IP5ELSE(124, 140)
-#define WodehuojiaCellMarginTB IP5ELSE(8, 12)
-#define WodehuojiaCellMarginRL IP5ELSE(28, 30)
-#define WodehuojiaFont1 IP5ELSE(14, 15)
-#define WodehuojiaFont2 IP5ELSE(13, 14)
-#define WodehuojiaFont3 IP5ELSE(12, 13)
-#define WodehuojiaFont4 IP5ELSE(15, 16)
+#define FIRSTHEIGHTONE IP4566PELSE(90, 86,100,110)
+#define FIRSTFONTONE IP4566PELSE(13, 13,14,15)
+#define FIRSTFONTTWO IP4566PELSE(14, 14,15,16)
+#define FIRSTFONTTHREE IP4566PELSE(11, 12,12,14)
+#define FIRSTHEIGHTTWO IP4566PELSE(0.9, 0.9,1,1.1)
+#define IMAGELEFT IP4566PELSE(10, 3,3,3)
+#define IMAGELEFTTWO IP4566PELSE(0.46, 0.5,0.5,0.5)
+#define IMAGELEFTTHREE IP4566PELSE(0.71, 0.75,0.75,0.75)
+
 #import <UIKit/UIKit.h>
 
-@protocol JHTWoCanYuDeTouBiaoTableViewCellDelegate <NSObject>
+@protocol XQZXFirstPageTableViewCellDelegate <NSObject>
 
 @optional
 -(void) toubiao: (long) rowIndex;
@@ -24,7 +26,7 @@
 
 @end
 
-@interface JHTWoCanYuDeTouBiaoTableViewCell : UITableViewCell
+@interface XQZXFirstPageTableViewCell : UITableViewCell
 @property (strong, nonatomic) NSString *imageUrl;
 @property (strong, nonatomic) NSString *title1;
 @property (strong, nonatomic) NSString *title2;
@@ -32,12 +34,9 @@
 @property (strong, nonatomic) NSString *toubiaoshu;
 @property (strong, nonatomic) NSString *zhuangzaigang;
 @property (strong, nonatomic) NSString *toubiaozhuangtai;
-@property (strong, nonatomic) NSString *xiezaigang;
-@property (strong, nonatomic) NSString *status;
-@property (strong, nonatomic) NSString *youxiaoqi;
 @property (strong, nonatomic) NSString *kaibiaohaisheng;
 @property(nonatomic, strong) void (^wocanyudehuopanxiangqingBlock)();
 
 @property long rowNum;
-@property id<JHTWoCanYuDeTouBiaoTableViewCellDelegate> delegate;
+@property id<XQZXFirstPageTableViewCellDelegate> delegate;
 @end

@@ -1,9 +1,9 @@
 //
 //  JHTRegisterViewController.m
-//  jht
+//  hqzx
 //
-//  Created by 孙泽山 on 15/6/24.
-//  Copyright (c) 2015年 zthz. All rights reserved.
+//  Created by 泽鹏邵 on 16/5/25.
+//  Copyright © 2016年 泽鹏邵. All rights reserved.
 //
 
 #define loginFormMarginRL 17
@@ -21,15 +21,15 @@
 #define UD_KEY_VALIDATENO_ID @"VALIDATENO_ID"
 #define UD_KEY_VALIDATENO_ID_FINDPWD @"VALIDATENO_ID_FINDPWD"
 
-#import "JHTUserModel.h"
+#import "HQZXUserModel.h"
 #import "ProgressHUD.h"
 #import "NetHttpClient.h"
 #import "CommonUtils.h"
-#import "JHTRegisterViewController.h"
+#import "HQZXRegisterViewController.h"
 #import "IQUIView+IQIgnoreGroup.h"
 #import <UIView+Toast.h>
 
-@interface JHTRegisterViewController () {
+@interface HQZXRegisterViewController () {
     UIView *form1;
     US2ValidatorTextField *txtPhone;
     UITextField *txtValidateNo;
@@ -37,16 +37,22 @@
     
     UIView *form2;
     UITextField *txtPassword;
+    UITextField *txtDengPassword;
+    UITextField *txtQuePassword;
+    
+    UITextField *txtGuoText;
+    UITextField *txtLianText;
     
     UIButton *btnRegister;
     NSTimer *validateTimer;
     
     NSString *initPhoneNo;
-
+    UIImageView *clickText;
+    UIImageView *iconLianText;
 }
 @end
 
-@implementation JHTRegisterViewController
+@implementation HQZXRegisterViewController
 
 -(NSString *)pageName {
     return self.isFindPwd ? @"找回密码" : @"注册";
@@ -62,50 +68,110 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
-    self.title = _isFindPwd ? @"忘记密码" :  @"注册江海通";
-    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] init];
-    backItem.title = @"返回";
-    self.navigationItem.backBarButtonItem = backItem;
-    self.view.backgroundColor = UIColorFromRGB(0xEEEFF1);
+    self.title = LocatizedStirngForkey(@"ZHUCE");
+
+    self.view.backgroundColor = UIColorFromRGB(0x0C1319);
     [self initForm1];
     [self setIsEnabledForBtnValidateNo];
     [self initForm2];
     [self initRegisterButton];
     [self initRemark];
-    
-//    if (btnGetValidateNo.enabled) {
-//        [txtValidateNo becomeFirstResponder];
-//    } else {
-//        [txtPhone becomeFirstResponder];
-//    }
+
 }
 
 - (void) initForm1 {
-    int rowCount = 2;
-    form1 = [[UIView alloc] initWithFrame: CGRectMake(loginFormMarginRL, TOP_HEIGHT + 25, SCREEN_WIDTH - loginFormMarginRL*2, Line_height*rowCount + (rowCount-1)*borderWidthForForm)];
-    
-    UIImage *formBackgroundImage = [[UIImage imageNamed:@"user_login_formbg"] resizableImageWithCapInsets:UIEdgeInsetsMake(5, 5, 5, 5)];
-    UIImageView *bgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, form1.width, form1.height)];
-    bgView.image = formBackgroundImage;
-    [form1 addSubview: bgView];
-    [form1 sendSubviewToBack: bgView];
+    form1 = [[UIView alloc] initWithFrame: CGRectMake(0, TOP_HEIGHT + SCREEN_WIDTH/10, SCREEN_WIDTH , SCREEN_WIDTH/2*1.25)];
+    [form1 setBackgroundColor:UIColorFromRGB(0x293035)];
     [self.view addSubview: form1];
     
     
-    UIView *line = [[UIView alloc] initWithFrame: CGRectMake(borderWidthForForm, form1.height / 2, form1.width-2, borderWidthForForm)];
-    line.backgroundColor = ColorForFormLine;
+    UIView *line = [[UIView alloc] initWithFrame: CGRectMake(0, form1.height / 5, SCREEN_WIDTH, borderWidthForForm)];
+    line.backgroundColor = UIColorFromRGB(0x0C1319);
+    
+    UIView *line2 = [[UIView alloc] initWithFrame: CGRectMake(0, form1.height / 5*2, SCREEN_WIDTH, borderWidthForForm)];
+    line.backgroundColor = UIColorFromRGB(0x0C1319);
+    
+    UIView *line3 = [[UIView alloc] initWithFrame: CGRectMake(0, form1.height / 5 *3, SCREEN_WIDTH, borderWidthForForm)];
+    UIView *line4 = [[UIView alloc] initWithFrame: CGRectMake(0, form1.height / 5 *4, SCREEN_WIDTH, borderWidthForForm)];
+    line.backgroundColor = UIColorFromRGB(0x0C1319);
+    line2.backgroundColor = UIColorFromRGB(0x0C1319);
+    line3.backgroundColor = UIColorFromRGB(0x0C1319);
+    line4.backgroundColor = UIColorFromRGB(0x0C1319);
     [form1 addSubview: line];
+    [form1 addSubview: line2];
+    [form1 addSubview: line3];
+    [form1 addSubview: line4];
     
 //    UIView *userNameView = [[UIView alloc] initWithFrame: CGRectMake(borderWidthForForm, borderWidthForForm, form1.width - borderWidthForForm*2, (form1.height - borderWidthForForm*2 - line.height)/2)];
 //    [form1 addSubview:userNameView];
     
-    UIImageView *iconPhone = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"user_login_icon_phone"]];
-    [form1 addSubview: iconPhone];
-    [iconPhone setY: (form1.height - line.y - iconPhone.height) / 2.0];
-    iconPhone.x = marginLWithIcon;
     
-    txtPhone = [[US2ValidatorTextField alloc] initWithFrame:CGRectMake(iconPhone.maxX + marginTxtWithIcon + 1, 1, form1.width - iconPhone.maxX - marginTxtWithIcon - 2, form1.height - line.y - 2)];
+    iconLianText = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_lock"]];
+    [form1 addSubview: iconLianText];
+    [iconLianText setY: (form1.height/5 - iconLianText.height) / 2.0];
+    iconLianText.x = SCREEN_WIDTH/20;
+    
+    txtLianText = [[UITextField alloc] initWithFrame:CGRectMake(iconLianText.maxX + SCREEN_WIDTH/30 , 0, form1.width - iconLianText.maxX - SCREEN_WIDTH/30 -SCREEN_WIDTH/8, form1.height/5)];
+    [form1 addSubview: txtLianText];
+    txtLianText.secureTextEntry = YES;
+    txtLianText.clearButtonMode = UITextFieldViewModeWhileEditing;
+    txtLianText.textColor = UIColorFromRGB(0x767D85);
+    txtLianText.font = [UIFont systemFontOfSize:REGISTERFONTONE];
+//    txtLianText.placeholder = LocatizedStirngForkey(@"GUOJIA");
+//    [txtLianText setValue:UIColorFromRGB(0x767D85) forKeyPath:@"_placeholderLabel.textColor"];
+//    [txtLianText setValue:[UIFont systemFontOfSize:REGISTERFONTONE]forKeyPath:@"_placeholderLabel.font"];
+    
+    NSMutableParagraphStyle *style = [txtLianText.defaultTextAttributes[NSParagraphStyleAttributeName] mutableCopy];
+    style.minimumLineHeight = txtLianText.font.lineHeight - (txtLianText.font.lineHeight - [UIFont systemFontOfSize:LOGINFONTONE].lineHeight) / 2.0 ;
+    
+    txtLianText.attributedPlaceholder = [[NSAttributedString alloc] initWithString:LocatizedStirngForkey(@"GUOJIA")
+                                                                        attributes:@{
+                                                                                     NSForegroundColorAttributeName: UIColorFromRGB(0x767D85),
+                                                                                     NSFontAttributeName : [UIFont systemFontOfSize:REGISTERFONTONE],
+                                                                                     NSParagraphStyleAttributeName : style
+                                                                                     }];
+    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    backBtn.frame = CGRectMake(txtLianText.maxX , 0, SCREEN_WIDTH/8, form1.height/5);
+    [backBtn setTintColor:[UIColor whiteColor]];
+    [backBtn setTitleColor:UIColorFromRGB(0x293035) forState:UIControlStateNormal];
+    UIImage *leftBtnImage = [UIImage imageNamed:@"icon_jt_bo_bl"];
+    [backBtn setImage:leftBtnImage forState:UIControlStateNormal];
+    [form1 addSubview: backBtn];
+    
+    UIView *clickView = [[UIView alloc]initWithFrame:CGRectMake(iconLianText.maxX + SCREEN_WIDTH/30, 0 , form1.width - iconLianText.maxX - SCREEN_WIDTH/30, form1.height/5-1)];
+    clickView.userInteractionEnabled = YES;
+    UITapGestureRecognizer*tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(selectCountry)];
+    
+    [clickView addGestureRecognizer:tapGesture];
+    [form1 addSubview: clickView];
+    
+    btnGetValidateNo = [[UIButton alloc] initWithFrame: CGRectMake(0, 0, 1, 1)];
+    btnGetValidateNo.enabled = NO;
+    [btnGetValidateNo setTitle:LocatizedStirngForkey(@"HUOQUYANZHENGMA") forState: UIControlStateNormal];
+    btnGetValidateNo.titleLabel.font = [UIFont systemFontOfSize: REGISTERFONTFORE];
+    [form1 addSubview: btnGetValidateNo];
+    [btnGetValidateNo sizeToFit];
+    [btnGetValidateNo setH:btnGetValidateNo.height*0.8];
+    [btnGetValidateNo adjustW: 22 andH: 8];
+    [btnGetValidateNo.layer setBorderWidth:1.0];
+    [btnGetValidateNo.layer setCornerRadius:5.0];
+    [btnGetValidateNo.layer setBorderColor:UIColorFromRGB(0x3E87FA).CGColor];
+    [btnGetValidateNo setX: (form1.width - btnGetValidateNo.width - 6)];
+    [btnGetValidateNo setY: (form1.height/5 -btnGetValidateNo.height) / 2.0+line.maxY ];
+    [btnGetValidateNo setTitleColor: UIColorFromRGB(0x3E87FA) forState:UIControlStateDisabled];
+    [btnGetValidateNo setTitleColor: UIColorFromRGB(0x87CEFA) forState:UIControlStateNormal];
+    [btnGetValidateNo setTitleColor: UIColorFromRGB(0x2254A6) forState:UIControlStateHighlighted];
+    UIImage *btnGetValidateNoImage = [[UIImage imageNamed:@"user_login_form_validatebg"] resizableImageWithCapInsets:UIEdgeInsetsMake(5, 5, 5, 5)];
+    [btnGetValidateNo setBackgroundImage: btnGetValidateNoImage forState: UIControlStateNormal];
+    btnGetValidateNo.adjustsImageWhenHighlighted=NO;
+    [btnGetValidateNo addTarget: self action: @selector(getValidateNo:) forControlEvents:UIControlEventTouchUpInside];
+
+    UIImageView *iconPhone = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_phone"]];
+    [form1 addSubview: iconPhone];
+    [iconPhone setY: (form1.height/5 - iconPhone.height) / 2.0+line.maxY];
+    iconPhone.x = SCREEN_WIDTH/20;
+    
+    txtPhone = [[US2ValidatorTextField alloc] initWithFrame:CGRectMake(iconLianText.maxX + SCREEN_WIDTH/30, line.maxY+1, form1.width -(form1.width - btnGetValidateNo.x)- iconLianText.maxX - SCREEN_WIDTH/30 - 2, form1.height/5 - 1)];
     txtPhone.clearButtonMode = UITextFieldViewModeWhileEditing;
     US2Validator *validator = [[US2Validator alloc] init];
     US2ConditionNumeric *numCondition = [[US2ConditionNumeric alloc] init];
@@ -115,6 +181,8 @@
     [validator addCondition:phoneCondition];
     txtPhone.validator = validator;
     phoneCondition.shouldAllowViolation = YES;
+    txtPhone.textColor = UIColorFromRGB(0x767D85);
+    txtPhone.font = [UIFont systemFontOfSize:REGISTERFONTONE];
     txtPhone.shouldAllowViolations   = YES;
     txtPhone.validateOnFocusLossOnly = NO;
     txtPhone.clearButtonMode = UITextFieldViewModeWhileEditing;
@@ -125,74 +193,156 @@
     
     [form1 addSubview: txtPhone];
     txtPhone.keyboardType = UIKeyboardTypeNumberPad;
-    txtPhone.placeholder = @"请使用手机号注册";
+//    txtPhone.placeholder = LocatizedStirngForkey(@"SHOUJIHAOMA");
+//    [txtPhone setValue:UIColorFromRGB(0x767D85) forKeyPath:@"_placeholderLabel.textColor"];
+//    [txtPhone setValue:[UIFont systemFontOfSize:REGISTERFONTONE]forKeyPath:@"_placeholderLabel.font"];
 
-//    UIView *validateView = [[UIView alloc] initWithFrame: CGRectMake(borderWidthForForm, userNameView.maxY + line.height, userNameView.width, userNameView.height)];
-//    [form1 addSubview:validateView];
+    NSMutableParagraphStyle *style2 = [txtPhone.defaultTextAttributes[NSParagraphStyleAttributeName] mutableCopy];
+    style2.minimumLineHeight = txtPhone.font.lineHeight - (txtPhone.font.lineHeight - [UIFont systemFontOfSize:LOGINFONTONE].lineHeight) / 2.0 ;
+    
+    txtPhone.attributedPlaceholder = [[NSAttributedString alloc] initWithString:LocatizedStirngForkey(@"SHOUJIHAOMA")
+                                                                        attributes:@{
+                                                                                     NSForegroundColorAttributeName: UIColorFromRGB(0x767D85),
+                                                                                     NSFontAttributeName : [UIFont systemFontOfSize:REGISTERFONTONE],
+                                                                                     NSParagraphStyleAttributeName : style2
+                                                                                     }];
     
     
-    UIImageView *iconPassword = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"user_login_icon_password"]];
+    UIImageView *iconPassword = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_lock"]];
     [form1 addSubview: iconPassword];
     form1.IQIgnoreGroup = YES;
-    [iconPassword setY: (form1.height - line.maxY - iconPassword.height) / 2.0 + line.maxY];
-    iconPassword.x = marginLWithIcon;
-    
-    btnGetValidateNo = [[UIButton alloc] initWithFrame: CGRectMake(0, 0, 1, 1)];
-    btnGetValidateNo.enabled = NO;
-    [btnGetValidateNo setTitle:@"获取验证码" forState: UIControlStateNormal];
-    btnGetValidateNo.titleLabel.font = [UIFont systemFontOfSize: 15];
-    [form1 addSubview: btnGetValidateNo];
-    [btnGetValidateNo sizeToFit];
-    [btnGetValidateNo adjustW: 22 andH: 8];
-    [btnGetValidateNo setX: (form1.width - btnGetValidateNo.width - 6)];
-    [btnGetValidateNo setY: (form1.height - line.maxY - btnGetValidateNo.height) / 2.0 + line.maxY];
-    [btnGetValidateNo setTitleColor: UIColorFromRGB(0xaaaaaa) forState:UIControlStateDisabled];
-    [btnGetValidateNo setTitleColor: UIColorFromRGB(0x222222) forState:UIControlStateNormal];
-    [btnGetValidateNo setTitleColor: ColorForFunctionButton forState:UIControlStateHighlighted];
-    UIImage *btnGetValidateNoImage = [[UIImage imageNamed:@"user_login_form_validatebg"] resizableImageWithCapInsets:UIEdgeInsetsMake(5, 5, 5, 5)];
-    [btnGetValidateNo setBackgroundImage: btnGetValidateNoImage forState: UIControlStateNormal];
-    btnGetValidateNo.adjustsImageWhenHighlighted=NO;
-    [btnGetValidateNo addTarget: self action: @selector(getValidateNo:) forControlEvents:UIControlEventTouchUpInside];
+    [iconPassword setY: (form1.height/5 - iconPassword.height) / 2.0 + line2.maxY];
+    iconPassword.x = SCREEN_WIDTH/20;
     
     
-    txtValidateNo = [[UITextField alloc] initWithFrame:CGRectMake(iconPassword.maxX + marginTxtWithIcon + 1, line.maxY + 1, form1.width - (form1.width - btnGetValidateNo.x) - iconPassword.maxX - marginTxtWithIcon - 2, form1.height - line.maxY - 2)];
+    txtValidateNo = [[UITextField alloc] initWithFrame:CGRectMake(iconLianText.maxX + SCREEN_WIDTH/30, line2.maxY + 1, form1.width  - iconLianText.maxX - SCREEN_WIDTH/30 - 2, form1.height/5 - 1)];
     [form1 addSubview: txtValidateNo];
     txtValidateNo.keyboardType = UIKeyboardTypeNumberPad;
     txtValidateNo.clearButtonMode = UITextFieldViewModeWhileEditing;
-    txtValidateNo.placeholder = @"请输入验证码";
+    txtValidateNo.textColor = UIColorFromRGB(0x767D85);
+    txtValidateNo.font = [UIFont systemFontOfSize:REGISTERFONTONE];
+//    txtValidateNo.placeholder = LocatizedStirngForkey(@"QINGSHURUYANZHENGMA");
+//    [txtValidateNo setValue:UIColorFromRGB(0x767D85) forKeyPath:@"_placeholderLabel.textColor"];
+//    [txtValidateNo setValue:[UIFont systemFontOfSize:REGISTERFONTONE]forKeyPath:@"_placeholderLabel.font"];
+    
+    NSMutableParagraphStyle *style3 = [txtValidateNo.defaultTextAttributes[NSParagraphStyleAttributeName] mutableCopy];
+    style3.minimumLineHeight = txtValidateNo.font.lineHeight - (txtValidateNo.font.lineHeight - [UIFont systemFontOfSize:LOGINFONTONE].lineHeight) / 2.0 ;
+    
+    txtValidateNo.attributedPlaceholder = [[NSAttributedString alloc] initWithString:LocatizedStirngForkey(@"QINGSHURUYANZHENGMA")
+                                                                     attributes:@{
+                                                                                  NSForegroundColorAttributeName: UIColorFromRGB(0x767D85),
+                                                                                  NSFontAttributeName : [UIFont systemFontOfSize:REGISTERFONTONE],
+                                                                                  NSParagraphStyleAttributeName : style3
+                                                                                  }];
+    
     txtValidateNo.delegate = self;
+    
+    UIImageView *iconDengPassword = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_lock"]];
+    [form1 addSubview: iconDengPassword];
+    [iconDengPassword setY: (form1.height /5 - iconDengPassword.height) / 2.0 + line3.maxY];
+    iconDengPassword.x = SCREEN_WIDTH/20;
+    
+    txtDengPassword = [[UITextField alloc] initWithFrame:CGRectMake(iconLianText.maxX + SCREEN_WIDTH/30, line3.maxY + 1, form1.width - iconLianText.maxX - SCREEN_WIDTH/30 - 2,form1.height/5 - 1)];
+    [form1 addSubview: txtDengPassword];
+    txtDengPassword.secureTextEntry = YES;
+    txtDengPassword.clearButtonMode = UITextFieldViewModeWhileEditing;
+    txtDengPassword.textColor = UIColorFromRGB(0x767D85);
+    txtDengPassword.font = [UIFont systemFontOfSize:REGISTERFONTONE];
+//    txtDengPassword.placeholder = LocatizedStirngForkey(@"DENGLUMIMA");
+//    [txtDengPassword setValue:UIColorFromRGB(0x767D85) forKeyPath:@"_placeholderLabel.textColor"];
+//    [txtDengPassword setValue:[UIFont systemFontOfSize:REGISTERFONTONE]forKeyPath:@"_placeholderLabel.font"];
+    
+    NSMutableParagraphStyle *style4 = [txtDengPassword.defaultTextAttributes[NSParagraphStyleAttributeName] mutableCopy];
+    style4.minimumLineHeight = txtDengPassword.font.lineHeight - (txtDengPassword.font.lineHeight - [UIFont systemFontOfSize:LOGINFONTONE].lineHeight) / 2.0 ;
+    
+    txtDengPassword.attributedPlaceholder = [[NSAttributedString alloc] initWithString:LocatizedStirngForkey(@"DENGLUMIMA")
+                                                                          attributes:@{
+                                                                                       NSForegroundColorAttributeName: UIColorFromRGB(0x767D85),
+                                                                                       NSFontAttributeName : [UIFont systemFontOfSize:REGISTERFONTONE],
+                                                                                       NSParagraphStyleAttributeName : style4
+                                                                                       }];
+    
+    
+    UIImageView *iconQuePassword = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_lock"]];
+    [form1 addSubview: iconQuePassword];
+    [iconQuePassword setY: (form1.height/5 - iconQuePassword.height) / 2.0 + line4.maxY];
+    iconQuePassword.x = SCREEN_WIDTH/20;
+    
+    txtQuePassword = [[UITextField alloc] initWithFrame:CGRectMake(iconLianText.maxX + SCREEN_WIDTH/30, line4.maxY + 1, form1.width - iconLianText.maxX - SCREEN_WIDTH/30 - 2, form1.height/5 - 1)];
+    [form1 addSubview: txtQuePassword];
+    txtQuePassword.secureTextEntry = YES;
+    txtQuePassword.clearButtonMode = UITextFieldViewModeWhileEditing;
+    txtQuePassword.textColor = UIColorFromRGB(0x767D85);
+    txtQuePassword.font = [UIFont systemFontOfSize:REGISTERFONTONE];
+//    txtQuePassword.placeholder = LocatizedStirngForkey(@"QUERENMIMA");
+//    [txtQuePassword setValue:UIColorFromRGB(0x767D85) forKeyPath:@"_placeholderLabel.textColor"];
+//    [txtQuePassword setValue:[UIFont systemFontOfSize:REGISTERFONTONE]forKeyPath:@"_placeholderLabel.font"];
+    
+    NSMutableParagraphStyle *style5 = [txtQuePassword.defaultTextAttributes[NSParagraphStyleAttributeName] mutableCopy];
+    style5.minimumLineHeight = txtQuePassword.font.lineHeight - (txtQuePassword.font.lineHeight - [UIFont systemFontOfSize:LOGINFONTONE].lineHeight) / 2.0 ;
+    
+    txtQuePassword.attributedPlaceholder = [[NSAttributedString alloc] initWithString:LocatizedStirngForkey(@"QUERENMIMA")
+                                                                            attributes:@{
+                                                                                         NSForegroundColorAttributeName: UIColorFromRGB(0x767D85),
+                                                                                         NSFontAttributeName : [UIFont systemFontOfSize:REGISTERFONTONE],
+                                                                                         NSParagraphStyleAttributeName : style5
+                                                                                         }];
 }
-
+-(void)selectCountry{
+    HQZXSelectCountryForm *selectCountForm = [[HQZXSelectCountryForm alloc] initWithPlaceHolder: @"选择国家"];
+    __weak typeof(selectCountForm) weakSelectForm = selectCountForm;
+    weakSelectForm.beSureComp = HQZXSelectCountryComp() {
+        [weakSelectForm hideAction:^{
+            NSString *language = [USER_DEFAULT objectForKey:kUserLanguage];
+            if([language isEqualToString:@"zh-Hans"]){
+                txtLianText.text = COUNTRY.country_name;
+            }else if([language isEqualToString:@"en"]){
+                txtLianText.text = COUNTRY.country_ename;
+            }
+        }];
+    };
+    [weakSelectForm showAction];
+}
 - (void) initForm2 {
-    int rowCount = 1;
-    form2 = [[UIView alloc] initWithFrame: CGRectMake(loginFormMarginRL, form1.maxY + 15, SCREEN_WIDTH - loginFormMarginRL*2, Line_height*rowCount + ((rowCount-1)*borderWidthForForm))];
-    UIImage *formBackgroundImage = [[UIImage imageNamed:@"user_login_formbg"] resizableImageWithCapInsets:UIEdgeInsetsMake(5, 5, 5, 5)];
-    UIImageView *bgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, form2.width, form2.height)];
-    bgView.image = formBackgroundImage;
-    [form2 addSubview: bgView];
-    [form2 sendSubviewToBack: bgView];
-    form2.IQIgnoreGroup = YES;
+    form2 = [[UIView alloc] initWithFrame: CGRectMake(0, form1.maxY + 10, SCREEN_WIDTH, SCREEN_WIDTH/8)];
+    [form2 setBackgroundColor:UIColorFromRGB(0x293035)];
+//    form2.IQIgnoreGroup = YES;
     [self.view addSubview: form2];
     
-    UIImageView *iconPwd = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"user_login_icon_password"]];
-    [form2 addSubview: iconPwd];
-    [iconPwd setY: (form2.height - iconPwd.height) / 2.0];
-    iconPwd.x = marginLWithIcon;
+    UIImageView *iconGuoText = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_lock"]];
+    [form2 addSubview: iconGuoText];
+    [iconGuoText setY: (form2.height - iconGuoText.height) / 2.0 ];
+    iconGuoText.x = SCREEN_WIDTH/20;
     
+    txtGuoText = [[UITextField alloc] initWithFrame:CGRectMake(iconGuoText.maxX + SCREEN_WIDTH/30 , 0, form2.width - iconLianText.maxX - SCREEN_WIDTH/30 - 2,form2.height)];
+    [form2 addSubview: txtGuoText];
+    txtGuoText.clearButtonMode = UITextFieldViewModeWhileEditing;
+    txtGuoText.textColor = UIColorFromRGB(0x767D85);
+    txtGuoText.font = [UIFont systemFontOfSize:REGISTERFONTONE];
+//    txtGuoText.placeholder = LocatizedStirngForkey(@"TUIJIANRENID");
+//    [txtGuoText setValue:UIColorFromRGB(0x767D85) forKeyPath:@"_placeholderLabel.textColor"];
+//    [txtGuoText setValue:[UIFont systemFontOfSize:REGISTERFONTONE]forKeyPath:@"_placeholderLabel.font"];
     
-    txtPassword = [[UITextField alloc] initWithFrame:CGRectMake(iconPwd.maxX + marginTxtWithIcon + 1, 1, form2.width - iconPwd.maxX - marginTxtWithIcon - 2, form2.height - 2)];
-    txtPassword.clearButtonMode = UITextFieldViewModeWhileEditing;
-    [form2 addSubview: txtPassword];
-    txtPassword.keyboardType = UIKeyboardTypeASCIICapable;
-    txtPassword.placeholder = _isFindPwd ? @"设置新密码" : @"设置登录密码";
+    NSMutableParagraphStyle *style6 = [txtGuoText.defaultTextAttributes[NSParagraphStyleAttributeName] mutableCopy];
+    style6.minimumLineHeight = txtGuoText.font.lineHeight - (txtGuoText.font.lineHeight - [UIFont systemFontOfSize:LOGINFONTONE].lineHeight) / 2.0 ;
+    
+    txtGuoText.attributedPlaceholder = [[NSAttributedString alloc] initWithString:LocatizedStirngForkey(@"TUIJIANRENID")
+                                                                           attributes:@{
+                                                                                        NSForegroundColorAttributeName: UIColorFromRGB(0x767D85),
+                                                                                        NSFontAttributeName : [UIFont systemFontOfSize:REGISTERFONTONE],
+                                                                                        NSParagraphStyleAttributeName : style6
+                                                                                        }];
+    
 }
 
 - (void) initRegisterButton {
-    btnRegister = [[UIButton alloc] initWithFrame: CGRectMake(form2.x, form2.maxY + loginFormMarginRL + 3, form2.width, 45)];
-    [btnRegister setTitle: (_isFindPwd?@"重置密码":@"注册") forState: UIControlStateNormal];
-    btnRegister.titleLabel.font = [UIFont systemFontOfSize: 16];
+    btnRegister = [[UIButton alloc] initWithFrame: CGRectMake(SCREEN_WIDTH/20, form2.maxY + SCREEN_WIDTH/7, SCREEN_WIDTH-SCREEN_WIDTH/10, SCREEN_WIDTH/8)];
+    [btnRegister setTitle: LocatizedStirngForkey(@"ZHUCE") forState: UIControlStateNormal];
+    btnRegister.titleLabel.font = [UIFont systemFontOfSize: REGISTERFONTBUTONE];
+    [btnRegister.layer setMasksToBounds:YES];
+    [btnRegister.layer setCornerRadius:5.0];
     [btnRegister setTitleColor: [UIColor whiteColor] forState: UIControlStateNormal];
-    [btnRegister setBackgroundImage:[CommonUtils createImageWithColor: UIColorFromRGB(0x3bc2ff)] forState:UIControlStateNormal];
+    [btnRegister setBackgroundImage:[CommonUtils createImageWithColor: UIColorFromRGB(0x3178E3)] forState:UIControlStateNormal];
     [btnRegister setBackgroundImage:[CommonUtils createImageWithColor: COL_BLUE] forState:UIControlStateHighlighted];
     
     [btnRegister addTarget: self action: @selector(userRegister:) forControlEvents:UIControlEventTouchUpInside];
@@ -200,22 +350,48 @@
 }
 
 - (void) initRemark {
-    UILabel *contract = [[UILabel alloc] initWithFrame:CGRectMake(btnRegister.x, btnRegister.maxY + loginFormMarginRL, 1, 1)];
-    if(!_isFindPwd){
-        contract.text = @"点注册，即代表您同意《江海通用户注册条款》";
+    NSString *language = [USER_DEFAULT objectForKey:kUserLanguage];
+    double fontCon;
+    double fontLeft;
+    double fontSmallLeft;
+    if([language isEqualToString:@"zh-Hans"]){
+        fontCon = REGISTERFONTTWO;
+        fontLeft = 20;
+        fontSmallLeft = 40;
+    }else if([language isEqualToString:@"en"]){
+        fontCon = REGISTERFONTTHREE;
+        fontLeft = 20;
+        fontSmallLeft = 50;
     }
-//    contract.text = [NSString stringWithFormat: @"%@，即代表您同意《江海通用户服务协议》", (self.isFindPwd? @"点重置密码" : @"点注册")];
-    contract.userInteractionEnabled=YES;
-    UITapGestureRecognizer *labelTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(labelTouchUpInside)];
-    [contract addGestureRecognizer:labelTapGestureRecognizer];
-    contract.font = [UIFont systemFontOfSize: 12];
+    UIImage *clickImg = [UIImage imageNamed:@"icon_agree"];
+    clickText = [[UIImageView alloc] initWithImage:clickImg];
+    [clickText setFrame:CGRectMake(SCREEN_WIDTH/fontLeft, form2.maxY + SCREEN_WIDTH/30, clickImg.size.width, clickImg.size.height)];
+    [self.view addSubview: clickText];
+    
+    UILabel *contract = [[UILabel alloc] initWithFrame:CGRectMake(clickText.maxX, form2.maxY + loginFormMarginRL, 1, 1)];
+    contract.text = LocatizedStirngForkey(@"WOYIYUEDU");
+    contract.font = [UIFont systemFontOfSize: fontCon];
     contract.textColor = UIColorFromRGB(0x86878B);
     [self.view addSubview: contract];
     [contract sizeToFit];
+    [contract setX:clickText.maxX+SCREEN_WIDTH/fontSmallLeft ];
+    [contract setY:form2.maxY+(clickText.height-contract.height)/2 +SCREEN_WIDTH/30];
+    
+    UILabel *contracts = [[UILabel alloc] initWithFrame:CGRectMake(contract.maxX, form2.maxY + loginFormMarginRL, 1, 1)];
+    contracts.text = LocatizedStirngForkey(@"HUANQIUZAIXIANXIEYI");
+    contracts.userInteractionEnabled=YES;
+    UITapGestureRecognizer *labelTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(labelTouchUpInside)];
+    [contracts addGestureRecognizer:labelTapGestureRecognizer];
+    contracts.font = [UIFont systemFontOfSize: fontCon];
+    contracts.textColor = UIColorFromRGB(0x3673D2);
+    [self.view addSubview: contracts];
+    [contracts sizeToFit];
+    [contracts setX:contract.maxX];
+    [contracts setY:form2.maxY+(clickText.height-contracts.height)/2 +SCREEN_WIDTH/30];
 }
 -(void) labelTouchUpInside{
-    JHTYongHuXieYiViewController *xiaoxi = [[JHTYongHuXieYiViewController alloc] init];
-    [self.navigationController pushViewController:xiaoxi animated: YES];
+//    JHTYongHuXieYiViewController *xiaoxi = [[JHTYongHuXieYiViewController alloc] init];
+//    [self.navigationController pushViewController:xiaoxi animated: YES];
 }
 -(IBAction)getValidateNo:(id)sender {
     
@@ -310,7 +486,6 @@
     VALIDATE_NOT_NULL(validateNo, @"请填写验证码");
     VALIDATE_NOT_NULL(codeid, @"验证码已失效，请重新获取");
     VALIDATE_NOT_NULL(password, (self.isFindPwd?@"请输入新密码":@"请设置密码"));
-    
     VALIDATE_REGEX(phoneNo, VALREG_MOBILE_PHONE, @"手机号码不正确");
     VALIDATE_REGEX(validateNo, @"\\d{4}", @"验证码不正确");
     VALIDATE_REGEX(password, @"^[\\@A-Za-z0-9\\!\\#\\$\\%\\^\\&\\*\\.\\~]{6,22}$", @"密码至少6位，只能包含数字字母下划线");
@@ -417,7 +592,10 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+-(IBAction) userLoginBack:(id) sender{
+    HQZXLoginViewController *userLogin= [[HQZXLoginViewController alloc] init];
+    [self.navigationController pushViewController: userLogin animated: YES];
+}
 /*
 #pragma mark - Navigation
 

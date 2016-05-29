@@ -5,3 +5,97 @@
   Created by 泽鹏邵 on 16/5/18.
   Copyright © 2016年 泽鹏邵. All rights reserved.
 */
+
+/*
+ ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝home区＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+*/
+
+//title
+"SUBMIT_BTN_TITLE"="Global Online";
+"ONE"="Home Page";
+"TWO"="Trading Hall";
+"THREE"="My";
+"LANGUAGE"="En";
+
+//语言切换菜单
+"YINGYU"="English";
+"HANYU"="Chinese";
+
+/*
+ ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝首页＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+ */
+
+//cell区
+"CHENGJIAOE"="Turnover Volume";
+"CHENGJIAOLIANG"="Volume";
+"ZUIDIJIA"="Lowest Price";
+"ZUIGAOJIA"="Highest Price";
+
+/*
+ ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝我的区＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+ */
+
+//状态栏
+"DELUMING"="Login Name";
+"NICHENG"="Nickname";
+"TUIGUANGLIANJIE"="Promotion Link";
+"ZONGZICHAN"="Total Assets";
+"RENMINBICHONGZHI"="RMB Recharge";
+"RENMINBITIXIAN"="RMB Cash Withdrawal";
+"XUNIBICHONGZHI"="Virtual Currency Recharge";
+"XUNIBITIXIAN"="Virtual Cash Withdrawal";
+"WEITUOGUANLI"="Entrust Management";
+"JIAOYILIUSHUI"="Transaction Flow";
+"WOYAOSHOUKUAN"="I Want To Register";
+"WOYAOFUKUAN"="I Want To Pay";
+"SHIMINGRENZHENG"="Real Name Authentication";
+"XIUGAIDENGLUMIMA"="Modify Login Password";
+"XIUGAIJIAOYIMIMA"="Set/Modify Transaction Password";
+"XIAOXIZHONGXIN"="System Announcement";
+"GUANYUWOMEN"="About Us";
+"ANQUANZHONGXIN"="Safe Exit";
+
+//状态
+"YIRENZHENG"="Already Certified";
+"WEIRENZHENG"="Not Certified";
+
+/*
+ ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝用户区＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+ */
+
+//登陆
+"FANHUI"="Back";
+"DENGLU"="Login";
+"ZHUCE"="Register";
+"KEFUDIANHUA"="Customer Service Telephone Numbers：400-888-888";
+"WANGJIMIMA"="Forget Password";
+"SHOUJIHAOMA"="Phone Number";
+"MIMA"="Password";
+
+//注册
+"GUOJIA"="Country";
+"QINGSHURUYANZHENGMA"="Please Enter The Verification Code";
+"DENGLUMIMA"="Login Password";
+"QUERENMIMA"="Confirm Password";
+"TUIJIANRENID"="Recommended ID (Optional)";
+"HUOQUYANZHENGMA"="Get Verification Code";
+"WOYIYUEDU"="I Have Read And Agreed";
+"HUANQIUZAIXIANXIEYI"="《Global Online Service Agreement》";
+
+//修改登陆密码
+"JIUMIMA"="Old Password";
+"XINMIMA"="New Password";
+"QUERENXINMIMA"="Confirm New Password";
+"BAOCUNXIUGAI"="Save Changes";
+
+//忘记密码
+"QUEREN"="Confirm";
+
+//修改登陆密码
+"SHEZHIXIUGAIJIAOYIMIMA"="Set/Modify Transaction Password";
+"JIAOYIMIMA"="Transaction Password";
+"QUERENJIAOYIMIMA"="Confirm Transaction Password";
+"QUEDING"="Determine";
+"KAIFATISHIDENGLUXIUGAI"="Development Tips: Here Is The Default Phone Number Landing Phone Number, And Can Not Be Modified";
+
+

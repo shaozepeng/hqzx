@@ -6,11 +6,16 @@
 //  Copyright (c) 2015年 zthz. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import "JHTBaseController.h"
-#import "MyTLSUIViewController.h"
+#define LOGINFONTONE  IP4566PELSE(13, 13,14,15)
+#define LOGINFONTTWO  IP4566PELSE(11, 11,12,13)
+#define LOGINFONTBUTONE  IP4566PELSE(15, 15,16,17)
 
-@interface JHTLoginViewController : JHTBaseController
+
+#import "HQZXForgetPasswordViewController.h"
+#import "HQZXCountry.h"
+#import "HQZXSelectCountryForm.h"
+
+@interface HQZXLoginViewController : UIViewController
 
 + (UINavigationController*) getLoginController;
 

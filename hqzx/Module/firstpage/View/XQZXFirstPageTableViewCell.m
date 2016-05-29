@@ -8,10 +8,10 @@
 
 
 #define imgHeightOfWidth 0.8
-#define img_marginTB 13
-#import "JHTWoCanYuDeTouBiaoTableViewCell.h"
+#define img_marginTB 8
+#import "XQZXFirstPageTableViewCell.h"
 #import <SDWebImage/UIImageView+WebCache.h>
-@interface JHTWoCanYuDeTouBiaoTableViewCell() {
+@interface XQZXFirstPageTableViewCell() {
     UIImageView *imageView;
     UIView *infoView;
     UILabel *lblTitle1;
@@ -28,141 +28,149 @@
     UIImage *serviceimg;
     UIButton *btnContact;
     UIButton *btnContactText;
+    
+    UILabel *lblTitle31;
+    UILabel *lblTitle21;
+    UILabel *lblTitle51;
+    UILabel *lblZhuangzaigang1;
+    UIView *toolView;
 }
 @end
-@implementation JHTWoCanYuDeTouBiaoTableViewCell
+@implementation XQZXFirstPageTableViewCell
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self.rowNum = -1;
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         self.backgroundColor = TableBgColor;
-        UIView *cell = [[UIView alloc] initWithFrame: CGRectMake(0, 0, SCREEN_WIDTH, WodehuojiaCellHeight)];
-        cell.backgroundColor = [UIColor whiteColor];
+        UIView *cell = [[UIView alloc] initWithFrame: CGRectMake(0, 0, SCREEN_WIDTH, FIRSTHEIGHTONE)];
+        cell.backgroundColor = UIColorFromRGB(0x0D161C);
         
-        infoView = [[UIView alloc] initWithFrame: CGRectMake(SCREEN_WIDTH/40, 0, cell.width - COMMON_H_MARGIN*2, cell.height*0.67 - 1)];
+        infoView = [[UIView alloc] initWithFrame: CGRectMake(SCREEN_WIDTH/40, 0, cell.width - COMMON_H_MARGIN*2, cell.height*0.45 - 2)];
         [cell addSubview: infoView];
-        float imgHeight = infoView.height - img_marginTB*2;
-        imageView = [[UIImageView alloc] initWithFrame: CGRectMake(0, img_marginTB, SCREEN_WIDTH/4.5, imgHeight)];
+        
+        UIImage *biIcon = [UIImage imageNamed:@"icon_bibi_1"];
+        imageView = [[UIImageView alloc] initWithFrame: CGRectMake(0, img_marginTB, biIcon.size.width*FIRSTHEIGHTTWO, biIcon.size.height*FIRSTHEIGHTTWO)];
         imageView.contentMode = UIViewContentModeScaleAspectFill;
+        imageView.image = biIcon;
         imageView.layer.masksToBounds = YES;
         imageView.layer.cornerRadius = 1;
         [infoView addSubview: imageView];
         
         lblTitle1 = [[UILabel alloc] initWithFrame: CGRectMake(1, 1, 1, 1)];
-        lblTitle1.text = @"";
+        lblTitle1.text = @"加载中...";
         [infoView addSubview: lblTitle1];
-        lblTitle1.font = [UIFont boldSystemFontOfSize: WodehuojiaFont1];
+        lblTitle1.font = [UIFont systemFontOfSize: FIRSTFONTONE];
+        lblTitle1.textColor = UIColorFromRGB(0xFBFFFF);
         [lblTitle1 sizeToFit];
-        [lblTitle1 setW:lblTitle1.width];
-        [lblTitle1 setH:lblTitle1.height];
         [lblTitle1 setX:imageView.maxX + SCREEN_WIDTH/50];
-        [lblTitle1 setY:imageView.y];
+        [lblTitle1 setY:imageView.y+(imageView.height-lblTitle1.height)/2];
         
         lblTitle4 = [[UILabel alloc] initWithFrame: CGRectMake(1, 1, 1, 1)];
-        lblTitle4.text = @"-";
+        lblTitle4.text = @"加载中...";
         [infoView addSubview: lblTitle4];
-        lblTitle4.font = [UIFont boldSystemFontOfSize: WodehuojiaFont1];
+        lblTitle4.font = [UIFont boldSystemFontOfSize: FIRSTFONTTWO];
+        lblTitle4.textColor = [UIColor whiteColor];
         [lblTitle4 sizeToFit];
-        [lblTitle4 setW:lblTitle4.width];
-        [lblTitle4 setH:lblTitle1.height];
-        [lblTitle4 setX:lblTitle1.maxX+SCREEN_WIDTH/80];
-        [lblTitle4 setY:imageView.y];
-        
-        lblTitle3 = [[UILabel alloc] initWithFrame: CGRectMake(1, 1, 1, 1)];
-        lblTitle3.text = @"";
-        [infoView addSubview: lblTitle3];
-        lblTitle3.font = [UIFont boldSystemFontOfSize: WodehuojiaFont1];
-        [lblTitle3 sizeToFit];
-        [lblTitle3 setW:lblTitle3.width];
-        [lblTitle3 setH:lblTitle3.height];
-        [lblTitle3 setX:lblTitle4.maxX];
-        [lblTitle3 setY:imageView.y];
-        
-        lblTitle2 = [[UILabel alloc] initWithFrame: CGRectMake(1, 1, 1, 1)];
-        lblTitle2.text = @" ";
-        lblTitle2.textColor = COL_2B;
-        lblTitle2.font = [UIFont systemFontOfSize: WodehuojiaFont2];
-        [infoView addSubview: lblTitle2];
-        [lblTitle2 sizeToFit];
-        
-        lblTitle5 = [[UILabel alloc] initWithFrame: CGRectMake(1, 1, 1, 1)];
-        lblTitle5.text = @" ";
-        lblTitle5.textColor = UIColorFromRGB(0xFC5300);
-        lblTitle5.font = [UIFont systemFontOfSize: WodehuojiaFont2];
-        [infoView addSubview: lblTitle5];
-        [lblTitle5 sizeToFit];
-        
-        lblZhuangzaigang = [[UILabel alloc] initWithFrame: CGRectMake(1, 1, 1, 1)];
-        lblZhuangzaigang.text = @" ";
-        lblZhuangzaigang.font = [UIFont systemFontOfSize: WodehuojiaFont2];
-        lblZhuangzaigang.textColor = COL_2B;
-        [infoView addSubview: lblZhuangzaigang];
-        [lblZhuangzaigang sizeToFit];
-        
-        serviceimg=[UIImage imageNamed:@"quotedpriceone"];
-        statusImg=[[UIImageView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH*0.86, infoView.height*0.6, serviceimg.size.width, serviceimg.size.height)];
-        [statusImg setImage:serviceimg];
-        [infoView addSubview:statusImg];
-        
-        lblXiezaigang = [[UILabel alloc] initWithFrame: CGRectMake(SCREEN_WIDTH*0.86, statusImg.maxY, 1, 1)];
-        lblXiezaigang.text = @"报价中";
-        lblXiezaigang.font = [UIFont systemFontOfSize: 9];
-        lblXiezaigang.textColor = UIColorFromRGB(0x24ACEB);
-        [infoView addSubview: lblXiezaigang];
-        [lblXiezaigang sizeToFit];
-        
-        lbltoubiaozhuangtai = [[UILabel alloc] initWithFrame: CGRectMake(1, 1, 1, 1)];
-        lbltoubiaozhuangtai.text = @" ";
-        lbltoubiaozhuangtai.font = [UIFont systemFontOfSize: WodehuojiaFont3];
-        lbltoubiaozhuangtai.textColor = COL_2B;
-        [infoView addSubview: lbltoubiaozhuangtai];
-        
-        
-        lblKaibiaohaisheng = [[UILabel alloc] initWithFrame: CGRectMake(1, 1, 1, 1)];
-        lblKaibiaohaisheng.text = @" ";
-        lblKaibiaohaisheng.font = [UIFont systemFontOfSize: WodehuojiaFont3];
-        lblKaibiaohaisheng.textColor = COL_2B;
-        [infoView addSubview:lblKaibiaohaisheng];
-        [lblKaibiaohaisheng sizeToFit];
-        
-        
-        [infoView addSubview: lblTitle3];
-        
-        UIView *line = [[UIView alloc] initWithFrame: CGRectMake(COMMON_H_MARGIN, infoView.maxY, cell.width - COMMON_H_MARGIN*2, 1)];
-        [line setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"dotted_line"]]];
-        [cell addSubview: line];
-        UIView *toolView = [[UIView alloc] initWithFrame: CGRectMake(COMMON_H_MARGIN, line.maxY, cell.width - COMMON_H_MARGIN*2, cell.height - line.maxY)];
-        [cell addSubview:toolView];
-        
-        UIImage *image = [UIImage imageNamed:@"number"];
-        btnContact = [[UIButton alloc] initWithFrame: CGRectMake(COMMON_H_MARGIN/2, (toolView.height - image.size.height) / 2, image.size.width, image.size.height)];
-        [btnContact setImage: image forState: UIControlStateNormal];
-        [toolView addSubview:btnContact];
+        [lblTitle4 setX:SCREEN_WIDTH*0.55];
+        [lblTitle4 setY:lblTitle1.y];
         
         btnContactText = [[UIButton alloc] init];
-        [btnContactText setTitle: @"" forState: UIControlStateNormal];
-        btnContactText.titleLabel.font = [UIFont systemFontOfSize: WodehuojiaFont3];
+        [btnContactText setTitle: @"加载中..." forState: UIControlStateNormal];
+        btnContactText.titleLabel.font = [UIFont systemFontOfSize: FIRSTFONTONE];
+        btnContactText.titleLabel.textColor = [UIColor whiteColor];
+        [btnContactText setBackgroundColor:[UIColor redColor]];
         [btnContactText sizeToFit];
-        [btnContactText setFrame:CGRectMake(btnContact.maxX + 3, btnContact.y, SCREEN_WIDTH/15, btnContact.height)];
+        [btnContactText setX:lblTitle4.maxX+SCREEN_WIDTH/20];
+        [btnContactText setY:imageView.y];
+        [btnContactText setW:SCREEN_WIDTH-lblTitle4.maxX-SCREEN_WIDTH/10];
+        [btnContactText setH:imageView.height];
+
+        [btnContactText setTitleColor: [UIColor whiteColor] forState: UIControlStateNormal];
+        [infoView addSubview: btnContactText];
         
-        [btnContactText setTitleColor: COL_TEXT_GRAY3 forState: UIControlStateNormal];
-        [toolView addSubview: btnContactText];
+        UIView *line = [[UIView alloc] initWithFrame: CGRectMake(COMMON_H_MARGIN, infoView.maxY, cell.width , 1)];
+        [line setBackgroundColor:UIColorFromRGB(0x141A21)];
+        [cell addSubview: line];
         
+        UIView *linetwo = [[UIView alloc] initWithFrame: CGRectMake(COMMON_H_MARGIN, line.maxY, cell.width, 1)];
+        [linetwo setBackgroundColor:UIColorFromRGB(0x0B1219)];
+        [cell addSubview: linetwo];
         
-        float btnMarginBT = 5.5;
-        float btnHeight = toolView.height - btnMarginBT*2;
-        float btnWidth = btnHeight * 1.2;
+        toolView = [[UIView alloc] initWithFrame: CGRectMake(COMMON_H_MARGIN, linetwo.maxY, cell.width, cell.height - linetwo.maxY)];
+        [cell addSubview:toolView];
+//        #7D8285
+        lblTitle31 = [[UILabel alloc] initWithFrame: CGRectMake(1, 1, 1, 1)];
+        lblTitle31.text = LocatizedStirngForkey(@"CHENGJIAOE");
+        [toolView addSubview: lblTitle31];
+        lblTitle31.font = [UIFont systemFontOfSize: FIRSTFONTTHREE];
+        lblTitle31.textColor = UIColorFromRGB(0x7D8285);
+        [lblTitle31 sizeToFit];
+        [lblTitle31 setX:imageView.x+imageView.width/IMAGELEFT];
+        [lblTitle31 setY:toolView.height/5];
         
+        lblTitle3 = [[UILabel alloc] initWithFrame: CGRectMake(1, 1, 1, 1)];
+        lblTitle3.text = @"加载中...";
+        lblTitle3.textColor = UIColorFromRGB(0x7D8285);
+        [toolView addSubview: lblTitle3];
+        lblTitle3.font = [UIFont systemFontOfSize: FIRSTFONTTHREE];
+        [lblTitle3 sizeToFit];
+        [lblTitle3 setX:lblTitle31.x];
+        [lblTitle3 setY:lblTitle31.maxY+toolView.height/10];
         
-        UIImage *btnBgWhrite = [[UIImage imageNamed:@"btn_whrite"] resizableImageWithCapInsets:UIEdgeInsetsMake(5, 5, 5, 5)];
-        UIButton *btnXiangqing = [[UIButton alloc] initWithFrame: CGRectMake(toolView.width*0.74, btnMarginBT, btnWidth*2, btnHeight)];
-        [btnXiangqing setTitle: @"报价详情" forState: UIControlStateNormal];
-        [btnXiangqing setBackgroundImage:btnBgWhrite forState: UIControlStateNormal];
-        [btnXiangqing setTitleColor: UIColorFromRGB(0x2A9A63) forState: UIControlStateNormal];
-        btnXiangqing.titleLabel.font = [UIFont systemFontOfSize: 14];
-        [btnXiangqing addTarget:self action: @selector(cellXiangqing:) forControlEvents:UIControlEventTouchUpInside];
-        [toolView addSubview:btnXiangqing];
-  
+        lblTitle21 = [[UILabel alloc] initWithFrame: CGRectMake(1, 1, 1, 1)];
+        lblTitle21.text = LocatizedStirngForkey(@"CHENGJIAOLIANG");
+        lblTitle21.textColor = UIColorFromRGB(0x7D8285);
+        lblTitle21.font = [UIFont systemFontOfSize: FIRSTFONTTHREE];
+        [toolView addSubview: lblTitle21];
+        [lblTitle21 sizeToFit];
+        [lblTitle21 setX:SCREEN_WIDTH*0.3];
+        [lblTitle21 setY:toolView.height/5];
+        
+        lblTitle2 = [[UILabel alloc] initWithFrame: CGRectMake(1, 1, 1, 1)];
+        lblTitle2.text = @"加载中...";
+        lblTitle2.textColor = UIColorFromRGB(0x7D8285);
+        lblTitle2.font = [UIFont systemFontOfSize: FIRSTFONTTHREE];
+        [toolView addSubview: lblTitle2];
+        [lblTitle2 sizeToFit];
+        [lblTitle2 setX:SCREEN_WIDTH*0.3];
+        [lblTitle2 setY:lblTitle21.maxY+toolView.height/10];
+        
+        lblTitle51 = [[UILabel alloc] initWithFrame: CGRectMake(1, 1, 1, 1)];
+        lblTitle51.text = LocatizedStirngForkey(@"ZUIDIJIA");
+        lblTitle51.textColor = UIColorFromRGB(0x7D8285);
+        lblTitle51.font = [UIFont systemFontOfSize: FIRSTFONTTHREE];
+        [toolView addSubview: lblTitle51];
+        [lblTitle51 sizeToFit];
+        [lblTitle51 setX:SCREEN_WIDTH*IMAGELEFTTWO];
+        [lblTitle51 setY:toolView.height/5];
+        
+        lblTitle5 = [[UILabel alloc] initWithFrame: CGRectMake(1, 1, 1, 1)];
+        lblTitle5.text = @"加载中...";
+        lblTitle5.textColor = UIColorFromRGB(0x7D8285);
+        lblTitle5.font = [UIFont systemFontOfSize: FIRSTFONTTHREE];
+        [toolView addSubview: lblTitle5];
+        [lblTitle5 sizeToFit];
+        [lblTitle5 setX:SCREEN_WIDTH*0.5];
+        [lblTitle5 setY:lblTitle51.maxY+toolView.height/10];
+        
+        lblZhuangzaigang1 = [[UILabel alloc] initWithFrame: CGRectMake(1, 1, 1, 1)];
+        lblZhuangzaigang1.text = LocatizedStirngForkey(@"ZUIGAOJIA");
+        lblZhuangzaigang1.textColor = UIColorFromRGB(0x7D8285);
+        lblZhuangzaigang1.font = [UIFont systemFontOfSize: FIRSTFONTTHREE];
+        [toolView addSubview: lblZhuangzaigang1];
+        [lblZhuangzaigang1 sizeToFit];
+        [lblZhuangzaigang1 setX:SCREEN_WIDTH*IMAGELEFTTHREE];
+        [lblZhuangzaigang1 setY:toolView.height/5];
+        
+        lblZhuangzaigang = [[UILabel alloc] initWithFrame: CGRectMake(1, 1, 1, 1)];
+        lblZhuangzaigang.text = @"加载中...";
+        lblZhuangzaigang.font = [UIFont systemFontOfSize: FIRSTFONTTHREE];
+        lblZhuangzaigang.textColor = UIColorFromRGB(0x7D8285);
+        [toolView addSubview: lblZhuangzaigang];
+        [lblZhuangzaigang sizeToFit];
+        [lblZhuangzaigang setX:SCREEN_WIDTH*0.75];
+        [lblZhuangzaigang setY:lblZhuangzaigang1.maxY+toolView.height/10];
+ 
         [self addSubview: cell];
     }
     return self;
@@ -175,8 +183,8 @@
 - (void)setTitle1:(NSString *)value {
     _title1 = NilToEmpty(value);
     lblTitle1.text = _title1;
-    CGSize textSize = JHTCalcStringSizeWithFontSize(@"乌鲁木", WodehuojiaFont1);
-    CGSize textSize2 = JHTCalcStringSizeWithFontSize(_title1, WodehuojiaFont1);
+    CGSize textSize = JHTCalcStringSizeWithFontSize(@"比特币(BTC)", FIRSTFONTONE);
+    CGSize textSize2 = JHTCalcStringSizeWithFontSize(_title1, FIRSTFONTONE);
     [lblTitle1 setAdjustsFontSizeToFitWidth:YES];
     [lblTitle1 sizeToFit];
     if(textSize2.width>textSize.width){
@@ -187,19 +195,42 @@
         [lblTitle1 setH:lblTitle1.height];
     }
     [lblTitle1 setX:imageView.maxX + SCREEN_WIDTH/50];
-    [lblTitle1 setY:imageView.y];
-    
-    [lblTitle4 sizeToFit];
-    [lblTitle4 setW:lblTitle4.width];
-    [lblTitle4 setH:lblTitle4.height];
-    [lblTitle4 setX:lblTitle1.maxX+SCREEN_WIDTH/100];
-    [lblTitle4 setY:imageView.y];
+    [lblTitle1 setY:imageView.y+(imageView.height-lblTitle1.height)/2];
 }
 - (void)setTitle3:(NSString *)value {
     _title3 = NilToEmpty(value);
-    lblTitle3.text = _title3;
-    CGSize textSize = JHTCalcStringSizeWithFontSize(@"乌鲁木", WodehuojiaFont1);
-    CGSize textSize2 = JHTCalcStringSizeWithFontSize(_title3, WodehuojiaFont1);
+    lblTitle4.text = _title3;
+    CGSize textSize = JHTCalcStringSizeWithFontSize(@"￥0.888", FIRSTFONTTWO);
+    CGSize textSize2 = JHTCalcStringSizeWithFontSize(_title3, FIRSTFONTTWO);
+    [lblTitle4 setAdjustsFontSizeToFitWidth:YES];
+    [lblTitle4 sizeToFit];
+    if(textSize2.width>textSize.width){
+        [lblTitle4 setW:textSize.width];
+        [lblTitle4 setH:textSize.height];
+    }else{
+        [lblTitle4 setW:lblTitle4.width];
+        [lblTitle4 setH:lblTitle4.height];
+    }
+    [lblTitle4 setX:SCREEN_WIDTH*0.55];
+    [lblTitle4 setY:lblTitle1.y];
+    
+    [btnContactText setX:lblTitle4.maxX+SCREEN_WIDTH/20];
+    [btnContactText setY:imageView.y];
+    [btnContactText setW:SCREEN_WIDTH-lblTitle4.maxX-SCREEN_WIDTH/10];
+    [btnContactText setH:imageView.height];
+}
+- (void)setTitle2:(NSString *)value {
+    _title2 = NilToEmpty(value);
+    [btnContactText setTitle: _title2 forState: UIControlStateNormal];
+//    btnContactText.titleLabel.text = _title2;
+//    [btnContactText sizeToFit];
+}
+
+-(void)setToubiaozhuangtai:(NSString *)value{
+    _toubiaozhuangtai = NilToEmpty(value);
+    lblTitle3.text=_toubiaozhuangtai;
+    CGSize textSize = JHTCalcStringSizeWithFontSize(@"1888.88万", FIRSTFONTTHREE);
+    CGSize textSize2 = JHTCalcStringSizeWithFontSize(_toubiaozhuangtai, FIRSTFONTTHREE);
     [lblTitle3 setAdjustsFontSizeToFitWidth:YES];
     [lblTitle3 sizeToFit];
     if(textSize2.width>textSize.width){
@@ -209,20 +240,14 @@
         [lblTitle3 setW:lblTitle3.width];
         [lblTitle3 setH:lblTitle3.height];
     }
-    [lblTitle3 setX:lblTitle4.maxX+SCREEN_WIDTH/100];
-    [lblTitle3 setY:imageView.y];
+    [lblTitle3 setX:lblTitle31.x];
+    [lblTitle3 setY:lblTitle31.maxY+toolView.height/10];
 }
-- (void)setTitle2:(NSString *)value {
-    _title2 = NilToEmpty(value);
-    NSMutableAttributedString *attributedStr2 = [[NSMutableAttributedString alloc]initWithString:_title2];
-    if (_title2.length > 0) {
-        [attributedStr2 addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:WodehuojiaFont1] range:NSMakeRange(0, _title2.length-1)];
-        [attributedStr2 addAttribute:NSForegroundColorAttributeName value:UIColorFromRGB(0xFC5300) range:NSMakeRange(0, _title2.length-1)];
-    }
-    lblTitle2.attributedText=attributedStr2;
-    
-    CGSize textSize = JHTCalcStringSizeWithFontSize(@"乌鲁木齐", WodehuojiaFont2);
-    CGSize textSize2 = JHTCalcStringSizeWithFontSize(_title2, WodehuojiaFont2);
+-(void)setKaibiaohaisheng:(NSString *)value {
+    _kaibiaohaisheng = NilToEmpty(value);
+    lblTitle2.text=_kaibiaohaisheng;
+    CGSize textSize = JHTCalcStringSizeWithFontSize(@"9999万", FIRSTFONTTHREE);
+    CGSize textSize2 = JHTCalcStringSizeWithFontSize(_kaibiaohaisheng, FIRSTFONTTHREE);
     [lblTitle2 setAdjustsFontSizeToFitWidth:YES];
     [lblTitle2 sizeToFit];
     if(textSize2.width>textSize.width){
@@ -232,14 +257,14 @@
         [lblTitle2 setW:lblTitle2.width];
         [lblTitle2 setH:lblTitle2.height];
     }
-    [lblTitle2 setX:lblTitle3.maxX + SCREEN_WIDTH/45];
-    [lblTitle2 setY:lblTitle3.y];
+    [lblTitle2 setX:lblTitle21.x];
+    [lblTitle2 setY:lblTitle21.maxY+toolView.height/10];
 }
 - (void)setToubiaoshu:(NSString *)value {
     _toubiaoshu = NilToEmpty(value);
     lblTitle5.text=_toubiaoshu;
-    CGSize textSize = JHTCalcStringSizeWithFontSize(@"西伯利亚大港", WodehuojiaFont2);
-    CGSize textSize2 = JHTCalcStringSizeWithFontSize(_toubiaoshu, WodehuojiaFont2);
+    CGSize textSize = JHTCalcStringSizeWithFontSize(@"￥0.666", FIRSTFONTTHREE);
+    CGSize textSize2 = JHTCalcStringSizeWithFontSize(_toubiaoshu, FIRSTFONTTHREE);
     [lblTitle5 setAdjustsFontSizeToFitWidth:YES];
     [lblTitle5 sizeToFit];
     if(textSize2.width>textSize.width){
@@ -249,100 +274,28 @@
         [lblTitle5 setW:lblTitle5.width];
         [lblTitle5 setH:lblTitle5.height];
     }
-    [lblTitle5 setX:lblTitle2.maxX + SCREEN_WIDTH/45];
-    [lblTitle5 setY:lblTitle3.y];
+    [lblTitle5 setX:lblTitle51.x];
+    [lblTitle5 setY:lblTitle51.maxY+toolView.height/10];
 }
 
 - (void) setZhuangzaigang:(NSString *)value {
     _zhuangzaigang = NilToEmpty(value);
-    NSMutableAttributedString *attributedStr4 = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"受载日期：%@", _zhuangzaigang]];
-    if(_zhuangzaigang.length>0){
-        [attributedStr4 addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:WodehuojiaFont2] range:NSMakeRange(attributedStr4.length-_zhuangzaigang.length,_zhuangzaigang.length-1)];
-        [attributedStr4 addAttribute:NSForegroundColorAttributeName value:UIColorFromRGB(0x56AD5F) range:NSMakeRange(attributedStr4.length-_zhuangzaigang.length,_zhuangzaigang.length-1)];
-    }
-    lblZhuangzaigang.attributedText = attributedStr4;
+    lblZhuangzaigang.text=_zhuangzaigang;
+    CGSize textSize = JHTCalcStringSizeWithFontSize(@"￥0.666", FIRSTFONTTHREE);
+    CGSize textSize2 = JHTCalcStringSizeWithFontSize(_zhuangzaigang, FIRSTFONTTHREE);
+    [lblZhuangzaigang setAdjustsFontSizeToFitWidth:YES];
     [lblZhuangzaigang sizeToFit];
-    [lblZhuangzaigang setH:lblZhuangzaigang.height];
-    [lblZhuangzaigang setW: lblZhuangzaigang.width];
-    [lblZhuangzaigang setY: lblTitle4.maxY+infoView.height/15];
-    [lblZhuangzaigang setX:imageView.maxX + SCREEN_WIDTH/50];
-}
--(void)setToubiaozhuangtai:(NSString *)value{
-    _toubiaozhuangtai = NilToEmpty(value);
-    NSMutableAttributedString *attributedStr3 = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"我的报价：%@ 万元", _toubiaozhuangtai]];
-    if(_toubiaozhuangtai.length>0){
-        [attributedStr3 addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:WodehuojiaFont2] range:NSMakeRange(5, _toubiaozhuangtai.length)];
-        [attributedStr3 addAttribute:NSForegroundColorAttributeName value:UIColorFromRGB(0xFC5300) range:NSMakeRange(5, _toubiaozhuangtai.length)];
-    }
-    lbltoubiaozhuangtai.attributedText = attributedStr3;
-    CGSize textSize = JHTCalcStringSizeWithFontSize(@"我的报价：1000 万元", WodehuojiaFont3);
-    NSString *pricestr=[NSString stringWithFormat:@"我的报价：%@ 万元", _toubiaozhuangtai];
-    CGSize textSize2 = JHTCalcStringSizeWithFontSize(pricestr, WodehuojiaFont3);
-    [lbltoubiaozhuangtai setAdjustsFontSizeToFitWidth:YES];
-    [lbltoubiaozhuangtai sizeToFit];
     if(textSize2.width>textSize.width){
-        [lbltoubiaozhuangtai setW:textSize.width];
-        [lbltoubiaozhuangtai setH:textSize.height];
+        [lblZhuangzaigang setW:textSize.width];
+        [lblZhuangzaigang setH:textSize.height];
     }else{
-        [lbltoubiaozhuangtai setW:lbltoubiaozhuangtai.width];
-        [lbltoubiaozhuangtai setH:lbltoubiaozhuangtai.height];
+        [lblZhuangzaigang setW:lblZhuangzaigang.width];
+        [lblZhuangzaigang setH:lblZhuangzaigang.height];
     }
-    [lbltoubiaozhuangtai setX:imageView.maxX + SCREEN_WIDTH/50];
-    [lbltoubiaozhuangtai setY: lblZhuangzaigang.maxY+infoView.height/15];
+    [lblZhuangzaigang setX:lblZhuangzaigang1.x];
+    [lblZhuangzaigang setY:lblZhuangzaigang1.maxY+toolView.height/10];
 }
--(void)setKaibiaohaisheng:(NSString *)value {
-    _kaibiaohaisheng = NilToEmpty(value);
-    NSMutableAttributedString *attributedStr3 = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"(%@ 元/吨)", _kaibiaohaisheng]];
-    if(_kaibiaohaisheng.length>0){
-        [attributedStr3 addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:WodehuojiaFont2] range:NSMakeRange(1, _kaibiaohaisheng.length)];
-        [attributedStr3 addAttribute:NSForegroundColorAttributeName value:UIColorFromRGB(0xFC5300) range:NSMakeRange(1, _kaibiaohaisheng.length)];
-    }
-    lblKaibiaohaisheng.attributedText = attributedStr3;
-    CGSize textSize = JHTCalcStringSizeWithFontSize(@"(10000 元/吨)", WodehuojiaFont3);
-    NSString *pricestr=[NSString stringWithFormat:@"(%@ 元/吨)", _kaibiaohaisheng];
-    CGSize textSize2 = JHTCalcStringSizeWithFontSize(pricestr, WodehuojiaFont3);
-    [lblKaibiaohaisheng setAdjustsFontSizeToFitWidth:YES];
-    [lblKaibiaohaisheng sizeToFit];
-    if(textSize2.width>textSize.width){
-        [lblKaibiaohaisheng setW:textSize.width];
-        [lblKaibiaohaisheng setH:textSize.height];
-    }else{
-        [lblKaibiaohaisheng setW:lblKaibiaohaisheng.width];
-        [lblKaibiaohaisheng setH:lblKaibiaohaisheng.height];
-    }
-    
-    [lblKaibiaohaisheng setX:lbltoubiaozhuangtai.maxX+ SCREEN_WIDTH/100];
-    [lblKaibiaohaisheng setY: lblZhuangzaigang.maxY+infoView.height/15];
-}
--(void)setStatus:(NSString *)value{
-    _status = NilToEmpty(value);
-}
--(void)setXiezaigang:(NSString *)value{
-    _xiezaigang = NilToEmpty(value);
-    if([_xiezaigang isEqualToString:@"1"] || [_xiezaigang isEqualToString:@"2"]){
-        serviceimg=[UIImage imageNamed:@"quotedpriceone"];
-        [statusImg setImage:serviceimg];
-        lblXiezaigang.text=_status;
-        lblXiezaigang.textColor=UIColorFromRGB(0x30ADE8);
-    }
-    else if([_xiezaigang isEqualToString:@"4"]){
-        serviceimg=[UIImage imageNamed:@"quotedpricetwo"];
-        [statusImg setImage:serviceimg];
-        lblXiezaigang.text=_status;
-        lblXiezaigang.textColor=UIColorFromRGB(0xBFBFC1);
-    }
-    
-}
--(void)setYouxiaoqi:(NSString *)value {
-    _youxiaoqi = NilToEmpty(value);
-    NSMutableAttributedString *attributedStr5 = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"%@ 人报价", _youxiaoqi?_youxiaoqi:@"0"]];
-    if(_youxiaoqi.length>0){
-        [attributedStr5 addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:WodehuojiaFont4] range:NSMakeRange(0,_youxiaoqi.length)];
-        [attributedStr5 addAttribute:NSForegroundColorAttributeName value:UIColorFromRGB(0xFC5300) range:NSMakeRange(0,_youxiaoqi.length)];
-    }
-    [btnContactText setAttributedTitle:attributedStr5 forState:UIControlStateNormal];
-    [btnContactText setFrame:CGRectMake(btnContact.maxX + 3, btnContact.y, SCREEN_WIDTH/5.8, btnContact.height)];
-}
+
 - (void)awakeFromNib {
 }
 

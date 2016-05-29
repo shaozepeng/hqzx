@@ -6,12 +6,12 @@
 //  Copyright (c) 2014年 zhongxin. All rights reserved.
 //
 
-static const NSString *NET_PK = @"$yPP),(6xW^[Yh])";
+static const NSString *NET_PK = @"1234567890";
 
 #import <Foundation/Foundation.h>
 #import "AFHTTPSessionManager.h"
 #import "NetFormParam.h"
-#import "JHTImageFormParam.h"
+#import "HQZXImageFormParam.h"
 @interface NetHttpClient : AFHTTPSessionManager
 
 +(NetHttpClient*)sharedHTTPClient;

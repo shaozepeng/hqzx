@@ -24,7 +24,7 @@
     UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     backBtn.frame = CGRectMake(0, 0, 60, 44);
     [backBtn setTintColor:[UIColor whiteColor]];
-    [backBtn setTitle:@"En" forState:UIControlStateNormal];
+    [backBtn setTitle:LocatizedStirngForkey(@"LANGUAGE") forState:UIControlStateNormal];
     [backBtn setTitleColor:UIColorFromRGB(0x439AFE) forState:UIControlStateNormal];
     UIImage *leftBtnImage = [UIImage imageNamed:@"icon_jt_bottom"];
     [backBtn setImage:leftBtnImage forState:UIControlStateNormal];
@@ -36,14 +36,80 @@
     [temporaryBarButtonItem setCustomView:backBtn];
     self.tabBarController.navigationItem.rightBarButtonItem = temporaryBarButtonItem;
     
+    [self createTabView];
     
-    //    UIBarButtonItem *btn_right = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
-    UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc]
-                                       initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
-                                       target:nil action:nil];
-    negativeSpacer.width = 0;
-    self.tabBarController.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:negativeSpacer, temporaryBarButtonItem, nil];
+    WEAK_SELF
+    self.myTableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [weakself refData];
+    }];
+    self.myTableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        [weakself refData];
+    }];
 }
+-(void)refData{
+    [self.myTableView.header endRefreshing];
+}
+-(void)createTabView{
+    
+    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, TOP_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT-TOP_HEIGHT) style:UITableViewStyleGrouped];
+    tableView.separatorStyle = UITableViewCellSelectionStyleNone;
+    // 设置tableView的数据源
+    tableView.dataSource = self;
+    // 设置tableView的委托
+    tableView.delegate = self;
+    tableView.backgroundColor = UIColorFromRGB(0x0C1319);
+    [tableView registerClass:[XQZXJiaoYiDaTingTableCell class] forCellReuseIdentifier:@"wohuoCell"];
+    self.myTableView = tableView;
+    //[self.myTableView registerClass:[JHWodeCustomTableViewCell class] forCellReuseIdentifier:@"CustomHeader"];
+    [self.view addSubview:self.myTableView];
+}
+// 设置块的高度
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return FIRSTSECIONHEIGHT;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return CGFLOAT_MIN;
+}
+
+//设置行高
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return FIRSTHEIGHTONE;
+}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 1;
+}
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 5;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString *huoCellIdentifier = @"wohuoCell";
+    XQZXJiaoYiDaTingTableCell *cell = [tableView dequeueReusableCellWithIdentifier: huoCellIdentifier];
+    cell.wocanyudehuopanxiangqingBlock = ^() {
+        
+    };
+    //    id huobiao;
+    
+    //    if (huobiao) {
+    cell.rowNum = indexPath.row;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    //        cell.imageUrl = [huobiao objectForKey:@"bid_head_img"];
+    cell.title1 = @"比特币(BTC)";
+    cell.title3 = @"￥0.888";
+    cell.title2 = @"+0.250%";
+    cell.toubiaozhuangtai = @"1888.88万";
+    cell.toubiaoshu = @"3999";
+    cell.kaibiaohaisheng = @"￥0.666";
+    cell.zhuangzaigang = @"￥0.999";
+    //    }
+    return cell;
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    //push后cell选中效果消失,又动画
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
 -(void)viewWillAppear:(BOOL)animated {
     self.tabBarController.title = LocatizedStirngForkey(@"TWO");
     self.tabBarController.navigationItem.backBarButtonItem = temporaryBarButtonItem;
@@ -85,6 +151,7 @@
             }
         }
     }
-    
 }
+
+
 @end

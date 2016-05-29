@@ -68,7 +68,7 @@ typedef NS_ENUM(NSInteger, LCStatusBarStyle) {
     LCStatusBarStyleNone
 };
 
-@interface LCNewFeatureVC : JHTBaseController
+@interface LCNewFeatureVC : UIViewController
 
 
 #pragma mark - 属性 Properties

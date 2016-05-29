@@ -6,8 +6,16 @@
 //  Copyright © 2016年 泽鹏邵. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import "MyRecentViewController.h"
+#import "MyContactsViewController.h"
+#import "MyMeViewController.h"
+#import "MacroDefinition.h"
+#import "HQZXLoginViewController.h"
 
-@interface HQZYTabBarController : NSObject
-
+@interface HQZYTabBarController : UITabBarController<UITabBarControllerDelegate>
+@property (nonatomic, strong)MyRecentViewController* recentViewCntlr;
+@property (nonatomic, strong)MyContactsViewController* contactsViewCntlr;
+@property (nonatomic, strong)MyMeViewController* meViewCntlr;
+@property (nonatomic,assign) NSInteger selectSum;
 @end

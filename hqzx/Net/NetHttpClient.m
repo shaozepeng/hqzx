@@ -9,7 +9,7 @@
 #import "NetHttpClient.h"
 #import "AFNetworkReachabilityManager.h"
 #import "AFNetworking.h"
-#import "JHTUserModel.h"
+#import "HQZXUserModel.h"
 #import "NSString+MD5.h"
 #import "AFHTTPRequestOperationManager.h"
 #import "CommonUtils.h"
@@ -102,7 +102,7 @@
 
 
 - (AFHTTPRequestOperation*) upLoadImg:(NSData*) img type:(UpImageType) type completion:(Id_Block)compBlock{
-    JHTImageFormParam *imgFormParam = [[JHTImageFormParam alloc] initWithImage: img type: type];
+    HQZXImageFormParam *imgFormParam = [[HQZXImageFormParam alloc] initWithImage: img type: type];
     return [self requestForm:@"/imgUpload" param:nil parameters: imgFormParam completion: compBlock];
 }
 //- (AFHTTPRequestOperation*) postContent:(NSString*) body {
@@ -147,7 +147,7 @@
     //    [httpRequestOperationManager.requestSerializer setValue: [[UserHelper sharedHelper] getCurrentMeta] forHTTPHeaderField:@"loginstate"];
     
     NSMutableDictionary *parameter = [NSMutableDictionary dictionaryWithDictionary: parameters];
-    [parameter setObject: [JHTUserModel sharedInstance].userId forKey: @"userid"];
+//    [parameter setObject: [HQZXUserModel sharedInstance].userId forKey: @"userid"];
     
     NSTimeInterval ins = [[NSDate date] timeIntervalSince1970];
     NSString *timeString = [NSString stringWithFormat: @"%.0f", ins];
@@ -218,17 +218,18 @@
     [httpRequestOperationManager.requestSerializer setValue:channel forHTTPHeaderField:@"channel"];
     //发送请求
     httpRequestOperationManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/plain", @"text/html", nil];
+//    httpRequestOperationManager.responseSerializer = [AFHTTPResponseSerializer serializer];
     
     [((AFJSONResponseSerializer*)httpRequestOperationManager.responseSerializer) setRemovesKeysWithNullValues: YES];
     NSString *url = [NSString stringWithFormat:@"%@%@", SERVER_BASE_URL, pathWithNoParamter];
-    AFHTTPRequestOperation *operation = [httpRequestOperationManager POST:url parameters:sumParameter
+    AFHTTPRequestOperation *operation = [httpRequestOperationManager GET:url parameters:sumParameter
                               success:^(AFHTTPRequestOperation *operation, id responseObject){
                                   if (compBlock) {
                                       compBlock(responseObject);
                                       NSString *errorCode = StrValueFromDictionary(responseObject, ApiKey_ErrorCode);
                                       if ([errorCode isEqualToString:@"100004"] || [errorCode isEqualToString:@"100012"]) {
-                                          if ([[JHTUserModel sharedInstance] isLogined]) {
-                                              [[JHTUserModel sharedInstance] logout];
+                                          if ([[HQZXUserModel sharedInstance] isLogined]) {
+                                              [[HQZXUserModel sharedInstance] logout];
                                           }
                                       }
                                   }

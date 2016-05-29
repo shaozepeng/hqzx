@@ -9,5 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface HQZXCountry : NSObject
-
+@property (nonatomic,copy) NSString *country_id;
+@property (nonatomic,copy) NSString *country_name;
+@property (nonatomic,copy) NSString *country_code;
+@property (nonatomic,copy) NSString *country_ename;
 @end

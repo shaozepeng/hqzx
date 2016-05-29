@@ -10,8 +10,20 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import <CommonCrypto/CommonCrypto.h>
+#import "HQZXCommDef.h"
+#import <CTAssetsPickerController.h>
+#import <AssetsLibrary/ALAsset.h>
 #define __BASE64( text )        [CommonUtils base64StringFromText:text]
 #define __TEXT( base64 )        [CommonUtils textFromBase64String:base64]
+
+#define countryKey @"country.plist"
+#define datamd5Key @"data_md5"
+
+//空字符串
+#define     LocalStr_None           @""
+
+static const char encodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
 @interface CommonUtils : NSObject
 

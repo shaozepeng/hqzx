@@ -10,6 +10,7 @@
 // THE SOFTWARE.
 
 #import "ProgressHUD.h"
+#import "MacroDefinition.h"
 
 @implementation ProgressHUD
 

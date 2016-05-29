@@ -5,3 +5,101 @@
   Created by 泽鹏邵 on 16/5/18.
   Copyright © 2016年 泽鹏邵. All rights reserved.
 */
+
+/*
+ ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝home区＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+ */
+
+//title
+"SUBMIT_BTN_TITLE"="环球在线";
+"ONE"="首页";
+"TWO"="交易大厅";
+"THREE"="我的";
+"LANGUAGE"="Zh";
+
+//语言切换菜单
+"YINGYU"="英语";
+"HANYU"="简体中文";
+
+/*
+ ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝首页＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+ */
+
+//cell区
+"CHENGJIAOE"="成交额";
+"CHENGJIAOLIANG"="成交量";
+"ZUIDIJIA"="最低价";
+"ZUIGAOJIA"="最高价";
+
+
+/* 
+ ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝我的区＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+ */
+
+//工具栏
+"DELUMING"="登录名";
+"NICHENG"="昵称";
+"TUIGUANGLIANJIE"="推广链接";
+"ZONGZICHAN"="总资产";
+"RENMINBICHONGZHI"="人民币充值";
+"RENMINBITIXIAN"="人民币提现";
+"XUNIBICHONGZHI"="虚拟币充值";
+"XUNIBITIXIAN"="虚拟币提现";
+"WEITUOGUANLI"="委托管理";
+"JIAOYILIUSHUI"="交易流水";
+"WOYAOSHOUKUAN"="我要收款";
+"WOYAOFUKUAN"="我要付款";
+"SHIMINGRENZHENG"="实名认证";
+"XIUGAIDENGLUMIMA"="修改登陆密码";
+"XIUGAIJIAOYIMIMA"="设置/修改交易密码";
+"XIAOXIZHONGXIN"="系统公告";
+"GUANYUWOMEN"="关于我们";
+"ANQUANZHONGXIN"="安全退出";
+
+//一些状态
+"YIRENZHENG"="已认证";
+"WEIRENZHENG"="未认证";
+
+/*
+ ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝用户区＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+ */
+
+//登陆
+"FANHUI"="返回";
+"DENGLU"="登录";
+"ZHUCE"="注册";
+"KEFUDIANHUA"="客服电话：400-888-888";
+"WANGJIMIMA"="忘记密码";
+"SHOUJIHAOMA"="手机号码";
+"MIMA"="密码";
+
+//注册
+"GUOJIA"="国家";
+"QINGSHURUYANZHENGMA"="请输入验证码";
+"DENGLUMIMA"="登陆密码";
+"QUERENMIMA"="确认密码";
+"TUIJIANRENID"="推荐人ID(非必填)";
+"HUOQUYANZHENGMA"="获取验证码";
+"WOYIYUEDU"="我已阅读并同意";
+"HUANQIUZAIXIANXIEYI"="《环球在线服务协议》";
+
+//修改登陆密码
+"JIUMIMA"="旧密码";
+"XINMIMA"="新密码";
+"QUERENXINMIMA"="确认新密码";
+"BAOCUNXIUGAI"="保存修改";
+
+//忘记密码
+"QUEREN"="确认";
+
+//修改登陆密码
+"SHEZHIXIUGAIJIAOYIMIMA"="设置/修改交易密码";
+"JIAOYIMIMA"="交易密码";
+"QUERENJIAOYIMIMA"="确认交易密码";
+"QUEDING"="确定";
+"KAIFATISHIDENGLUXIUGAI"="开发提示：这里手机号码默认就是登陆的手机号码，并且不可以修改";
+
+
+
+
+

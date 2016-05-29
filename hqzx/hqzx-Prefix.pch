@@ -1,0 +1,29 @@
+//
+//  jht-Prefix.pch
+//  hqzx
+//
+//  Created by 泽鹏邵 on 16/5/18.
+//  Copyright © 2016年 泽鹏邵. All rights reserved.
+//
+
+#import <Availability.h>
+#import <UIKit/UIKit.h>
+
+#ifndef __IPHONE_7_0
+#warning "This project uses features only available in iOS SDK 7.0 and later."
+#endif
+
+typedef void (^Id_Block)(id obj);
+#define Id_Block() ^void (id obj)
+
+#ifdef __OBJC__
+#import <UIKit/UIKit.h>
+#import "NetHttpClient.h"
+#import "CommonUtils.h"
+#import "HQZXCommDefs.h"
+#import "GDLocalizableController.h"
+#import "MacroDefinition.h"
+#import "AppDelegate.h"
+#import "NSString+NSStringForJava.h"
+#endif
+

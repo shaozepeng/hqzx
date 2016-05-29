@@ -7,6 +7,7 @@
 
 #import "DoAlertView.h"
 #import "UIImage+ResizeMagick.h"    //  Created by Vlad Andersen on 1/5/13.
+#import "MacroDefinition.h"
 
 #pragma mark - DoAlertViewController
 
