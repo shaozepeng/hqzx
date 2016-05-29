@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7A0F700D1CECA0B600F468D2"
-               BuildableName = "hqzx-dev.app"
-               BlueprintName = "hqzx-dev"
+               BlueprintIdentifier = "7AC7E8301CFACF25008CBC65"
+               BuildableName = "hqzx-dis.app"
+               BlueprintName = "hqzx-dis"
                ReferencedContainer = "container:hqzx.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,9 +32,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7A0F700D1CECA0B600F468D2"
-            BuildableName = "hqzx-dev.app"
-            BlueprintName = "hqzx-dev"
+            BlueprintIdentifier = "7AC7E8301CFACF25008CBC65"
+            BuildableName = "hqzx-dis.app"
+            BlueprintName = "hqzx-dis"
             ReferencedContainer = "container:hqzx.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -55,9 +55,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7A0F700D1CECA0B600F468D2"
-            BuildableName = "hqzx-dev.app"
-            BlueprintName = "hqzx-dev"
+            BlueprintIdentifier = "7AC7E8301CFACF25008CBC65"
+            BuildableName = "hqzx-dis.app"
+            BlueprintName = "hqzx-dis"
             ReferencedContainer = "container:hqzx.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -74,9 +74,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7A0F700D1CECA0B600F468D2"
-            BuildableName = "hqzx-dev.app"
-            BlueprintName = "hqzx-dev"
+            BlueprintIdentifier = "7AC7E8301CFACF25008CBC65"
+            BuildableName = "hqzx-dis.app"
+            BlueprintName = "hqzx-dis"
             ReferencedContainer = "container:hqzx.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
