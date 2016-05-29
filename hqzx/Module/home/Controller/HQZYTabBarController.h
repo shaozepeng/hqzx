@@ -18,4 +18,5 @@
 @property (nonatomic, strong)MyContactsViewController* contactsViewCntlr;
 @property (nonatomic, strong)MyMeViewController* meViewCntlr;
 @property (nonatomic,assign) NSInteger selectSum;
+
 @end
