@@ -1,9 +1,9 @@
 //
-//  JHTLoginViewController.h
-//  jht
+//  HQZXLoginViewController.h
+//  hqzx
 //
-//  Created by 孙泽山 on 15/6/24.
-//  Copyright (c) 2015年 zthz. All rights reserved.
+//  Created by 泽鹏邵 on 16/5/25.
+//  Copyright © 2016年 泽鹏邵. All rights reserved.
 //
 
 #define LOGINFONTONE  IP4566PELSE(13, 13,14,15)

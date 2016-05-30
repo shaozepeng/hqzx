@@ -1,11 +1,10 @@
 //
-//  JHTLoginViewController.m
-//  jht
+//  HQZXLoginViewController.m
+//  hqzx
 //
-//  Created by 孙泽山 on 15/6/24.
-//  Copyright (c) 2015年 zthz. All rights reserved.
+//  Created by 泽鹏邵 on 16/5/25.
+//  Copyright © 2016年 泽鹏邵. All rights reserved.
 //
-#define lastLoginUserNameKey @"Last_Login_UserName"
 #define loginFormMarginRL 17
 #define borderWidthForForm 1
 #define marginTxtWithIcon 5
@@ -13,9 +12,6 @@
 #define ColorForFormLine UIColorFromRGB(0xdfdfde)
 #define ColorForFunctionButton UIColorFromRGB(0x5f646e)
 #define ColorDownForFunctionButton ColorForFormLine
-
-//#define imName @"xingyuand908"
-#define imName @"shao116726834"
 
 #import "HQZXLoginViewController.h"
 #import "CommonUtils.h"
@@ -39,6 +35,7 @@
     UIButton *btnCancel;
     UIImageView *iconLianText;
     UITextField *txtLianText;
+    HQZXCountry *commitCountry;
 }
 @end
 
@@ -51,9 +48,9 @@
     nav.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     return nav;
 }
--(NSString *)pageName {
-    return @"登录页";
-}
+//-(NSString *)pageName {
+//    return @"登录页";
+//}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -235,10 +232,11 @@
     [self.view addSubview: btnLogin];
 }
 -(void)selectCountry{
-    HQZXSelectCountryForm *selectCountForm = [[HQZXSelectCountryForm alloc] initWithPlaceHolder: @"选择国家"];
+    HQZXSelectCountryForm *selectCountForm = [[HQZXSelectCountryForm alloc] initWithPlaceHolder: LocatizedStirngForkey(@"XUANZEGUOJIA")];
     __weak typeof(selectCountForm) weakSelectForm = selectCountForm;
     weakSelectForm.beSureComp = HQZXSelectCountryComp() {
         [weakSelectForm hideAction:^{
+            commitCountry = COUNTRY;
             NSString *language = [USER_DEFAULT objectForKey:kUserLanguage];
             if([language isEqualToString:@"zh-Hans"]){
                 txtLianText.text = COUNTRY.country_name;
@@ -269,49 +267,30 @@
     [btnForgetPwd setTitleColor: ColorDownForFunctionButton forState: UIControlStateHighlighted];
     [btnForgetPwd setX: (SCREEN_WIDTH -btnForgetPwd.width)/2];
     [btnForgetPwd addTarget: self action: @selector(userFindPwd:) forControlEvents:UIControlEventTouchUpInside];
-    
-//    btnRegister = [[UIButton alloc] initWithFrame: CGRectMake(form.x, btnLogin.maxY + loginFormMarginRL / 2.0 * 1.0, 1, 1)];
-//    [btnRegister setTitle:@"快速注册" forState: UIControlStateNormal];
-//    [self.view addSubview: btnRegister];
-//    [btnRegister sizeToFit];
-//    btnRegister.titleLabel.font = [UIFont systemFontOfSize: 14];
-//    [btnRegister setTitleColor: ColorForFunctionButton forState: UIControlStateNormal];
-//    [btnRegister setTitleColor: ColorDownForFunctionButton forState: UIControlStateHighlighted];
-//    [btnRegister addTarget: self action: @selector(userRegister:) forControlEvents:UIControlEventTouchUpInside];
-//    
-//    
-    
-//
-//    
-//    
-//    btnCancel = [[UIButton alloc] initWithFrame: CGRectMake(0, 0, 1, 1)];
-//    [btnCancel setTitle:@"放弃登录" forState: UIControlStateNormal];
-//    [self.view addSubview: btnCancel];
-//    [btnCancel sizeToFit];
-//    btnCancel.titleLabel.font = [UIFont systemFontOfSize: 14];
-//    [btnCancel addTarget: self action: @selector(cancelLogin) forControlEvents:UIControlEventTouchUpInside];
-//    [btnCancel setTitleColor: ColorForFunctionButton forState: UIControlStateNormal];
-//    [btnCancel setTitleColor: ColorDownForFunctionButton forState: UIControlStateHighlighted];
-//    [btnCancel setX: (SCREEN_WIDTH - loginFormMarginRL - btnForgetPwd.width)];
-//    [btnCancel setY: (self.view.height - btnForgetPwd.height - 10)];
 }
 
 -(void) login {
     WEAK_SELF
     NSString *phoneNo = txtUserName.text;
     NSString *password = txtPassword.text;
-    VALIDATE_NOT_NULL(phoneNo, @"请输入手机号码");
-    VALIDATE_NOT_NULL(password, @"请输入密码");
+    VALIDATE_NOT_NULL(phoneNo, LocatizedStirngForkey(@"QINGTIANXIESHOUJIHAOMA"));
+    VALIDATE_NOT_NULL(password, LocatizedStirngForkey(@"QINGSHURUMIMA"));
     
-    VALIDATE_REGEX(phoneNo, VALREG_MOBILE_PHONE, @"手机号码不正确");
+    if(!commitCountry.country_id){
+        [self.view makeToast: LocatizedStirngForkey(@"QINGXUANZEGUOJIA") duration: 0.5 position: CSToastPositionCenter];
+        return;
+    }
+    
+    
+    VALIDATE_REGEX(phoneNo, VALREG_MOBILE_PHONE, LocatizedStirngForkey(@"SHOUJIHAOMAGESHICUOWU"));
 //    VALIDATE_REGEX(password, @"[x00-xff]{8,100}", @"密码至少8位，不能包含汉字");
     
     
-    [ProgressHUD show: @"请稍后..." Interaction: NO];
-    [[HQZXUserModel sharedInstance] login: phoneNo pwd: password completion:^(id obj) {
+    [ProgressHUD show: [NSString stringWithFormat:@"%@...",LocatizedStirngForkey(@"QINGDENGDAI")] Interaction: NO];
+    [[HQZXUserModel sharedInstance] login: phoneNo pwd: password country:commitCountry.country_id completion:^(id obj) {
         [ProgressHUD dismiss];
         if (obj == nil) {
-            [self.view makeToast:@"连接服务器失败" duration: 0.5 position:CSToastPositionCenter];
+            [self.view makeToast:LocatizedStirngForkey(@"LIANJIEFUWUQISHIBAI") duration: 0.5 position:CSToastPositionCenter];
             return;
         }
         if ([obj isKindOfClass: [NSString class]]) {
@@ -342,7 +321,7 @@
 -(IBAction) userRegister:(id) sender{
     HQZXRegisterViewController *userRegister = [[HQZXRegisterViewController alloc] init];
     userRegister.success = ^(id phoneNo) {
-        [self.view makeToast:@"注册成功" duration:1 position:CSToastPositionCenter];
+        [self.view makeToast:LocatizedStirngForkey(@"ZHUCECHENGGONG") duration:1 position:CSToastPositionCenter];
         txtUserName.text = phoneNo;
         [txtPassword becomeFirstResponder];
     };

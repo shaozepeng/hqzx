@@ -155,33 +155,34 @@
                 NSArray *paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
                 NSString *path=[paths objectAtIndex:0];
                 NSString *filename=[path stringByAppendingPathComponent:countryKey];
-                NSDictionary* dicPorts = [NSDictionary dictionaryWithContentsOfFile:filename];
-                NSString *newMd5 = StrValueFromDictionary(dicPorts, datamd5Key);
+//                NSDictionary* dicPorts = [NSDictionary dictionaryWithContentsOfFile:filename];
+                NSString *newMd5 = StrValueFromDictionary(obj, datamd5Key);
                 NSString *oldMd5 = [USER_DEFAULT objectForKey:datamd5Key];
                 if(![newMd5 isEqualToString:oldMd5]){
-                    [[NetHttpClient sharedHTTPClient] request:@"/get_config.json" parameters: @{@"is_data":@"0"} completion:^(id obj) {
-                        NSString *errorCodes = StrValueFromDictionary(obj, ApiKey_ErrorCode);
+                    [[NetHttpClient sharedHTTPClient] request:@"/get_config.json" parameters: @{@"is_data":@"0"} completion:^(id obje) {
+                        NSString *errorCodes = StrValueFromDictionary(obje, ApiKey_ErrorCode);
                         if ([@"0" isEqualToString: errorCodes]) {
                             NSArray *clearArray = [NSArray array];
-                            [clearArray writeToFile:[USER_DEFAULT objectForKey:countryKey] atomically:YES];
-                            [obj writeToFile:[USER_DEFAULT objectForKey:countryKey] atomically:YES];
+                            [USER_DEFAULT setObject: newMd5 forKey: datamd5Key];
+                            [clearArray writeToFile:filename atomically:YES];
+                            [obje writeToFile:filename atomically:YES];
                         }
                     }];
                 }
             }else{
-                [[NetHttpClient sharedHTTPClient] request:@"/get_config.json" parameters: @{@"is_data":@"0"} completion:^(id obj) {
-                    NSString *errorCoded = StrValueFromDictionary(obj, ApiKey_ErrorCode);
+                [[NetHttpClient sharedHTTPClient] request:@"/get_config.json" parameters: @{@"is_data":@"0"} completion:^(id objm) {
+                    NSString *errorCoded = StrValueFromDictionary(objm, ApiKey_ErrorCode);
                     if ([@"0" isEqualToString: errorCoded]) {
                         NSArray *paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
                         NSString *path=[paths objectAtIndex:0];
                         NSString *filename=[path stringByAppendingPathComponent:countryKey];
-                        NSString *md5Value = StrValueFromDictionary(obj, datamd5Key);
+                        NSString *md5Value = StrValueFromDictionary(objm, datamd5Key);
                         [USER_DEFAULT setObject: md5Value forKey: datamd5Key];
                         NSFileManager* fm = [NSFileManager defaultManager];
                         [fm createFileAtPath:filename contents:nil attributes:nil];
                         
                         //写入plist文件里
-                        [obj writeToFile:filename atomically:YES];
+                        [objm writeToFile:filename atomically:YES];
                     }
                 }];
                 

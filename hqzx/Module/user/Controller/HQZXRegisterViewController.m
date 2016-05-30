@@ -49,14 +49,17 @@
     NSString *initPhoneNo;
     UIImageView *clickText;
     UIImageView *iconLianText;
+    BOOL isImageBool;
+    HQZXCountry *commitCountry;
+    NSString *codeType;
 }
 @end
 
 @implementation HQZXRegisterViewController
 
--(NSString *)pageName {
-    return self.isFindPwd ? @"找回密码" : @"注册";
-}
+//-(NSString *)pageName {
+//    return self.isFindPwd ? @"找回密码" : @"注册";
+//}
 
 -(instancetype)initWithPhoneNo:(NSString*) phoneNo {
     self = [super init];
@@ -69,6 +72,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = LocatizedStirngForkey(@"ZHUCE");
+    isImageBool = YES;
+    _isFindPwd = NO;
 
     self.view.backgroundColor = UIColorFromRGB(0x0C1319);
     [self initForm1];
@@ -113,7 +118,6 @@
     
     txtLianText = [[UITextField alloc] initWithFrame:CGRectMake(iconLianText.maxX + SCREEN_WIDTH/30 , 0, form1.width - iconLianText.maxX - SCREEN_WIDTH/30 -SCREEN_WIDTH/8, form1.height/5)];
     [form1 addSubview: txtLianText];
-    txtLianText.secureTextEntry = YES;
     txtLianText.clearButtonMode = UITextFieldViewModeWhileEditing;
     txtLianText.textColor = UIColorFromRGB(0x767D85);
     txtLianText.font = [UIFont systemFontOfSize:REGISTERFONTONE];
@@ -289,10 +293,11 @@
                                                                                          }];
 }
 -(void)selectCountry{
-    HQZXSelectCountryForm *selectCountForm = [[HQZXSelectCountryForm alloc] initWithPlaceHolder: @"选择国家"];
+    HQZXSelectCountryForm *selectCountForm = [[HQZXSelectCountryForm alloc] initWithPlaceHolder: LocatizedStirngForkey(@"XUANZEGUOJIA")];
     __weak typeof(selectCountForm) weakSelectForm = selectCountForm;
     weakSelectForm.beSureComp = HQZXSelectCountryComp() {
         [weakSelectForm hideAction:^{
+            commitCountry = COUNTRY;
             NSString *language = [USER_DEFAULT objectForKey:kUserLanguage];
             if([language isEqualToString:@"zh-Hans"]){
                 txtLianText.text = COUNTRY.country_name;
@@ -366,6 +371,9 @@
     UIImage *clickImg = [UIImage imageNamed:@"icon_agree"];
     clickText = [[UIImageView alloc] initWithImage:clickImg];
     [clickText setFrame:CGRectMake(SCREEN_WIDTH/fontLeft, form2.maxY + SCREEN_WIDTH/30, clickImg.size.width, clickImg.size.height)];
+    clickText.userInteractionEnabled=YES;
+    UITapGestureRecognizer *labelTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(imageTouchUpInside)];
+    [clickText addGestureRecognizer:labelTapGestureRecognizer];
     [self.view addSubview: clickText];
     
     UILabel *contract = [[UILabel alloc] initWithFrame:CGRectMake(clickText.maxX, form2.maxY + loginFormMarginRL, 1, 1)];
@@ -380,8 +388,8 @@
     UILabel *contracts = [[UILabel alloc] initWithFrame:CGRectMake(contract.maxX, form2.maxY + loginFormMarginRL, 1, 1)];
     contracts.text = LocatizedStirngForkey(@"HUANQIUZAIXIANXIEYI");
     contracts.userInteractionEnabled=YES;
-    UITapGestureRecognizer *labelTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(labelTouchUpInside)];
-    [contracts addGestureRecognizer:labelTapGestureRecognizer];
+    UITapGestureRecognizer *imageTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(labelTouchUpInside)];
+    [contracts addGestureRecognizer:imageTapGestureRecognizer];
     contracts.font = [UIFont systemFontOfSize: fontCon];
     contracts.textColor = UIColorFromRGB(0x3673D2);
     [self.view addSubview: contracts];
@@ -389,9 +397,19 @@
     [contracts setX:contract.maxX];
     [contracts setY:form2.maxY+(clickText.height-contracts.height)/2 +SCREEN_WIDTH/30];
 }
+-(void)imageTouchUpInside{
+    if(isImageBool){
+        isImageBool = NO;
+        [clickText setImage:[UIImage imageNamed:@"icon_agree_hl"]];
+    }else{
+        isImageBool = YES;
+        [clickText setImage:[UIImage imageNamed:@"icon_agree"]];
+    }
+    
+}
 -(void) labelTouchUpInside{
-//    JHTYongHuXieYiViewController *xiaoxi = [[JHTYongHuXieYiViewController alloc] init];
-//    [self.navigationController pushViewController:xiaoxi animated: YES];
+    HQZXServiceAgreementViewController *xieyi = [[HQZXServiceAgreementViewController alloc] init];
+    [self.navigationController pushViewController:xieyi animated: YES];
 }
 -(IBAction)getValidateNo:(id)sender {
     
@@ -400,7 +418,7 @@
     if (lastGetValidateNoTime != nil) {
         long second = (ins - [lastGetValidateNoTime longLongValue]) / 1000;
         if (second <= max_second) {
-            [self.view makeToast:[NSString stringWithFormat:@"请等待%ld秒后再获取", max_second - second]
+            [self.view makeToast:[NSString stringWithFormat:@"%@%ld%@",LocatizedStirngForkey(@"QINGDENGDAI"), max_second - second,LocatizedStirngForkey(@"MIAOHOUZAIHUOQU")]
                         duration:1.0
                         position:CSToastPositionCenter];
             return;
@@ -409,35 +427,36 @@
     
     NSString *phoneNo = txtPhone.text;
     if([CommonUtils checkTelNumber: phoneNo] == NO) {
-        [self.view makeToast:@"手机号码格式错误"
+        [self.view makeToast:LocatizedStirngForkey(@"SHOUJIHAOMAGESHICUOWU")
                     duration:1.0
                     position:CSToastPositionCenter];
         return;
     }
-    [ProgressHUD show: @"正在获取验证码,请稍候..." Interaction: NO];
+    [ProgressHUD show: [NSString stringWithFormat:@"%@,%@...",LocatizedStirngForkey(@"ZHENGZAIHUOQUYANZHENG"),LocatizedStirngForkey(@"QINGDENGDAI")] Interaction: NO];
     // 请求服务器接口获取验证码
     NSString *mobile = txtPhone.text;
-    NSString *stype = self.isFindPwd ? @"2" : @"1";
+    NSString *stype = @"1";
     
     WEAK_SELF
-    [[NetHttpClient sharedHTTPClient] request: @"/send_authcode" parameters:@{@"mobile": mobile, @"stype": stype} completion:^(id obj) {
+    [[NetHttpClient sharedHTTPClient] request: @"/send_authcode.json" parameters:@{@"mobile": mobile, @"stype": stype} completion:^(id obj) {
         [ProgressHUD dismiss];
         if (obj) {
-            if ([[obj objectForKey:ApiKey_ErrorCode] isEqualToString: @"0"]) {
-                [self.view makeToast: @"验证码发送成功" duration: 0.5 position: CSToastPositionCenter];
+            if ([StrValueFromDictionary(obj, ApiKey_ErrorCode) isEqualToString: @"0"]) {
+                [self.view makeToast: LocatizedStirngForkey(@"YANZHENGMAFASONGCHENGGONG") duration: 0.5 position: CSToastPositionCenter];
                 id codeid = [obj objectForKey: @"codeid"];
+                codeType = StrValueFromDictionary(obj, @"codetype");
                 NSString *codeidStr = [NSString stringWithFormat: @"%@", codeid];
-                [USER_DEFAULT setObject: codeidStr forKey: (self.isFindPwd ? UD_KEY_VALIDATENO_ID_FINDPWD : UD_KEY_VALIDATENO_ID)];
+                [USER_DEFAULT setObject: codeidStr forKey: UD_KEY_VALIDATENO_ID];
                 btnGetValidateNo.enabled = NO;
                 NSTimeInterval ins = [[NSDate date] timeIntervalSince1970] * 1000;
                 NSString *lastGetValidateNoTime = [NSString stringWithFormat: @"%.0f", ins];
                 [USER_DEFAULT setObject:lastGetValidateNoTime forKey: UD_KEY_LAST_GETVALIDATENO];
                 validateTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:weakself selector:@selector(refValidateBtnTitle:) userInfo:nil repeats:YES];
             } else {
-                [self.view makeToast:[NSString stringWithFormat: @"获取验证码失败：%@", [obj objectForKey: @"message"]] duration: 0.5 position:CSToastPositionCenter];
+                [self.view makeToast:[NSString stringWithFormat: @"%@：%@",LocatizedStirngForkey(@"HUOQUYANZHENGMASHIBAI"), [obj objectForKey: @"message"]] duration: 0.5 position:CSToastPositionCenter];
             }
         } else {
-            [self.view makeToast:@"连接服务器失败" duration: 0.5 position:CSToastPositionCenter];
+            [self.view makeToast:LocatizedStirngForkey(@"LIANJIEFUWUQISHIBAI") duration: 0.5 position:CSToastPositionCenter];
         }
     }];
 }
@@ -480,66 +499,63 @@
 -(IBAction)userRegister:(id)sender {
     NSString *phoneNo = txtPhone.text;
     NSString *validateNo = txtValidateNo.text;
-    NSString *password = txtPassword.text;
-    NSString *codeid = [USER_DEFAULT objectForKey: self.isFindPwd ? UD_KEY_VALIDATENO_ID_FINDPWD : UD_KEY_VALIDATENO_ID];
-    VALIDATE_NOT_NULL(phoneNo, @"请填写手机号码");
-    VALIDATE_NOT_NULL(validateNo, @"请填写验证码");
-    VALIDATE_NOT_NULL(codeid, @"验证码已失效，请重新获取");
-    VALIDATE_NOT_NULL(password, (self.isFindPwd?@"请输入新密码":@"请设置密码"));
-    VALIDATE_REGEX(phoneNo, VALREG_MOBILE_PHONE, @"手机号码不正确");
-    VALIDATE_REGEX(validateNo, @"\\d{4}", @"验证码不正确");
-    VALIDATE_REGEX(password, @"^[\\@A-Za-z0-9\\!\\#\\$\\%\\^\\&\\*\\.\\~]{6,22}$", @"密码至少6位，只能包含数字字母下划线");
-
-    if (_isFindPwd) {
-        // 找回密码
-        [ProgressHUD show: @"请稍后..." Interaction: NO];
-        [[NetHttpClient sharedHTTPClient] request: @"/find_pwd" parameters:@{@"mobile":phoneNo, @"newpwd":[CommonUtils securityPasswd:password], @"new2pwd":[CommonUtils securityPasswd:password], @"code": validateNo, @"codeid": codeid, @"stype": @"2", @"pwd_type":@"1"} completion:^(id obj) {
-            [ProgressHUD dismiss];
-            if (obj) {
-                if ([@"0" isEqualToString:[obj objectForKey:ApiKey_ErrorCode]]) {
-                    [USER_DEFAULT removeObjectForKey: UD_KEY_VALIDATENO_ID_FINDPWD];
-                    [self.navigationController popViewControllerAnimated: YES];
-                    if (self.success) {
-                        self.success(txtPhone.text);
-                    }
-                    return;
-                } else {
-                    [self.view makeToast:[NSString stringWithFormat:@"%@", [obj objectForKey:@"message"]] duration: 0.5 position:CSToastPositionCenter];
-                }
-            } else {
-                [self.view makeToast:@"连接服务器失败" duration: 0.5 position:CSToastPositionCenter];
-            }
-        }];
-    } else {
+    NSString *password = txtDengPassword.text;
+    NSString *passwordQue= txtQuePassword.text;
+    NSString *tuijian = txtGuoText.text;
+    if([tuijian isEqualToString:@""] || !tuijian){
+        tuijian = @"0";
+    }
+    NSString *codeid = [USER_DEFAULT objectForKey: UD_KEY_VALIDATENO_ID];
+    
+    if(!commitCountry.country_id){
+        [self.view makeToast: LocatizedStirngForkey(@"QINGXUANZEGUOJIA") duration: 0.5 position: CSToastPositionCenter];
+        return;
+    }
+    VALIDATE_NOT_NULL(phoneNo, LocatizedStirngForkey(@"QINGTIANXIESHOUJIHAOMA"));
+    VALIDATE_REGEX(phoneNo, VALREG_MOBILE_PHONE, LocatizedStirngForkey(@"SHOUJIHAOMAGESHIBUZHENGQUE"));
+    VALIDATE_NOT_NULL(validateNo, LocatizedStirngForkey(@"QINGSHURUYANZHENGMA"));
+    VALIDATE_REGEX(validateNo, @"\\d{4}", LocatizedStirngForkey(@"YANZHENGMAGESHIBUZHENGQUE"));
+    VALIDATE_NOT_NULL(codeid, LocatizedStirngForkey(@"YANZHENGMASHIXIAO"));
+    VALIDATE_NOT_NULL(password, LocatizedStirngForkey(@"QINGSHURUMIMA"));
+    VALIDATE_REGEX(password, @"^[\\@A-Za-z0-9\\!\\#\\$\\%\\^\\&\\*\\.\\~]{6,16}$", LocatizedStirngForkey(@"MIMABAOHANXIAHUAXIANDENG"));
+    VALIDATE_NOT_NULL(passwordQue, LocatizedStirngForkey(@"QINGZAICISHURUMIMA"));
+    if(![password isEqualToString:passwordQue]){
+        [self.view makeToast: LocatizedStirngForkey(@"LIANGCIMIMABUYIZHI") duration: 0.5 position: CSToastPositionCenter];
+        return;
+    }
+    if(isImageBool){
+        [self.view makeToast: LocatizedStirngForkey(@"QINGYUEDUHUANQIUXIEYI") duration: 0.5 position: CSToastPositionCenter];
+        return;
+    }
         // 注册
-        [ProgressHUD show: @"请稍后..." Interaction: NO];
-        [[NetHttpClient sharedHTTPClient] request: @"/register" parameters:@{@"mobile":phoneNo, @"pwd":[CommonUtils securityPasswd:password], @"code": validateNo, @"codeid": codeid, @"stype": @"1", @"pwd_type": @"1"} completion:^(id obj) {
-            [ProgressHUD dismiss];
-            if (obj) {
-                if ([@"0" isEqualToString:[obj objectForKey:ApiKey_ErrorCode]]) {
-                    [USER_DEFAULT removeObjectForKey: UD_KEY_VALIDATENO_ID];
-                    [self.navigationController popViewControllerAnimated: YES];
+        
+    [ProgressHUD show: [NSString stringWithFormat:@"%@...",LocatizedStirngForkey(@"QINGDENGDAI")] Interaction: NO];//
+    [[NetHttpClient sharedHTTPClient] request: @"/register.json" parameters:@{@"mobile":phoneNo, @"pwd":passwordQue, @"country": commitCountry.country_id,@"codetype": codeType,@"code": validateNo,@"recommend": tuijian} completion:^(id obj) {
+        [ProgressHUD dismiss];
+        if (obj) {
+            if ([@"0" isEqualToString:[obj objectForKey:ApiKey_ErrorCode]]) {
+                [USER_DEFAULT removeObjectForKey: UD_KEY_VALIDATENO_ID];
+                [self.navigationController popViewControllerAnimated: YES];
 //                    NSData *arc = [NSKeyedArchiver archivedDataWithRootObject: obj];
 //                    [USER_DEFAULT setObject: arc forKey: CURRENT_USER_KEY];
-                    if (self.success) {
-                        self.success(txtPhone.text);
-                    }
-                    return;
-                } else {
-                    [self.view makeToast:[NSString stringWithFormat:@"%@", [obj objectForKey:@"message"]] duration: 0.5 position:CSToastPositionCenter];
+                if (self.success) {
+                    self.success(txtPhone.text);
                 }
+                return;
             } else {
-                [self.view makeToast:@"连接服务器失败" duration: 0.5 position:CSToastPositionCenter];
+                [self.view makeToast:[NSString stringWithFormat:@"%@", [obj objectForKey:@"message"]] duration: 0.5 position:CSToastPositionCenter];
             }
-        }];
-    }
+        } else {
+            [self.view makeToast:LocatizedStirngForkey(@"LIANJIEFUWUQISHIBAI") duration: 0.5 position:CSToastPositionCenter];
+        }
+    }];
 }
 
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     if (textField == txtPhone || textField == txtValidateNo) {
         if (![string isEqualToString: @""]) {
             if (![string isMatch: RX(@"\\d+")]) {
-                [self.view makeToast: @"字符不正确" duration: 0.5 position: CSToastPositionCenter];
+                [self.view makeToast: LocatizedStirngForkey(@"ZIFUBUZHENGQUE") duration: 0.5 position: CSToastPositionCenter];
                 return NO;
             }
         }
@@ -553,11 +569,14 @@
         }
     } else if (textField == txtValidateNo) {
         NSString *phone = [textField.text stringByReplacingCharactersInRange: range withString: string];
-        if (phone.length <= 4) {
+        if (phone.length <= 6) {
             return YES;
         } else {
             return NO;
         }
+    }
+    if (textField == txtQuePassword) {
+        
     }
     return YES;
 }

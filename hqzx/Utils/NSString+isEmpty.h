@@ -1,9 +1,9 @@
 //
 //  NSString+isEmpty.h
-//  haikou
+//  hqzx
 //
-//  Created by sunzsh on 15/1/19.
-//  Copyright (c) 2015年 zthz. All rights reserved.
+//  Created by 泽鹏邵 on 16/5/28.
+//  Copyright © 2016年 泽鹏邵. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

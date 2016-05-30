@@ -68,7 +68,7 @@ typedef void (^Api_Page_Block)(NSString *nextId, NSArray *array);
 #define Api_Page_Block() ^void (NSString *nextId, NSArray *array)
 
 
-
+#define lastLoginUserNameKey @"Last_Login_UserName"
 
 #define WEAK_SELF __weak typeof(self) weakself = self;
 #define WEAK_INSTANCE(instance) __weak typeof(instance) weak##instance = instance;

@@ -147,7 +147,7 @@
     //    [httpRequestOperationManager.requestSerializer setValue: [[UserHelper sharedHelper] getCurrentMeta] forHTTPHeaderField:@"loginstate"];
     
     NSMutableDictionary *parameter = [NSMutableDictionary dictionaryWithDictionary: parameters];
-//    [parameter setObject: [HQZXUserModel sharedInstance].userId forKey: @"userid"];
+    [parameter setObject: [HQZXUserModel sharedInstance].userId forKey: @"userid"];
     
     NSTimeInterval ins = [[NSDate date] timeIntervalSince1970];
     NSString *timeString = [NSString stringWithFormat: @"%.0f", ins];

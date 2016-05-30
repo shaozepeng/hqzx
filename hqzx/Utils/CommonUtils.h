@@ -1,9 +1,9 @@
 //
 //  CommonUtils.h
-//  shenzhenwujing
+//  hqzx
 //
-//  Created by sunzsh on 15/2/4.
-//  Copyright (c) 2015年 51haobaby. All rights reserved.
+//  Created by 泽鹏邵 on 16/5/28.
+//  Copyright © 2016年 泽鹏邵. All rights reserved.
 //
 
 //static const NSString *URLScheme = @"jianghai56://";

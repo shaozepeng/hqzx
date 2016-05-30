@@ -15,8 +15,7 @@
 
 #import <US2FormValidator.h>
 #import "HQZXLoginViewController.h"
-//#import "JHTBaseController.h"
-//#import "JHTYongHuXieYiViewController.h"
+#import "HQZXServiceAgreementViewController.h"
 
 @interface HQZXRegisterViewController : UIViewController<US2ValidatorUIDelegate, UITextFieldDelegate>
 -(instancetype)initWithPhoneNo:(NSString*) phoneNo;

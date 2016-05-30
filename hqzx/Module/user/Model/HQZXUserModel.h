@@ -1,9 +1,9 @@
 //
-//  JHTUserModel.h
-//  jht
+//  HQZXUserModel.h
+//  hqzx
 //
-//  Created by 孙泽山 on 15/6/24.
-//  Copyright (c) 2015年 zthz. All rights reserved.
+//  Created by 泽鹏邵 on 16/5/28.
+//  Copyright © 2016年 泽鹏邵. All rights reserved.
 //
 #define CURRENT_USER_KEY @"CURRENT_USER"
 #define CURRENT_USER_CONTACT_KEY @"CURRENT_USER_CONTACT"
@@ -41,7 +41,7 @@ SYNTHESIZE_SINGLETON_FOR_HEADER
 -(BOOL) isLogined;
 - (NSString*) userId;
 - (void) logout;
-- (void) login:(NSString*) phoneNo pwd:(NSString*) password completion:(Id_Block) completion;
+- (void) login:(NSString*) phoneNo pwd:(NSString*) password country:(NSString*)conuy completion:(Id_Block) completion;
 
 
 - (void) updateUserHeaderImage:(NSString*) headerImage;

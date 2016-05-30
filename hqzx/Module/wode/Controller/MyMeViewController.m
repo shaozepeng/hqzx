@@ -383,7 +383,7 @@
     }
     if(indexPath.section==5){
         if(indexPath.row==0){
-            HQZXModifyLoginViewController *wocanyudetoubiao=[[HQZXModifyLoginViewController alloc] init];
+            HQZXRealNameAuthenticationViewController *wocanyudetoubiao=[[HQZXRealNameAuthenticationViewController alloc] init];
             [rootNav pushViewController:wocanyudetoubiao animated:YES];
             
         }

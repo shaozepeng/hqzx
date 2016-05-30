@@ -20,6 +20,7 @@
 #define UD_KEY_LAST_GETVALIDATENO @"LAST_GETVALIDATENO"
 #define UD_KEY_VALIDATENO_ID @"VALIDATENO_ID"
 #define UD_KEY_VALIDATENO_ID_FINDPWD @"VALIDATENO_ID_FINDPWD"
+#define UD_KEY_VALIDATENO_ID_TRANSA @"VALIDATENO_ID_Transa"
 
 #import "HQZXUserModel.h"
 #import "ProgressHUD.h"
@@ -47,6 +48,7 @@
     
     NSString *initPhoneNo;
     UIImageView *clickText;
+    NSString *codeType;
 }
 @end
 
@@ -159,7 +161,7 @@
     [btnGetValidateNo setX: (form1.width - btnGetValidateNo.width - 6)];
     [btnGetValidateNo setY: (form1.height/4 -btnGetValidateNo.height) / 2.0+line2.maxY ];
     [btnGetValidateNo setTitleColor: UIColorFromRGB(0x3E87FA) forState:UIControlStateDisabled];
-    [btnGetValidateNo setTitleColor: UIColorFromRGB(0x182848) forState:UIControlStateNormal];
+    [btnGetValidateNo setTitleColor: UIColorFromRGB(0x87CEFA) forState:UIControlStateNormal];
     [btnGetValidateNo setTitleColor: UIColorFromRGB(0x2254A6) forState:UIControlStateHighlighted];
     
     txtPhone = [[US2ValidatorTextField alloc] initWithFrame:CGRectMake(iconQuePassword.maxX + SCREEN_WIDTH/40 + 1, line2.maxY+1, form1.width -(form1.width - btnGetValidateNo.x)- iconQuePassword.maxX - marginTxtWithIcon - 2, form1.height/4 - 1)];
@@ -191,7 +193,7 @@
     NSMutableParagraphStyle *style3 = [txtPhone.defaultTextAttributes[NSParagraphStyleAttributeName] mutableCopy];
     style3.minimumLineHeight = txtPhone.font.lineHeight - (txtPhone.font.lineHeight - [UIFont systemFontOfSize:LOGINFONTONE].lineHeight) / 2.0 ;
     
-    txtPhone.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"18888888888"
+    txtPhone.attributedPlaceholder = [[NSAttributedString alloc] initWithString:LocatizedStirngForkey(@"SHOUJIHAOMA")
                                                                             attributes:@{
                                                                                          NSForegroundColorAttributeName: UIColorFromRGB(0x767D85),
                                                                                          NSFontAttributeName : [UIFont systemFontOfSize:TRANTFONTONE],
@@ -201,6 +203,10 @@
     
     //    UIView *validateView = [[UIView alloc] initWithFrame: CGRectMake(borderWidthForForm, userNameView.maxY + line.height, userNameView.width, userNameView.height)];
     //    [form1 addSubview:validateView];
+    NSString *remindUserName = [USER_DEFAULT objectForKey:lastLoginUserNameKey];
+    if (remindUserName != nil && [remindUserName isNotEmpty]) {
+        txtPhone.text = remindUserName;
+    }
     
     
     UIImageView *iconPassword = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_lock"]];
@@ -270,7 +276,7 @@
     if (lastGetValidateNoTime != nil) {
         long second = (ins - [lastGetValidateNoTime longLongValue]) / 1000;
         if (second <= max_second) {
-            [self.view makeToast:[NSString stringWithFormat:@"请等待%ld秒后再获取", max_second - second]
+            [self.view makeToast:[NSString stringWithFormat:@"%@%ld%@",LocatizedStirngForkey(@"QINGDENGDAI"), max_second - second,LocatizedStirngForkey(@"MIAOHOUZAIHUOQU")]
                         duration:1.0
                         position:CSToastPositionCenter];
             return;
@@ -279,35 +285,36 @@
     
     NSString *phoneNo = txtPhone.text;
     if([CommonUtils checkTelNumber: phoneNo] == NO) {
-        [self.view makeToast:@"手机号码格式错误"
+        [self.view makeToast:LocatizedStirngForkey(@"SHOUJIHAOMAGESHICUOWU")
                     duration:1.0
                     position:CSToastPositionCenter];
         return;
     }
-    [ProgressHUD show: @"正在获取验证码,请稍候..." Interaction: NO];
+    [ProgressHUD show: [NSString stringWithFormat:@"%@,%@...",LocatizedStirngForkey(@"ZHENGZAIHUOQUYANZHENG"),LocatizedStirngForkey(@"QINGDENGDAI")] Interaction: NO];
     // 请求服务器接口获取验证码
     NSString *mobile = txtPhone.text;
-    NSString *stype = self.isFindPwd ? @"2" : @"1";
+    NSString *stype = @"3";
     
     WEAK_SELF
-    [[NetHttpClient sharedHTTPClient] request: @"/send_authcode" parameters:@{@"mobile": mobile, @"stype": stype} completion:^(id obj) {
+    [[NetHttpClient sharedHTTPClient] request: @"/send_authcode.json" parameters:@{@"mobile": mobile, @"stype": stype} completion:^(id obj) {
         [ProgressHUD dismiss];
         if (obj) {
             if ([[obj objectForKey:ApiKey_ErrorCode] isEqualToString: @"0"]) {
-                [self.view makeToast: @"验证码发送成功" duration: 0.5 position: CSToastPositionCenter];
+                [self.view makeToast: LocatizedStirngForkey(@"YANZHENGMAFASONGCHENGGONG") duration: 0.5 position: CSToastPositionCenter];
                 id codeid = [obj objectForKey: @"codeid"];
+                codeType = StrValueFromDictionary(obj, @"codetype");
                 NSString *codeidStr = [NSString stringWithFormat: @"%@", codeid];
-                [USER_DEFAULT setObject: codeidStr forKey: (self.isFindPwd ? UD_KEY_VALIDATENO_ID_FINDPWD : UD_KEY_VALIDATENO_ID)];
+                [USER_DEFAULT setObject: codeidStr forKey:UD_KEY_VALIDATENO_ID_TRANSA];
                 btnGetValidateNo.enabled = NO;
                 NSTimeInterval ins = [[NSDate date] timeIntervalSince1970] * 1000;
                 NSString *lastGetValidateNoTime = [NSString stringWithFormat: @"%.0f", ins];
                 [USER_DEFAULT setObject:lastGetValidateNoTime forKey: UD_KEY_LAST_GETVALIDATENO];
                 validateTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:weakself selector:@selector(refValidateBtnTitle:) userInfo:nil repeats:YES];
             } else {
-                [self.view makeToast:[NSString stringWithFormat: @"获取验证码失败：%@", [obj objectForKey: @"message"]] duration: 0.5 position:CSToastPositionCenter];
+                [self.view makeToast:[NSString stringWithFormat: @"%@：%@", LocatizedStirngForkey(@"HUOQUYANZHENGMASHIBAI"),[obj objectForKey: @"message"]] duration: 0.5 position:CSToastPositionCenter];
             }
         } else {
-            [self.view makeToast:@"连接服务器失败" duration: 0.5 position:CSToastPositionCenter];
+            [self.view makeToast:LocatizedStirngForkey(@"LIANJIEFUWUQISHIBAI") duration: 0.5 position:CSToastPositionCenter];
         }
     }];
 }
@@ -348,82 +355,43 @@
 }
 
 -(IBAction)userRegister:(id)sender {
-    NSString *phoneNo = txtPhone.text;
-    NSString *validateNo = txtValidateNo.text;
-    NSString *password = txtPassword.text;
-    NSString *codeid = [USER_DEFAULT objectForKey: self.isFindPwd ? UD_KEY_VALIDATENO_ID_FINDPWD : UD_KEY_VALIDATENO_ID];
-    VALIDATE_NOT_NULL(phoneNo, @"请填写手机号码");
-    VALIDATE_NOT_NULL(validateNo, @"请填写验证码");
-    VALIDATE_NOT_NULL(codeid, @"验证码已失效，请重新获取");
-    VALIDATE_NOT_NULL(password, (self.isFindPwd?@"请输入新密码":@"请设置密码"));
-    VALIDATE_REGEX(phoneNo, VALREG_MOBILE_PHONE, @"手机号码不正确");
-    VALIDATE_REGEX(validateNo, @"\\d{4}", @"验证码不正确");
-    VALIDATE_REGEX(password, @"^[\\@A-Za-z0-9\\!\\#\\$\\%\\^\\&\\*\\.\\~]{6,22}$", @"密码至少6位，只能包含数字字母下划线");
-    
-    if (_isFindPwd) {
-        // 找回密码
-        [ProgressHUD show: @"请稍后..." Interaction: NO];
-        [[NetHttpClient sharedHTTPClient] request: @"/find_pwd" parameters:@{@"mobile":phoneNo, @"newpwd":[CommonUtils securityPasswd:password], @"new2pwd":[CommonUtils securityPasswd:password], @"code": validateNo, @"codeid": codeid, @"stype": @"2", @"pwd_type":@"1"} completion:^(id obj) {
-            [ProgressHUD dismiss];
-            if (obj) {
-                if ([@"0" isEqualToString:[obj objectForKey:ApiKey_ErrorCode]]) {
-                    [USER_DEFAULT removeObjectForKey: UD_KEY_VALIDATENO_ID_FINDPWD];
-                    [self.navigationController popViewControllerAnimated: YES];
-                    if (self.success) {
-                        self.success(txtPhone.text);
-                    }
-                    return;
-                } else {
-                    [self.view makeToast:[NSString stringWithFormat:@"%@", [obj objectForKey:@"message"]] duration: 0.5 position:CSToastPositionCenter];
-                }
-            } else {
-                [self.view makeToast:@"连接服务器失败" duration: 0.5 position:CSToastPositionCenter];
-            }
-        }];
-    } else {
-        // 注册
-        [ProgressHUD show: @"请稍后..." Interaction: NO];
-        [[NetHttpClient sharedHTTPClient] request: @"/register" parameters:@{@"mobile":phoneNo, @"pwd":[CommonUtils securityPasswd:password], @"code": validateNo, @"codeid": codeid, @"stype": @"1", @"pwd_type": @"1"} completion:^(id obj) {
-            [ProgressHUD dismiss];
-            if (obj) {
-                if ([@"0" isEqualToString:[obj objectForKey:ApiKey_ErrorCode]]) {
-                    [USER_DEFAULT removeObjectForKey: UD_KEY_VALIDATENO_ID];
-                    [self.navigationController popViewControllerAnimated: YES];
-                    //                    NSData *arc = [NSKeyedArchiver archivedDataWithRootObject: obj];
-                    //                    [USER_DEFAULT setObject: arc forKey: CURRENT_USER_KEY];
-                    if (self.success) {
-                        self.success(txtPhone.text);
-                    }
-                    return;
-                } else {
-                    [self.view makeToast:[NSString stringWithFormat:@"%@", [obj objectForKey:@"message"]] duration: 0.5 position:CSToastPositionCenter];
-                }
-            } else {
-                [self.view makeToast:@"连接服务器失败" duration: 0.5 position:CSToastPositionCenter];
-            }
-        }];
+    NSString *jiaopwd = txtQuePassword.text;
+    NSString *quepwd = txtDengPassword.text;
+    NSString *yanzm = txtValidateNo.text;
+//    NSString *codeid = [USER_DEFAULT objectForKey: UD_KEY_VALIDATENO_ID_TRANSA];
+    VALIDATE_NOT_NULL(jiaopwd, LocatizedStirngForkey(@"QINGSHURUJIAOYIMIMA"));
+    VALIDATE_REGEX(jiaopwd, @"^[\\@A-Za-z0-9\\!\\#\\$\\%\\^\\&\\*\\.\\~]{6,16}$", LocatizedStirngForkey(@"MIMABAOHANXIAHUAXIANDENG"));
+    VALIDATE_NOT_NULL(quepwd, LocatizedStirngForkey(@"QINGSHURUQUERENMIMA"));
+    VALIDATE_NOT_NULL(yanzm, LocatizedStirngForkey(@"QINGSHURUYANZHENGMA"));
+    if(![jiaopwd isEqualToString:quepwd]){
+        [self.view makeToast: LocatizedStirngForkey(@"LIANGCIMIMABUYIZHI") duration: 0.5 position: CSToastPositionCenter];
+        return;
     }
+    
+    [ProgressHUD show: [NSString stringWithFormat:@"%@...",LocatizedStirngForkey(@"QINGDENGDAI")] Interaction: NO];
+    [[NetHttpClient sharedHTTPClient] request: @"/upt_trade_pwd.json" parameters:@{@"new_pwd1":jiaopwd, @"new_pwd2":quepwd, @"code": yanzm, @"codetype": codeType} completion:^(id obj) {
+        [ProgressHUD dismiss];
+        if (obj) {
+            if ([@"0" isEqualToString:[obj objectForKey:ApiKey_ErrorCode]]) {
+                [USER_DEFAULT removeObjectForKey: UD_KEY_VALIDATENO_ID_FINDPWD];
+                [self.navigationController popViewControllerAnimated: YES];
+                if (self.success) {
+                    self.success(txtPhone.text);
+                }
+                return;
+            } else {
+                [self.view makeToast:[NSString stringWithFormat:@"%@", [obj objectForKey:@"message"]] duration: 0.5 position:CSToastPositionCenter];
+            }
+        } else {
+            [self.view makeToast:LocatizedStirngForkey(@"LIANJIEFUWUQISHIBAI") duration: 0.5 position:CSToastPositionCenter];
+        }
+    }];
 }
 
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-    if (textField == txtPhone || textField == txtValidateNo) {
-        if (![string isEqualToString: @""]) {
-            if (![string isMatch: RX(@"\\d+")]) {
-                [self.view makeToast: @"字符不正确" duration: 0.5 position: CSToastPositionCenter];
-                return NO;
-            }
-        }
-    }
-    if (textField == txtPhone) {
+    if (textField == txtValidateNo) {
         NSString *phone = [textField.text stringByReplacingCharactersInRange: range withString: string];
-        if (phone.length <= 11) {
-            return YES;
-        } else {
-            return NO;
-        }
-    } else if (textField == txtValidateNo) {
-        NSString *phone = [textField.text stringByReplacingCharactersInRange: range withString: string];
-        if (phone.length <= 4) {
+        if (phone.length <= 6) {
             return YES;
         } else {
             return NO;

@@ -7,6 +7,15 @@
 */
 
 /*
+ ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝公共区＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+ */
+
+//form
+"QUEDING"="Determine";
+"QUXIAO"="Cancel";
+
+
+/*
  ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝home区＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
 */
 
@@ -82,6 +91,36 @@
 "WOYIYUEDU"="I Have Read And Agreed";
 "HUANQIUZAIXIANXIEYI"="《Global Online Service Agreement》";
 
+//注册验证
+"QINGDENGDAI"="Please Wait";
+"MIAOHOUZAIHUOQU"="Seconds After The Acquisition";
+"SHOUJIHAOMAGESHICUOWU"="Cell Phone Number Format Error";
+"ZHENGZAIHUOQUYANZHENG"="Getting Authentication Code";
+"YANZHENGMAFASONGCHENGGONG"="Verification Code Sent Successfully";
+"HUOQUYANZHENGMASHIBAI"="Failed To obtain Verification Code";
+"LIANJIEFUWUQISHIBAI"="Connection Server Failed";
+"QINGXUANZEGUOJIA"="Please Select A Country";
+"QINGTIANXIESHOUJIHAOMA"="Please Fill In The Phone Number";
+"SHOUJIHAOMAGESHIBUZHENGQUE"="Phone Number Format Is Not Correct";
+"YANZHENGMAGESHIBUZHENGQUE"="Verification Code Format Is Not Correct";
+"YANZHENGMASHIXIAO"="Verify That The Code Has Failed, Please re - obtain";
+"QINGSHURUMIMA"="Please enter a password";
+"MIMABAOHANXIAHUAXIANDENG"="Password is 6 bits, which can only contain numbers and letters";
+"QINGZAICISHURUMIMA"="Please enter your password again";
+"LIANGCIMIMABUYIZHI"="Two input passwords are not consistent";
+"QINGYUEDUHUANQIUXIEYI"="Please read the global online user registration protocol";
+"ZIFUBUZHENGQUE"="The character is not correct";
+"ZHUCECHENGGONG"="login was successful";
+"QINGSHURUXINMIMA"="Please enter a new password again";
+"XUANZEZHENGJIANLEIXING"="Select the type of document";
+"QINGTIANXIEZHENSHIXINGMING"="Please fill in the real name";
+"QINGTIANXIEZHENGJIANHAOMA"="Please fill in the certificate number";
+"QINGXUANZEZHENGJIANHAOMA"="Please select the type of document";
+"QINGSHURUJIUMIMA"="Please enter the old password";
+"QINGSHURUXINMIMA"="Please enter a new password";
+"QINGSHURUQUERENMIMA"="Please enter a confirmation password";
+"QINGSHURUJIAOYIMIMA"="Please enter the transaction password";
+
 //修改登陆密码
 "JIUMIMA"="Old Password";
 "XINMIMA"="New Password";
@@ -95,7 +134,26 @@
 "SHEZHIXIUGAIJIAOYIMIMA"="Set/Modify Transaction Password";
 "JIAOYIMIMA"="Transaction Password";
 "QUERENJIAOYIMIMA"="Confirm Transaction Password";
-"QUEDING"="Determine";
 "KAIFATISHIDENGLUXIUGAI"="Development Tips: Here Is The Default Phone Number Landing Phone Number, And Can Not Be Modified";
+
+//实名认证
+"QINGSHURUXINGMING"="Please Enter Your Name";
+"XUANZEZHENGJIANLEIXING"="Select The Type Of Document";
+"QINGSHURUSHENFENZHENGHAOMA"="Please Enter Your ID Number";
+"TIJIAO"="Submit";
+
+//认证成功
+"XUANZEGUOJIA"="SelectCountry";
+"RENZHENGCHENGGONG"="Certification Success";
+"YITONGGUORENZHENG"="Has Been Through The Global Online Network Mission Certification";
+"NINDESHENFENXINXI"="Your Identity Information";
+"XINGMING"="Name";
+"ZHENGJIANLEIXING"="Document Type";
+"ZHENGJIANHAOMA"="Identification Number";
+"RENZHENGSHIJIAN"="Certification Time";
+
+
+
+
 
 

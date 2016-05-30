@@ -156,6 +156,11 @@
 		7AC7E8071CF97DEF008CBC65 /* HQZXCountry.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AC7E8061CF97DEF008CBC65 /* HQZXCountry.m */; };
 		7AC7E80A1CF97F5A008CBC65 /* HQZXCommonAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AC7E8081CF97F5A008CBC65 /* HQZXCommonAlert.m */; };
 		7AC7E80D1CF98338008CBC65 /* HQZXCommDefs.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AC7E80C1CF98338008CBC65 /* HQZXCommDefs.m */; };
+		7AC7E8D41CFAD5E5008CBC65 /* HQZXRealNameAuthenticationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AC7E8D31CFAD5E5008CBC65 /* HQZXRealNameAuthenticationViewController.m */; };
+		7AC7E8D71CFADFDC008CBC65 /* HQZXSelectIDForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AC7E8D61CFADFDC008CBC65 /* HQZXSelectIDForm.m */; };
+		7AC7E8DA1CFAE021008CBC65 /* HQZXID.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AC7E8D91CFAE021008CBC65 /* HQZXID.m */; };
+		7AC7E8DD1CFAE7A7008CBC65 /* HQZXCertificationSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AC7E8DC1CFAE7A7008CBC65 /* HQZXCertificationSuccessViewController.m */; };
+		7AC7E8E31CFAFC83008CBC65 /* HQZXServiceAgreementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AC7E8E21CFAFC83008CBC65 /* HQZXServiceAgreementViewController.m */; };
 		A3BA53B62F4B147D78F072FB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 99D5CE75EEDEF98094016EEB /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -436,6 +441,16 @@
 		7AC7E8091CF97F5A008CBC65 /* XQZXCommonAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XQZXCommonAlert.h; sourceTree = "<group>"; };
 		7AC7E80B1CF98338008CBC65 /* HQZXCommDefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HQZXCommDefs.h; sourceTree = "<group>"; };
 		7AC7E80C1CF98338008CBC65 /* HQZXCommDefs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HQZXCommDefs.m; sourceTree = "<group>"; };
+		7AC7E8D21CFAD5E5008CBC65 /* HQZXRealNameAuthenticationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HQZXRealNameAuthenticationViewController.h; sourceTree = "<group>"; };
+		7AC7E8D31CFAD5E5008CBC65 /* HQZXRealNameAuthenticationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HQZXRealNameAuthenticationViewController.m; sourceTree = "<group>"; };
+		7AC7E8D51CFADFDC008CBC65 /* HQZXSelectIDForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HQZXSelectIDForm.h; sourceTree = "<group>"; };
+		7AC7E8D61CFADFDC008CBC65 /* HQZXSelectIDForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HQZXSelectIDForm.m; sourceTree = "<group>"; };
+		7AC7E8D81CFAE021008CBC65 /* HQZXID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HQZXID.h; sourceTree = "<group>"; };
+		7AC7E8D91CFAE021008CBC65 /* HQZXID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HQZXID.m; sourceTree = "<group>"; };
+		7AC7E8DB1CFAE7A7008CBC65 /* HQZXCertificationSuccessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HQZXCertificationSuccessViewController.h; sourceTree = "<group>"; };
+		7AC7E8DC1CFAE7A7008CBC65 /* HQZXCertificationSuccessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HQZXCertificationSuccessViewController.m; sourceTree = "<group>"; };
+		7AC7E8E11CFAFC83008CBC65 /* HQZXServiceAgreementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HQZXServiceAgreementViewController.h; sourceTree = "<group>"; };
+		7AC7E8E21CFAFC83008CBC65 /* HQZXServiceAgreementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HQZXServiceAgreementViewController.m; sourceTree = "<group>"; };
 		900AF853C030062D18990C62 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		99D5CE75EEDEF98094016EEB /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBFAF5E12ED262D2487FB31C /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1439,6 +1454,12 @@
 				7A6D044F1CF5FB2C00D9CDF3 /* HQZXModifyLoginViewController.m */,
 				7A6D04FF1CF6ECDE00D9CDF3 /* HQZXModifyTransactionViewController.h */,
 				7A6D05001CF6ECDE00D9CDF3 /* HQZXModifyTransactionViewController.m */,
+				7AC7E8D21CFAD5E5008CBC65 /* HQZXRealNameAuthenticationViewController.h */,
+				7AC7E8D31CFAD5E5008CBC65 /* HQZXRealNameAuthenticationViewController.m */,
+				7AC7E8DB1CFAE7A7008CBC65 /* HQZXCertificationSuccessViewController.h */,
+				7AC7E8DC1CFAE7A7008CBC65 /* HQZXCertificationSuccessViewController.m */,
+				7AC7E8E11CFAFC83008CBC65 /* HQZXServiceAgreementViewController.h */,
+				7AC7E8E21CFAFC83008CBC65 /* HQZXServiceAgreementViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1446,6 +1467,8 @@
 		7A713E911CF34709009A6D71 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				7AC7E8D81CFAE021008CBC65 /* HQZXID.h */,
+				7AC7E8D91CFAE021008CBC65 /* HQZXID.m */,
 				7AC7E8051CF97DEF008CBC65 /* HQZXCountry.h */,
 				7AC7E8061CF97DEF008CBC65 /* HQZXCountry.m */,
 				7A713EAE1CF34BB6009A6D71 /* HQZXUser.h */,
@@ -1463,6 +1486,8 @@
 			children = (
 				7AC7E8021CF97D8C008CBC65 /* HQZXSelectCountryForm.h */,
 				7AC7E8031CF97D8C008CBC65 /* HQZXSelectCountryForm.m */,
+				7AC7E8D51CFADFDC008CBC65 /* HQZXSelectIDForm.h */,
+				7AC7E8D61CFADFDC008CBC65 /* HQZXSelectIDForm.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1647,6 +1672,7 @@
 				7A0F71C31CEDF52E00F468D2 /* UploadFile.m in Sources */,
 				7A0F71B61CEDF52E00F468D2 /* CoreFMDB.m in Sources */,
 				7A0F71DF1CEDF52E00F468D2 /* UIImage+LC.m in Sources */,
+				7AC7E8D41CFAD5E5008CBC65 /* HQZXRealNameAuthenticationViewController.m in Sources */,
 				7A0F71C61CEDF52E00F468D2 /* DoAlertView.m in Sources */,
 				7A0F70891CEDD0C500F468D2 /* CommonUtils.m in Sources */,
 				7A0F71D81CEDF52E00F468D2 /* IQBarButtonItem.m in Sources */,
@@ -1684,6 +1710,7 @@
 				7A6D05011CF6ECDE00D9CDF3 /* HQZXModifyTransactionViewController.m in Sources */,
 				7A0F71DC1CEDF52E00F468D2 /* IQUIView+IQKeyboardToolbar.m in Sources */,
 				7A0F71A41CEDF52E00F468D2 /* UINavigationController+Appearance.m in Sources */,
+				7AC7E8E31CFAFC83008CBC65 /* HQZXServiceAgreementViewController.m in Sources */,
 				7A0F722E1CF18E0700F468D2 /* MyContactsViewController.m in Sources */,
 				7A0F71C41CEDF52E00F468D2 /* CoreStatus.m in Sources */,
 				7A0F723B1CF193D300F468D2 /* XQZXWodeTableViewCell.m in Sources */,
@@ -1729,12 +1756,14 @@
 				7A0F71D51CEDF52E00F468D2 /* IQKeyboardReturnKeyHandler.m in Sources */,
 				7AC7E8071CF97DEF008CBC65 /* HQZXCountry.m in Sources */,
 				7A0F71911CEDF52E00F468D2 /* UIColor+Extend.m in Sources */,
+				7AC7E8DA1CFAE021008CBC65 /* HQZXID.m in Sources */,
 				7A0F71AB1CEDF52E00F468D2 /* NSObject+Delete.m in Sources */,
 				7A0F71BB1CEDF52E00F468D2 /* FMDatabaseQueue.m in Sources */,
 				7A0F71BD1CEDF52E00F468D2 /* CoreHttp.m in Sources */,
 				7AC7E80A1CF97F5A008CBC65 /* HQZXCommonAlert.m in Sources */,
 				7A0F71A71CEDF52E00F468D2 /* NSDictionary+Sqlite.m in Sources */,
 				7A0F718D1CEDF52E00F468D2 /* NSDate+Extend.m in Sources */,
+				7AC7E8D71CFADFDC008CBC65 /* HQZXSelectIDForm.m in Sources */,
 				7A0F71BE1CEDF52E00F468D2 /* NSString+CoreHttp.m in Sources */,
 				7A713E941CF34709009A6D71 /* HQZXRegisterViewController.m in Sources */,
 				7A6D04501CF5FB2C00D9CDF3 /* HQZXModifyLoginViewController.m in Sources */,
@@ -1754,6 +1783,7 @@
 				7A6D044D1CF5F7B000D9CDF3 /* HQZXForgetPasswordViewController.m in Sources */,
 				7A0F71C11CEDF52E00F468D2 /* NSString+File.m in Sources */,
 				7A0F71981CEDF52E00F468D2 /* UIImage+Water.m in Sources */,
+				7AC7E8DD1CFAE7A7008CBC65 /* HQZXCertificationSuccessViewController.m in Sources */,
 				7A0F71E41CEDF52E00F468D2 /* README.md in Sources */,
 				7A0F71AE1CEDF52E00F468D2 /* NSObject+Select.m in Sources */,
 			);
@@ -1890,7 +1920,7 @@
 			baseConfigurationReference = DBFAF5E12ED262D2487FB31C /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Renhu Wang (74WTBQHV2L)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "${SRCROOT}/hqzx/hqzx-Prefix.pch";
 				INFOPLIST_FILE = hqzx/Info.plist;
@@ -1907,7 +1937,7 @@
 			baseConfigurationReference = 900AF853C030062D18990C62 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Renhu Wang (74WTBQHV2L)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "${SRCROOT}/hqzx/hqzx-Prefix.pch";
 				INFOPLIST_FILE = hqzx/Info.plist;

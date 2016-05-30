@@ -7,6 +7,15 @@
 */
 
 /*
+ ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝公共区＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+ */
+
+//form
+"QUEDING"="确定";
+"QUXIAO"="取消";
+
+
+/*
  ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝home区＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
  */
 
@@ -74,6 +83,7 @@
 "MIMA"="密码";
 
 //注册
+"XUANZEGUOJIA"="选择国家";
 "GUOJIA"="国家";
 "QINGSHURUYANZHENGMA"="请输入验证码";
 "DENGLUMIMA"="登陆密码";
@@ -82,6 +92,38 @@
 "HUOQUYANZHENGMA"="获取验证码";
 "WOYIYUEDU"="我已阅读并同意";
 "HUANQIUZAIXIANXIEYI"="《环球在线服务协议》";
+
+//用户校验
+"QINGDENGDAI"="请等待";
+"MIAOHOUZAIHUOQU"="秒后再获取";
+"SHOUJIHAOMAGESHICUOWU"="手机号码格式错误";
+"ZHENGZAIHUOQUYANZHENG"="正在获取验证码";
+"YANZHENGMAFASONGCHENGGONG"="验证码发送成功";
+"HUOQUYANZHENGMASHIBAI"="获取验证码失败";
+"LIANJIEFUWUQISHIBAI"="连接服务器失败";
+"QINGXUANZEGUOJIA"="请选择国家";
+"QINGTIANXIESHOUJIHAOMA"="请填写手机号码";
+"SHOUJIHAOMAGESHIBUZHENGQUE"="手机号码格式不正确";
+"YANZHENGMAGESHIBUZHENGQUE"="验证码格式不正确";
+"YANZHENGMASHIXIAO"="验证码已失效，请重新获取";
+"QINGSHURUMIMA"="请输入密码";
+"MIMABAOHANXIAHUAXIANDENG"="密码为6位，只能包含数字字母下划线";
+"QINGZAICISHURUMIMA"="请再次输入密码";
+"LIANGCIMIMABUYIZHI"="两次输入密码不一致";
+"QINGYUEDUHUANQIUXIEYI"="请阅读环球在线用户注册协议";
+"ZIFUBUZHENGQUE"="字符不正确";
+"ZHUCECHENGGONG"="注册成功";
+"QINGSHURUXINMIMA"="请再次输入新密码";
+"XUANZEZHENGJIANLEIXING"="选择证件类型";
+"QINGTIANXIEZHENSHIXINGMING"="请填写真实姓名";
+"QINGTIANXIEZHENGJIANHAOMA"="请填写证件号码";
+"QINGXUANZEZHENGJIANHAOMA"="请选择证件类型";
+"QINGSHURUJIUMIMA"="请输入旧密码";
+"QINGSHURUXINMIMA"="请输入新密码";
+"QINGSHURUQUERENMIMA"="请输入确认密码";
+"QINGSHURUJIAOYIMIMA"="请输入交易密码";
+
+
 
 //修改登陆密码
 "JIUMIMA"="旧密码";
@@ -96,8 +138,26 @@
 "SHEZHIXIUGAIJIAOYIMIMA"="设置/修改交易密码";
 "JIAOYIMIMA"="交易密码";
 "QUERENJIAOYIMIMA"="确认交易密码";
-"QUEDING"="确定";
 "KAIFATISHIDENGLUXIUGAI"="开发提示：这里手机号码默认就是登陆的手机号码，并且不可以修改";
+
+//实名认证
+"QINGSHURUXINGMING"="请输入姓名";
+"XUANZEZHENGJIANLEIXING"="选择证件类型";
+"QINGSHURUSHENFENZHENGHAOMA"="请输入证件号码";
+"TIJIAO"="提交";
+
+//认证成功
+"RENZHENGCHENGGONG"="认证成功";
+"YITONGGUORENZHENG"="已通过环球在线网使命认证";
+"NINDESHENFENXINXI"="您的身份信息";
+"XINGMING"="姓名";
+"ZHENGJIANLEIXING"="证件类型";
+"ZHENGJIANHAOMA"="证件号码";
+"RENZHENGSHIJIAN"="认证时间";
+
+
+
+
 
 
 

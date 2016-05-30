@@ -11,16 +11,16 @@
 #define JHTActionSheetToolBarHeight 44.0
 #define JHTActionSheetMarginRL 2.5
 
-#import "HQZXSelectCountryForm.h"
+#import "HQZXSelectIDForm.h"
 #import <JHChainableAnimations.h>
 //#import "JHTTextView.h"
 
 #pragma mark - Controller
-@interface HQZXSelectCountryController : UIViewController
-@property (nonatomic, strong) HQZXSelectCountryForm *actionView;
+@interface HQZXSelectIDController : UIViewController
+@property (nonatomic, strong) HQZXSelectIDForm *actionView;
 @end
 
-@implementation HQZXSelectCountryController
+@implementation HQZXSelectIDController
 
 - (void)viewDidLoad
 {
@@ -35,7 +35,7 @@
 
 @end
 #pragma mark - View
-@interface HQZXSelectCountryForm() {
+@interface HQZXSelectIDForm() {
     UIWindow *actionWindow;
     UIView *selectView;
     NSString *placeHolderText;
@@ -43,19 +43,19 @@
     UITextField *txtXingming;
     UITextField *txtShouji;
     UITextView *txtMiaoshu;
-    HQZXSelectCountryController *actionSheetController;
+    HQZXSelectIDController *actionSheetController;
     UIPickerView *mypickerView;
     NSMutableArray* aryCountrys;
-    HQZXCountry *countryNew;
+    HQZXID *IDNew;
 }
 @end
 
-@implementation HQZXSelectCountryForm
+@implementation HQZXSelectIDForm
 - (instancetype)initWithPlaceHolder:(NSString*) placeHolder {
     self = [super init];
     if (self) {
         placeHolderText = placeHolder;
-        _country = [[HQZXCountry alloc] init];
+        _card = [[HQZXID alloc] init];
     }
     return self;
 }
@@ -88,14 +88,14 @@
 }
 
 - (IBAction)beSure:(id)sender {
-    if(!_country.country_id){
-        _country = aryCountrys[0];
+    if(!_card.card_name){
+        _card = aryCountrys[0];
     }
     
     WEAK_SELF
     //    [self hideAction:Void_Block(){
     if (weakself.beSureComp) {
-        weakself.beSureComp(_country);
+        weakself.beSureComp(_card);
     }
     //    }];
 }
@@ -108,18 +108,11 @@
     NSDictionary* dicPorts = [NSDictionary dictionaryWithContentsOfFile:filename];
     if(dicPorts.count>0){
         NSDictionary *allDict =[dicPorts objectForKey:@"config"];
-        NSArray *countrys = [allDict objectForKey:@"coutry_list"];
-        for(NSDictionary *countryDic in countrys){
-            HQZXCountry *country = [[HQZXCountry alloc]init];
-            country.country_id = StrValueFromDictionary(countryDic, @"id");
-            country.country_name = StrValueFromDictionary(countryDic, @"name");
-            country.country_code = StrValueFromDictionary(countryDic, @"code");
-            country.country_ename = StrValueFromDictionary(countryDic, @"ename");
-            if([country.country_name isEqualToString:@"中国"]){
-                [aryCountrys insertObject:country atIndex:0];
-            }else{
-                [aryCountrys addObject:country];
-            }
+        NSArray *cards = [allDict objectForKey:@"card_type_list"];
+        for(NSString *cardDic in cards){
+            HQZXID *idCard = [[HQZXID alloc]init];
+            idCard.card_name = cardDic;
+            [aryCountrys addObject:idCard];
         }
     }
     
@@ -192,7 +185,7 @@
     
     
     
-    actionSheetController = [[HQZXSelectCountryController alloc] init];
+    actionSheetController = [[HQZXSelectIDController alloc] init];
     actionSheetController.view = self;
     
     if (!actionWindow) {
@@ -246,9 +239,9 @@
 #pragma mark - 该方法返回的NSString将作为UIPickerView中指定列和列表项的标题文本
 
 - (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view{
-    HQZXCountry *country = aryCountrys[row];
+    HQZXID *card = aryCountrys[row];
     UILabel *label = [[UILabel alloc] init];
-    label.text = country.country_name;
+    label.text = card.card_name;
     label.textColor = [UIColor whiteColor];
     [label sizeToFit];
     [label setX:(SCREEN_WIDTH - JHTActionSheetMarginRL*2-label.width)/2];
@@ -257,6 +250,6 @@
 #pragma mark - 当用户选中UIPickerViewDataSource中指定列和列表项时激发该方法
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    _country = aryCountrys[row];
+    _card = aryCountrys[row];
 }
 @end

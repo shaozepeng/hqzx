@@ -1,9 +1,9 @@
 //
-//  JHTUserModel.m
-//  jht
+//  HQZXUserModel.m
+//  hqzx
 //
-//  Created by 孙泽山 on 15/6/24.
-//  Copyright (c) 2015年 zthz. All rights reserved.
+//  Created by 泽鹏邵 on 16/5/28.
+//  Copyright © 2016年 泽鹏邵. All rights reserved.
 //
 
 #import "HQZXUserModel.h"
@@ -24,19 +24,20 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(HQZXUserModel)
             _currentUser = [[HQZXUser alloc] init];
             _currentUser.userId = StrValue(userDic, @"userid");
             _currentUser.userName = StrValue(userDic, @"username");
-            _currentUser.userImgUrl = StrValue(userDic, @"user_img_url");
-            _currentUser.userGender = StrValue(userDic, @"user_gender");
-            _currentUser.userRole = StrValue(userDic, @"user_role");
-            _currentUser.userStatus = StrValue(userDic, @"user_status");
-            _currentUser.timestamp = StrValue(userDic, @"timestamp");
+            _currentUser.mobile = StrValue(userDic, @"mobile");
+//            _currentUser.userImgUrl = StrValue(userDic, @"user_img_url");
+//            _currentUser.userGender = StrValue(userDic, @"user_gender");
+//            _currentUser.userRole = StrValue(userDic, @"user_role");
+//            _currentUser.userStatus = StrValue(userDic, @"user_status");
+//            _currentUser.timestamp = StrValue(userDic, @"timestamp");
         }
     }
     return _currentUser;
 }
 
-- (void) login:(NSString*) phoneNo pwd:(NSString*) password completion:(Id_Block) completion {
+- (void) login:(NSString*) phoneNo pwd:(NSString*) password country:(NSString*)conuy completion:(Id_Block) completion {
     
-    [[NetHttpClient sharedHTTPClient] request: @"/login" parameters:@{@"mobile":phoneNo, @"pwd": [CommonUtils securityPasswd:password], @"device_id": DeviceId, @"device_type": DeviceType, @"app_version": AppVersion, @"pwd_type": @"1"} completion:^(id obj) {
+    [[NetHttpClient sharedHTTPClient] request: @"/login.json" parameters:@{@"mobile":phoneNo, @"pwd": password, @"country": conuy} completion:^(id obj) {
         if (obj) {
             id errorCode = [obj objectForKey:ApiKey_ErrorCode];
             NSString *errorCodeStr = [NSString stringWithFormat:@"%@", errorCode];

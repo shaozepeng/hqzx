@@ -1,9 +1,9 @@
 //
-//  JHTCommonAlert.h
-//  jht
+//  XQZXCommonAlert.h
+//  hqzx
 //
-//  Created by 孙泽山 on 15/6/24.
-//  Copyright (c) 2015年 zthz. All rights reserved.
+//  Created by 泽鹏邵 on 16/5/28.
+//  Copyright © 2016年 泽鹏邵. All rights reserved.
 //
 
 /*
