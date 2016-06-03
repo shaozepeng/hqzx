@@ -11,7 +11,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import <CommonCrypto/CommonCrypto.h>
-#import "HQZXCommDef.h"
+#import "HQZXCommDefs.h"
 #import <CTAssetsPickerController.h>
 #import <AssetsLibrary/ALAsset.h>
 #define __BASE64( text )        [CommonUtils base64StringFromText:text]

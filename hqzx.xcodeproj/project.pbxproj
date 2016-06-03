@@ -138,6 +138,8 @@
 		7A0F72411CF194E000F468D2 /* NSString+NSStringForJava.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F72401CF194E000F468D2 /* NSString+NSStringForJava.m */; };
 		7A0F72431CF1996300F468D2 /* customerservice.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A0F72421CF1996300F468D2 /* customerservice.png */; };
 		7A0F72461CF1D22B00F468D2 /* XQZXFirstPageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F72451CF1D22B00F468D2 /* XQZXFirstPageTableViewCell.m */; };
+		7A4BF07B1D007BE200FD18F1 /* HQZXNeedLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A4BF07A1D007BE200FD18F1 /* HQZXNeedLoginController.m */; };
+		7A4BF07E1D007C2800FD18F1 /* UIResponder+addtion.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A4BF07D1D007C2800FD18F1 /* UIResponder+addtion.m */; };
 		7A6D044D1CF5F7B000D9CDF3 /* HQZXForgetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A6D044C1CF5F7B000D9CDF3 /* HQZXForgetPasswordViewController.m */; };
 		7A6D04501CF5FB2C00D9CDF3 /* HQZXModifyLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A6D044F1CF5FB2C00D9CDF3 /* HQZXModifyLoginViewController.m */; };
 		7A6D05011CF6ECDE00D9CDF3 /* HQZXModifyTransactionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A6D05001CF6ECDE00D9CDF3 /* HQZXModifyTransactionViewController.m */; };
@@ -152,6 +154,7 @@
 		7A713EB61CF34BB6009A6D71 /* HQZXUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A713EB31CF34BB6009A6D71 /* HQZXUserModel.m */; };
 		7A713EB91CF34CCC009A6D71 /* HQZXImageFormParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A713EB81CF34CCC009A6D71 /* HQZXImageFormParam.m */; };
 		7A713EBC1CF34E8F009A6D71 /* NSString+isEmpty.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A713EBB1CF34E8F009A6D71 /* NSString+isEmpty.m */; };
+		7AC4C0201D01367A004FD2F7 /* HQZXEmptyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AC4C01F1D01367A004FD2F7 /* HQZXEmptyManager.m */; };
 		7AC7E8041CF97D8C008CBC65 /* HQZXSelectCountryForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AC7E8031CF97D8C008CBC65 /* HQZXSelectCountryForm.m */; };
 		7AC7E8071CF97DEF008CBC65 /* HQZXCountry.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AC7E8061CF97DEF008CBC65 /* HQZXCountry.m */; };
 		7AC7E80A1CF97F5A008CBC65 /* HQZXCommonAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AC7E8081CF97F5A008CBC65 /* HQZXCommonAlert.m */; };
@@ -161,6 +164,7 @@
 		7AC7E8DA1CFAE021008CBC65 /* HQZXID.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AC7E8D91CFAE021008CBC65 /* HQZXID.m */; };
 		7AC7E8DD1CFAE7A7008CBC65 /* HQZXCertificationSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AC7E8DC1CFAE7A7008CBC65 /* HQZXCertificationSuccessViewController.m */; };
 		7AC7E8E31CFAFC83008CBC65 /* HQZXServiceAgreementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AC7E8E21CFAFC83008CBC65 /* HQZXServiceAgreementViewController.m */; };
+		7AC7E8E61CFDE130008CBC65 /* TransactionFlowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AC7E8E51CFDE130008CBC65 /* TransactionFlowViewController.m */; };
 		A3BA53B62F4B147D78F072FB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 99D5CE75EEDEF98094016EEB /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -405,6 +409,10 @@
 		7A0F72421CF1996300F468D2 /* customerservice.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = customerservice.png; sourceTree = "<group>"; };
 		7A0F72441CF1D22B00F468D2 /* XQZXFirstPageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XQZXFirstPageTableViewCell.h; sourceTree = "<group>"; };
 		7A0F72451CF1D22B00F468D2 /* XQZXFirstPageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XQZXFirstPageTableViewCell.m; sourceTree = "<group>"; };
+		7A4BF0791D007BE200FD18F1 /* HQZXNeedLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HQZXNeedLoginController.h; sourceTree = "<group>"; };
+		7A4BF07A1D007BE200FD18F1 /* HQZXNeedLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HQZXNeedLoginController.m; sourceTree = "<group>"; };
+		7A4BF07C1D007C2800FD18F1 /* UIResponder+addtion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIResponder+addtion.h"; sourceTree = "<group>"; };
+		7A4BF07D1D007C2800FD18F1 /* UIResponder+addtion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIResponder+addtion.m"; sourceTree = "<group>"; };
 		7A6D044B1CF5F7B000D9CDF3 /* HQZXForgetPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HQZXForgetPasswordViewController.h; sourceTree = "<group>"; };
 		7A6D044C1CF5F7B000D9CDF3 /* HQZXForgetPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HQZXForgetPasswordViewController.m; sourceTree = "<group>"; };
 		7A6D044E1CF5FB2B00D9CDF3 /* HQZXModifyLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HQZXModifyLoginViewController.h; sourceTree = "<group>"; };
@@ -433,6 +441,8 @@
 		7A713EB81CF34CCC009A6D71 /* HQZXImageFormParam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HQZXImageFormParam.m; sourceTree = "<group>"; };
 		7A713EBA1CF34E8F009A6D71 /* NSString+isEmpty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+isEmpty.h"; sourceTree = "<group>"; };
 		7A713EBB1CF34E8F009A6D71 /* NSString+isEmpty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+isEmpty.m"; sourceTree = "<group>"; };
+		7AC4C01E1D01367A004FD2F7 /* HQZXEmptyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HQZXEmptyManager.h; sourceTree = "<group>"; };
+		7AC4C01F1D01367A004FD2F7 /* HQZXEmptyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HQZXEmptyManager.m; sourceTree = "<group>"; };
 		7AC7E8021CF97D8C008CBC65 /* HQZXSelectCountryForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HQZXSelectCountryForm.h; sourceTree = "<group>"; };
 		7AC7E8031CF97D8C008CBC65 /* HQZXSelectCountryForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HQZXSelectCountryForm.m; sourceTree = "<group>"; };
 		7AC7E8051CF97DEF008CBC65 /* HQZXCountry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HQZXCountry.h; sourceTree = "<group>"; };
@@ -451,6 +461,8 @@
 		7AC7E8DC1CFAE7A7008CBC65 /* HQZXCertificationSuccessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HQZXCertificationSuccessViewController.m; sourceTree = "<group>"; };
 		7AC7E8E11CFAFC83008CBC65 /* HQZXServiceAgreementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HQZXServiceAgreementViewController.h; sourceTree = "<group>"; };
 		7AC7E8E21CFAFC83008CBC65 /* HQZXServiceAgreementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HQZXServiceAgreementViewController.m; sourceTree = "<group>"; };
+		7AC7E8E41CFDE130008CBC65 /* TransactionFlowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransactionFlowViewController.h; sourceTree = "<group>"; };
+		7AC7E8E51CFDE130008CBC65 /* TransactionFlowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionFlowViewController.m; sourceTree = "<group>"; };
 		900AF853C030062D18990C62 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		99D5CE75EEDEF98094016EEB /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBFAF5E12ED262D2487FB31C /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1376,6 +1388,8 @@
 			children = (
 				7A0F722A1CF18E0700F468D2 /* MyContactsViewController.h */,
 				7A0F722B1CF18E0700F468D2 /* MyContactsViewController.m */,
+				7AC7E8E41CFDE130008CBC65 /* TransactionFlowViewController.h */,
+				7AC7E8E51CFDE130008CBC65 /* TransactionFlowViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1505,6 +1519,8 @@
 		7A713E9C1CF34A55009A6D71 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				7A4BF0791D007BE200FD18F1 /* HQZXNeedLoginController.h */,
+				7A4BF07A1D007BE200FD18F1 /* HQZXNeedLoginController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1521,6 +1537,10 @@
 		7A713E9E1CF34A55009A6D71 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				7AC4C01E1D01367A004FD2F7 /* HQZXEmptyManager.h */,
+				7AC4C01F1D01367A004FD2F7 /* HQZXEmptyManager.m */,
+				7A4BF07C1D007C2800FD18F1 /* UIResponder+addtion.h */,
+				7A4BF07D1D007C2800FD18F1 /* UIResponder+addtion.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1674,6 +1694,7 @@
 				7A0F71DF1CEDF52E00F468D2 /* UIImage+LC.m in Sources */,
 				7AC7E8D41CFAD5E5008CBC65 /* HQZXRealNameAuthenticationViewController.m in Sources */,
 				7A0F71C61CEDF52E00F468D2 /* DoAlertView.m in Sources */,
+				7AC4C0201D01367A004FD2F7 /* HQZXEmptyManager.m in Sources */,
 				7A0F70891CEDD0C500F468D2 /* CommonUtils.m in Sources */,
 				7A0F71D81CEDF52E00F468D2 /* IQBarButtonItem.m in Sources */,
 				7AC7E8041CF97D8C008CBC65 /* HQZXSelectCountryForm.m in Sources */,
@@ -1724,11 +1745,13 @@
 				7A0F71961CEDF52E00F468D2 /* UIImage+Extend.m in Sources */,
 				7A0F71D91CEDF52E00F468D2 /* IQTitleBarButtonItem.m in Sources */,
 				7A0F71B81CEDF52E00F468D2 /* FMDatabase.m in Sources */,
+				7AC7E8E61CFDE130008CBC65 /* TransactionFlowViewController.m in Sources */,
 				7A0F71C01CEDF52E00F468D2 /* NSData+Param.m in Sources */,
 				7AC7E80D1CF98338008CBC65 /* HQZXCommDefs.m in Sources */,
 				7A0F719D1CEDF52E00F468D2 /* CoreNavigationController.m in Sources */,
 				7A0F71D11CEDF52E00F468D2 /* IQUIView+Hierarchy.m in Sources */,
 				7A0F71BA1CEDF52E00F468D2 /* FMDatabasePool.m in Sources */,
+				7A4BF07E1D007C2800FD18F1 /* UIResponder+addtion.m in Sources */,
 				7A0F719C1CEDF52E00F468D2 /* BaseNav.m in Sources */,
 				7A0F71DA1CEDF52E00F468D2 /* IQToolbar.m in Sources */,
 				7A0F71D31CEDF52E00F468D2 /* IQUIWindow+Hierarchy.m in Sources */,
@@ -1779,6 +1802,7 @@
 				7A0F71B91CEDF52E00F468D2 /* FMDatabaseAdditions.m in Sources */,
 				7A713EB41CF34BB6009A6D71 /* HQZXUser.m in Sources */,
 				7A0F71B71CEDF52E00F468D2 /* NSString+CoreFMDB.m in Sources */,
+				7A4BF07B1D007BE200FD18F1 /* HQZXNeedLoginController.m in Sources */,
 				7A713E931CF34709009A6D71 /* HQZXLoginViewController.m in Sources */,
 				7A6D044D1CF5F7B000D9CDF3 /* HQZXForgetPasswordViewController.m in Sources */,
 				7A0F71C11CEDF52E00F468D2 /* NSString+File.m in Sources */,

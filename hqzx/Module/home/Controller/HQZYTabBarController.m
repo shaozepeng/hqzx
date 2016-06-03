@@ -57,31 +57,36 @@
     self.selectedIndex = _selectSum?_selectSum:0;
 }
 -(void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item{
-//    if(item.tag==2){
-//        
-//        HQZXLoginViewController *vc = [[HQZXLoginViewController alloc] init];
-//        UINavigationController *textNav = [[UINavigationController alloc] initWithRootViewController: vc];
-//        [CommonUtils setNavigationControllerStyle: textNav];
-//        [self presentViewController: textNav animated: YES completion:^{
-//            self.selectedIndex = 0;
-//        }];
-//
-//    }        
-    
-//    NSLog(@"%@",item);
+    if(item.tag==2){
+        if (![HQZXUserModel sharedInstance].isLogined) {
+            HQZXLoginViewController *vc = [[HQZXLoginViewController alloc] init];
+            UINavigationController *textNav = [[UINavigationController alloc] initWithRootViewController: vc];
+            [CommonUtils setNavigationControllerStyle: textNav];
+            [self presentViewController: textNav animated: YES completion:^{
+                self.selectedIndex = 0;
+            }];
+        }else{
+            if (![HQZXUserModel sharedInstance].isAuthen) {
+                HQZXRealNameAuthenticationViewController *au = [[HQZXRealNameAuthenticationViewController alloc] init];
+                [rootNav pushViewController:au animated:YES];
+            }
+        }
+    }
 }
-//- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
-//    NSLog(@"%@",viewController);
-//    if(viewController.tabBarItem.tag==2){
-//        
-//        return NO;
-//        
-//    }else {
-//        
-//        return YES;
-//        
-//    }
-//}
+- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
+    if(viewController.tabBarItem.tag==2){
+        if (![HQZXUserModel sharedInstance].isLogined) {
+            return NO;
+        }else{
+            if (![HQZXUserModel sharedInstance].isAuthen) {
+                return NO;
+            }
+        }
+        return YES;
+    }else {
+        return YES;
+    }
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

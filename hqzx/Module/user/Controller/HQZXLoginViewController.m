@@ -316,6 +316,11 @@
 
 //}
 -(IBAction) back:(id) sender{
+    NSMutableDictionary *parameter = [[NSMutableDictionary alloc]init];
+    [parameter setValue:@"0" forKey:@"selectPlu"];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"changeLanguage"
+                                                        object:self
+                                                      userInfo:parameter];
     [self dismissViewControllerAnimated: YES completion:nil];
 }
 -(IBAction) userRegister:(id) sender{
@@ -338,6 +343,7 @@
     [self.navigationController pushViewController: userFind animated: YES];
 }
 -(void) cancelLogin {
+    
     [self dismissViewControllerAnimated: YES completion:^{
         if(_cancelBlock) {
             _cancelBlock();

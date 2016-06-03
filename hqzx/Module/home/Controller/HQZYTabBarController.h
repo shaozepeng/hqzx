@@ -12,6 +12,7 @@
 #import "MyMeViewController.h"
 #import "MacroDefinition.h"
 #import "HQZXLoginViewController.h"
+#import "HQZXRealNameAuthenticationViewController.h"
 
 @interface HQZYTabBarController : UITabBarController<UITabBarControllerDelegate>
 @property (nonatomic, strong)MyRecentViewController* recentViewCntlr;

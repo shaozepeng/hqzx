@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "XQZXCommonAlert.h"
 #import "HQZXID.h"
-
+typedef void (^Void_Block)(void);
+#define Void_Block() ^void ()
 typedef void (^HQZXSelectIDComp)(HQZXID*);
 #define HQZXSelectIDComp() ^void (HQZXID* CARD)
 

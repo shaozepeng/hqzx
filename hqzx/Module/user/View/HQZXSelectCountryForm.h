@@ -11,7 +11,8 @@
 //#import "JHTDropSelectView.h"
 //#import "JHTDictionary.h"
 #import "HQZXCountry.h"
-
+typedef void (^Void_Block)(void);
+#define Void_Block() ^void ()
 typedef void (^HQZXSelectCountryComp)(HQZXCountry*);
 #define HQZXSelectCountryComp() ^void (HQZXCountry* COUNTRY)
 

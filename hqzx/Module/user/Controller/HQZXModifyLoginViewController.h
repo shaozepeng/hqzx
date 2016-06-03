@@ -10,6 +10,7 @@
 #define MODIFYFONTBUTONE  IP4566PELSE(15, 15,16,16)
 
 #import <Foundation/Foundation.h>
+#import "HQZXUserModel.h"
 
 @interface HQZXModifyLoginViewController : UIViewController< UITextFieldDelegate>
 //-(instancetype)initWithPhoneNo:(NSString*) phoneNo;

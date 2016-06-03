@@ -204,7 +204,7 @@
 - (void)customShowAlertView
 {
     double dHeight = 0;
-    self.backgroundColor = DO_DIMMED_COLOR;
+    self.backgroundColor = UIColorFromRGB(0x484C4F);
     
     // make back view -----------------------------------------------------------------------------------------------
     _vAlert = [[UIView alloc] initWithFrame:CGRectMake(0, 0, DO_VIEW_WIDTH, 0)];

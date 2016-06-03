@@ -203,19 +203,18 @@
     }
  
     VALIDATE_REGEX(newPWD, @"^[\\@A-Za-z0-9\\!\\#\\$\\%\\^\\&\\*\\.\\~]{6,16}$", LocatizedStirngForkey(@"MIMABAOHANXIAHUAXIANDENG"));
-    
     // 找回密码
     [ProgressHUD show: [NSString stringWithFormat:@"%@...",LocatizedStirngForkey(@"QINGDENGDAI")] Interaction: NO];
-    [[NetHttpClient sharedHTTPClient] request: @"/upt_login_pwd.json" parameters:@{ @"old_pwd":oldPWD, @"new_pwd1":newPWD, @"new_pwd2": quePWD} completion:^(id obj) {
+    [[NetHttpClient sharedHTTPClient] request: @"/upt_login_pwd.json" parameters:@{ @"old_pwd":oldPWD, @"new_pwd1":newPWD, @"new_pwd2": quePWD,@"auth_key":[HQZXUserModel sharedInstance].currentUser.auth_key} completion:^(id obj) {
         [ProgressHUD dismiss];
         if (obj) {
-            if ([@"0" isEqualToString:[obj objectForKey:ApiKey_ErrorCode]]) {
+            if ([@"0" isEqualToString:StrValueFromDictionary(obj, ApiKey_ErrorCode)]) {
                 [USER_DEFAULT removeObjectForKey: UD_KEY_VALIDATENO_ID_FINDPWD];
                 [self.navigationController popViewControllerAnimated: YES];
                 if (self.success) {
                     self.success(txtPhone.text);
                 }
-                return;
+                [self.view makeToast:LocatizedStirngForkey(@"XIUGAICHENGGONG") duration: 0.5 position:CSToastPositionCenter];
             } else {
                 [self.view makeToast:[NSString stringWithFormat:@"%@", [obj objectForKey:@"message"]] duration: 0.5 position:CSToastPositionCenter];
             }

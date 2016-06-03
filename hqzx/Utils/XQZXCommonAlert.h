@@ -55,12 +55,12 @@
 + (void) alertCustomButtonContent:(NSArray*)btnArray custom:(DoAlertBtnHandler)customBlock;
 + (void) alertCustomTitleButtonContent:(NSArray*)btnArray title:(NSString*) title custom:(DoAlertBtnHandler)customBlock;
 @end
-#define JHTConfirm(MSG, YESBLOCK, NOBLOCK) [JHTCommonAlert alertMsg:MSG yes:YESBLOCK no:NOBLOCK]
-#define JHTBodyTextConfirm(MSG,strYes,strtNo,YESBLOCK, NOBLOCK) [JHTCommonAlert alertBodyTextMsg:MSG yesBtn:strYes noBtn:strtNo yes:YESBLOCK no:NOBLOCK]
-#define JHTBodyTextConfirmWithTitle(MSG, TITLE_,strYes,strtNo,YESBLOCK, NOBLOCK) [JHTCommonAlert alertBodyTextMsg:MSG title: TITLE_ yesBtn:strYes noBtn:strtNo yes:YESBLOCK no:NOBLOCK]
+#define JHTConfirm(MSG, YESBLOCK, NOBLOCK) [XQZXCommonAlert alertMsg:MSG yes:YESBLOCK no:NOBLOCK]
+#define JHTBodyTextConfirm(MSG,strYes,strtNo,YESBLOCK, NOBLOCK) [XQZXCommonAlert alertBodyTextMsg:MSG yesBtn:strYes noBtn:strtNo yes:YESBLOCK no:NOBLOCK]
+#define JHTBodyTextConfirmWithTitle(MSG, TITLE_,strYes,strtNo,YESBLOCK, NOBLOCK) [XQZXCommonAlert alertBodyTextMsg:MSG title: TITLE_ yesBtn:strYes noBtn:strtNo yes:YESBLOCK no:NOBLOCK]
 
-#define JHTCustomConfirmWithTitle(bodyview,TITLE_,strYes,strtNo,YESBLOCK, NOBLOCK) [JHTCommonAlert alertCustomMsg:bodyview title:TITLE_ yesBtn:strYes noBtn:strtNo yes:YESBLOCK no:NOBLOCK]
-#define JHTCustomConfirm(bodyview,strYes,strtNo,YESBLOCK, NOBLOCK) [JHTCommonAlert alertCustomMsg:bodyview yesBtn:strYes noBtn:strtNo yes:YESBLOCK no:NOBLOCK]
-#define JHTButtonsConfirm(btnArray,customBlock) [JHTCommonAlert alertCustomButtonContent:(btnArray) custom:customBlock]
-#define JHTTiltleButtonsConfirm(btnArray,titleStr,customBlock) [JHTCommonAlert alertCustomTitleButtonContent:(btnArray) title:titleStr custom:customBlock]
+#define JHTCustomConfirmWithTitle(bodyview,TITLE_,strYes,strtNo,YESBLOCK, NOBLOCK) [XQZXCommonAlert alertCustomMsg:bodyview title:TITLE_ yesBtn:strYes noBtn:strtNo yes:YESBLOCK no:NOBLOCK]
+#define JHTCustomConfirm(bodyview,strYes,strtNo,YESBLOCK, NOBLOCK) [XQZXCommonAlert alertCustomMsg:bodyview yesBtn:strYes noBtn:strtNo yes:YESBLOCK no:NOBLOCK]
+#define JHTButtonsConfirm(btnArray,customBlock) [XQZXCommonAlert alertCustomButtonContent:(btnArray) custom:customBlock]
+#define JHTTiltleButtonsConfirm(btnArray,titleStr,customBlock) [XQZXCommonAlert alertCustomTitleButtonContent:(btnArray) title:titleStr custom:customBlock]
 //#define JHTCustomTableConfirm(bodyTableView,YESBLOCK, NOBLOCK) [JHTCommonAlert alertCustomTableContent:bodyTableView yes:YESBLOCK no:NOBLOCK]

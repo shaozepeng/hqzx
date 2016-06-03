@@ -25,6 +25,14 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(HQZXUserModel)
             _currentUser.userId = StrValue(userDic, @"userid");
             _currentUser.userName = StrValue(userDic, @"username");
             _currentUser.mobile = StrValue(userDic, @"mobile");
+            _currentUser.auth_key = StrValue(userDic, @"auth_key");
+            id info = [userDic objectForKey:@"identity_info"];
+            if(!info){
+                _currentUser.identity = nil;
+            }else{
+                _currentUser.identity = @"info";
+                _currentUser.identity_info = info;
+            }
 //            _currentUser.userImgUrl = StrValue(userDic, @"user_img_url");
 //            _currentUser.userGender = StrValue(userDic, @"user_gender");
 //            _currentUser.userRole = StrValue(userDic, @"user_role");
@@ -39,9 +47,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(HQZXUserModel)
     
     [[NetHttpClient sharedHTTPClient] request: @"/login.json" parameters:@{@"mobile":phoneNo, @"pwd": password, @"country": conuy} completion:^(id obj) {
         if (obj) {
-            id errorCode = [obj objectForKey:ApiKey_ErrorCode];
-            NSString *errorCodeStr = [NSString stringWithFormat:@"%@", errorCode];
-            if ([@"0" isEqualToString: errorCodeStr]) {
+            if ([@"0" isEqualToString: StrValueFromDictionary(obj, ApiKey_ErrorCode)]) {
                 NSData *arc = [NSKeyedArchiver archivedDataWithRootObject: obj];
                 [USER_DEFAULT setObject: arc forKey: CURRENT_USER_KEY];
                 
@@ -85,7 +91,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(HQZXUserModel)
     [USER_DEFAULT removeObjectForKey:IS_HUOZHU_KEY];
     [USER_DEFAULT removeObjectForKey:IS_CHUANZHU_KEY];
     [self removeCacheForContactInfo];
-    [CommonUtils removeUMengAlias:[HQZXUserModel sharedInstance].currentUser.userId type:@"userid" startFromTime: 1];
+//    [CommonUtils removeUMengAlias:[HQZXUserModel sharedInstance].currentUser.userId type:@"userid" startFromTime: 1];
     _currentUser = nil;
 //    [Bugtags setUserData:nil forKey:@"user"];
     [USER_DEFAULT removeObjectForKey: CURRENT_USER_KEY];
@@ -101,6 +107,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(HQZXUserModel)
 }
 -(BOOL) isLogined {
     return self.currentUser != nil;
+}
+-(BOOL) isAuthen {
+    return self.currentUser.identity != nil;
 }
 -(void) removeCacheForContactInfo {
     [USER_DEFAULT removeObjectForKey:CURRENT_USER_CONTACT_KEY];

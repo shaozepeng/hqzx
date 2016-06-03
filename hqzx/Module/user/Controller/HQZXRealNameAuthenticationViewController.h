@@ -17,4 +17,8 @@
 @interface HQZXRealNameAuthenticationViewController : UIViewController<UITextFieldDelegate>
 @property BOOL isFindPwd;
 @property (nonatomic, strong) Id_Block success;
+@property (strong, nonatomic) NSString *username;
+@property (strong, nonatomic) NSString *cardTyoe;
+@property (strong, nonatomic) NSString *cardId;
+@property(nonatomic, strong) void (^successBlock)();
 @end

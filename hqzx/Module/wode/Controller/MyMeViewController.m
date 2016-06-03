@@ -11,6 +11,9 @@
 @implementation MyMeViewController{
     UIBarButtonItem *temporaryBarButtonItem;
     BOOL isTouch;
+    NSDictionary *dataDict;
+    NSDictionary *dataDictTwo;
+    NSString *realName;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -40,6 +43,25 @@
     
     //    UIBarButtonItem *btn_right = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
     [self createTabView];
+    [self refData];
+    WEAK_SELF
+    self.myTableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [weakself refData];
+    }];
+}
+-(void)refData{
+    [[NetHttpClient sharedHTTPClient] request:@"/account_detail.json" parameters: @{@"auth_key":[HQZXUserModel sharedInstance].currentUser.auth_key} completion:^(id obj) {
+        [self.myTableView.header endRefreshing];
+        NSString *errorCode = StrValueFromDictionary(obj, ApiKey_ErrorCode);
+        if ([@"0" isEqualToString: errorCode]) {
+            dataDict = [[NSDictionary alloc]init];
+            dataDictTwo = [[NSDictionary alloc]init];
+            dataDict = [obj objectForKey:@"account_detail"];
+            dataDictTwo = [obj objectForKey:@"identity_info"];
+            realName = StrValueFromDictionary(dataDictTwo, @"name");
+            [self.myTableView reloadData];
+        }
+    }];
 }
 -(void)viewWillAppear:(BOOL)animated {
     self.tabBarController.title = LocatizedStirngForkey(@"THREE");
@@ -141,18 +163,18 @@
     if(indexPath.section==0){
         XQZXWodeTableViewCell *cellwode = (XQZXWodeTableViewCell*) cell;
  
-        cellwode.title1 = @"13213414232";
+        cellwode.title1 = StrValueFromDictionary(dataDict, @"account");
         cellwode.rowNum = indexPath.row;
         cellwode.imageUrl = @"customerservice";
-        cellwode.title2 = @"李奎";
-        cellwode.state = @"UID：173833";
+        cellwode.title2 = realName;
+        cellwode.state = [NSString stringWithFormat:@"UID：%@",StrValueFromDictionary(dataDict, @"uid")];
     }
     [cell.contentView removeSubviews];
     cell.detailTextLabel.text=@"";
     if(indexPath.section==1){
         if(row==0){
             cell.textLabel.text=LocatizedStirngForkey(@"ZONGZICHAN");
-            cell.detailTextLabel.text = @"88888.88";
+            cell.detailTextLabel.text = StrValueFromDictionary(dataDict, @"account_balance");
             cell.detailTextLabel.textColor = [UIColor redColor];
             cell.detailTextLabel.font = [UIFont systemFontOfSize:WOCONTDETAILFONT];
             cell.imageView.image=[UIImage imageNamed:@"icon_price"];
@@ -331,8 +353,8 @@
     }
     if(indexPath.section==1){
         if(indexPath.row==0){
-            UINavigationController *login = [HQZXLoginViewController getLoginController];
-            [[rootNav.viewControllers objectAtIndex: 0] presentViewController: login animated: YES completion:nil];
+//            UINavigationController *login = [HQZXLoginViewController getLoginController];
+//            [[rootNav.viewControllers objectAtIndex: 0] presentViewController: login animated: YES completion:nil];
 //            WEAK_SELF
 //            UINavigationController *login = [HQZXLoginViewController getLoginController];
 //            [rootNav presentViewController: login animated: YES completion:^{
@@ -384,6 +406,31 @@
     if(indexPath.section==5){
         if(indexPath.row==0){
             HQZXRealNameAuthenticationViewController *wocanyudetoubiao=[[HQZXRealNameAuthenticationViewController alloc] init];
+            wocanyudetoubiao.username = realName;
+//            dataDictTwo
+            wocanyudetoubiao.cardId = StrValueFromDictionary(dataDictTwo, @"identityno");
+            NSString *type = StrValueFromDictionary(dataDictTwo, @"identitytype");
+            NSString *typename;
+            NSArray *paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+            NSString *path=[paths objectAtIndex:0];
+            NSString *filename=[path stringByAppendingPathComponent:countryKey];
+            NSDictionary* dicPorts = [NSDictionary dictionaryWithContentsOfFile:filename];
+            if(dicPorts.count>0){
+                NSDictionary *allDict =[dicPorts objectForKey:@"config"];
+                NSArray *cards = [allDict objectForKey:@"card_type_list"];
+                for(NSDictionary *cardDic in cards){
+                    if([type isEqualToString:StrValueFromDictionary(cardDic, @"id")]){
+                        NSString *language = [USER_DEFAULT objectForKey:kUserLanguage];
+                        if([language isEqualToString:@"zh-Hans"]){
+                            typename = StrValueFromDictionary(cardDic, @"name");
+                        }else if([language isEqualToString:@"en"]){
+                            typename = StrValueFromDictionary(cardDic, @"ename");
+                        }
+                        
+                    }
+                }
+            }
+            wocanyudetoubiao.cardTyoe = typename;
             [rootNav pushViewController:wocanyudetoubiao animated:YES];
             
         }
@@ -418,10 +465,14 @@
            }]];
            [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                //点击按钮的响应事件；
-               HQZXLoginViewController *vc = [[HQZXLoginViewController alloc] init];
-               UINavigationController *textNav = [[UINavigationController alloc] initWithRootViewController: vc];
-               [CommonUtils setNavigationControllerStyle: textNav];
-               [self presentViewController: textNav animated: YES completion:nil];
+               if ([HQZXUserModel sharedInstance].isLogined) {
+                   [[HQZXUserModel sharedInstance] logout];
+                   HQZXLoginViewController *vc = [[HQZXLoginViewController alloc] init];
+                   UINavigationController *textNav = [[UINavigationController alloc] initWithRootViewController: vc];
+                   [CommonUtils setNavigationControllerStyle: textNav];
+                   [self presentViewController: textNav animated: YES completion:nil];
+               }
+               
            }]];
            
            //弹出提示框；

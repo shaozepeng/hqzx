@@ -12,6 +12,9 @@
 @property NSString *userId;
 @property NSString *userName;
 @property NSString *mobile;
+@property NSString *auth_key;
+@property NSString *identity;
+@property (strong, nonatomic) NSMutableDictionary *identity_info;
 @property (nonatomic) NSString *userImgUrl;
 @property NSString *userGender;
 @property NSString *userRole;

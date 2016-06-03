@@ -163,6 +163,10 @@
     [btnGetValidateNo setTitleColor: UIColorFromRGB(0x3E87FA) forState:UIControlStateDisabled];
     [btnGetValidateNo setTitleColor: UIColorFromRGB(0x87CEFA) forState:UIControlStateNormal];
     [btnGetValidateNo setTitleColor: UIColorFromRGB(0x2254A6) forState:UIControlStateHighlighted];
+    UIImage *btnGetValidateNoImage = [[UIImage imageNamed:@"user_login_form_validatebg"] resizableImageWithCapInsets:UIEdgeInsetsMake(5, 5, 5, 5)];
+    [btnGetValidateNo setBackgroundImage: btnGetValidateNoImage forState: UIControlStateNormal];
+    btnGetValidateNo.adjustsImageWhenHighlighted=NO;
+    [btnGetValidateNo addTarget: self action: @selector(getValidateNo:) forControlEvents:UIControlEventTouchUpInside];
     
     txtPhone = [[US2ValidatorTextField alloc] initWithFrame:CGRectMake(iconQuePassword.maxX + SCREEN_WIDTH/40 + 1, line2.maxY+1, form1.width -(form1.width - btnGetValidateNo.x)- iconQuePassword.maxX - marginTxtWithIcon - 2, form1.height/4 - 1)];
     txtPhone.clearButtonMode = UITextFieldViewModeWhileEditing;
@@ -299,7 +303,7 @@
     [[NetHttpClient sharedHTTPClient] request: @"/send_authcode.json" parameters:@{@"mobile": mobile, @"stype": stype} completion:^(id obj) {
         [ProgressHUD dismiss];
         if (obj) {
-            if ([[obj objectForKey:ApiKey_ErrorCode] isEqualToString: @"0"]) {
+            if ([StrValueFromDictionary(obj, ApiKey_ErrorCode) isEqualToString: @"0"]) {
                 [self.view makeToast: LocatizedStirngForkey(@"YANZHENGMAFASONGCHENGGONG") duration: 0.5 position: CSToastPositionCenter];
                 id codeid = [obj objectForKey: @"codeid"];
                 codeType = StrValueFromDictionary(obj, @"codetype");
@@ -369,15 +373,16 @@
     }
     
     [ProgressHUD show: [NSString stringWithFormat:@"%@...",LocatizedStirngForkey(@"QINGDENGDAI")] Interaction: NO];
-    [[NetHttpClient sharedHTTPClient] request: @"/upt_trade_pwd.json" parameters:@{@"new_pwd1":jiaopwd, @"new_pwd2":quepwd, @"code": yanzm, @"codetype": codeType} completion:^(id obj) {
+    [[NetHttpClient sharedHTTPClient] request: @"/upt_trade_pwd.json" parameters:@{@"new_pwd1":jiaopwd, @"new_pwd2":quepwd, @"code": yanzm, @"codetype": codeType,@"auth_key":[HQZXUserModel sharedInstance].currentUser.auth_key} completion:^(id obj) {
         [ProgressHUD dismiss];
         if (obj) {
-            if ([@"0" isEqualToString:[obj objectForKey:ApiKey_ErrorCode]]) {
+            if ([@"0" isEqualToString:StrValueFromDictionary(obj, ApiKey_ErrorCode)]) {
                 [USER_DEFAULT removeObjectForKey: UD_KEY_VALIDATENO_ID_FINDPWD];
                 [self.navigationController popViewControllerAnimated: YES];
                 if (self.success) {
                     self.success(txtPhone.text);
                 }
+                [self.view makeToast:LocatizedStirngForkey(@"XIUGAICHENGGONG") duration: 0.5 position:CSToastPositionCenter];
                 return;
             } else {
                 [self.view makeToast:[NSString stringWithFormat:@"%@", [obj objectForKey:@"message"]] duration: 0.5 position:CSToastPositionCenter];

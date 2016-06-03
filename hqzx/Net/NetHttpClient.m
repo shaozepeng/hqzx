@@ -145,7 +145,6 @@
 -(AFHTTPRequestOperation*)request:(NSString *)path parameters:(NSDictionary *)parameters completion:(Id_Block)compBlock
 {
     //    [httpRequestOperationManager.requestSerializer setValue: [[UserHelper sharedHelper] getCurrentMeta] forHTTPHeaderField:@"loginstate"];
-    
     NSMutableDictionary *parameter = [NSMutableDictionary dictionaryWithDictionary: parameters];
     [parameter setObject: [HQZXUserModel sharedInstance].userId forKey: @"userid"];
     

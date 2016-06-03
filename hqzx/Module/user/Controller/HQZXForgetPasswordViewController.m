@@ -322,7 +322,7 @@
     [[NetHttpClient sharedHTTPClient] request: @"/send_authcode.json" parameters:@{@"mobile": mobile, @"stype": stype} completion:^(id obj) {
         [ProgressHUD dismiss];
         if (obj) {
-            if ([[obj objectForKey:ApiKey_ErrorCode] isEqualToString: @"0"]) {
+            if ([StrValueFromDictionary(obj, ApiKey_ErrorCode) isEqualToString: @"0"]) {
                 [self.view makeToast: LocatizedStirngForkey(@"YANZHENGMAFASONGCHENGGONG") duration: 0.5 position: CSToastPositionCenter];
                 id codeid = [obj objectForKey: @"codeid"];
                 codeType = StrValueFromDictionary(obj, @"codetype");
@@ -399,7 +399,7 @@
     [[NetHttpClient sharedHTTPClient] request: @"/find_pwd.json" parameters:@{@"mobile":phoneNo, @"newpwd":password, @"new2pwd":passwordQue, @"code": validateNo, @"codetype": codeType} completion:^(id obj) {
         [ProgressHUD dismiss];
         if (obj) {
-            if ([@"0" isEqualToString:[obj objectForKey:ApiKey_ErrorCode]]) {
+            if ([@"0" isEqualToString:StrValueFromDictionary(obj, ApiKey_ErrorCode)]) {
                 [USER_DEFAULT removeObjectForKey: UD_KEY_VALIDATENO_ID_FINDPWD];
                 [self.navigationController popViewControllerAnimated: YES];
                 if (self.success) {

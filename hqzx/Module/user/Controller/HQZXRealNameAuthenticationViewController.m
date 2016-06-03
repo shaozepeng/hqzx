@@ -48,6 +48,8 @@
     NSString *initPhoneNo;
     UIImageView *clickText;
     HQZXID *card;
+    UIView *clickView;
+    UIButton *backBtn;
 }
 @end
 
@@ -91,6 +93,11 @@
     txtValidateNo.clearButtonMode = UITextFieldViewModeWhileEditing;
     txtValidateNo.textColor = UIColorFromRGB(0x767D85);
     txtValidateNo.font = [UIFont systemFontOfSize:MODIFYTFONTONE];
+    if ([HQZXUserModel sharedInstance].isAuthen) {
+        txtValidateNo.text = _username;
+        txtValidateNo.enabled = NO;
+    }
+    txtValidateNo.text = _username;
     //    txtValidateNo.placeholder = LocatizedStirngForkey(@"XINMIMA");
     //    [txtValidateNo setValue:UIColorFromRGB(0x767D85) forKeyPath:@"_placeholderLabel.textColor"];
     //    [txtValidateNo setValue:[UIFont systemFontOfSize:MODIFYTFONTONE]forKeyPath:@"_placeholderLabel.font"];
@@ -116,6 +123,7 @@
     txtLianText = [[UITextField alloc] initWithFrame:CGRectMake(iconLianText.maxX + SCREEN_WIDTH/40 + 1, line.maxY+1, form1.width - iconLianText.maxX -SCREEN_WIDTH/30- SCREEN_WIDTH/8, form1.height/3 - 1)];
     [form1 addSubview: txtLianText];
     [txtLianText setEnabled:NO];
+    
     txtLianText.textColor = UIColorFromRGB(0x767D85);
     txtLianText.font = [UIFont systemFontOfSize:MODIFYTFONTONE];
     txtLianText.clearButtonMode = UITextFieldViewModeWhileEditing;
@@ -132,7 +140,7 @@
                                                                                      NSFontAttributeName : [UIFont systemFontOfSize:MODIFYTFONTONE],
                                                                                      NSParagraphStyleAttributeName : style
                                                                                      }];
-    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     backBtn.frame = CGRectMake(txtLianText.maxX, line.maxY, SCREEN_WIDTH/8, form1.height/3);
     [backBtn setTintColor:[UIColor whiteColor]];
     [backBtn setTitleColor:UIColorFromRGB(0x293035) forState:UIControlStateNormal];
@@ -140,12 +148,17 @@
     [backBtn setImage:leftBtnImage forState:UIControlStateNormal];
     [form1 addSubview: backBtn];
     
-    UIView *clickView = [[UIView alloc]initWithFrame:CGRectMake(iconLianText.maxX + SCREEN_WIDTH/30, line.maxY , form1.width - iconLianText.maxX - SCREEN_WIDTH/30, form1.height/3-1)];
+    clickView = [[UIView alloc]initWithFrame:CGRectMake(iconLianText.maxX + SCREEN_WIDTH/30, line.maxY , form1.width - iconLianText.maxX - SCREEN_WIDTH/30, form1.height/3-1)];
     clickView.userInteractionEnabled = YES;
     UITapGestureRecognizer*tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(selectCard)];
     
     [clickView addGestureRecognizer:tapGesture];
     [form1 addSubview: clickView];
+    if ([HQZXUserModel sharedInstance].isAuthen) {
+        txtLianText.text = _cardTyoe;
+        backBtn.hidden = YES;
+        clickView.userInteractionEnabled = NO;
+    }
     
     
     UIImageView *iconDengPasswords = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_lock"]];
@@ -171,6 +184,10 @@
                                                                                          NSFontAttributeName : [UIFont systemFontOfSize:MODIFYTFONTONE],
                                                                                          NSParagraphStyleAttributeName : style3
                                                                                          }];
+    if ([HQZXUserModel sharedInstance].isAuthen) {
+        txtDengPassword.text = _cardId;
+        txtDengPassword.enabled = NO;
+    }
     
 }
 -(void)selectCard{
@@ -183,7 +200,7 @@
             if([language isEqualToString:@"zh-Hans"]){
                 txtLianText.text = CARD.card_name;
             }else if([language isEqualToString:@"en"]){
-                txtLianText.text = CARD.card_name;
+                txtLianText.text = CARD.card_ename;
             }
             
         }];
@@ -203,6 +220,9 @@
     
     [btnRegister addTarget: self action: @selector(userRegister:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview: btnRegister];
+    if ([HQZXUserModel sharedInstance].isAuthen) {
+        btnRegister.hidden=YES;
+    }
 }
 
 
@@ -226,13 +246,28 @@
     }
     
     //实名认证
+    WEAK_SELF
     [ProgressHUD show: [NSString stringWithFormat:@"%@...",LocatizedStirngForkey(@"QINGDENGDAI")] Interaction: NO];
-    [[NetHttpClient sharedHTTPClient] request: @"/identify_auth.json" parameters:@{@"name":username, @"card_id": cardNo, @"card_type": card.card_id} completion:^(id obj) {
+    [[NetHttpClient sharedHTTPClient] request: @"/identify_auth.json" parameters:@{@"name":username, @"card_id": cardNo, @"card_type": card.card_id,@"auth_key":[HQZXUserModel sharedInstance].currentUser.auth_key} completion:^(id obj) {
         [ProgressHUD dismiss];
         if (obj) {
-            if ([@"0" isEqualToString:[obj objectForKey:ApiKey_ErrorCode]]) {
-                HQZXCertificationSuccessViewController *certificationSuccess = [[HQZXCertificationSuccessViewController alloc]init];
-                [self.navigationController pushViewController:certificationSuccess animated: YES];
+            if ([@"0" isEqualToString:StrValueFromDictionary(obj, ApiKey_ErrorCode)]) {
+                NSData *arc = [NSKeyedArchiver archivedDataWithRootObject: obj];
+                [USER_DEFAULT setObject: arc forKey: CURRENT_USER_KEY];
+                
+                if (weakself.successBlock) {
+                    [weakself dismissViewControllerAnimated: YES completion:^{
+                        weakself.successBlock();
+                    }];
+
+                }else{
+                    HQZXCertificationSuccessViewController *certificationSuccess = [[HQZXCertificationSuccessViewController alloc]init];
+                    certificationSuccess.name = username;
+                    certificationSuccess.cardId = cardNo;
+                    certificationSuccess.cardType = card.card_name;
+                    [self.navigationController pushViewController:certificationSuccess animated: YES];
+                }
+                [self.view makeToast:LocatizedStirngForkey(@"RENZHENGCHENGGONG") duration: 0.5 position:CSToastPositionCenter];
             } else {
                 [self.view makeToast:[NSString stringWithFormat:@"%@", [obj objectForKey:@"message"]] duration: 0.5 position:CSToastPositionCenter];
             }
@@ -280,8 +315,15 @@
     //关闭定时器
     
 }
-
-
+-(void)setUsername:(NSString *)value{
+    _username = NilToEmpty(value);
+}
+-(void)setCardId:(NSString *)value{
+    _cardId = NilToEmpty(value);
+}
+-(void)setCardTyoe:(NSString *)value{
+    _cardTyoe = NilToEmpty(value);
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

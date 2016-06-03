@@ -23,4 +23,10 @@
         _userImgUrl = [NSString stringWithFormat: @"%@", url];
     }
 }
+-(void)setIdentity_info:(NSDictionary *)value{
+    _identity_info = [[NSMutableDictionary alloc]init];
+    [_identity_info setValue:[value objectForKey:@"name"] forKey:@"name"];
+    [_identity_info setValue:StrValueFromDictionary(value, @"identitytype") forKey:@"identitytype"];
+    [_identity_info setValue:[value objectForKey:@"identityno"] forKey:@"identityno"];
+}
 @end

@@ -109,9 +109,11 @@
     if(dicPorts.count>0){
         NSDictionary *allDict =[dicPorts objectForKey:@"config"];
         NSArray *cards = [allDict objectForKey:@"card_type_list"];
-        for(NSString *cardDic in cards){
+        for(NSDictionary *cardDic in cards){
             HQZXID *idCard = [[HQZXID alloc]init];
-            idCard.card_name = cardDic;
+            idCard.card_id = StrValueFromDictionary(cardDic, @"id");
+            idCard.card_name = StrValueFromDictionary(cardDic, @"name");
+            idCard.card_ename = StrValueFromDictionary(cardDic, @"ename");
             [aryCountrys addObject:idCard];
         }
     }
@@ -152,7 +154,19 @@
     UILabel *labelPlaceHoder = [[UILabel alloc] init];
     [labelPlaceHoder setText: placeHolderText];
     [labelPlaceHoder setTextColor: COL_TEXT_GRAY2];
+//    [labelPlaceHoder sizeToFit];
+    CGSize textSize = JHTCalcStringSizeWithFontSize(@"AAAAAAAAAAAAAAAAAAAA", 13);
+    CGSize textSize2 = JHTCalcStringSizeWithFontSize(placeHolderText, 13);
     [labelPlaceHoder sizeToFit];
+    [labelPlaceHoder setAdjustsFontSizeToFitWidth:YES];
+    if(textSize2.width>textSize.width){
+        [labelPlaceHoder setW:textSize.width];
+        [labelPlaceHoder setH:textSize.height];
+    }else{
+        [labelPlaceHoder setW:labelPlaceHoder.width];
+        [labelPlaceHoder setH:labelPlaceHoder.height];
+    }
+    
     UIBarButtonItem *placeHolder = [[UIBarButtonItem alloc] initWithCustomView:labelPlaceHoder];
     
     NSMutableArray *toolBarItems = [NSMutableArray array];
@@ -241,7 +255,13 @@
 - (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view{
     HQZXID *card = aryCountrys[row];
     UILabel *label = [[UILabel alloc] init];
-    label.text = card.card_name;
+    NSString *language = [USER_DEFAULT objectForKey:kUserLanguage];
+    if([language isEqualToString:@"zh-Hans"]){
+        label.text = card.card_name;
+    }else if([language isEqualToString:@"en"]){
+        label.text = card.card_ename;
+    }
+    
     label.textColor = [UIColor whiteColor];
     [label sizeToFit];
     [label setX:(SCREEN_WIDTH - JHTActionSheetMarginRL*2-label.width)/2];

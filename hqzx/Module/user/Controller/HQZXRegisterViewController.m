@@ -536,14 +536,14 @@
             if ([@"0" isEqualToString:[obj objectForKey:ApiKey_ErrorCode]]) {
                 [USER_DEFAULT removeObjectForKey: UD_KEY_VALIDATENO_ID];
                 [self.navigationController popViewControllerAnimated: YES];
-//                    NSData *arc = [NSKeyedArchiver archivedDataWithRootObject: obj];
-//                    [USER_DEFAULT setObject: arc forKey: CURRENT_USER_KEY];
+                HQZXLoginViewController *userLogin = [[HQZXLoginViewController alloc] init];
+                [self.navigationController pushViewController: userLogin animated: YES];
                 if (self.success) {
                     self.success(txtPhone.text);
                 }
                 return;
             } else {
-                [self.view makeToast:[NSString stringWithFormat:@"%@", [obj objectForKey:@"message"]] duration: 0.5 position:CSToastPositionCenter];
+                [self.view makeToast:LocatizedStirngForkey(@"ZHUCECHENGGONG") duration: 0.5 position:CSToastPositionCenter];
             }
         } else {
             [self.view makeToast:LocatizedStirngForkey(@"LIANJIEFUWUQISHIBAI") duration: 0.5 position:CSToastPositionCenter];

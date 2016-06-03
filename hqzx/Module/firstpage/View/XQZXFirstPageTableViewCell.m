@@ -57,7 +57,7 @@
         [infoView addSubview: imageView];
         
         lblTitle1 = [[UILabel alloc] initWithFrame: CGRectMake(1, 1, 1, 1)];
-        lblTitle1.text = @"加载中...";
+        lblTitle1.text = LocatizedStirngForkey(@"JIAZAIZHONGQ");
         [infoView addSubview: lblTitle1];
         lblTitle1.font = [UIFont systemFontOfSize: FIRSTFONTONE];
         lblTitle1.textColor = UIColorFromRGB(0xFBFFFF);
@@ -66,7 +66,7 @@
         [lblTitle1 setY:imageView.y+(imageView.height-lblTitle1.height)/2];
         
         lblTitle4 = [[UILabel alloc] initWithFrame: CGRectMake(1, 1, 1, 1)];
-        lblTitle4.text = @"加载中...";
+        lblTitle4.text = LocatizedStirngForkey(@"JIAZAIZHONGQ");
         [infoView addSubview: lblTitle4];
         lblTitle4.font = [UIFont boldSystemFontOfSize: FIRSTFONTTWO];
         lblTitle4.textColor = [UIColor whiteColor];
@@ -75,7 +75,7 @@
         [lblTitle4 setY:lblTitle1.y];
         
         btnContactText = [[UIButton alloc] init];
-        [btnContactText setTitle: @"加载中..." forState: UIControlStateNormal];
+        [btnContactText setTitle: LocatizedStirngForkey(@"JIAZAIZHONGQ") forState: UIControlStateNormal];
         btnContactText.titleLabel.font = [UIFont systemFontOfSize: FIRSTFONTONE];
         btnContactText.titleLabel.textColor = [UIColor whiteColor];
         [btnContactText setBackgroundColor:[UIColor redColor]];
@@ -109,7 +109,7 @@
         [lblTitle31 setY:toolView.height/5];
         
         lblTitle3 = [[UILabel alloc] initWithFrame: CGRectMake(1, 1, 1, 1)];
-        lblTitle3.text = @"加载中...";
+        lblTitle3.text = LocatizedStirngForkey(@"JIAZAIZHONGQ");
         lblTitle3.textColor = UIColorFromRGB(0x7D8285);
         [toolView addSubview: lblTitle3];
         lblTitle3.font = [UIFont systemFontOfSize: FIRSTFONTTHREE];
@@ -127,7 +127,7 @@
         [lblTitle21 setY:toolView.height/5];
         
         lblTitle2 = [[UILabel alloc] initWithFrame: CGRectMake(1, 1, 1, 1)];
-        lblTitle2.text = @"加载中...";
+        lblTitle2.text = LocatizedStirngForkey(@"JIAZAIZHONGQ");
         lblTitle2.textColor = UIColorFromRGB(0x7D8285);
         lblTitle2.font = [UIFont systemFontOfSize: FIRSTFONTTHREE];
         [toolView addSubview: lblTitle2];
@@ -145,7 +145,7 @@
         [lblTitle51 setY:toolView.height/5];
         
         lblTitle5 = [[UILabel alloc] initWithFrame: CGRectMake(1, 1, 1, 1)];
-        lblTitle5.text = @"加载中...";
+        lblTitle5.text = LocatizedStirngForkey(@"JIAZAIZHONGQ");
         lblTitle5.textColor = UIColorFromRGB(0x7D8285);
         lblTitle5.font = [UIFont systemFontOfSize: FIRSTFONTTHREE];
         [toolView addSubview: lblTitle5];
@@ -163,7 +163,7 @@
         [lblZhuangzaigang1 setY:toolView.height/5];
         
         lblZhuangzaigang = [[UILabel alloc] initWithFrame: CGRectMake(1, 1, 1, 1)];
-        lblZhuangzaigang.text = @"加载中...";
+        lblZhuangzaigang.text = LocatizedStirngForkey(@"JIAZAIZHONGQ");
         lblZhuangzaigang.font = [UIFont systemFontOfSize: FIRSTFONTTHREE];
         lblZhuangzaigang.textColor = UIColorFromRGB(0x7D8285);
         [toolView addSubview: lblZhuangzaigang];

@@ -18,6 +18,7 @@
 #import "HQZXModifyLoginViewController.h"
 #import "HQZXModifyTransactionViewController.h"
 #import "HQZXRealNameAuthenticationViewController.h"
+#import "HQZXUserModel.h"
 
 @interface MyMeViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, retain) UITableView *myTableView;

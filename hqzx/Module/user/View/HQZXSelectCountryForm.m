@@ -159,7 +159,19 @@
     UILabel *labelPlaceHoder = [[UILabel alloc] init];
     [labelPlaceHoder setText: placeHolderText];
     [labelPlaceHoder setTextColor: COL_TEXT_GRAY2];
+    
+    CGSize textSize = JHTCalcStringSizeWithFontSize(@"AAAAAAAAAAAAAAAAAAAA", 13);
+    CGSize textSize2 = JHTCalcStringSizeWithFontSize(placeHolderText, 13);
     [labelPlaceHoder sizeToFit];
+    [labelPlaceHoder setAdjustsFontSizeToFitWidth:YES];
+    if(textSize2.width>textSize.width){
+        [labelPlaceHoder setW:textSize.width];
+        [labelPlaceHoder setH:textSize.height];
+    }else{
+        [labelPlaceHoder setW:labelPlaceHoder.width];
+        [labelPlaceHoder setH:labelPlaceHoder.height];
+    }
+    
     UIBarButtonItem *placeHolder = [[UIBarButtonItem alloc] initWithCustomView:labelPlaceHoder];
     
     NSMutableArray *toolBarItems = [NSMutableArray array];
@@ -248,7 +260,12 @@
 - (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view{
     HQZXCountry *country = aryCountrys[row];
     UILabel *label = [[UILabel alloc] init];
-    label.text = country.country_name;
+    NSString *language = [USER_DEFAULT objectForKey:kUserLanguage];
+    if([language isEqualToString:@"zh-Hans"]){
+        label.text = country.country_name;
+    }else if([language isEqualToString:@"en"]){
+        label.text = country.country_ename;
+    }
     label.textColor = [UIColor whiteColor];
     [label sizeToFit];
     [label setX:(SCREEN_WIDTH - JHTActionSheetMarginRL*2-label.width)/2];

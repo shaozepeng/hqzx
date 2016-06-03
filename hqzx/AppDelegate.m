@@ -185,19 +185,7 @@
                         [objm writeToFile:filename atomically:YES];
                     }
                 }];
-                
             }
-           
-            
-//            //读取plist文件
-//            NSDictionary* dicPorts = [NSDictionary dictionaryWithContentsOfFile:filename];
-//            
-//            //清空plist
-//            NSArray *clearArray = [NSArray array];
-//            [clearArray writeToFile:filename atomically:YES];
-//            
-//            //写入plist
-//            [savePortDic writeToFile:filename atomically:YES];
         } else {
             
         }

@@ -39,6 +39,7 @@ SYNTHESIZE_SINGLETON_FOR_HEADER
 -(void) setDeviceToken:(NSString*) deviceToken;
 -(NSString*) getDeviceToken;
 -(BOOL) isLogined;
+-(BOOL) isAuthen;
 - (NSString*) userId;
 - (void) logout;
 - (void) login:(NSString*) phoneNo pwd:(NSString*) password country:(NSString*)conuy completion:(Id_Block) completion;

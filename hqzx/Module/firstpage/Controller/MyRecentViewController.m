@@ -13,6 +13,7 @@
     SDCycleScrollView *adView;
     BOOL isTouch;
     UIButton *backBtn;
+    HQZXEmptyManager *hqzxEmptyManager;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -35,6 +36,7 @@
     self.myTableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         [weakself refData];
     }];
+    HQZXEmptyData(self.myTableView, hqzxEmptyManager, nil);
 }
 -(void)refData{
     [self.myTableView.header endRefreshing];
@@ -84,10 +86,10 @@
     return FIRSTHEIGHTONE;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 1;
+    return 0;
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 4;
+    return 0;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *huoCellIdentifier = @"wohuoCell";

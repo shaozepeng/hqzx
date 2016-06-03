@@ -10,6 +10,8 @@
 
 #import <UIKit/UIKit.h>
 #import "XQZXJiaoYiDaTingTableCell.h"
+#import "TransactionFlowViewController.h"
+#import "HQZXNeedLoginController.h"
 
 @interface MyContactsViewController :UIViewController<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, retain) UITableView *myTableView;

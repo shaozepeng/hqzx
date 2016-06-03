@@ -108,6 +108,12 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     //push后cell选中效果消失,又动画
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    TransactionFlowViewController *tranView=[[TransactionFlowViewController alloc] init];
+    HQZXNeedLoginController *wodetran = [[HQZXNeedLoginController alloc] initWithController: tranView];
+    [wodetran pushFrom: self inNavigationController: rootNav animated: YES];
+    
+//    TransactionFlowViewController *tranView = [[TransactionFlowViewController alloc]init];
+//    [rootNav pushViewController: tranView animated: YES];
 }
 
 -(void)viewWillAppear:(BOOL)animated {

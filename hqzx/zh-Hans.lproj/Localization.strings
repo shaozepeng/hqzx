@@ -13,6 +13,11 @@
 //form
 "QUEDING"="确定";
 "QUXIAO"="取消";
+"JIAZAIZHONGQ"="加载中...";
+"TISHI"="提示";
+"RENZHENGTISHI"="此功能需要认证，您需要认证吗？";
+"DENGLUTISHI"="此功能需要登录，您需要登录吗？";
+"MEIYOUXINSHUJU"="还没有数据内容 !";
 
 
 /*
@@ -92,6 +97,7 @@
 "HUOQUYANZHENGMA"="获取验证码";
 "WOYIYUEDU"="我已阅读并同意";
 "HUANQIUZAIXIANXIEYI"="《环球在线服务协议》";
+"ZHUCECHENGGONG"="注册成功";
 
 //用户校验
 "QINGDENGDAI"="请等待";
@@ -130,6 +136,7 @@
 "XINMIMA"="新密码";
 "QUERENXINMIMA"="确认新密码";
 "BAOCUNXIUGAI"="保存修改";
+"XIUGAICHENGGONG"="修改成功";
 
 //忘记密码
 "QUEREN"="确认";
@@ -145,6 +152,7 @@
 "XUANZEZHENGJIANLEIXING"="选择证件类型";
 "QINGSHURUSHENFENZHENGHAOMA"="请输入证件号码";
 "TIJIAO"="提交";
+"RENZHENGCHENGGONG"="认证成功";
 
 //认证成功
 "RENZHENGCHENGGONG"="认证成功";
@@ -154,6 +162,27 @@
 "ZHENGJIANLEIXING"="证件类型";
 "ZHENGJIANHAOMA"="证件号码";
 "RENZHENGSHIJIAN"="认证时间";
+
+//
+"XINGYUNBIJIAOYI"="幸运币交易";
+"BUYYIJIA"="买一价";
+"SELLYIJIA"="卖一价";
+"MAIRU"="买入";
+"MAICHU"="卖出";
+"CHEDAN"="撤单";
+"KEYONGRENMINBI"="可用人民币";
+"KEMAIXINGYUNBI"="可买幸运币";
+"MAIRUJIAGE"="买入价格";
+"MAIRUSHULIANG"="买入数量";
+"ZHEHEJINE"="折合金额";
+"JIAOYIMIMA"="交易密码";
+"KEMAIXINGYUNBI"="可卖幸运币";
+"DONGJIEXINGYUNBI"="冻结幸运币";
+"MAICHUJIAGE"="卖出价格";
+"MAICHUSHULIANG"="卖出数量";
+"MAIMAI"="买／卖";
+"JIAGEFUHAO"="价格(￥)";
+"SHULIANG"="数量";
 
 
 

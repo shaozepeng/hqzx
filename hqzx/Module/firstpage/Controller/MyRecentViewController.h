@@ -14,6 +14,7 @@
 #import <SDCycleScrollView.h>
 #import "HRCoverView.h"
 #import "XQZXFirstPageTableViewCell.h"
+#import "HQZXEmptyManager.h"
 
 @interface MyRecentViewController :UIViewController<SDCycleScrollViewDelegate,UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, retain) UITableView *myTableView;
