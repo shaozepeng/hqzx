@@ -387,8 +387,8 @@
     }
     if(indexPath.section==3){
         if(indexPath.row==0){
-//            JHTWodeDingdanWrapperViewController *wodedingdan=[[JHTWodeDingdanWrapperViewController alloc]init];
-//            [self.navigationController pushViewController:wodedingdan animated:YES];
+            HQZXEntrustManagementViewController *weituo=[[HQZXEntrustManagementViewController alloc]init];
+            [rootNav pushViewController:weituo animated:YES];
         }
         if(indexPath.row==1){
 //            JHTWoDeGuanZhuDingDanViewController *guanlidingdan=[[JHTWoDeGuanZhuDingDanViewController alloc]init];
@@ -397,9 +397,25 @@
     }
     if(indexPath.section==4){
         if(indexPath.row==0){
-            
+            HQZXReceivablesViewController *shoukuan=[[HQZXReceivablesViewController alloc]init];
+            [rootNav pushViewController:shoukuan animated:YES];
         }
         if(indexPath.row==1){
+//            SYQrCodeScanne *VC = [[SYQrCodeScanne alloc]init];
+//            VC.scanneScusseBlock = ^(SYCodeType codeType, NSString *url){
+//                NSLog(@"%@", url);
+//                if (SYCodeTypeUnknow == codeType) {
+//                    [self.view makeToast:LocatizedStirngForkey(@"ERWEIMAWUFASHIBIE") duration:1 position:CSToastPositionCenter];
+//                }else if (SYCodeTypeLink == codeType) {
+//                    HQZXPaymentViewController *fukuan=[[HQZXPaymentViewController alloc]init];
+//                    [rootNav pushViewController:fukuan animated:YES];
+//                }else{
+//                    
+//                }
+//            };
+//            [VC scanning];
+            HQZXPaymentViewController *fukuan=[[HQZXPaymentViewController alloc]init];
+            [rootNav pushViewController:fukuan animated:YES];
             
         }
     }

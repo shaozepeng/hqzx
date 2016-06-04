@@ -8,7 +8,7 @@
 
 //
 
-#define FIRSTSECIONHEIGHT  IP4566PELSE(8, 6,8,9)
+#define FIRSTSECIONHEIGHT  IP4566PELSE(8, 6,8,9,8)
 
 #import "GDLocalizableController.h"
 #import <SDCycleScrollView.h>

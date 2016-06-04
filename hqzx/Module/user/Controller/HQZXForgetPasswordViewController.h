@@ -6,9 +6,9 @@
 //  Copyright © 2016年 泽鹏邵. All rights reserved.
 //
 
-#define FORGETFONTONE  IP4566PELSE(13, 13,14,15)
-#define FORGETFONTTWO  IP4566PELSE(12, 12,13,14)
-#define FORGETFONTBUTONE  IP4566PELSE(15, 15,16,16)
+#define FORGETFONTONE  IP4566PELSE(13, 13,14,15,14)
+#define FORGETFONTTWO  IP4566PELSE(12, 12,13,14,13)
+#define FORGETFONTBUTONE  IP4566PELSE(15, 15,16,16,16)
 
 #import <Foundation/Foundation.h>
 #import <US2FormValidator.h>

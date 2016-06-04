@@ -8,9 +8,9 @@
 
 #define CellHeight 100
 #define CellMargin 12
-#define WOCELLFONT IP4566PELSE(12, 12,14,15)
-#define WOCELLHEIGHT IP4566PELSE(85, 82,90,100)
-#define WOCELLPROPO IP4566PELSE(1.1, 1.1,1.2,1.3)
+#define WOCELLFONT IP4566PELSE(12, 12,14,15,14)
+#define WOCELLHEIGHT IP4566PELSE(85, 82,90,100,90)
+#define WOCELLPROPO IP4566PELSE(1.1, 1.1,1.2,1.3,1.2)
 
 #import <UIKit/UIKit.h>
 @protocol XQZXWodeTableViewCellDelegate <NSObject>

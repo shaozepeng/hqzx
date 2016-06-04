@@ -11,6 +11,7 @@
 @implementation MyContactsViewController{
     UIBarButtonItem *temporaryBarButtonItem;
     BOOL isTouch;
+    HQZXEmptyManager *hqzxEmptyManager;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -45,6 +46,7 @@
     self.myTableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         [weakself refData];
     }];
+    HQZXEmptyData(self.myTableView, hqzxEmptyManager, nil);
 }
 -(void)refData{
     [self.myTableView.header endRefreshing];

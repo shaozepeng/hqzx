@@ -52,7 +52,7 @@
     label.textColor = UIColorFromRGB(0x5E5E5E);
     label.text = _emptyLabel?:LocatizedStirngForkey(@"MEIYOUXINSHUJU");
     [label sizeToFit];
-    [label setX:((view.width-label.width)/2.0) andY:(imageView.maxY+SCREEN_WIDTH/15)];
+    [label setX:((SCREEN_WIDTH-label.width)/2.0) andY:(imageView.maxY+SCREEN_WIDTH/15)];
     [view addSubview: label];
     //    imageView.frame = CGRectMake(0.0, 0.0, 100.0, 100.0);
     return view;

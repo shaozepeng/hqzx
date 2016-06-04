@@ -6,8 +6,8 @@
 //  Copyright © 2016年 泽鹏邵. All rights reserved.
 //
 
-#define MODIFYTFONTONE  IP4566PELSE(13, 13,14,15)
-#define MODIFYFONTBUTONE  IP4566PELSE(15, 15,16,16)
+//#define MODIFYTFONTONE  IP4566PELSE(13, 13,14,15,14)
+//#define MODIFYFONTBUTONE  IP4566PELSE(15, 15,16,16,16)
 
 #import <Foundation/Foundation.h>
 #import "HQZXUserModel.h"

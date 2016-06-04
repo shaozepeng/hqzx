@@ -18,6 +18,7 @@
 "RENZHENGTISHI"="此功能需要认证，您需要认证吗？";
 "DENGLUTISHI"="此功能需要登录，您需要登录吗？";
 "MEIYOUXINSHUJU"="还没有数据内容 !";
+"KXIANTU"="K线图";
 
 
 /*
@@ -163,7 +164,7 @@
 "ZHENGJIANHAOMA"="证件号码";
 "RENZHENGSHIJIAN"="认证时间";
 
-//
+//幸运币交易
 "XINGYUNBIJIAOYI"="幸运币交易";
 "BUYYIJIA"="买一价";
 "SELLYIJIA"="卖一价";
@@ -183,6 +184,50 @@
 "MAIMAI"="买／卖";
 "JIAGEFUHAO"="价格(￥)";
 "SHULIANG"="数量";
+
+//委托管理
+"CHEXIAO"="撤消";
+"CAOZUO"="操作";
+"ZHUANGTAI"="状态";
+"SHIJIAN"="时间";
+"LEIBIE"="类别";
+"WEITUOSHULIANG"="委托数量";
+"WEITUOJINE"="委托金额";
+"SHOUXUFEI"="手续费";
+"WEITUOJIAGE"="委托价格";
+"CHEGJIAOSHULIANG"="成交数量";
+"CHENGJIAOJINE"="成交金额";
+"PINGJUNCHENGJIAOJIA"="平均成交价";
+"BUQUANXINXI"="补全信息";
+"YINGFUKUAN"="已付款";
+"SHANGWEIFUKUAN"="尚未付款";
+"LISHIWEITUO"="历史委托";
+
+//我要收款、付款
+"SHOUKUANSHUOMING"="收款说明：本站已经支持往同一地址多次充值，我们将在收到三次确认以后为您充值成功。";
+"ERWEIMAKUANG"="将二维码置入框中，即可自动扫描";
+"ERWEIMAWUFASHIBIE"="二维码无法识别";
+"QUERENFUKUAN"="确认付款";
+"SHOUKUANZHANGHU"="收款账户";
+"SHOUKUANBIZHONG"="收款币种";
+"ZHIFURENMINBI"="支付人民币";
+"ZHEHEBITEBISHULIANG"="折合比特币数量";
+"FUKUANCHENGGONG"="付款成功";
+"NINDEFUKUANXINXI"="您的付款信息";
+"SHOUKUANZHANGHAO"="收款账号";
+"SHOUKUANJINE"="收款金额";
+"ZHEHEBITEBIXIANJIN"="折合比特币(现金)";
+
+
+
+
+
+
+
+
+
+
+
 
 
 

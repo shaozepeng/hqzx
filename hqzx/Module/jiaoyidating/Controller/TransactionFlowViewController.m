@@ -87,7 +87,7 @@
     [backBtn setTintColor:[UIColor whiteColor]];
     //icon_tann_pressed incomingletter
     [backBtn setImage:[UIImage imageNamed:@"icon_home_hl"] forState:UIControlStateNormal];
-    [backBtn addTarget:self action:@selector(doBack) forControlEvents:UIControlEventTouchUpInside];
+    [backBtn addTarget:self action:@selector(doKilne) forControlEvents:UIControlEventTouchUpInside];
     
     [temporaryBarButtonItem setCustomView:backBtn];
     
@@ -386,7 +386,7 @@
     [kmrmb sizeToFit];
     
     lblkmrmb = [[UILabel alloc] initWithFrame: CGRectMake(kmrmb.maxX, kmrmb.y, 1, 1)];
-    lblkmrmb.text = @"10000.66";
+    lblkmrmb.text = LocatizedStirngForkey(@"JIAZAIZHONGQ");
     lblkmrmb.font = [UIFont systemFontOfSize: TRANSACTIONFONT];
     lblkmrmb.textColor = UIColorFromRGB(0x3177E0);
     [operBuyView addSubview: lblkmrmb];
@@ -400,7 +400,7 @@
     [kmxyb sizeToFit];
     
     lblkmxyb = [[UILabel alloc] initWithFrame: CGRectMake(kmxyb.maxX, kmxyb.y, 1, 1)];
-    lblkmxyb.text = @"10000.00";
+    lblkmxyb.text = LocatizedStirngForkey(@"JIAZAIZHONGQ");
     lblkmxyb.font = [UIFont systemFontOfSize: TRANSACTIONFONT];
     lblkmxyb.textColor = UIColorFromRGB(0xFC2408);
     [operBuyView addSubview: lblkmxyb];
@@ -444,7 +444,7 @@
     [zhehje sizeToFit];
     
     lblzhehje = [[UILabel alloc] initWithFrame: CGRectMake(zhehje.maxX+SCREEN_WIDTH/40, zhehje.y, 1, 1)];
-    lblzhehje.text = @"178.34";
+    lblzhehje.text = @"0.00";
     lblzhehje.font = [UIFont systemFontOfSize: TRANSACTIONFTHREE];
     lblzhehje.textColor = [UIColor whiteColor];
     [operBuyView addSubview: lblzhehje];
@@ -498,7 +498,7 @@
     [skmrmb sizeToFit];
     
     lblskmrmb = [[UILabel alloc] initWithFrame: CGRectMake(skmrmb.maxX, skmrmb.y, 1, 1)];
-    lblskmrmb.text = @"10000.66";
+    lblskmrmb.text = LocatizedStirngForkey(@"JIAZAIZHONGQ");
     lblskmrmb.font = [UIFont systemFontOfSize: TRANSACTIONFONT];
     lblskmrmb.textColor = UIColorFromRGB(0x3177E0);
     [operSellView addSubview: lblskmrmb];
@@ -512,7 +512,7 @@
     [skmxyb sizeToFit];
     
     lblskmxyb = [[UILabel alloc] initWithFrame: CGRectMake(skmxyb.maxX, skmxyb.y, 1, 1)];
-    lblskmxyb.text = @"10000.00";
+    lblskmxyb.text = LocatizedStirngForkey(@"JIAZAIZHONGQ");
     lblskmxyb.font = [UIFont systemFontOfSize: TRANSACTIONFONT];
     lblskmxyb.textColor = UIColorFromRGB(0xFC2408);
     [operSellView addSubview: lblskmxyb];
@@ -556,7 +556,7 @@
     [szhehje sizeToFit];
     
     lblszhehje = [[UILabel alloc] initWithFrame: CGRectMake(szhehje.maxX+SCREEN_WIDTH/40, szhehje.y, 1, 1)];
-    lblszhehje.text = @"178.34";
+    lblszhehje.text = @"0.00";
     lblszhehje.font = [UIFont systemFontOfSize: TRANSACTIONFTHREE];
     lblszhehje.textColor = [UIColor whiteColor];
     [operSellView addSubview: lblszhehje];
@@ -729,5 +729,9 @@
     buyView.backgroundColor = UIColorFromRGB(0x0F151A);
     sellView.backgroundColor = UIColorFromRGB(0x0F151A);
     cheView.backgroundColor = UIColorFromRGB(0x192834);
+}
+-(void)doKilne{
+    HQZXKlineGraphViewController *klineView = [[HQZXKlineGraphViewController alloc]init];
+    [self.navigationController pushViewController: klineView animated: YES];
 }
 @end

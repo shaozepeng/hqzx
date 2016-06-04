@@ -18,6 +18,7 @@
 "RENZHENGTISHI"="This feature requires authentication, you need to authenticate it?";
 "DENGLUTISHI"="This feature needs to log in, you need to log in?";
 "MEIYOUXINSHUJU"="There is no data content!";
+"KXIANTU"="K line graph";
 
 
 /*
@@ -180,6 +181,51 @@
 "MAIMAI"="Buy / sell";
 "JIAGEFUHAO"="The price (￥)";
 "SHULIANG"="Number";
+
+//委托管理
+"CHEXIAO"="Undo";
+"CAOZUO"="Operation";
+"ZHUANGTAI"="State";
+"SHIJIAN"="Time";
+"LEIBIE"="Category";
+"WEITUOSHULIANG"="Number of commission";
+"WEITUOJINE"="Amount of commission";
+"SHOUXUFEI"="Counter Fee";
+"WEITUOJIAGE"="Commission price";
+"CHEGJIAOSHULIANG"="Number of transactions";
+"CHENGJIAOJINE"="Transaction amount";
+"PINGJUNCHENGJIAOJIA"="Average transaction price";
+"BUQUANXINXI"="Complete information";
+"YINGFUKUAN"="Already paid";
+"SHANGWEIFUKUAN"="Not yet paid";
+"LISHIWEITUO"="Historical Commission";
+
+//我要收款、付款
+"SHOUKUANSHUOMING"="Collection note: this site has been supported to the same address multiple times, we will be in the three times after the confirmation for your success.";
+"ERWEIMAKUANG"="The two-dimensional code into the box, you can automatically scan";
+"ERWEIMAWUFASHIBIE"="Two-dimensional code can not be identified";
+"QUERENFUKUAN"="confirm the payment";
+"SHOUKUANZHANGHU"="Collection account";
+"SHOUKUANBIZHONG"="Payment currency";
+"ZHIFURENMINBI"="Payment of RMB";
+"ZHEHEBITEBISHULIANG"="Reduced number of bits";
+"FUKUANCHENGGONG"="Payment success";
+"NINDEFUKUANXINXI"="Your payment information";
+"SHOUKUANZHANGHAO"="Collection account";
+"SHOUKUANJINE"="Amount Collected";
+"ZHEHEBITEBIXIANJIN"="Folding bitcoin (cash)";
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

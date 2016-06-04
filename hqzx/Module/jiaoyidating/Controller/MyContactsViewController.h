@@ -6,7 +6,7 @@
 //  Copyright © 2016年 泽鹏邵. All rights reserved.
 //
 
-#define FIRSTSECIONHEIGHT  IP4566PELSE(8, 6,8,9)
+//#define FIRSTSECIONHEIGHT  IP4566PELSE(8, 6,8,9,8)
 
 #import <UIKit/UIKit.h>
 #import "XQZXJiaoYiDaTingTableCell.h"
