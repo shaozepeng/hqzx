@@ -193,7 +193,7 @@
     //    [form1 addSubview:validateView];
     
     
-    UIImageView *iconPassword = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_lock"]];
+    UIImageView *iconPassword = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_yam"]];
     [form1 addSubview: iconPassword];
     form1.IQIgnoreGroup = YES;
     [iconPassword setY: (form1.height/4 - iconPassword.height) / 2.0 + line.maxY];
@@ -222,7 +222,7 @@
     
     txtValidateNo.delegate = self;
     
-    UIImageView *iconDengPassword = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_lock"]];
+    UIImageView *iconDengPassword = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_secret"]];
     [form1 addSubview: iconDengPassword];
     [iconDengPassword setY: (form1.height /4 - iconDengPassword.height) / 2.0 + line2.maxY];
     iconDengPassword.x = SCREEN_WIDTH/20;
@@ -247,7 +247,7 @@
                                                                                        NSParagraphStyleAttributeName : style3
                                                                                        }];
     
-    UIImageView *iconQuePassword = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_lock"]];
+    UIImageView *iconQuePassword = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_secret"]];
     [form1 addSubview: iconQuePassword];
     [iconQuePassword setY: (form1.height/4 - iconQuePassword.height) / 2.0 + line3.maxY];
     iconQuePassword.x = SCREEN_WIDTH/20;

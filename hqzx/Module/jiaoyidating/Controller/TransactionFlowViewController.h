@@ -14,7 +14,10 @@
 
 #import <Foundation/Foundation.h>
 #import "HQZXKlineGraphViewController.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
-@interface TransactionFlowViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@interface TransactionFlowViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
 @property (nonatomic, retain) UITableView *myTableView;
+@property NSString *symbol;
+@property NSMutableDictionary *dataDict;
 @end

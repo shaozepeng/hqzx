@@ -111,7 +111,7 @@
 //    [form1 addSubview:userNameView];
     
     
-    iconLianText = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_lock"]];
+    iconLianText = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_country"]];
     [form1 addSubview: iconLianText];
     [iconLianText setY: (form1.height/5 - iconLianText.height) / 2.0];
     iconLianText.x = SCREEN_WIDTH/20;
@@ -212,7 +212,7 @@
                                                                                      }];
     
     
-    UIImageView *iconPassword = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_lock"]];
+    UIImageView *iconPassword = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_yam"]];
     [form1 addSubview: iconPassword];
     form1.IQIgnoreGroup = YES;
     [iconPassword setY: (form1.height/5 - iconPassword.height) / 2.0 + line2.maxY];
@@ -241,7 +241,7 @@
     
     txtValidateNo.delegate = self;
     
-    UIImageView *iconDengPassword = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_lock"]];
+    UIImageView *iconDengPassword = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_secret"]];
     [form1 addSubview: iconDengPassword];
     [iconDengPassword setY: (form1.height /5 - iconDengPassword.height) / 2.0 + line3.maxY];
     iconDengPassword.x = SCREEN_WIDTH/20;
@@ -267,7 +267,7 @@
                                                                                        }];
     
     
-    UIImageView *iconQuePassword = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_lock"]];
+    UIImageView *iconQuePassword = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_secret"]];
     [form1 addSubview: iconQuePassword];
     [iconQuePassword setY: (form1.height/5 - iconQuePassword.height) / 2.0 + line4.maxY];
     iconQuePassword.x = SCREEN_WIDTH/20;
@@ -314,7 +314,7 @@
 //    form2.IQIgnoreGroup = YES;
     [self.view addSubview: form2];
     
-    UIImageView *iconGuoText = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_lock"]];
+    UIImageView *iconGuoText = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_ID"]];
     [form2 addSubview: iconGuoText];
     [iconGuoText setY: (form2.height - iconGuoText.height) / 2.0 ];
     iconGuoText.x = SCREEN_WIDTH/20;

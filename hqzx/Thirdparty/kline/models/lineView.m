@@ -57,7 +57,7 @@
     self.bottomBoxHeight = 50; // 底部成交量图的高度
     self.kLineWidth = (SCREEN_WIDTH-SCREEN_WIDTH/5-20)/50;// k线实体的宽度
     self.kLinePadding = 1; // k实体的间隔
-    self.req_type = @"w"; // 日K线类型
+    self.req_type = @"s"; // 日K线类型
     self.endDate = [NSDate date];
     self.req_freq = @"399001.SZ"; // 股票代码 规则是：沪股代码末尾加.ss，深股代码末尾加.sz。如浦发银行的代号是：600000.SS
     self.req_url = @"http://ichart.yahoo.com/table.csv?s=%@&g=%@";
@@ -139,8 +139,8 @@
         mainboxView.userInteractionEnabled = YES;
         [self addSubview:mainboxView];
         // 添加手指捏合手势，放大或缩小k线图
-        pinchGesture = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(touchBoxAction:)];
-        [mainboxView addGestureRecognizer:pinchGesture];
+//        pinchGesture = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(touchBoxAction:)];
+//        [mainboxView addGestureRecognizer:pinchGesture];
         UILongPressGestureRecognizer *longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] init];
         [longPressGestureRecognizer addTarget:self action:@selector(gestureRecognizerHandle:)];
         [longPressGestureRecognizer setMinimumPressDuration:0.3f];
@@ -165,7 +165,7 @@
     if (startDateLab==nil) {
         startDateLab = [[UILabel alloc] initWithFrame:CGRectMake(bottomBoxView.frame.origin.x
                                                                  , bottomBoxView.frame.origin.y+bottomBoxView.frame.size.height
-                                                                 , 50, 15)];
+                                                                 , 80, 15)];
         startDateLab.font = self.font;
         startDateLab.text = @"--";
         startDateLab.textColor = [UIColor colorWithHexString:@"CCCCCC" withAlpha:1];
@@ -175,14 +175,14 @@
     
     // 显示结束日期控件
     if (endDateLab==nil) {
-        endDateLab = [[UILabel alloc] initWithFrame:CGRectMake(mainboxView.frame.size.width-50
+        endDateLab = [[UILabel alloc] initWithFrame:CGRectMake(mainboxView.frame.size.width-80
                                                                , startDateLab.frame.origin.y
-                                                               , 50, 15)];
+                                                               , 80, 15)];
         endDateLab.font = self.font;
         endDateLab.text = @"--";
         endDateLab.textColor = [UIColor colorWithHexString:@"CCCCCC" withAlpha:1];
         endDateLab.backgroundColor = [UIColor clearColor];
-        endDateLab.textAlignment = UITextAlignmentRight;
+        endDateLab.textAlignment = NSTextAlignmentRight;
         [mainboxView addSubview:endDateLab];
     }
     
@@ -195,7 +195,7 @@
         volMaxValueLab.text = @"--";
         volMaxValueLab.textColor = [UIColor colorWithHexString:@"CCCCCC" withAlpha:1];
         volMaxValueLab.backgroundColor = [UIColor clearColor];
-        volMaxValueLab.textAlignment = UITextAlignmentRight;
+        volMaxValueLab.textAlignment = NSTextAlignmentRight;
         [self addSubview:volMaxValueLab];
     }
     
@@ -260,28 +260,47 @@
     getdata = [[getData alloc] init];
     getdata.kCount = self.kCount;
     getdata.req_type = self.req_type;
-    getdata = [getdata initWithUrl:[self changeUrl]];
-    self.data = getdata.data;
-    self.category = getdata.category;
-    NSLog(@"当前：%lu",(unsigned long)self.data.count);
-    // 开始画K线图
-    [self drawBoxWithKline];
-
-    NSLog(@"处理得dddd");
-    // 清除旧的k线
-    if (lineOldArray.count>0 && isUpdate) {
-        for (lines *line in lineOldArray) {
-            [line removeFromSuperview];
+    NSString *dayK;
+    if([self.req_type isEqualToString:@"s"]){
+        dayK = [NSString stringWithFormat:@"%d",5];
+    }else if([self.req_type isEqualToString:@"d"]){
+        dayK = [NSString stringWithFormat:@"%d",24*60];
+    }else if([self.req_type isEqualToString:@"w"]){
+        dayK = [NSString stringWithFormat:@"%d",24*60*7];
+    }else if([self.req_type isEqualToString:@"m"]){
+        dayK = [NSString stringWithFormat:@"%d",24*60*30];
+    }
+    [[NetHttpClient sharedHTTPClient] request: @"/kline.json" parameters: @{@"symbol":_syloy,@"limit":@"50",@"step":dayK,@"auth_key":[HQZXUserModel sharedInstance].currentUser.auth_key} completion:^(id obj) {
+        if (obj==nil) {
+            return;
         }
-    }
-    lineOldArray = lineArray.copy;
+        if (![@"0" isEqualToString: StrValueFromDictionary(obj, ApiKey_ErrorCode)]) {
+            return;
+        }
+        getdata = [getdata initWithUrl:[obj objectForKey:@"k"] type:self.req_type];
+        self.data = getdata.data;
+        self.category = getdata.category;
+        NSLog(@"当前：%lu",(unsigned long)self.data.count);
+        // 开始画K线图
+        [self drawBoxWithKline];
+        
+        NSLog(@"处理得dddd");
+        // 清除旧的k线
+        if (lineOldArray.count>0 && isUpdate) {
+            for (lines *line in lineOldArray) {
+                [line removeFromSuperview];
+            }
+        }
+        lineOldArray = lineArray.copy;
+        
+        if (_finishUpdateBlock && isPinch) {
+            _finishUpdateBlock(self);
+        }
+        isUpdateFinish = YES;
+        // 结束线程
+        [thread cancel];
+    }];
     
-    if (_finishUpdateBlock && isPinch) {
-        _finishUpdateBlock(self);
-    }
-    isUpdateFinish = YES;
-    // 结束线程
-    [thread cancel];
 }
 
 
@@ -306,7 +325,7 @@
         leftTag.text = [[NSString alloc] initWithFormat:@"%.2f",padValue*i+getdata.minValue];
         leftTag.textColor = [UIColor colorWithHexString:@"#cccccc" withAlpha:1];
         leftTag.font = self.font;
-        leftTag.textAlignment = UITextAlignmentRight;
+        leftTag.textAlignment = NSTextAlignmentRight;
         leftTag.backgroundColor = [UIColor clearColor];
         //[leftTag sizeToFit];
         [mainboxView addSubview:leftTag];
@@ -340,7 +359,9 @@
     volline.isK = YES;
     volline.isVol = YES;
     [bottomBoxView addSubview:volline];
-    volMaxValueLab.text = [commond changePrice:getdata.volMaxValue];
+    //[commond changePrice:]
+    volMaxValueLab.text =[NSString stringWithFormat:@"%0.2f",getdata.volMaxValue] ;
+    
     [volMaxValueLab sizeToFit];
     [volMaxValueLab setX:SCREEN_WIDTH/8-volMaxValueLab.width-3 ];
     [volMaxValueLab setY:mainboxView.frame.size.height+mainboxView.frame.origin.x ];
@@ -363,7 +384,7 @@
 #pragma mark 手指捏合动作
 -(void)touchBoxAction:(UIPinchGestureRecognizer*)pGesture{
     isPinch  = NO;
-    NSLog(@"状态：%i==%f",pinchGesture.state,pGesture.scale);
+    NSLog(@"状态：%li==%f",(long)pinchGesture.state,pGesture.scale);
     if (pGesture.state==2 && isUpdateFinish) {
         if (pGesture.scale>1) {
             // 放大手势
@@ -383,7 +404,7 @@
 #pragma mark 长按就开始生成十字线
 -(void)gestureRecognizerHandle:(UILongPressGestureRecognizer*)longResture{
     isPinch = YES;
-    NSLog(@"gestureRecognizerHandle%i",longResture.state);
+    NSLog(@"gestureRecognizerHandle%li",(long)longResture.state);
     touchViewPoint = [longResture locationInView:mainboxView];
     // 手指长按开始时更新一般
     if(longResture.state == UIGestureRecognizerStateBegan){
@@ -433,7 +454,7 @@
         movelineoneLable.layer.cornerRadius = 5;
         movelineoneLable.backgroundColor = [UIColor whiteColor];
         movelineoneLable.textColor = [UIColor colorWithHexString:@"#333333" withAlpha:1];
-        movelineoneLable.textAlignment = UITextAlignmentCenter;
+        movelineoneLable.textAlignment = NSTextAlignmentCenter;
         movelineoneLable.alpha = 0.8;
         movelineoneLable.hidden = YES;
         [mainboxView addSubview:movelineoneLable];
@@ -446,7 +467,7 @@
         movelinetwoLable.layer.cornerRadius = 5;
         movelinetwoLable.backgroundColor = [UIColor whiteColor];
         movelinetwoLable.textColor = [UIColor colorWithHexString:@"#333333" withAlpha:1];
-        movelinetwoLable.textAlignment = UITextAlignmentCenter;
+        movelinetwoLable.textAlignment = NSTextAlignmentCenter;
         movelinetwoLable.alpha = 0.8;
         movelinetwoLable.hidden = YES;
         [mainboxView addSubview:movelinetwoLable];
@@ -489,6 +510,7 @@
     NSMutableArray *tempArray = [[NSMutableArray alloc] init];
     pointArray = [[NSMutableArray alloc] init];
     CGFloat PointStartX = self.kLineWidth/2; // 起始点坐标
+    int j =0;
     for (NSArray *item in data) {
         CGFloat heightvalue = [[item objectAtIndex:1] floatValue];// 得到最高价
         CGFloat lowvalue = [[item objectAtIndex:2] floatValue];// 得到最低价
@@ -523,12 +545,14 @@
         PointStartX += self.kLineWidth+self.kLinePadding; // 生成下一个点的x轴
         
         // 在成交量视图左右下方显示开始和结束日期
-        if ([data indexOfObject:item]==0) {
-            startDateLab.text = [self.category objectAtIndex:[data indexOfObject:item]];
+        if (j==0) {
+            startDateLab.text = [self.category objectAtIndex:j];
         }
-        if ([data indexOfObject:item]==data.count-1) {
-            endDateLab.text = [self.category objectAtIndex:[data indexOfObject:item]];
+        NSLog(@"+++++++++++%d",j);
+        if (j==data.count-1) {
+            endDateLab.text = [self.category objectAtIndex:j];
         }
+        j++;
     }
     pointArray = tempArray;
     return tempArray;

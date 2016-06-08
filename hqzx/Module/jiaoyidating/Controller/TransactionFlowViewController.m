@@ -74,6 +74,12 @@
     UILabel *sjiaoymm;
     UITextField *txtsJiaoymmText;
     UIButton *btnSells;
+    NSArray *buyAry;
+    NSDictionary *buyDict;
+    NSArray *sellAry;
+    NSDictionary *sellDict;
+    HQZXEmptyManager *hqzxEmptyManager;
+    
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -86,7 +92,7 @@
     backBtn.frame = CGRectMake(0, 0, 44, 44);
     [backBtn setTintColor:[UIColor whiteColor]];
     //icon_tann_pressed incomingletter
-    [backBtn setImage:[UIImage imageNamed:@"icon_home_hl"] forState:UIControlStateNormal];
+    [backBtn setImage:[UIImage imageNamed:@"icon_kxt"] forState:UIControlStateNormal];
     [backBtn addTarget:self action:@selector(doKilne) forControlEvents:UIControlEventTouchUpInside];
     
     [temporaryBarButtonItem setCustomView:backBtn];
@@ -108,6 +114,193 @@
     [self createOperationView];
     [self createOperationTwoView];
     [self createTbView];
+    [self reData];
+    WEAK_SELF
+    scrollView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [weakself reData];
+    }];
+    HQZXEmptyData(self.myTableView, hqzxEmptyManager, nil);
+}
+-(void)refScrollView{
+    [scrollView.header beginRefreshing];
+}
+-(void)reData{
+    [[NetHttpClient sharedHTTPClient] request: @"/coins_detail.json" parameters: @{@"symbol": self.symbol,@"auth_key":[HQZXUserModel sharedInstance].currentUser.auth_key} completion:^(id obj) {
+        [scrollView.header endRefreshing];
+        if (obj==nil) {
+            [self.view makeToast: @"查询服务器失败，请检查网络连接" duration: 0.5 position: CSToastPositionCenter];
+            return;
+        }
+        if (![@"0" isEqualToString: StrValueFromDictionary(obj, ApiKey_ErrorCode)]) {
+            [self.view makeToast: [obj objectForKey:@"message"] duration: 0.5 position: CSToastPositionCenter];
+            return;
+        }
+        _dataDict = [[NSMutableDictionary alloc]initWithDictionary:obj];
+        NSString *imageUrl = [NSString stringWithFormat:@"http://coins.zhaojizi.com%@",StrValueFromDictionary(_dataDict, @"img") ];
+        [imageView sd_setImageWithURL: [NSURL URLWithString: imageUrl]];
+        NSString *language = [USER_DEFAULT objectForKey:kUserLanguage];
+        if([language isEqualToString:@"zh-Hans"]){
+            lblTitle1.text = StrValueFromDictionary(_dataDict, @"name");
+        }else if([language isEqualToString:@"en"]){
+            lblTitle1.text = StrValueFromDictionary(_dataDict, @"ename");
+        }
+        NSString *pricedt = StrValueFromDictionary(_dataDict, @"price");
+        NSString *pricedt2;
+        if(pricedt.length>0){
+            pricedt2 = pricedt;
+        }else{
+            pricedt2 = @"0.0000";
+        }
+        lblTitle4.text = [NSString stringWithFormat:@"￥%@",pricedt2];
+        NSString *ratio = StrValueFromDictionary(_dataDict, @"ratio");
+        NSRange foundObj=[ratio rangeOfString:@"-" options:NSCaseInsensitiveSearch];
+        NSString *baizhi;
+        if(foundObj.length>0){
+            [btnContactText setBackgroundColor:UIColorFromRGB(0x138E02)];
+            baizhi = [NSString stringWithFormat:@"%0.2f％",[ratio floatValue]];
+        }else{
+            baizhi = [NSString stringWithFormat:@"+%0.2f％",[ratio floatValue]];
+        }
+        [btnContactText setTitle:baizhi  forState: UIControlStateNormal];
+        lblTitle3.text = @"12784.5";
+        lblTitle2.text = StrValueFromDictionary(_dataDict, @"volume");
+        NSString *min_price = StrValueFromDictionary(_dataDict, @"min_price");
+        NSString *min_price2;
+        if(min_price.length>0){
+            min_price2 = min_price;
+        }else{
+            min_price2 = @"0.0000";
+        }
+        lblTitle5.text = min_price2;
+        NSString *max_price = StrValueFromDictionary(_dataDict, @"max_price");
+        NSString *max_price2;
+        if(max_price.length>0){
+            max_price2 = max_price;
+        }else{
+            max_price2 = @"0.0000";
+        }
+        lblZhuangzaigang.text = max_price2;
+        buyAry = [_dataDict objectForKey:@"buy_list"];
+        if(buyAry.count>0){
+            buyDict = [buyAry objectAtIndex:0];
+        }
+        sellAry = [_dataDict objectForKey:@"sell_list"];
+        if(sellAry.count>0){
+            sellDict = [sellAry objectAtIndex:0];
+        }
+        
+        lblbuyyivalue.text = [NSString stringWithFormat:@"￥%@",StrValueFromDictionary(buyDict, @"price")?StrValueFromDictionary(buyDict, @"price"):@"0.0000"];
+        NSString *procesd = StrValueFromDictionary(sellDict, @"price");
+        NSString *balasd = StrValueFromDictionary(_dataDict, @"account_balance");
+        NSString *priceGG = StrValueFromDictionary(_dataDict, @"price");
+        lblsellyivalue.text = [NSString stringWithFormat:@"￥%@",procesd?procesd:@"0.0000"];
+        
+        lblkmrmb.text = [NSString stringWithFormat:@"￥%@",balasd?balasd:@"0.0000"];
+        float balasdFlo = [balasd floatValue];
+        float priceGGFlo = [priceGG floatValue];
+        float divisionbp;
+        if(balasdFlo>0 && priceGGFlo>0){
+            divisionbp = (float)balasdFlo/priceGGFlo;
+        }else{
+            divisionbp = 0.0000;
+        }
+        
+        lblkmxyb.text = [NSString stringWithFormat:@"%0.2f",divisionbp];
+        NSString *coins = StrValueFromDictionary(_dataDict, @"coins_balance");
+        lblskmrmb.text = coins;
+        NSString *frozen = StrValueFromDictionary(_dataDict, @"frozen");
+        if(frozen.length>0){
+            lblskmxyb.text = StrValueFromDictionary(_dataDict, @"frozen");
+        }else{
+            lblskmxyb.text = @"0";
+        }
+        txtBuyText.text = pricedt2;
+//        NSString *balance = coins;
+        txtSellText.text = @"";
+        txtSellsText.text = pricedt2;
+        txtSsellText.text = @"";
+        
+//        float sooNy = [pricedt2 floatValue]*[coins intValue];
+        lblzhehje.text = @"0.0000";
+        lblszhehje.text = @"0.0000";
+        txtJiaoymmText.text = @"";
+        txtsJiaoymmText.text = @"";
+
+        [self reLayout];
+        [self.myTableView reloadData];
+    }];
+}
+-(void)reLayout{
+    [lblszhehje sizeToFit];
+    [lblzhehje sizeToFit];
+    [lblskmrmb sizeToFit];
+    [lblskmxyb sizeToFit];
+    [lblkmxyb sizeToFit];
+    [lblkmrmb sizeToFit];
+    CGSize textSize551 = JHTCalcStringSizeWithFontSize(@"1888.88万", TRANSACTIONFTWO);
+    NSString *buyPrice = [NSString stringWithFormat:@"￥%@",StrValueFromDictionary(buyDict, @"price")];
+    CGSize textSize552 = JHTCalcStringSizeWithFontSize(buyPrice, FIRSTFONTTHREE);
+    [lblbuyyivalue setAdjustsFontSizeToFitWidth:YES];
+    [lblbuyyivalue sizeToFit];
+    if(textSize552.width>textSize551.width){
+        [lblbuyyivalue setW:textSize551.width];
+        [lblbuyyivalue setH:textSize551.height];
+    }
+    [lblbuyyivalue setX:lblbuyyitext.maxX];
+    [lblbuyyivalue setY:lblbuyyitext.y];
+    NSString *sellPrice = [NSString stringWithFormat:@"￥%@",StrValueFromDictionary(sellDict, @"price")];
+    CGSize textSize562 = JHTCalcStringSizeWithFontSize(sellPrice, FIRSTFONTTHREE);
+    [lblsellyivalue setAdjustsFontSizeToFitWidth:YES];
+    [lblsellyivalue sizeToFit];
+    if(textSize562.width>textSize551.width){
+        [lblsellyivalue setW:textSize551.width];
+        [lblsellyivalue setH:textSize551.height];
+    }
+    [lblsellyivalue setX:lblsellyitext.maxX];
+    [lblsellyivalue setY:lblbuyyitext.y];
+    CGSize textSize51 = JHTCalcStringSizeWithFontSize(@"1888.88万", FIRSTFONTTHREE);
+    CGSize textSize522 = JHTCalcStringSizeWithFontSize(StrValueFromDictionary(_dataDict, @"max_price"), FIRSTFONTTHREE);
+    [lblZhuangzaigang setAdjustsFontSizeToFitWidth:YES];
+    [lblZhuangzaigang sizeToFit];
+    if(textSize522.width>textSize51.width){
+        [lblZhuangzaigang setW:textSize51.width];
+        [lblZhuangzaigang setH:textSize51.height];
+    }
+    [lblZhuangzaigang setX:SCREEN_WIDTH*0.75];
+    [lblZhuangzaigang setY:lblZhuangzaigang1.maxY+toolView.height/10];
+    CGSize textSize52 = JHTCalcStringSizeWithFontSize(StrValueFromDictionary(_dataDict, @"min_price"), FIRSTFONTTHREE);
+    [lblTitle5 setAdjustsFontSizeToFitWidth:YES];
+    [lblTitle5 sizeToFit];
+    if(textSize52.width>textSize51.width){
+        [lblTitle5 setW:textSize51.width];
+        [lblTitle5 setH:textSize51.height];
+    }
+    [lblTitle5 setX:SCREEN_WIDTH*0.5];
+    [lblTitle5 setY:lblTitle51.maxY+toolView.height/10];
+    CGSize textSize22 = JHTCalcStringSizeWithFontSize(StrValueFromDictionary(_dataDict, @"volume"), FIRSTFONTTHREE);
+    [lblTitle2 setAdjustsFontSizeToFitWidth:YES];
+    [lblTitle2 sizeToFit];
+    if(textSize22.width>textSize51.width){
+        [lblTitle2 setW:textSize51.width];
+        [lblTitle2 setH:textSize51.height];
+    }
+    [lblTitle2 setX:SCREEN_WIDTH*0.3];
+    [lblTitle2 setY:lblTitle21.maxY+toolView.height/10];
+    CGSize textSize2 = JHTCalcStringSizeWithFontSize(StrValueFromDictionary(_dataDict, @"turnover"), FIRSTFONTTHREE);
+    [lblTitle3 setAdjustsFontSizeToFitWidth:YES];
+    [lblTitle3 sizeToFit];
+    if(textSize2.width>textSize51.width){
+        [lblTitle3 setW:textSize51.width];
+        [lblTitle3 setH:textSize51.height];
+    }
+    [lblTitle3 setX:lblTitle31.x];
+    [lblTitle3 setY:lblTitle31.maxY+toolView.height/10];
+    [lblTitle1 sizeToFit];
+    [lblTitle1 setX:imageView.maxX + SCREEN_WIDTH/50];
+    [lblTitle1 setY:imageView.y+(imageView.height-lblTitle1.height)/2];
+    [lblTitle4 sizeToFit];
+    [lblTitle4 setX:SCREEN_WIDTH*0.55];
+    [lblTitle4 setY:lblTitle1.y];
 }
 -(void)createBBDetailView{
     infoView = [[UIView alloc] initWithFrame: CGRectMake(SCREEN_WIDTH/40, 10, scrollView.width - COMMON_H_MARGIN*2, DATRANHEIGHTONE*0.45 - 2)];
@@ -138,7 +331,7 @@
     lblTitle4.textColor = [UIColor whiteColor];
     [lblTitle4 sizeToFit];
     [lblTitle4 setX:SCREEN_WIDTH*0.55];
-    [lblTitle4 setY:lblTitle1.y];
+    [lblTitle4 setY:imageView.y+(imageView.height-lblTitle4.height)/2];
     
     btnContactText = [[UIButton alloc] init];
     [btnContactText setTitle: LocatizedStirngForkey(@"JIAZAIZHONGQ") forState: UIControlStateNormal];
@@ -415,6 +608,7 @@
     
     txtBuyText = [[UITextField alloc] initWithFrame:CGRectMake(mairjiag.maxX +SCREEN_WIDTH/50, kmxyb.maxY+SCREEN_WIDTH/36 ,  SCREEN_WIDTH-mairjiag.maxX -SCREEN_WIDTH/22, SCREEN_WIDTH/10)];
     [operBuyView addSubview: txtBuyText];
+    txtBuyText.keyboardType = UIKeyboardTypeDecimalPad;
 //    [txtBuyText setEnabled:NO];
     txtBuyText.textColor = UIColorFromRGB(0x767D85);
     txtBuyText.font = [UIFont systemFontOfSize:TRANSACTIONFTWO];
@@ -431,10 +625,12 @@
     txtSellText = [[UITextField alloc] initWithFrame:CGRectMake(sellrjiag.maxX +SCREEN_WIDTH/50, txtBuyText.maxY+SCREEN_WIDTH/40 ,  SCREEN_WIDTH-sellrjiag.maxX -SCREEN_WIDTH/22, SCREEN_WIDTH/10)];
     [operBuyView addSubview: txtSellText];
     //    [txtBuyText setEnabled:NO];
+    txtSellText.keyboardType = UIKeyboardTypeDecimalPad;
     txtSellText.textColor = UIColorFromRGB(0x767D85);
     txtSellText.font = [UIFont systemFontOfSize:TRANSACTIONFTWO];
     txtSellText.layer.borderColor=UIColorFromRGB(0x192631).CGColor;
     txtSellText.layer.borderWidth= 1.0f;
+    txtSellText.delegate = self;
     
     zhehje = [[UILabel alloc] initWithFrame: CGRectMake(SCREEN_WIDTH/40, txtSellText.maxY+SCREEN_WIDTH/30, 1, 1)];
     zhehje.text = [NSString stringWithFormat:@"%@：",LocatizedStirngForkey(@"ZHEHEJINE") ];
@@ -460,6 +656,7 @@
     txtJiaoymmText = [[UITextField alloc] initWithFrame:CGRectMake(jiaoymm.maxX +SCREEN_WIDTH/50, zhehje.maxY+SCREEN_WIDTH/40 ,  SCREEN_WIDTH-jiaoymm.maxX -SCREEN_WIDTH/22, SCREEN_WIDTH/10)];
     [operBuyView addSubview: txtJiaoymmText];
     //    [txtBuyText setEnabled:NO];
+    txtJiaoymmText.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
     txtJiaoymmText.secureTextEntry = YES;
     txtJiaoymmText.textColor = UIColorFromRGB(0x767D85);
     txtJiaoymmText.font = [UIFont systemFontOfSize:TRANSACTIONFTWO];
@@ -475,7 +672,7 @@
     [btnBuy setBackgroundImage:[CommonUtils createImageWithColor: UIColorFromRGB(0xFC373B)] forState:UIControlStateNormal];
     [btnBuy setBackgroundImage:[CommonUtils createImageWithColor: UIColorFromRGB(0xCD0000)] forState:UIControlStateHighlighted];
     
-    [btnBuy addTarget: self action: @selector(login) forControlEvents:UIControlEventTouchUpInside];
+    [btnBuy addTarget: self action: @selector(buySummit) forControlEvents:UIControlEventTouchUpInside];
     [operBuyView addSubview: btnBuy];
     operBuyView.hidden = NO;
     
@@ -491,7 +688,7 @@
     //    operSellView.hidden = YES;
     
     skmrmb = [[UILabel alloc] initWithFrame: CGRectMake(SCREEN_WIDTH/30, SCREEN_WIDTH/30, 1, 1)];
-    skmrmb.text = [NSString stringWithFormat:@"%@：",LocatizedStirngForkey(@"KEMAIXINGYUNBI") ];
+    skmrmb.text = [NSString stringWithFormat:@"%@：",LocatizedStirngForkey(@"KESELLXINGYUNBI") ];
     skmrmb.font = [UIFont systemFontOfSize: TRANSACTIONFONT];
     skmrmb.textColor = UIColorFromRGB(0xF4F4F4);
     [operSellView addSubview: skmrmb];
@@ -528,6 +725,7 @@
     txtSellsText = [[UITextField alloc] initWithFrame:CGRectMake(smairjiag.maxX +SCREEN_WIDTH/50, skmxyb.maxY+SCREEN_WIDTH/36 ,  SCREEN_WIDTH-smairjiag.maxX -SCREEN_WIDTH/22, SCREEN_WIDTH/10)];
     [operSellView addSubview: txtSellsText];
     //    [txtBuyText setEnabled:NO];
+    txtSellsText.keyboardType = UIKeyboardTypeDecimalPad;
     txtSellsText.textColor = UIColorFromRGB(0x767D85);
     txtSellsText.font = [UIFont systemFontOfSize:TRANSACTIONFTWO];
     txtSellsText.layer.borderColor=UIColorFromRGB(0x192631).CGColor;
@@ -543,10 +741,12 @@
     txtSsellText = [[UITextField alloc] initWithFrame:CGRectMake(ssellrjiag.maxX +SCREEN_WIDTH/50, txtSellsText.maxY+SCREEN_WIDTH/40 ,  SCREEN_WIDTH-ssellrjiag.maxX -SCREEN_WIDTH/22, SCREEN_WIDTH/10)];
     [operSellView addSubview: txtSsellText];
     //    [txtBuyText setEnabled:NO];
+    txtSsellText.keyboardType = UIKeyboardTypeDecimalPad;
     txtSsellText.textColor = UIColorFromRGB(0x767D85);
     txtSsellText.font = [UIFont systemFontOfSize:TRANSACTIONFTWO];
     txtSsellText.layer.borderColor=UIColorFromRGB(0x192631).CGColor;
     txtSsellText.layer.borderWidth= 1.0f;
+    txtSsellText.delegate = self;
     
     szhehje = [[UILabel alloc] initWithFrame: CGRectMake(SCREEN_WIDTH/40, txtSsellText.maxY+SCREEN_WIDTH/30, 1, 1)];
     szhehje.text = [NSString stringWithFormat:@"%@：",LocatizedStirngForkey(@"ZHEHEJINE") ];
@@ -572,6 +772,7 @@
     txtsJiaoymmText = [[UITextField alloc] initWithFrame:CGRectMake(sjiaoymm.maxX +SCREEN_WIDTH/50, szhehje.maxY+SCREEN_WIDTH/40 ,  SCREEN_WIDTH-sjiaoymm.maxX -SCREEN_WIDTH/22, SCREEN_WIDTH/10)];
     [operSellView addSubview: txtsJiaoymmText];
     //    [txtBuyText setEnabled:NO];
+    txtsJiaoymmText.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
     txtsJiaoymmText.secureTextEntry = YES;
     txtsJiaoymmText.textColor = UIColorFromRGB(0x767D85);
     txtsJiaoymmText.font = [UIFont systemFontOfSize:TRANSACTIONFTWO];
@@ -587,7 +788,7 @@
     [btnSells setBackgroundImage:[CommonUtils createImageWithColor: UIColorFromRGB(0x3178E3)] forState:UIControlStateNormal];
     [btnSells setBackgroundImage:[CommonUtils createImageWithColor: UIColorFromRGB(0x3A5FCD)] forState:UIControlStateHighlighted];
     
-    [btnSells addTarget: self action: @selector(login) forControlEvents:UIControlEventTouchUpInside];
+    [btnSells addTarget: self action: @selector(sellSummit) forControlEvents:UIControlEventTouchUpInside];
     [operSellView addSubview: btnSells];
     operSellView.hidden = YES;
     
@@ -596,7 +797,7 @@
     tbView = [[UIView alloc] initWithFrame: CGRectMake(0, buyView.maxY+8+10+SCREEN_WIDTH/1.3, scrollView.width, SCREEN_WIDTH)];
     tbView.backgroundColor = UIColorFromRGB(0x0F151A);
     [scrollView addSubview:tbView];
-    scrollView.contentSize = CGSizeMake(SCREEN_WIDTH, tbView.maxY+10);
+    scrollView.contentSize = CGSizeMake(SCREEN_WIDTH, buyView.maxY+8+SCREEN_WIDTH/1.3+SCREEN_WIDTH+10+8);
     
     UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0 , SCREEN_WIDTH, SCREEN_WIDTH)];
     tableView.separatorStyle = UITableViewCellSelectionStyleNone;
@@ -664,46 +865,138 @@
         UIView * separator = [[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_WIDTH/11-1 , SCREEN_WIDTH, 1)];
         separator.backgroundColor = UIColorFromRGB(0x1B2026);
         [cell.contentView addSubview:separator];
-    }else{
+    }else if(row>=1 &&row<=5){
         UILabel *buySellLab=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/16, 0, (SCREEN_WIDTH-SCREEN_WIDTH/16)/3, SCREEN_WIDTH/11)];
-        buySellLab.text=@"买 1";
+        buySellLab.text=@"";
         buySellLab.textAlignment = NSTextAlignmentLeft;
-        if(row>5){
-            buySellLab.textColor=[UIColor greenColor];
-        }else{
-            buySellLab.textColor=[UIColor redColor];
-        }
+        buySellLab.textColor=[UIColor greenColor];
         buySellLab.font = [UIFont systemFontOfSize:TRANSACTIONFFORE];
         [cell.contentView addSubview: buySellLab];
         
         UILabel *bsFirst=[[UILabel alloc] initWithFrame:CGRectMake(buySellLab.maxX, 0, (SCREEN_WIDTH-SCREEN_WIDTH/16)/3, SCREEN_WIDTH/11)];
-        bsFirst.text=@"0.053";
+        bsFirst.text=@"";
         bsFirst.textAlignment = NSTextAlignmentLeft;
-        if(row>5){
-            bsFirst.textColor=[UIColor greenColor];
-        }else{
-            bsFirst.textColor=[UIColor redColor];
-        }
+        bsFirst.textColor=[UIColor greenColor];
+
         bsFirst.font = [UIFont systemFontOfSize:TRANSACTIONFFORE];
         [cell.contentView addSubview: bsFirst];
         
         UILabel *bsSecond=[[UILabel alloc] initWithFrame:CGRectMake(bsFirst.maxX, 0, (SCREEN_WIDTH-SCREEN_WIDTH/16)/3, SCREEN_WIDTH/11)];
-        bsSecond.text=@"9873.343";
+        bsSecond.text=@"";
         bsSecond.textAlignment = NSTextAlignmentLeft;
-        if(row>5){
-            bsSecond.textColor=[UIColor greenColor];
-        }else{
-            bsSecond.textColor=[UIColor redColor];
-        }
+        bsSecond.textColor=[UIColor greenColor];
         //    three.backgroundColor = UIColorFromRGB(0x0F151A);
         bsSecond.font = [UIFont systemFontOfSize:TRANSACTIONFFORE];
         [cell.contentView addSubview: bsSecond];
-        if(row==5){
+        if(row ==1){
+            if(sellAry.count>=5){
+                NSDictionary *rowDict = [sellAry objectAtIndex:4];
+                bsFirst.text=StrValueFromDictionary(rowDict, @"price");
+                bsSecond.text=StrValueFromDictionary(rowDict, @"quantity");
+            }else{
+                bsFirst.text=@"--";
+                bsSecond.text=@"--";
+            }
+            buySellLab.text=@"卖 5";
+        }
+        if(row ==2){
+            if(sellAry.count>=4){
+                NSDictionary *rowDict = [sellAry objectAtIndex:3];
+                bsFirst.text=StrValueFromDictionary(rowDict, @"price");
+                bsSecond.text=StrValueFromDictionary(rowDict, @"quantity");
+            }else{
+                bsFirst.text=@"--";
+                bsSecond.text=@"--";
+            }
+            buySellLab.text=@"卖 4";
+        }
+        if(row ==3){
+            if(sellAry.count>=3){
+                NSDictionary *rowDict = [sellAry objectAtIndex:2];
+                bsFirst.text=StrValueFromDictionary(rowDict, @"price");
+                bsSecond.text=StrValueFromDictionary(rowDict, @"quantity");
+            }else{
+                bsFirst.text=@"--";
+                bsSecond.text=@"--";
+            }
+            buySellLab.text=@"卖 3";
+        }
+        if(row ==4){
+            if(sellAry.count>=2){
+                NSDictionary *rowDict = [sellAry objectAtIndex:1];
+                bsFirst.text=StrValueFromDictionary(rowDict, @"price");
+                bsSecond.text=StrValueFromDictionary(rowDict, @"quantity");
+            }else{
+                bsFirst.text=@"--";
+                bsSecond.text=@"--";
+            }
+            buySellLab.text=@"卖 2";
+        }
+        if(row ==5){
+            if(sellAry.count>=1){
+                NSDictionary *rowDict = [sellAry objectAtIndex:0];
+                bsFirst.text=StrValueFromDictionary(rowDict, @"price");
+                bsSecond.text=StrValueFromDictionary(rowDict, @"quantity");
+            }else{
+                bsFirst.text=@"--";
+                bsSecond.text=@"--";
+            }
+            buySellLab.text=@"卖 1";
             UIView * separator = [[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_WIDTH/11-1 , SCREEN_WIDTH, 1)];
             separator.backgroundColor = UIColorFromRGB(0x1B2026);
             [cell.contentView addSubview:separator];
         }
+    }else{
+        UILabel *buySellLab=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/16, 0, (SCREEN_WIDTH-SCREEN_WIDTH/16)/3, SCREEN_WIDTH/11)];
+        buySellLab.text=@"买 1";
+        buySellLab.textAlignment = NSTextAlignmentLeft;
+        buySellLab.textColor=[UIColor redColor];
+        buySellLab.font = [UIFont systemFontOfSize:TRANSACTIONFFORE];
+        [cell.contentView addSubview: buySellLab];
+        
+        UILabel *bsFirst=[[UILabel alloc] initWithFrame:CGRectMake(buySellLab.maxX, 0, (SCREEN_WIDTH-SCREEN_WIDTH/16)/3, SCREEN_WIDTH/11)];
+        bsFirst.text=@"";
+        bsFirst.textAlignment = NSTextAlignmentLeft;
+        bsFirst.textColor=[UIColor redColor];
+        bsFirst.font = [UIFont systemFontOfSize:TRANSACTIONFFORE];
+        [cell.contentView addSubview: bsFirst];
+        
+        UILabel *bsSecond=[[UILabel alloc] initWithFrame:CGRectMake(bsFirst.maxX, 0, (SCREEN_WIDTH-SCREEN_WIDTH/16)/3, SCREEN_WIDTH/11)];
+        bsSecond.text=@"";
+        bsSecond.textAlignment = NSTextAlignmentLeft;
+        bsSecond.textColor=[UIColor redColor];
+        //    three.backgroundColor = UIColorFromRGB(0x0F151A);
+        bsSecond.font = [UIFont systemFontOfSize:TRANSACTIONFFORE];
+        [cell.contentView addSubview: bsSecond];
+        for(int i=0;i<5;++i){
+            if(row ==i+6){
+                if((row-5)<=buyAry.count){
+                    NSDictionary *rowDict = [buyAry objectAtIndex:i];
+                    bsFirst.text=StrValueFromDictionary(rowDict, @"price");
+                    bsSecond.text=StrValueFromDictionary(rowDict, @"quantity");
+                }else{
+                    bsFirst.text=@"--";
+                    bsSecond.text=@"--";
+                }
+            }
+        }
+        if(row ==6){
+            buySellLab.text=@"买 1";
+        }
+        if(row ==7){
+            buySellLab.text=@"买 2";
+        }
+        if(row ==8){
+            buySellLab.text=@"买 3";
+        }
+        if(row ==9){
+            buySellLab.text=@"买 4";
+        }
+        if(row ==10){
+            buySellLab.text=@"买 5";
+        }
     }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -732,6 +1025,86 @@
 }
 -(void)doKilne{
     HQZXKlineGraphViewController *klineView = [[HQZXKlineGraphViewController alloc]init];
+    klineView.symbol = _symbol;
     [self.navigationController pushViewController: klineView animated: YES];
+}
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    if (textField == txtSellText) {
+        NSString *buyStr = txtBuyText.text;
+        NSMutableString *sellStr = [[NSMutableString alloc]initWithString:txtSellText.text];
+        if(string.length>0){
+            [sellStr replaceCharactersInRange:range withString:string];
+        }else{
+            [sellStr deleteCharactersInRange:range];
+        }
+        float share = [buyStr floatValue]* [sellStr intValue];
+//        NSString *coins = StrValueFromDictionary(_dataDict, @"coins_balance");
+//        if (share>[coins floatValue]) {
+//            [self.view makeToast: @"超过可用人民币数" duration: 0.5 position: CSToastPositionCenter];
+//            return NO;
+//        }
+        lblzhehje.text = [NSString stringWithFormat:@"%.4f",share];
+        [lblzhehje sizeToFit];
+    }
+    if (textField == txtSsellText) {
+        NSString *buyStr = txtSellsText.text;
+        NSMutableString *sellStr = [[NSMutableString alloc]initWithString:txtSsellText.text];
+        if(string.length>0){
+            [sellStr replaceCharactersInRange:range withString:string];
+        }else{
+            [sellStr deleteCharactersInRange:range];
+        }
+//        NSString *coins = StrValueFromDictionary(_dataDict, @"coins_balance");
+//        if ([sellStr intValue]>[coins floatValue]) {
+//            [self.view makeToast: @"超过该币所持数" duration: 0.5 position: CSToastPositionCenter];
+//            return NO;
+//        }
+        float share = [buyStr floatValue]* [sellStr intValue];
+        lblszhehje.text = [NSString stringWithFormat:@"%.4f",share];
+         [lblszhehje sizeToFit];
+    }
+    return YES;
+}
+-(void)buySummit{
+    NSString *buyText = txtBuyText.text;
+    NSString *sellText = txtSellText.text;
+    NSString *password = txtJiaoymmText.text;
+    VALIDATE_NOT_NULL(buyText, @"买入价格不能为空");
+    VALIDATE_NOT_NULL(sellText, @"买入数量不能为空");
+    VALIDATE_NOT_NULL(password, @"交易密码不能为空");
+    [ProgressHUD show: [NSString stringWithFormat:@"%@...",LocatizedStirngForkey(@"QINGDENGDAI")] Interaction: NO];
+    [[NetHttpClient sharedHTTPClient] request: @"/purchase.json" parameters:@{@"symbol":_symbol, @"price":buyText, @"count":sellText, @"trade_pwd": password, @"auth_key":[HQZXUserModel sharedInstance].currentUser.auth_key} completion:^(id obj) {
+        [ProgressHUD dismiss];
+        if (obj) {
+            if ([@"0" isEqualToString:StrValueFromDictionary(obj, ApiKey_ErrorCode)]) {
+                [self refScrollView];
+            } else {
+                [self.view makeToast:[NSString stringWithFormat:@"%@", [obj objectForKey:@"message"]] duration: 0.5 position:CSToastPositionCenter];
+            }
+        } else {
+            [self.view makeToast:LocatizedStirngForkey(@"LIANJIEFUWUQISHIBAI") duration: 0.5 position:CSToastPositionCenter];
+        }
+    }];
+}
+-(void)sellSummit{
+    NSString *buyText = txtSellsText.text;
+    NSString *sellText = txtSsellText.text;
+    NSString *password = txtsJiaoymmText.text;
+    VALIDATE_NOT_NULL(buyText, @"卖出价格不能为空");
+    VALIDATE_NOT_NULL(sellText, @"卖出数量不能为空");
+    VALIDATE_NOT_NULL(password, @"交易密码不能为空");
+    [ProgressHUD show: [NSString stringWithFormat:@"%@...",LocatizedStirngForkey(@"QINGDENGDAI")] Interaction: NO];
+    [[NetHttpClient sharedHTTPClient] request: @"/sellout.json" parameters:@{@"symbol":_symbol, @"price":buyText, @"count":sellText, @"trade_pwd": password, @"auth_key":[HQZXUserModel sharedInstance].currentUser.auth_key} completion:^(id obj) {
+        [ProgressHUD dismiss];
+        if (obj) {
+            if ([@"0" isEqualToString:StrValueFromDictionary(obj, ApiKey_ErrorCode)]) {
+                [self refScrollView];
+            } else {
+                [self.view makeToast:[NSString stringWithFormat:@"%@", [obj objectForKey:@"message"]] duration: 0.5 position:CSToastPositionCenter];
+            }
+        } else {
+            [self.view makeToast:LocatizedStirngForkey(@"LIANJIEFUWUQISHIBAI") duration: 0.5 position:CSToastPositionCenter];
+        }
+    }];
 }
 @end

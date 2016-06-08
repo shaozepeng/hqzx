@@ -176,6 +176,13 @@
 		7A91D9271D030F330069CF54 /* HQZXHistoryEntrustManagementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A91D9261D030F330069CF54 /* HQZXHistoryEntrustManagementViewController.m */; };
 		7A91D92A1D030F850069CF54 /* HQZXHistoryEntrustTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A91D9291D030F850069CF54 /* HQZXHistoryEntrustTableCell.m */; };
 		7A91D92D1D030FA50069CF54 /* HQZXHistoryDataEnTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A91D92C1D030FA50069CF54 /* HQZXHistoryDataEnTableCell.m */; };
+		7A91D9341D031D640069CF54 /* HQZXTransactionCurrencyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A91D9331D031D640069CF54 /* HQZXTransactionCurrencyViewController.m */; };
+		7A91D9371D031EF40069CF54 /* HQZXTransactionTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A91D9361D031EF40069CF54 /* HQZXTransactionTableCell.m */; };
+		7A91D93A1D031F1E0069CF54 /* HQZXDataTranTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A91D9391D031F1E0069CF54 /* HQZXDataTranTableCell.m */; };
+		7A91D93D1D031F490069CF54 /* HQZXTransferAccountsTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A91D93C1D031F490069CF54 /* HQZXTransferAccountsTableCell.m */; };
+		7A91D9401D031F690069CF54 /* HQZXDataAccTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A91D93F1D031F690069CF54 /* HQZXDataAccTableCell.m */; };
+		7A91D9431D03F49C0069CF54 /* HQZXChooseCurrencyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A91D9421D03F49C0069CF54 /* HQZXChooseCurrencyViewController.m */; };
+		7A91D94A1D0429D10069CF54 /* HQZXRMBWithdrawalsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A91D9491D0429D10069CF54 /* HQZXRMBWithdrawalsViewController.m */; };
 		7AC4C0201D01367A004FD2F7 /* HQZXEmptyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AC4C01F1D01367A004FD2F7 /* HQZXEmptyManager.m */; };
 		7AC4C0231D018CE0004FD2F7 /* HQZXKlineGraphViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AC4C0221D018CE0004FD2F7 /* HQZXKlineGraphViewController.m */; };
 		7AC4C0251D01948B004FD2F7 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AC4C0241D01948B004FD2F7 /* MobileCoreServices.framework */; };
@@ -512,6 +519,20 @@
 		7A91D9291D030F850069CF54 /* HQZXHistoryEntrustTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HQZXHistoryEntrustTableCell.m; sourceTree = "<group>"; };
 		7A91D92B1D030FA50069CF54 /* HQZXHistoryDataEnTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HQZXHistoryDataEnTableCell.h; sourceTree = "<group>"; };
 		7A91D92C1D030FA50069CF54 /* HQZXHistoryDataEnTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HQZXHistoryDataEnTableCell.m; sourceTree = "<group>"; };
+		7A91D9321D031D640069CF54 /* HQZXTransactionCurrencyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HQZXTransactionCurrencyViewController.h; sourceTree = "<group>"; };
+		7A91D9331D031D640069CF54 /* HQZXTransactionCurrencyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HQZXTransactionCurrencyViewController.m; sourceTree = "<group>"; };
+		7A91D9351D031EF40069CF54 /* HQZXTransactionTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HQZXTransactionTableCell.h; sourceTree = "<group>"; };
+		7A91D9361D031EF40069CF54 /* HQZXTransactionTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HQZXTransactionTableCell.m; sourceTree = "<group>"; };
+		7A91D9381D031F1E0069CF54 /* HQZXDataTranTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HQZXDataTranTableCell.h; sourceTree = "<group>"; };
+		7A91D9391D031F1E0069CF54 /* HQZXDataTranTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HQZXDataTranTableCell.m; sourceTree = "<group>"; };
+		7A91D93B1D031F490069CF54 /* HQZXTransferAccountsTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HQZXTransferAccountsTableCell.h; sourceTree = "<group>"; };
+		7A91D93C1D031F490069CF54 /* HQZXTransferAccountsTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HQZXTransferAccountsTableCell.m; sourceTree = "<group>"; };
+		7A91D93E1D031F690069CF54 /* HQZXDataAccTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HQZXDataAccTableCell.h; sourceTree = "<group>"; };
+		7A91D93F1D031F690069CF54 /* HQZXDataAccTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HQZXDataAccTableCell.m; sourceTree = "<group>"; };
+		7A91D9411D03F49C0069CF54 /* HQZXChooseCurrencyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HQZXChooseCurrencyViewController.h; sourceTree = "<group>"; };
+		7A91D9421D03F49C0069CF54 /* HQZXChooseCurrencyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HQZXChooseCurrencyViewController.m; sourceTree = "<group>"; };
+		7A91D9481D0429D10069CF54 /* HQZXRMBWithdrawalsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HQZXRMBWithdrawalsViewController.h; sourceTree = "<group>"; };
+		7A91D9491D0429D10069CF54 /* HQZXRMBWithdrawalsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HQZXRMBWithdrawalsViewController.m; sourceTree = "<group>"; };
 		7AC4C01E1D01367A004FD2F7 /* HQZXEmptyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HQZXEmptyManager.h; sourceTree = "<group>"; };
 		7AC4C01F1D01367A004FD2F7 /* HQZXEmptyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HQZXEmptyManager.m; sourceTree = "<group>"; };
 		7AC4C0211D018CE0004FD2F7 /* HQZXKlineGraphViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HQZXKlineGraphViewController.h; sourceTree = "<group>"; };
@@ -676,7 +697,9 @@
 		7A0F70281CECA47400F468D2 /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				7A91D9441D04298D0069CF54 /* RMBtixian */,
 				7A91D9141D02D0CB0069CF54 /* payment */,
+				7A91D92E1D031C960069CF54 /* jiaoyiliushui */,
 				7AC4C0A41D01CD00004FD2F7 /* weituoguanli */,
 				7A0F70751CEDC1F200F468D2 /* home */,
 				7A713E8B1CF34709009A6D71 /* user */,
@@ -1729,6 +1752,82 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		7A91D92E1D031C960069CF54 /* jiaoyiliushui */ = {
+			isa = PBXGroup;
+			children = (
+				7A91D92F1D031C960069CF54 /* Controller */,
+				7A91D9301D031C960069CF54 /* Model */,
+				7A91D9311D031C960069CF54 /* View */,
+			);
+			path = jiaoyiliushui;
+			sourceTree = "<group>";
+		};
+		7A91D92F1D031C960069CF54 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				7A91D9321D031D640069CF54 /* HQZXTransactionCurrencyViewController.h */,
+				7A91D9331D031D640069CF54 /* HQZXTransactionCurrencyViewController.m */,
+				7A91D9411D03F49C0069CF54 /* HQZXChooseCurrencyViewController.h */,
+				7A91D9421D03F49C0069CF54 /* HQZXChooseCurrencyViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		7A91D9301D031C960069CF54 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7A91D9311D031C960069CF54 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7A91D9351D031EF40069CF54 /* HQZXTransactionTableCell.h */,
+				7A91D9361D031EF40069CF54 /* HQZXTransactionTableCell.m */,
+				7A91D9381D031F1E0069CF54 /* HQZXDataTranTableCell.h */,
+				7A91D9391D031F1E0069CF54 /* HQZXDataTranTableCell.m */,
+				7A91D93B1D031F490069CF54 /* HQZXTransferAccountsTableCell.h */,
+				7A91D93C1D031F490069CF54 /* HQZXTransferAccountsTableCell.m */,
+				7A91D93E1D031F690069CF54 /* HQZXDataAccTableCell.h */,
+				7A91D93F1D031F690069CF54 /* HQZXDataAccTableCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7A91D9441D04298D0069CF54 /* RMBtixian */ = {
+			isa = PBXGroup;
+			children = (
+				7A91D9451D04298D0069CF54 /* Controller */,
+				7A91D9461D04298D0069CF54 /* Model */,
+				7A91D9471D04298D0069CF54 /* View */,
+			);
+			path = RMBtixian;
+			sourceTree = "<group>";
+		};
+		7A91D9451D04298D0069CF54 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				7A91D9481D0429D10069CF54 /* HQZXRMBWithdrawalsViewController.h */,
+				7A91D9491D0429D10069CF54 /* HQZXRMBWithdrawalsViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		7A91D9461D04298D0069CF54 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7A91D9471D04298D0069CF54 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		7AC4C02A1D0195B2004FD2F7 /* kline */ = {
 			isa = PBXGroup;
 			children = (
@@ -1992,6 +2091,7 @@
 				7A0F70971CEDF1AA00F468D2 /* UIDevice+IdentifierAddition.m in Sources */,
 				7A0F71D71CEDF52E00F468D2 /* IQTextView.m in Sources */,
 				7A0F71921CEDF52E00F468D2 /* UIDevice+Extend.m in Sources */,
+				7A91D93D1D031F490069CF54 /* HQZXTransferAccountsTableCell.m in Sources */,
 				7A713E9A1CF3497B009A6D71 /* NetHttpClient.m in Sources */,
 				7A0F71E11CEDF52E00F468D2 /* ProgressHUD.m in Sources */,
 				7A713E8A1CF3403A009A6D71 /* XQZXJiaoYiDaTingTableCell.m in Sources */,
@@ -2009,6 +2109,7 @@
 				7A0F72351CF18E1100F468D2 /* MyMeViewController.m in Sources */,
 				7A0F71A31CEDF52E00F468D2 /* UIBarButtonItem+Appearance.m in Sources */,
 				7A0F71DE1CEDF52E00F468D2 /* LCNewFeatureVC.m in Sources */,
+				7A91D93A1D031F1E0069CF54 /* HQZXDataTranTableCell.m in Sources */,
 				7A0F71B41CEDF52E00F468D2 /* BaseTF.m in Sources */,
 				7AC4C05C1D0195B2004FD2F7 /* getData.m in Sources */,
 				7A6D05011CF6ECDE00D9CDF3 /* HQZXModifyTransactionViewController.m in Sources */,
@@ -2037,15 +2138,19 @@
 				7A91D9271D030F330069CF54 /* HQZXHistoryEntrustManagementViewController.m in Sources */,
 				7A0F71D11CEDF52E00F468D2 /* IQUIView+Hierarchy.m in Sources */,
 				7A0F71BA1CEDF52E00F468D2 /* FMDatabasePool.m in Sources */,
+				7A91D9431D03F49C0069CF54 /* HQZXChooseCurrencyViewController.m in Sources */,
 				7A4BF07E1D007C2800FD18F1 /* UIResponder+addtion.m in Sources */,
 				7A0F719C1CEDF52E00F468D2 /* BaseNav.m in Sources */,
 				7A0F71DA1CEDF52E00F468D2 /* IQToolbar.m in Sources */,
+				7A91D9341D031D640069CF54 /* HQZXTransactionCurrencyViewController.m in Sources */,
 				7A0F71D31CEDF52E00F468D2 /* IQUIWindow+Hierarchy.m in Sources */,
 				7AC4C05B1D0195B2004FD2F7 /* UIColor+helper.m in Sources */,
 				7A0F71BF1CEDF52E00F468D2 /* NSData+MimeType.m in Sources */,
 				7A713EB61CF34BB6009A6D71 /* HQZXUserModel.m in Sources */,
 				7A0F72271CF18DF500F468D2 /* MyRecentViewController.m in Sources */,
+				7A91D9401D031F690069CF54 /* HQZXDataAccTableCell.m in Sources */,
 				7A0F71971CEDF52E00F468D2 /* UIImage+FixOrientation.m in Sources */,
+				7A91D94A1D0429D10069CF54 /* HQZXRMBWithdrawalsViewController.m in Sources */,
 				7A0F71C51CEDF52E00F468D2 /* Reachability.m in Sources */,
 				7A0F71A61CEDF52E00F468D2 /* BaseMoelConst.m in Sources */,
 				7A0F71AC1CEDF52E00F468D2 /* NSObject+Insert.m in Sources */,
@@ -2061,6 +2166,7 @@
 				7A0F71B01CEDF52E00F468D2 /* NSString+Stackoverflow.m in Sources */,
 				7A91D90A1D02D06E0069CF54 /* SYQrCodeScanne.m in Sources */,
 				7A0F71E51CEDF52E00F468D2 /* UIImage+ResizeMagick.m in Sources */,
+				7A91D9371D031EF40069CF54 /* HQZXTransactionTableCell.m in Sources */,
 				7A0F708E1CEDF0FB00F468D2 /* README.md in Sources */,
 				7A713EA41CF34AAF009A6D71 /* NSString+MD5.m in Sources */,
 				7A0F71931CEDF52E00F468D2 /* UIFont+Extend.m in Sources */,

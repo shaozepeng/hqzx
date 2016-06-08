@@ -19,6 +19,7 @@
 "DENGLUTISHI"="This feature needs to log in, you need to log in?";
 "MEIYOUXINSHUJU"="There is no data content!";
 "KXIANTU"="K line graph";
+"NINYAOTUICHUMA"="Are you sure you want to quit?";
 
 
 /*
@@ -174,7 +175,7 @@
 "MAIRUSHULIANG"="Buy quantity";
 "ZHEHEJINE"="Amount of folding";
 "JIAOYIMIMA"="Transaction password";
-"KEMAIXINGYUNBI"="Sell lucky money";
+"KESELLXINGYUNBI"="Sell lucky money";
 "DONGJIEXINGYUNBI"="Frozen lucky coin";
 "MAICHUJIAGE"="Selling price";
 "MAICHUSHULIANG"="Sell quantity";
@@ -214,6 +215,13 @@
 "SHOUKUANZHANGHAO"="Collection account";
 "SHOUKUANJINE"="Amount Collected";
 "ZHEHEBITEBIXIANJIN"="Folding bitcoin (cash)";
+
+//交易流水
+"JIAOYI"="Transaction";
+"ZHUANGZHANG"="Transfer accounts";
+"XUNIBISHULIANG"="Amount of virtual currency";
+"RENMINBISHULIANG"="RMB quantity";
+"DUIFANGZHANGHAO"="Each other account";
 
 
 

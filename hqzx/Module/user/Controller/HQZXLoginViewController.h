@@ -21,4 +21,5 @@
 
 @property(nonatomic, strong) void (^successBlock)();
 @property(nonatomic, strong) void (^cancelBlock)();
+@property(nonatomic, strong) void (^cancellationBlock)();
 @end

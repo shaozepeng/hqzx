@@ -123,7 +123,7 @@
     [form addSubview: line];
     [form addSubview: line1];
     
-    iconLianText = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_lock"]];
+    iconLianText = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_country"]];
     [form addSubview: iconLianText];
     [iconLianText setY: (form.height/3 - iconLianText.height) / 2.0];
     iconLianText.x = SCREEN_WIDTH/20;
@@ -175,7 +175,7 @@
     [form addSubview: txtUserName];
     txtUserName.textColor = UIColorFromRGB(0x767D85);
     txtUserName.font = [UIFont systemFontOfSize:REGISTERFONTONE];
-    txtUserName.keyboardType = UIKeyboardTypeNumberPad;
+    txtUserName.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
 //    txtUserName.placeholder = LocatizedStirngForkey(@"SHOUJIHAOMA");
 //    [txtUserName setValue:UIColorFromRGB(0x767D85) forKeyPath:@"_placeholderLabel.textColor"];
 //    [txtUserName setValue:[UIFont systemFontOfSize:LOGINFONTONE]forKeyPath:@"_placeholderLabel.font"];
@@ -194,7 +194,7 @@
     }
     
     
-    UIImageView *iconPassword = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_lock"]];
+    UIImageView *iconPassword = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_secret"]];
     [form addSubview: iconPassword];
     [iconPassword setY: (form.height/3 - iconPassword.height) / 2.0 + line1.maxY];
     iconPassword.x = SCREEN_WIDTH/20;
@@ -303,6 +303,9 @@
         
         [USER_DEFAULT setObject: phoneNo forKey: lastLoginUserNameKey];
         [weakself dismissViewControllerAnimated: YES completion:^{
+            if (weakself.cancellationBlock) {
+                weakself.cancellationBlock();
+            }
             if (weakself.successBlock) {
                 weakself.successBlock();
             }

@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface getData : NSObject
+@property (nonatomic, strong) UIViewController* controller;
 @property (nonatomic,retain) NSMutableArray *data;
 @property (nonatomic,retain) NSArray *dayDatas;
 @property (nonatomic,retain) NSMutableArray *category;
@@ -22,6 +23,5 @@
 @property (nonatomic,assign) NSInteger kCount;
 @property (nonatomic,retain) NSString *req_type;
 
--(id)initWithUrl:(NSString*)url;
-
+-(id)initWithUrl:(NSArray*)array type:(NSString*)reType;
 @end

@@ -14,6 +14,7 @@ typedef void(^updateBlock)(id);
 @property (nonatomic,retain) NSMutableArray *data;
 @property (nonatomic,retain) NSMutableArray *category;
 @property (nonatomic,retain) NSString *req_freq;
+@property (nonatomic,retain) NSString *syloy;
 @property (nonatomic,retain) NSString *req_type;
 @property (nonatomic,retain) NSString *req_url;
 @property (nonatomic,retain) NSString *req_security_id;

@@ -92,7 +92,7 @@
     
     //    UIView *userNameView = [[UIView alloc] initWithFrame: CGRectMake(borderWidthForForm, borderWidthForForm, form1.width - borderWidthForForm*2, (form1.height - borderWidthForForm*2 - line.height)/2)];
     //    [form1 addSubview:userNameView];
-    UIImageView *iconQuePassword = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_lock"]];
+    UIImageView *iconQuePassword = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_secret"]];
     [form1 addSubview: iconQuePassword];
     [iconQuePassword setY: (form1.height/4 - iconQuePassword.height) / 2.0 ];
     iconQuePassword.x = SCREEN_WIDTH/20;
@@ -117,7 +117,7 @@
                                                                                        NSParagraphStyleAttributeName : style
                                                                                        }];
     
-    UIImageView *iconDengPassword = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_lock"]];
+    UIImageView *iconDengPassword = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_secret"]];
     [form1 addSubview: iconDengPassword];
     [iconDengPassword setY: (form1.height /4 - iconDengPassword.height) / 2.0 + line.maxY];
     iconDengPassword.x = SCREEN_WIDTH/20;
@@ -213,7 +213,7 @@
     }
     
     
-    UIImageView *iconPassword = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_lock"]];
+    UIImageView *iconPassword = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_yam"]];
     [form1 addSubview: iconPassword];
     form1.IQIgnoreGroup = YES;
     [iconPassword setY: (form1.height/4 - iconPassword.height) / 2.0 + line3.maxY];

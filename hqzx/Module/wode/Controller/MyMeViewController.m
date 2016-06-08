@@ -187,7 +187,7 @@
     if(indexPath.section==2){
         if(row==0){
             cell.textLabel.text=LocatizedStirngForkey(@"RENMINBICHONGZHI");
-            cell.imageView.image=[UIImage imageNamed:@"icon_lock"];
+            cell.imageView.image=[UIImage imageNamed:@"icon_monIn"];
             UIView * separator = [[UIView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/9, WOCONTROLLEEIGHT-1 , SCREEN_WIDTH-SCREEN_WIDTH/9, 1)];
             separator.backgroundColor = UIColorFromRGB(0x1B2026);
             [cell.contentView addSubview:separator];
@@ -198,7 +198,7 @@
         }
         if(row==1){
             cell.textLabel.text=LocatizedStirngForkey(@"RENMINBITIXIAN");
-            cell.imageView.image=[UIImage imageNamed:@"icon_lock"];
+            cell.imageView.image=[UIImage imageNamed:@"icon_monOut"];
             UIView * separator = [[UIView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/9, WOCONTROLLEEIGHT-1 , SCREEN_WIDTH-SCREEN_WIDTH/9, 1)];
             separator.backgroundColor = UIColorFromRGB(0x1B2026);
             [cell.contentView addSubview:separator];
@@ -209,7 +209,7 @@
         }
         if(row==2){
             cell.textLabel.text=LocatizedStirngForkey(@"XUNIBICHONGZHI");
-            cell.imageView.image=[UIImage imageNamed:@"icon_lock"];
+            cell.imageView.image=[UIImage imageNamed:@"icon_biIn"];
             UIView * separator = [[UIView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/9, WOCONTROLLEEIGHT-1 , SCREEN_WIDTH-SCREEN_WIDTH/9, 1)];
             separator.backgroundColor = UIColorFromRGB(0x1B2026);
             [cell.contentView addSubview:separator];
@@ -220,7 +220,7 @@
         }
         if(row==3){
             cell.textLabel.text=LocatizedStirngForkey(@"XUNIBITIXIAN");
-            cell.imageView.image=[UIImage imageNamed:@"icon_lock"];
+            cell.imageView.image=[UIImage imageNamed:@"icon_biOut"];
             cell.textLabel.textColor = [UIColor whiteColor];
             cell.textLabel.font = [UIFont systemFontOfSize:WOCONTROLLERFONT];
             cell.backgroundColor = UIColorFromRGB(0x0E151B);
@@ -230,7 +230,7 @@
     if(indexPath.section==3){
         if(row==0){
             cell.textLabel.text=LocatizedStirngForkey(@"WEITUOGUANLI");
-            cell.imageView.image=[UIImage imageNamed:@"icon_phone"];
+            cell.imageView.image=[UIImage imageNamed:@"icon_weituo"];
             UIView * separator = [[UIView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/9, WOCONTROLLEEIGHT-1 , SCREEN_WIDTH-SCREEN_WIDTH/9, 1)];
             separator.backgroundColor = UIColorFromRGB(0x1B2026);
             [cell.contentView addSubview:separator];
@@ -241,7 +241,7 @@
         }
         if(row==1){
             cell.textLabel.text=LocatizedStirngForkey(@"JIAOYILIUSHUI");
-            cell.imageView.image=[UIImage imageNamed:@"icon_phone"];
+            cell.imageView.image=[UIImage imageNamed:@"icon_bus"];
             cell.textLabel.textColor = [UIColor whiteColor];
             cell.textLabel.font = [UIFont systemFontOfSize:WOCONTROLLERFONT];
             cell.backgroundColor = UIColorFromRGB(0x0E151B);
@@ -254,7 +254,7 @@
             UIView * separator = [[UIView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/9, WOCONTROLLEEIGHT-1 , SCREEN_WIDTH-SCREEN_WIDTH/9, 1)];
             separator.backgroundColor = UIColorFromRGB(0x1B2026);
             [cell.contentView addSubview:separator];
-            cell.imageView.image=[UIImage imageNamed:@"icon_lock"];
+            cell.imageView.image=[UIImage imageNamed:@"icon_turnIn"];
             cell.textLabel.textColor = [UIColor whiteColor];
             cell.textLabel.font = [UIFont systemFontOfSize:WOCONTROLLERFONT];
             cell.backgroundColor = UIColorFromRGB(0x0E151B);
@@ -262,7 +262,7 @@
         }
         if(row==1){
             cell.textLabel.text=LocatizedStirngForkey(@"WOYAOFUKUAN");
-            cell.imageView.image=[UIImage imageNamed:@"icon_lock"];
+            cell.imageView.image=[UIImage imageNamed:@"icon_turnOut"];
             cell.textLabel.textColor = [UIColor whiteColor];
             cell.textLabel.font = [UIFont systemFontOfSize:WOCONTROLLERFONT];
             cell.backgroundColor = UIColorFromRGB(0x0E151B);
@@ -278,7 +278,7 @@
             cell.detailTextLabel.text = LocatizedStirngForkey(@"YIRENZHENG");
             cell.detailTextLabel.textColor = [UIColor greenColor];
             cell.detailTextLabel.font = [UIFont systemFontOfSize:WOCONTDETAILFONT];
-            cell.imageView.image=[UIImage imageNamed:@"icon_lock"];
+            cell.imageView.image=[UIImage imageNamed:@"icon_sfzNum"];
             cell.textLabel.textColor = [UIColor whiteColor];
             cell.textLabel.font = [UIFont systemFontOfSize:WOCONTROLLERFONT];
             cell.backgroundColor = UIColorFromRGB(0x0E151B);
@@ -286,7 +286,7 @@
         }
         if(row==1){
             cell.textLabel.text=LocatizedStirngForkey(@"XIUGAIDENGLUMIMA");
-            cell.imageView.image=[UIImage imageNamed:@"icon_phone"];
+            cell.imageView.image=[UIImage imageNamed:@"icon_mima"];
             UIView * separator = [[UIView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/9, WOCONTROLLEEIGHT-1 , SCREEN_WIDTH-SCREEN_WIDTH/9, 1)];
             separator.backgroundColor = UIColorFromRGB(0x1B2026);
             [cell.contentView addSubview:separator];
@@ -297,7 +297,7 @@
         }
         if(row==2){
             cell.textLabel.text=LocatizedStirngForkey(@"XIUGAIJIAOYIMIMA");
-            cell.imageView.image=[UIImage imageNamed:@"icon_phone"];
+            cell.imageView.image=[UIImage imageNamed:@"icon_mima"];
             cell.textLabel.textColor = [UIColor whiteColor];
             cell.textLabel.font = [UIFont systemFontOfSize:WOCONTROLLERFONT];
             cell.backgroundColor = UIColorFromRGB(0x0E151B);
@@ -307,7 +307,7 @@
     if(indexPath.section==6){
         if(row==0){
             cell.textLabel.text=LocatizedStirngForkey(@"XIAOXIZHONGXIN");
-            cell.imageView.image=[UIImage imageNamed:@"icon_lock"];
+            cell.imageView.image=[UIImage imageNamed:@"icon_tishi"];
             cell.textLabel.textColor = [UIColor whiteColor];
             cell.textLabel.font = [UIFont systemFontOfSize:WOCONTROLLERFONT];
             cell.backgroundColor = UIColorFromRGB(0x0E151B);
@@ -317,7 +317,7 @@
     if(indexPath.section==7){
         if(row==0){
             cell.textLabel.text=LocatizedStirngForkey(@"GUANYUWOMEN");
-            cell.imageView.image=[UIImage imageNamed:@"icon_phone"];
+            cell.imageView.image=[UIImage imageNamed:@"icon_about"];
             cell.textLabel.textColor = [UIColor whiteColor];
             cell.textLabel.font = [UIFont systemFontOfSize:WOCONTROLLERFONT];
             cell.backgroundColor = UIColorFromRGB(0x0E151B);
@@ -375,8 +375,8 @@
 //            //            LivePlayPushs *wodehuobiao=[[LivePlayPushs alloc]init];
 //            [self.navigationController pushViewController:wodehuobiao animated:YES];
         } else if (indexPath.row == 1) {
-//            JHTWodeChuanBiaoViewController *wodechuanbiao = [[JHTWodeChuanBiaoViewController alloc] init];
-//            [self.navigationController pushViewController:wodechuanbiao animated: YES];
+//            HQZXRMBWithdrawalsViewController *rmbtixian = [[HQZXRMBWithdrawalsViewController alloc] init];
+//            [self.navigationController pushViewController:rmbtixian animated: YES];
         } else if(indexPath.row==2){
 //            JHTWoDeChuanBoViewController *wodechuanbo=[[JHTWoDeChuanBoViewController alloc]init];
 //            [self.navigationController pushViewController:wodechuanbo animated:YES];
@@ -391,8 +391,8 @@
             [rootNav pushViewController:weituo animated:YES];
         }
         if(indexPath.row==1){
-//            JHTWoDeGuanZhuDingDanViewController *guanlidingdan=[[JHTWoDeGuanZhuDingDanViewController alloc]init];
-//            [self.navigationController pushViewController:guanlidingdan animated:YES];
+            HQZXChooseCurrencyViewController *liushui=[[HQZXChooseCurrencyViewController alloc]init];
+            [rootNav pushViewController:liushui animated:YES];
         }
     }
     if(indexPath.section==4){
@@ -401,21 +401,21 @@
             [rootNav pushViewController:shoukuan animated:YES];
         }
         if(indexPath.row==1){
-//            SYQrCodeScanne *VC = [[SYQrCodeScanne alloc]init];
-//            VC.scanneScusseBlock = ^(SYCodeType codeType, NSString *url){
-//                NSLog(@"%@", url);
-//                if (SYCodeTypeUnknow == codeType) {
-//                    [self.view makeToast:LocatizedStirngForkey(@"ERWEIMAWUFASHIBIE") duration:1 position:CSToastPositionCenter];
-//                }else if (SYCodeTypeLink == codeType) {
-//                    HQZXPaymentViewController *fukuan=[[HQZXPaymentViewController alloc]init];
-//                    [rootNav pushViewController:fukuan animated:YES];
-//                }else{
-//                    
-//                }
-//            };
-//            [VC scanning];
-            HQZXPaymentViewController *fukuan=[[HQZXPaymentViewController alloc]init];
-            [rootNav pushViewController:fukuan animated:YES];
+            SYQrCodeScanne *VC = [[SYQrCodeScanne alloc]init];
+            VC.scanneScusseBlock = ^(SYCodeType codeType, NSString *url){
+                NSLog(@"%@", url);
+                if (SYCodeTypeUnknow == codeType) {
+                    [self.view makeToast:LocatizedStirngForkey(@"ERWEIMAWUFASHIBIE") duration:1 position:CSToastPositionCenter];
+                }else if (SYCodeTypeLink == codeType) {
+                    HQZXPaymentViewController *fukuan=[[HQZXPaymentViewController alloc]init];
+                    [rootNav pushViewController:fukuan animated:YES];
+                }else{
+                    
+                }
+            };
+            [VC scanning];
+//            HQZXPaymentViewController *fukuan=[[HQZXPaymentViewController alloc]init];
+//            [rootNav pushViewController:fukuan animated:YES];
             
         }
     }
@@ -474,16 +474,20 @@
     }
     if(indexPath.section==8){
        if(indexPath.row==0){
-           UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"您确定要退出吗?" preferredStyle: UIAlertControllerStyleAlert];
+           UIAlertController *alert = [UIAlertController alertControllerWithTitle:LocatizedStirngForkey(@"TISHI") message:LocatizedStirngForkey(@"NINYAOTUICHUMA") preferredStyle: UIAlertControllerStyleAlert];
            
-           [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+           [alert addAction:[UIAlertAction actionWithTitle:LocatizedStirngForkey(@"QUXIAO") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                //点击按钮的响应事件；
            }]];
-           [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+           [alert addAction:[UIAlertAction actionWithTitle:LocatizedStirngForkey(@"QUEDING") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                //点击按钮的响应事件；
                if ([HQZXUserModel sharedInstance].isLogined) {
                    [[HQZXUserModel sharedInstance] logout];
                    HQZXLoginViewController *vc = [[HQZXLoginViewController alloc] init];
+                   WEAK_SELF
+                   vc.cancellationBlock = ^{
+                       [weakself refData];
+                   };
                    UINavigationController *textNav = [[UINavigationController alloc] initWithRootViewController: vc];
                    [CommonUtils setNavigationControllerStyle: textNav];
                    [self presentViewController: textNav animated: YES completion:nil];

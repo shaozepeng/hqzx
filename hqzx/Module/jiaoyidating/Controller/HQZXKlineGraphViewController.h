@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @interface HQZXKlineGraphViewController : UIViewController
-
+@property NSString *symbol;
 @end

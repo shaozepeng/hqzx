@@ -19,6 +19,7 @@
 "DENGLUTISHI"="此功能需要登录，您需要登录吗？";
 "MEIYOUXINSHUJU"="还没有数据内容 !";
 "KXIANTU"="K线图";
+"NINYAOTUICHUMA"="您确定要退出吗?";
 
 
 /*
@@ -177,7 +178,7 @@
 "MAIRUSHULIANG"="买入数量";
 "ZHEHEJINE"="折合金额";
 "JIAOYIMIMA"="交易密码";
-"KEMAIXINGYUNBI"="可卖幸运币";
+"KESELLXINGYUNBI"="可卖幸运币";
 "DONGJIEXINGYUNBI"="冻结幸运币";
 "MAICHUJIAGE"="卖出价格";
 "MAICHUSHULIANG"="卖出数量";
@@ -218,6 +219,12 @@
 "SHOUKUANJINE"="收款金额";
 "ZHEHEBITEBIXIANJIN"="折合比特币(现金)";
 
+//交易流水
+"JIAOYI"="交易";
+"ZHUANGZHANG"="转账";
+"XUNIBISHULIANG"="虚拟币数量";
+"RENMINBISHULIANG"="人民币数量";
+"DUIFANGZHANGHAO"="对方帐号";
 
 
 
