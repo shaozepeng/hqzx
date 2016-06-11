@@ -212,7 +212,7 @@
         [lblTitle4 setH:lblTitle4.height];
     }
     [lblTitle4 setX:SCREEN_WIDTH*0.55];
-    [lblTitle4 setY:lblTitle1.y];
+    [lblTitle4 setY:imageView.y+(imageView.height-lblTitle4.height)/2];
     
     [btnContactText setX:lblTitle4.maxX+SCREEN_WIDTH/20];
     [btnContactText setY:imageView.y];
@@ -255,7 +255,7 @@
 -(void)setKaibiaohaisheng:(NSString *)value {
     _kaibiaohaisheng = NilToEmpty(value);
     lblTitle2.text=_kaibiaohaisheng;
-    CGSize textSize = JHTCalcStringSizeWithFontSize(@"9999万", FIRSTFONTTHREE);
+    CGSize textSize = JHTCalcStringSizeWithFontSize(@"9999.999", FIRSTFONTTHREE);
     CGSize textSize2 = JHTCalcStringSizeWithFontSize(_kaibiaohaisheng, FIRSTFONTTHREE);
     [lblTitle2 setAdjustsFontSizeToFitWidth:YES];
     [lblTitle2 sizeToFit];
@@ -272,7 +272,7 @@
 - (void)setToubiaoshu:(NSString *)value {
     _toubiaoshu = NilToEmpty(value);
     lblTitle5.text=_toubiaoshu;
-    CGSize textSize = JHTCalcStringSizeWithFontSize(@"￥10.666", FIRSTFONTTHREE);
+    CGSize textSize = JHTCalcStringSizeWithFontSize(@"￥10.6666", FIRSTFONTTHREE);
     CGSize textSize2 = JHTCalcStringSizeWithFontSize(_toubiaoshu, FIRSTFONTTHREE);
     [lblTitle5 setAdjustsFontSizeToFitWidth:YES];
     [lblTitle5 sizeToFit];
@@ -290,7 +290,7 @@
 - (void) setZhuangzaigang:(NSString *)value {
     _zhuangzaigang = NilToEmpty(value);
     lblZhuangzaigang.text=_zhuangzaigang;
-    CGSize textSize = JHTCalcStringSizeWithFontSize(@"￥10.666", FIRSTFONTTHREE);
+    CGSize textSize = JHTCalcStringSizeWithFontSize(@"￥10.6666", FIRSTFONTTHREE);
     CGSize textSize2 = JHTCalcStringSizeWithFontSize(_zhuangzaigang, FIRSTFONTTHREE);
     [lblZhuangzaigang setAdjustsFontSizeToFitWidth:YES];
     [lblZhuangzaigang sizeToFit];

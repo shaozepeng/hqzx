@@ -88,9 +88,14 @@
 }
 
 - (IBAction)beSure:(id)sender {
-    if(!_card.card_name){
-        _card = aryCountrys[0];
+    if(aryCountrys.count>0){
+        if(!_card.card_name){
+            _card = aryCountrys[0];
+        }
+    }else{
+        return;
     }
+    
     
     WEAK_SELF
     //    [self hideAction:Void_Block(){

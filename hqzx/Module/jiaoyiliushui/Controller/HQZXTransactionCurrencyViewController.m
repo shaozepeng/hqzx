@@ -11,10 +11,16 @@
 @implementation HQZXTransactionCurrencyViewController{
     UIScrollView *_scroll;
     HQZXEmptyManager *hqzxEmptyManager;
+    UIScrollView *_scrollTwo;
+    HQZXEmptyManager *hqzxTwoEmptyManager;
     UIScrollView *_accscroll;
     HQZXEmptyManager *hqzxEmptyManagers;
+    UIScrollView *_accscrollTwo;
+    HQZXEmptyManager *hqzxTwoEmptyManagers;
     UIView *buyView;
+    UIView *buyTwoView;
     UIView *sellView;
+    UIView *sellTwoView;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -25,16 +31,24 @@
     [self clickButton];
     
     [self createScrollView];
+    [self createTwoScrollView];
     [self createAccScrollView];
+    [self createTwoAccScrollView];
     [self createTableTwoView];
     [self createTableView];
+    [self createSellTableTwoView];
+    [self createSellTableView];
     [self createAccTableTwoView];
     [self createAccTableView];
+    [self createOutAccTableTwoView];
+    [self createOutAccTableView];
     HQZXEmptyData(self.myAccTableView, hqzxEmptyManager, nil);
     HQZXEmptyData(self.myAccDataTableView, hqzxEmptyManagers, nil);
 }
 -(void)clickButton{
-    buyView = [[UIView alloc] initWithFrame: CGRectMake(0, TOP_HEIGHT+8, (SCREEN_WIDTH-2)/2, SCREEN_WIDTH/10)];
+    float bsHight = (SCREEN_WIDTH-6)/4;
+    //买入
+    buyView = [[UIView alloc] initWithFrame: CGRectMake(0, TOP_HEIGHT+8, bsHight, SCREEN_WIDTH/10)];
     buyView.backgroundColor = UIColorFromRGB(0x192834);
     [self.view addSubview:buyView];
     
@@ -43,7 +57,7 @@
     [buyView addGestureRecognizer:tapGesture];
     
     UILabel *buylable = [[UILabel alloc] initWithFrame: CGRectMake(1, 1, 1, 1)];
-    buylable.text = LocatizedStirngForkey(@"JIAOYI");
+    buylable.text = LocatizedStirngForkey(@"MAIRU");
     buylable.font = [UIFont systemFontOfSize: TRANSACTIONFTHREE];
     buylable.textColor = [UIColor whiteColor];
     [buyView addSubview: buylable];
@@ -52,7 +66,7 @@
     [buylable setY:(buyView.height-buylable.height)/2];
     
     
-    UIView *buyhenglineoneView = [[UIView alloc] initWithFrame: CGRectMake(0, TOP_HEIGHT+7, (SCREEN_WIDTH-2)/2, 1)];
+    UIView *buyhenglineoneView = [[UIView alloc] initWithFrame: CGRectMake(0, TOP_HEIGHT+7, bsHight, 1)];
     buyhenglineoneView.backgroundColor = UIColorFromRGB(0x141D25);
     [self.view addSubview:buyhenglineoneView];
     
@@ -63,17 +77,17 @@
     UIView *buylinetwoView = [[UIView alloc] initWithFrame: CGRectMake(buylineoneView.maxX, buyView.y, 1, SCREEN_WIDTH/10)];
     buylinetwoView.backgroundColor = UIColorFromRGB(0x0D1318);
     [self.view addSubview:buylinetwoView];
-    
-    sellView = [[UIView alloc] initWithFrame: CGRectMake(buylinetwoView.maxX, buyView.y, (SCREEN_WIDTH-2)/2, SCREEN_WIDTH/10)];
+    //卖出
+    sellView = [[UIView alloc] initWithFrame: CGRectMake(buylinetwoView.maxX, buyView.y, bsHight, SCREEN_WIDTH/10)];
     sellView.backgroundColor = UIColorFromRGB(0x0F151A);
     [self.view addSubview:sellView];
     
     sellView.userInteractionEnabled = YES;
-    UITapGestureRecognizer *tapGesture2=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(sellGe:)];
-    [self.view addGestureRecognizer:tapGesture2];
+    UITapGestureRecognizer *tapGesture2=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(buytwoGe:)];
+    [sellView addGestureRecognizer:tapGesture2];
     
     UILabel *selllable = [[UILabel alloc] initWithFrame: CGRectMake(1, 1, 1, 1)];
-    selllable.text = LocatizedStirngForkey(@"ZHUANGZHANG");
+    selllable.text = LocatizedStirngForkey(@"MAICHU");
     selllable.font = [UIFont systemFontOfSize: TRANSACTIONFTHREE];
     selllable.textColor = [UIColor whiteColor];
     [sellView addSubview: selllable];
@@ -81,10 +95,70 @@
     [selllable setX:(sellView.width-selllable.width)/2];
     [selllable setY:(sellView.height-selllable.height)/2];
     
-    UIView *buyhenglinetwoView = [[UIView alloc] initWithFrame: CGRectMake(buylinetwoView.maxX, TOP_HEIGHT+7, (SCREEN_WIDTH-2)/2, 1)];
+    UIView *buyhenglinetwoView = [[UIView alloc] initWithFrame: CGRectMake(buylinetwoView.maxX, TOP_HEIGHT+7, bsHight, 1)];
     buyhenglinetwoView.backgroundColor = UIColorFromRGB(0x141D25);
     [self.view addSubview:buyhenglinetwoView];
+    
+    UIView *selllineoneView = [[UIView alloc] initWithFrame: CGRectMake(sellView.maxX, sellView.y, 1, SCREEN_WIDTH/10)];
+    buylineoneView.backgroundColor = UIColorFromRGB(0x141D25);
+    [self.view addSubview:buylineoneView];
+    
+    UIView *selllinetwoView = [[UIView alloc] initWithFrame: CGRectMake(selllineoneView.maxX, buyView.y, 1, SCREEN_WIDTH/10)];
+    buylinetwoView.backgroundColor = UIColorFromRGB(0x0D1318);
+    [self.view addSubview:buylinetwoView];
+    //转入
+    buyTwoView = [[UIView alloc] initWithFrame: CGRectMake(selllinetwoView.maxX, sellView.y, bsHight, SCREEN_WIDTH/10)];
+    buyTwoView.backgroundColor = UIColorFromRGB(0x0F151A);
+    [self.view addSubview:buyTwoView];
+    
+    buyTwoView.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tapGesture3=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(sellGe:)];
+    [buyTwoView addGestureRecognizer:tapGesture3];
+    
+    UILabel *buyTwolable = [[UILabel alloc] initWithFrame: CGRectMake(1, 1, 1, 1)];
+    buyTwolable.text = LocatizedStirngForkey(@"ZHUANRU");
+    buyTwolable.font = [UIFont systemFontOfSize: TRANSACTIONFTHREE];
+    buyTwolable.textColor = [UIColor whiteColor];
+    [buyTwoView addSubview: buyTwolable];
+    [buyTwolable sizeToFit];
+    [buyTwolable setX:(buyTwoView.width-buyTwolable.width)/2];
+    [buyTwolable setY:(buyTwoView.height-buyTwolable.height)/2];
+    
+    UIView *buytwohenglinetwoView = [[UIView alloc] initWithFrame: CGRectMake(selllinetwoView.maxX, TOP_HEIGHT+7, bsHight, 1)];
+    buytwohenglinetwoView.backgroundColor = UIColorFromRGB(0x141D25);
+    [self.view addSubview:buytwohenglinetwoView];
+    
+    UIView *selltwolineoneView = [[UIView alloc] initWithFrame: CGRectMake(buyTwoView.maxX, buyTwoView.y, 1, SCREEN_WIDTH/10)];
+    selltwolineoneView.backgroundColor = UIColorFromRGB(0x141D25);
+    [self.view addSubview:selltwolineoneView];
+    
+    UIView *selltwolinetwoView = [[UIView alloc] initWithFrame: CGRectMake(selltwolineoneView.maxX, buyTwoView.y, 1, SCREEN_WIDTH/10)];
+    selltwolinetwoView.backgroundColor = UIColorFromRGB(0x0D1318);
+    [self.view addSubview:selltwolinetwoView];
+    
+    //转出
+    sellTwoView = [[UIView alloc] initWithFrame: CGRectMake(selltwolinetwoView.maxX, buyTwoView.y, bsHight, SCREEN_WIDTH/10)];
+    sellTwoView.backgroundColor = UIColorFromRGB(0x0F151A);
+    [self.view addSubview:sellTwoView];
+    
+    sellTwoView.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tapGesture4=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(selltwoGe:)];
+    [sellTwoView addGestureRecognizer:tapGesture4];
+    
+    UILabel *selltwolable = [[UILabel alloc] initWithFrame: CGRectMake(1, 1, 1, 1)];
+    selltwolable.text = LocatizedStirngForkey(@"ZHUANCHU");
+    selltwolable.font = [UIFont systemFontOfSize: TRANSACTIONFTHREE];
+    selltwolable.textColor = [UIColor whiteColor];
+    [sellTwoView addSubview: selltwolable];
+    [selltwolable sizeToFit];
+    [selltwolable setX:(sellTwoView.width-selltwolable.width)/2];
+    [selltwolable setY:(sellTwoView.height-selltwolable.height)/2];
+    
+    UIView *buysshenglinetwoView = [[UIView alloc] initWithFrame: CGRectMake(selltwolinetwoView.maxX, TOP_HEIGHT+7, bsHight, 1)];
+    buysshenglinetwoView.backgroundColor = UIColorFromRGB(0x141D25);
+    [self.view addSubview:buysshenglinetwoView];
 }
+//买入
 -(void)createScrollView{
     _scroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, TOP_HEIGHT+SCREEN_WIDTH/10+16, SCREEN_WIDTH, SCREEN_HEIGHT-TOP_HEIGHT-SCREEN_WIDTH/10-16) ];
     _scroll.contentSize = CGSizeMake(SCREEN_WIDTH*1.6, SCREEN_HEIGHT-TOP_HEIGHT-SCREEN_WIDTH/10-16);
@@ -100,6 +174,23 @@
     [self.view addSubview:_scroll];
     _scroll.hidden = NO;
 }
+//卖出
+-(void)createTwoScrollView{
+    _scrollTwo = [[UIScrollView alloc] initWithFrame:CGRectMake(0, TOP_HEIGHT+SCREEN_WIDTH/10+16, SCREEN_WIDTH, SCREEN_HEIGHT-TOP_HEIGHT-SCREEN_WIDTH/10-16) ];
+    _scrollTwo.contentSize = CGSizeMake(SCREEN_WIDTH*1.6, SCREEN_HEIGHT-TOP_HEIGHT-SCREEN_WIDTH/10-16);
+    //    _scroll.showsHorizontalScrollIndicator = NO;
+    //    _scroll.showsVerticalScrollIndicator = NO;
+    _scrollTwo.bounces = NO;
+    _scrollTwo.delegate = self;
+    _scrollTwo.backgroundColor = UIColorFromRGB(0x0F151B);
+    //设置边框，形成表格
+    _scrollTwo.layer.borderWidth = .5f;
+    _scrollTwo.layer.borderColor = [UIColor blackColor].CGColor;
+    
+    [self.view addSubview:_scrollTwo];
+    _scrollTwo.hidden = YES;
+}
+//转入
 -(void)createAccScrollView{
     _accscroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, TOP_HEIGHT+SCREEN_WIDTH/10+16, SCREEN_WIDTH, SCREEN_HEIGHT-TOP_HEIGHT-SCREEN_WIDTH/10-16) ];
     _accscroll.contentSize = CGSizeMake(SCREEN_WIDTH*1.5, SCREEN_HEIGHT-TOP_HEIGHT-SCREEN_WIDTH/10-16);
@@ -115,6 +206,23 @@
     [self.view addSubview:_accscroll];
     _accscroll.hidden = YES;
 }
+//转出
+-(void)createTwoAccScrollView{
+    _accscrollTwo = [[UIScrollView alloc] initWithFrame:CGRectMake(0, TOP_HEIGHT+SCREEN_WIDTH/10+16, SCREEN_WIDTH, SCREEN_HEIGHT-TOP_HEIGHT-SCREEN_WIDTH/10-16) ];
+    _accscrollTwo.contentSize = CGSizeMake(SCREEN_WIDTH*1.5, SCREEN_HEIGHT-TOP_HEIGHT-SCREEN_WIDTH/10-16);
+    //    _scroll.showsHorizontalScrollIndicator = NO;
+    //    _scroll.showsVerticalScrollIndicator = NO;
+    _accscrollTwo.bounces = NO;
+    _accscrollTwo.delegate = self;
+    _accscrollTwo.backgroundColor = UIColorFromRGB(0x0F151B);
+    //设置边框，形成表格
+    _accscrollTwo.layer.borderWidth = .5f;
+    _accscrollTwo.layer.borderColor = [UIColor blackColor].CGColor;
+    
+    [self.view addSubview:_accscrollTwo];
+    _accscrollTwo.hidden = YES;
+}
+//买入
 -(void)createTableTwoView{
     UITableView *tableTwoView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0 , SCREEN_WIDTH*1.6, SCREEN_WIDTH/8) style:UITableViewStyleGrouped];
     tableTwoView.scrollEnabled = NO;
@@ -141,6 +249,34 @@
     [self.myAccTableView registerClass:[HQZXDataTranTableCell class] forCellReuseIdentifier:@"CustomHeaderTwo"];
     [_scroll addSubview:self.myAccTableView];
 }
+//卖出
+-(void)createSellTableTwoView{
+    UITableView *tableSellTwoView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0 , SCREEN_WIDTH*1.6, SCREEN_WIDTH/8) style:UITableViewStyleGrouped];
+    tableSellTwoView.scrollEnabled = NO;
+    tableSellTwoView.separatorStyle = UITableViewCellSelectionStyleNone;
+    // 设置tableView的数据源
+    tableSellTwoView.dataSource = self;
+    // 设置tableView的委托
+    tableSellTwoView.delegate = self;
+    tableSellTwoView.backgroundColor = UIColorFromRGB(0x0F151A);
+    self.mySecAccTwoTableView = tableSellTwoView;
+    [self.mySecAccTwoTableView registerClass:[HQZXTransactionTableCell class] forCellReuseIdentifier:@"CustomHeaderOne"];
+    [_scrollTwo addSubview:self.mySecAccTwoTableView];
+}
+-(void)createSellTableView{
+    UITableView *tableSellView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.myAccTwoTableView.maxY , SCREEN_WIDTH*1.6, SCREEN_HEIGHT-TOP_HEIGHT - SCREEN_WIDTH/8) style:UITableViewStyleGrouped];
+    tableSellView.separatorStyle = UITableViewCellSelectionStyleNone;
+    // 设置tableView的数据源
+    tableSellView.dataSource = self;
+    // 设置tableView的委托
+    tableSellView.delegate = self;
+    tableSellView.backgroundColor = UIColorFromRGB(0x0F151A);
+    self.mySecAccTableView = tableSellView;
+    
+    [self.mySecAccTableView registerClass:[HQZXDataTranTableCell class] forCellReuseIdentifier:@"CustomHeaderTwo"];
+    [_scrollTwo addSubview:self.mySecAccTableView];
+}
+//转入
 -(void)createAccTableTwoView{
     UITableView *tableAccTwoView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0 , SCREEN_WIDTH*1.5, SCREEN_WIDTH/8) style:UITableViewStyleGrouped];
     tableAccTwoView.scrollEnabled = NO;
@@ -167,6 +303,33 @@
     [self.myAccDataTableView registerClass:[HQZXDataAccTableCell class] forCellReuseIdentifier:@"CustomAccHeaderTwo"];
     [_accscroll addSubview:self.myAccDataTableView];
 }
+//转出
+-(void)createOutAccTableTwoView{
+    UITableView *tableOutAccTwoView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0 , SCREEN_WIDTH*1.5, SCREEN_WIDTH/8) style:UITableViewStyleGrouped];
+    tableOutAccTwoView.scrollEnabled = NO;
+    tableOutAccTwoView.separatorStyle = UITableViewCellSelectionStyleNone;
+    // 设置tableView的数据源
+    tableOutAccTwoView.dataSource = self;
+    // 设置tableView的委托
+    tableOutAccTwoView.delegate = self;
+    tableOutAccTwoView.backgroundColor = UIColorFromRGB(0x0F151A);
+    self.mySecAccDataTwoTableView = tableOutAccTwoView;
+    [self.mySecAccDataTwoTableView registerClass:[HQZXTransferAccountsTableCell class] forCellReuseIdentifier:@"CustomAccHeaderOne"];
+    [_accscrollTwo addSubview:self.mySecAccDataTwoTableView];
+}
+-(void)createOutAccTableView{
+    UITableView *tableOutAccView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.myAccDataTwoTableView.maxY , SCREEN_WIDTH*1.5, SCREEN_HEIGHT-TOP_HEIGHT - SCREEN_WIDTH/8) style:UITableViewStyleGrouped];
+    tableOutAccView.separatorStyle = UITableViewCellSelectionStyleNone;
+    // 设置tableView的数据源
+    tableOutAccView.dataSource = self;
+    // 设置tableView的委托
+    tableOutAccView.delegate = self;
+    tableOutAccView.backgroundColor = UIColorFromRGB(0x0F151A);
+    self.mySecAccDataTableView = tableOutAccView;
+    
+    [self.mySecAccDataTableView registerClass:[HQZXDataAccTableCell class] forCellReuseIdentifier:@"CustomAccHeaderTwo"];
+    [_accscrollTwo addSubview:self.mySecAccDataTableView];
+}
 // 设置块的高度
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return CGFLOAT_MIN;
@@ -189,9 +352,17 @@
         return 17;
     }else if([tableView isEqual:self.myAccTwoTableView]){
         return 1;
+    }else if([tableView isEqual:self.mySecAccTableView]){
+        return 17;
+    }else if([tableView isEqual:self.mySecAccTwoTableView]){
+        return 1;
     }else if([tableView isEqual:self.myAccDataTableView]){
         return 17;
     }else if([tableView isEqual:self.myAccDataTwoTableView]){
+        return 1;
+    }else if([tableView isEqual:self.mySecAccDataTableView]){
+        return 17;
+    }else if([tableView isEqual:self.mySecAccDataTwoTableView]){
         return 1;
     }
     return 0;
@@ -203,9 +374,17 @@
         cell =[tableView dequeueReusableCellWithIdentifier:@"CustomHeaderTwo"];
     }else if([tableView isEqual:self.myAccTwoTableView]){
         cell =[tableView dequeueReusableCellWithIdentifier:@"CustomHeaderOne"];
+    }else if([tableView isEqual:self.mySecAccTableView]){
+        cell =[tableView dequeueReusableCellWithIdentifier:@"CustomHeaderTwo"];
+    }else if([tableView isEqual:self.mySecAccTwoTableView]){
+        cell =[tableView dequeueReusableCellWithIdentifier:@"CustomHeaderOne"];
     }else if([tableView isEqual:self.myAccDataTableView]){
         cell =[tableView dequeueReusableCellWithIdentifier:@"CustomAccHeaderTwo"];
     }else if([tableView isEqual:self.myAccDataTwoTableView]){
+        cell =[tableView dequeueReusableCellWithIdentifier:@"CustomAccHeaderOne"];
+    }else if([tableView isEqual:self.mySecAccDataTableView]){
+        cell =[tableView dequeueReusableCellWithIdentifier:@"CustomAccHeaderTwo"];
+    }else if([tableView isEqual:self.mySecAccDataTwoTableView]){
         cell =[tableView dequeueReusableCellWithIdentifier:@"CustomAccHeaderOne"];
     }
     
@@ -225,14 +404,44 @@
 - (void)buyGe:(UITapGestureRecognizer *)gesture {
     buyView.backgroundColor = UIColorFromRGB(0x192834);
     sellView.backgroundColor = UIColorFromRGB(0x0F151A);
+    buyTwoView.backgroundColor = UIColorFromRGB(0x0F151A);
+    sellTwoView.backgroundColor = UIColorFromRGB(0x0F151A);
     _scroll.hidden = NO;
+    _scrollTwo.hidden = YES;
     _accscroll.hidden = YES;
+    _accscrollTwo.hidden = YES;
+    
+}
+- (void)buytwoGe:(UITapGestureRecognizer *)gesture {
+    buyView.backgroundColor = UIColorFromRGB(0x0F151A);
+    sellView.backgroundColor = UIColorFromRGB(0x192834);
+    buyTwoView.backgroundColor = UIColorFromRGB(0x0F151A);
+    sellTwoView.backgroundColor = UIColorFromRGB(0x0F151A);
+    _scroll.hidden = YES;
+    _scrollTwo.hidden = NO;
+    _accscroll.hidden = YES;
+    _accscrollTwo.hidden = YES;
     
 }
 - (void)sellGe:(UITapGestureRecognizer *)gesture {
     buyView.backgroundColor = UIColorFromRGB(0x0F151A);
-    sellView.backgroundColor = UIColorFromRGB(0x192834);
+    sellView.backgroundColor = UIColorFromRGB(0x0F151A);
+    buyTwoView.backgroundColor = UIColorFromRGB(0x192834);
+    sellTwoView.backgroundColor = UIColorFromRGB(0x0F151A);
     _scroll.hidden = YES;
+    _scrollTwo.hidden = YES;
     _accscroll.hidden = NO;
+    _accscrollTwo.hidden = YES;
+}
+
+- (void)selltwoGe:(UITapGestureRecognizer *)gesture {
+    buyView.backgroundColor = UIColorFromRGB(0x0F151A);
+    sellView.backgroundColor = UIColorFromRGB(0x0F151A);
+    buyTwoView.backgroundColor = UIColorFromRGB(0x0F151A);
+    sellTwoView.backgroundColor = UIColorFromRGB(0x192834);
+    _scroll.hidden = YES;
+    _scrollTwo.hidden = YES;
+    _accscroll.hidden = YES;
+    _accscrollTwo.hidden = NO;
 }
 @end

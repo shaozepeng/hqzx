@@ -188,10 +188,9 @@
 
 //委托管理
 "CHEXIAO"="撤消";
-"CAOZUO"="操作";
-"ZHUANGTAI"="状态";
-"SHIJIAN"="时间";
-"LEIBIE"="类别";
+"ZTCAOZUO"="状态/操作";
+"WEOTUOSHIJIAN"="委托时间";
+"WEITUOLEIBIE"="委托类别";
 "WEITUOSHULIANG"="委托数量";
 "WEITUOJINE"="委托金额";
 "SHOUXUFEI"="手续费";
@@ -199,7 +198,6 @@
 "CHEGJIAOSHULIANG"="成交数量";
 "CHENGJIAOJINE"="成交金额";
 "PINGJUNCHENGJIAOJIA"="平均成交价";
-"BUQUANXINXI"="补全信息";
 "YINGFUKUAN"="已付款";
 "SHANGWEIFUKUAN"="尚未付款";
 "LISHIWEITUO"="历史委托";
@@ -226,6 +224,20 @@
 "RENMINBISHULIANG"="人民币数量";
 "DUIFANGZHANGHAO"="对方帐号";
 
+//人民币提现、存款
+"XUANZEYINHANGKALEIXING"="选择银行卡类型";
+"QINGSHURENYINHANGKAHAO"="请输入银行卡号";
+"QUERENYINHANGKAHAO"="确认银行卡号";
+"SHOUKUANRENXINGMING"="收款人姓名";
+"QINGSHURUKAIHUZHIHANG"="请输入开户支行";
+"TIXIANJINE"="提现金额";
+"TIXIAN"="提现";
+"JIAOYITIXING"="交易提醒";
+"ZUIGAOXIANE"="1.为了您的帐户安全，每次人民币提现的最高限额为￥5000";
+"ZUIDIXIANE"="2.提现的最低限额为￥100，提现手续费为5%，如果你有更高的需求，请与网站客服联系";
+"YOUSUOYANSHI"="3.提现24小时内到账，银行卡提现不同的银行，实时到账的时间可能会有所延时";
+"ZHUANRU"="转入";
+"ZHUANCHU"="转出";
 
 
 

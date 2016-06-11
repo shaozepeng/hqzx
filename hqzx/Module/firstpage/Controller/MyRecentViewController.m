@@ -19,6 +19,7 @@
     [super viewDidLoad];
     [self.view addSubview:[[UIView alloc] init]];
     
+    _datas = [NSMutableArray array];
     isTouch =YES;
     [self createBarButton:LocatizedStirngForkey(@"LANGUAGE")];
     
@@ -28,18 +29,42 @@
     
     [self initPicScroller];
     [self createTabView];
-    
-    WEAK_SELF
-    self.myTableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        [weakself refData];
-    }];
-    self.myTableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-        [weakself refData];
-    }];
+    [self refData];
+//    WEAK_SELF
+//    self.myTableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+//        [weakself refData];
+//    }];
+//    self.myTableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+//        [weakself refData];
+//    }];
     HQZXEmptyData(self.myTableView, hqzxEmptyManager, nil);
 }
 -(void)refData{
-    [self.myTableView.header endRefreshing];
+    NSString *autokey;
+    if ([HQZXUserModel sharedInstance].isLogined) {
+        autokey = [HQZXUserModel sharedInstance].currentUser.auth_key;
+    }else{
+        autokey = @"0";
+    }
+    [[NetHttpClient sharedHTTPClient] request: @"/index.json" parameters:@{@"auth_key":autokey} completion:^(id obj) {
+        [self.myTableView.header endRefreshing];
+        if (obj==nil) {
+            [self.view makeToast: @"查询服务器失败，请检查网络连接" duration: 0.5 position: CSToastPositionCenter];
+            return;
+        }
+        if (![@"0" isEqualToString: StrValueFromDictionary(obj, ApiKey_ErrorCode)]) {
+            [self.view makeToast: [obj objectForKey:@"message"] duration: 0.5 position: CSToastPositionCenter];
+            return;
+        }
+        
+        [_datas removeAllObjects];
+        if ([obj objectForKey: @"items"] == nil) {
+            
+        } else {
+            [_datas addObjectsFromArray: [obj objectForKey: @"items"]];
+        }
+        [self.myTableView reloadData];
+    }];
 }
 -(void)createBarButton:(NSString *)barTitle{
     temporaryBarButtonItem = [[UIBarButtonItem alloc] init];
@@ -65,6 +90,10 @@
     tableView.dataSource = self;
     // 设置tableView的委托
     tableView.delegate = self;
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(refData) forControlEvents:UIControlEventValueChanged];
+    
+    [tableView addSubview:refreshControl];
     tableView.backgroundColor = UIColorFromRGB(0x0C1319);
     [tableView registerClass:[XQZXFirstPageTableViewCell class] forCellReuseIdentifier:@"wohuoCell"];
     self.myTableView = tableView;
@@ -86,10 +115,10 @@
     return FIRSTHEIGHTONE;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 0;
+    return 1;
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 0;
+    return _datas.count;;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *huoCellIdentifier = @"wohuoCell";
@@ -97,25 +126,74 @@
     cell.wocanyudehuopanxiangqingBlock = ^() {
 
     };
-//    id huobiao;
+    id btbData;
+    if(_datas.count>0){
+        btbData = [_datas objectAtIndex:indexPath.section];
+    }
     
-//    if (huobiao) {
-        cell.rowNum = indexPath.row;
+    if(btbData){
+        cell.rowNum = indexPath.section;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//        cell.imageUrl = [huobiao objectForKey:@"bid_head_img"];
-        cell.title1 = @"比特币(BTC)";
-        cell.title3 = @"￥0.888";
-        cell.title2 = @"+0.250%";
-        cell.toubiaozhuangtai = @"1888.88万";
-        cell.toubiaoshu = @"3999";
-        cell.kaibiaohaisheng = @"￥0.666";
-        cell.zhuangzaigang = @"￥0.999";
-//    }
+        cell.imageUrl = StrValueFromDictionary(btbData, @"img");
+        NSString *language = [USER_DEFAULT objectForKey:kUserLanguage];
+        if([language isEqualToString:@"zh-Hans"]){
+            cell.title1 = StrValueFromDictionary(btbData, @"name");
+        }else if([language isEqualToString:@"en"]){
+            cell.title1 = StrValueFromDictionary(btbData, @"ename");
+        }
+        NSString *price = StrValueFromDictionary(btbData, @"price");
+        NSString *price2;
+        if(price.length>0){
+            price2 = price;
+        }else{
+            price2 = @"0.0000";
+        }
+        cell.title3 = [NSString stringWithFormat:@"￥%@",price2];
+        //        [StrValueFromDictionary(btbData, @"price") intValue]*100
+        
+        cell.title2 = StrValueFromDictionary(btbData, @"ratio");
+        NSString *turnover = StrValueFromDictionary(btbData, @"turnover");
+        NSString *turnover2;
+        if([turnover floatValue]>0){
+            turnover2 = turnover;
+        }else{
+            turnover2 = @"0.0000";
+        }
+        
+        cell.toubiaozhuangtai = turnover2;
+        NSString *min_price = StrValueFromDictionary(btbData, @"min_price");
+        NSString *min_price2;
+        if([min_price floatValue]>0){
+            min_price2 = min_price;
+        }else{
+            min_price2 = @"0.0000";
+        }
+        cell.toubiaoshu = [NSString stringWithFormat:@"￥%@",min_price2];
+        cell.kaibiaohaisheng = StrValueFromDictionary(btbData, @"volume");
+        NSString *max_price = StrValueFromDictionary(btbData, @"max_price");
+        NSString *max_price2;
+        if([max_price floatValue]>0){
+            max_price2 = max_price;
+        }else{
+            max_price2 = @"0.0000";
+        }
+        cell.zhuangzaigang = [NSString stringWithFormat:@"￥%@",max_price2];
+    }
+
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     //push后cell选中效果消失,又动画
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    id btbData;
+    if(_datas.count>0){
+        btbData = [_datas objectAtIndex:indexPath.section];
+    }
+    
+    TransactionFlowViewController *tranView=[[TransactionFlowViewController alloc] init];
+    tranView.symbol = StrValueFromDictionary(btbData, @"symbol");
+    HQZXNeedLoginController *wodetran = [[HQZXNeedLoginController alloc] initWithController: tranView];
+    [wodetran pushFrom: self inNavigationController: rootNav animated: YES];
 }
 
 - (void)createCover{

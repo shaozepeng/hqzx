@@ -68,10 +68,10 @@
         cell.backgroundColor = UIColorFromRGB(0x0F151B);
         NSString *language = [USER_DEFAULT objectForKey:kUserLanguage];
         
-        float cellViewWidth = (cell.width-10)/11.5;
+        float cellViewWidth = (cell.width-9)/11;
         
         //一区
-        oneInfoView = [[UIView alloc] initWithFrame: CGRectMake(0, 0, cellViewWidth, cell.height-1)];
+        oneInfoView = [[UIView alloc] initWithFrame: CGRectMake(0, 0, cellViewWidth*1.5, cell.height-1)];
         oneInfoView.backgroundColor = UIColorFromRGB(0x0F151B);
         [cell addSubview:oneInfoView];
         
@@ -79,12 +79,12 @@
         oneLineView.backgroundColor = UIColorFromRGB(0x141D26);
         [cell addSubview:oneLineView];
         
-        oneBonLineView = [[UIView alloc] initWithFrame: CGRectMake(oneInfoView.x, oneInfoView.maxY, cellViewWidth, 1)];
+        oneBonLineView = [[UIView alloc] initWithFrame: CGRectMake(oneInfoView.x, oneInfoView.maxY, cellViewWidth*1.5, 1)];
         oneBonLineView.backgroundColor = UIColorFromRGB(0x141D26);
         [cell addSubview:oneBonLineView];
         
         oneLable = [[UILabel alloc] initWithFrame: CGRectMake(1, 1, 1, 1)];
-        oneLable.text = LocatizedStirngForkey(@"CAOZUO");
+        oneLable.text = LocatizedStirngForkey(@"ZTCAOZUO");
         oneLable.textColor = UIColorFromRGB(0x2E6ED0);
         oneLable.font = [UIFont systemFontOfSize: FIRSTFONTONE];
         [oneInfoView addSubview: oneLable];
@@ -93,7 +93,7 @@
         [oneLable setY:(oneInfoView.height-oneLable.height)/2];
         
         //二区
-        twoInfoView = [[UIView alloc] initWithFrame: CGRectMake(oneLineView.maxX, 0, cellViewWidth, cell.height-1)];
+        twoInfoView = [[UIView alloc] initWithFrame: CGRectMake(oneLineView.maxX, 0, cellViewWidth*1.5, cell.height-1)];
         twoInfoView.backgroundColor = UIColorFromRGB(0x0F151B);
         [cell addSubview:twoInfoView];
         
@@ -101,21 +101,33 @@
         twoLineView.backgroundColor = UIColorFromRGB(0x141D26);
         [cell addSubview:twoLineView];
         
-        twoBonLineView = [[UIView alloc] initWithFrame: CGRectMake(twoInfoView.x, twoInfoView.maxY, cellViewWidth, 1)];
+        twoBonLineView = [[UIView alloc] initWithFrame: CGRectMake(twoInfoView.x, twoInfoView.maxY, cellViewWidth*1.5, 1)];
         twoBonLineView.backgroundColor = UIColorFromRGB(0x141D26);
         [cell addSubview:twoBonLineView];
         
         twoLable = [[UILabel alloc] initWithFrame: CGRectMake(1, 1, 1, 1)];
-        twoLable.text = LocatizedStirngForkey(@"ZHUANGTAI");
+        twoLable.text = LocatizedStirngForkey(@"WEOTUOSHIJIAN");
         twoLable.textColor = UIColorFromRGB(0x2E6ED0);
         twoLable.font = [UIFont systemFontOfSize: FIRSTFONTONE];
         [twoInfoView addSubview: twoLable];
         [twoLable sizeToFit];
-        [twoLable setX:(twoInfoView.width-twoLable.width)/2];
-        [twoLable setY:(twoInfoView.height-twoLable.height)/2];
+        
+        if([language isEqualToString:@"zh-Hans"]){
+            [twoLable setX:(twoInfoView.width-twoLable.width)/2];
+            [twoLable setY:(twoInfoView.height-twoLable.height)/2];
+        }else if([language isEqualToString:@"en"]){
+            twoLable.lineBreakMode = NSLineBreakByCharWrapping;
+            twoLable.numberOfLines = 0;
+            twoLable.font = [UIFont systemFontOfSize: 11];
+            [twoLable setW:twoInfoView.width-4];
+            [twoLable setH:twoInfoView.height-6];
+            [twoLable setX:2];
+            [twoLable setY:3];
+        }
+        
         
         //三区
-        threeInfoView = [[UIView alloc] initWithFrame: CGRectMake(twoLineView.maxX, 0, cellViewWidth*1.5, cell.height-1)];
+        threeInfoView = [[UIView alloc] initWithFrame: CGRectMake(twoLineView.maxX, 0, cellViewWidth, cell.height-1)];
         threeInfoView.backgroundColor = UIColorFromRGB(0x0F151B);
         [cell addSubview:threeInfoView];
         
@@ -123,12 +135,12 @@
         threeLineView.backgroundColor = UIColorFromRGB(0x141D26);
         [cell addSubview:threeLineView];
         
-        threeBonLineView = [[UIView alloc] initWithFrame: CGRectMake(threeInfoView.x, threeInfoView.maxY, cellViewWidth*1.5, 1)];
+        threeBonLineView = [[UIView alloc] initWithFrame: CGRectMake(threeInfoView.x, threeInfoView.maxY, cellViewWidth, 1)];
         threeBonLineView.backgroundColor = UIColorFromRGB(0x141D26);
         [cell addSubview:threeBonLineView];
         
         threeLable = [[UILabel alloc] initWithFrame: CGRectMake(1, 1, 1, 1)];
-        threeLable.text = LocatizedStirngForkey(@"SHIJIAN");
+        threeLable.text = LocatizedStirngForkey(@"WEITUOLEIBIE");
         threeLable.textColor = UIColorFromRGB(0x2E6ED0);
         threeLable.font = [UIFont systemFontOfSize: FIRSTFONTONE];
         [threeInfoView addSubview: threeLable];
@@ -150,13 +162,25 @@
         [cell addSubview:foreBonLineView];
         
         foreLable = [[UILabel alloc] initWithFrame: CGRectMake(1, 1, 1, 1)];
-        foreLable.text = LocatizedStirngForkey(@"LEIBIE");
+        foreLable.text = LocatizedStirngForkey(@"WEITUOSHULIANG");
         foreLable.textColor = UIColorFromRGB(0x2E6ED0);
         foreLable.font = [UIFont systemFontOfSize: FIRSTFONTONE];
         [foreInfoView addSubview: foreLable];
         [foreLable sizeToFit];
-        [foreLable setX:(foreInfoView.width-foreLable.width)/2];
-        [foreLable setY:(foreInfoView.height-foreLable.height)/2];
+        
+        if([language isEqualToString:@"zh-Hans"]){
+            [foreLable setX:(foreInfoView.width-foreLable.width)/2];
+            [foreLable setY:(foreInfoView.height-foreLable.height)/2];
+        }else if([language isEqualToString:@"en"]){
+            foreLable.lineBreakMode = NSLineBreakByCharWrapping;
+            foreLable.numberOfLines = 0;
+            foreLable.font = [UIFont systemFontOfSize: 11];
+            [foreLable setW:foreInfoView.width-4];
+            [foreLable setH:foreInfoView.height-6];
+            [foreLable setX:2];
+            [foreLable setY:3];
+        }
+        
         
         //五区
         fiveInfoView = [[UIView alloc] initWithFrame: CGRectMake(foreLineView.maxX, 0, cellViewWidth, cell.height-1)];
@@ -172,7 +196,7 @@
         [cell addSubview:fiveBonLineView];
         
         fiveLable = [[UILabel alloc] initWithFrame: CGRectMake(1, 1, 1, 1)];
-        fiveLable.text = LocatizedStirngForkey(@"WEITUOSHULIANG");
+        fiveLable.text = LocatizedStirngForkey(@"WEITUOJINE");
         fiveLable.textColor = UIColorFromRGB(0x2E6ED0);
         fiveLable.font = [UIFont systemFontOfSize: FIRSTFONTONE];
         [fiveInfoView addSubview: fiveLable];
@@ -207,7 +231,7 @@
         [cell addSubview:sixBonLineView];
         
         sixLable = [[UILabel alloc] initWithFrame: CGRectMake(1, 1, 1, 1)];
-        sixLable.text = LocatizedStirngForkey(@"WEITUOJINE");
+        sixLable.text = LocatizedStirngForkey(@"SHOUXUFEI");
         sixLable.textColor = UIColorFromRGB(0x2E6ED0);
         sixLable.font = [UIFont systemFontOfSize: FIRSTFONTONE];
         [sixInfoView addSubview: sixLable];
@@ -242,7 +266,7 @@
         [cell addSubview:sevenBonLineView];
         
         sevenLable = [[UILabel alloc] initWithFrame: CGRectMake(1, 1, 1, 1)];
-        sevenLable.text = LocatizedStirngForkey(@"SHOUXUFEI");
+        sevenLable.text = LocatizedStirngForkey(@"WEITUOJIAGE");
         sevenLable.textColor = UIColorFromRGB(0x2E6ED0);
         sevenLable.font = [UIFont systemFontOfSize: FIRSTFONTONE];
         [sevenInfoView addSubview: sevenLable];
@@ -277,7 +301,7 @@
         [cell addSubview:eightBonLineView];
         
         eightLable = [[UILabel alloc] initWithFrame: CGRectMake(1, 1, 1, 1)];
-        eightLable.text = LocatizedStirngForkey(@"WEITUOJIAGE");
+        eightLable.text = LocatizedStirngForkey(@"CHEGJIAOSHULIANG");
         eightLable.textColor = UIColorFromRGB(0x2E6ED0);
         eightLable.font = [UIFont systemFontOfSize: FIRSTFONTONE];
         [eightInfoView addSubview: eightLable];
@@ -312,7 +336,7 @@
         [cell addSubview:nineBonLineView];
         
         nineLable = [[UILabel alloc] initWithFrame: CGRectMake(1, 1, 1, 1)];
-        nineLable.text = LocatizedStirngForkey(@"CHEGJIAOSHULIANG");
+        nineLable.text = LocatizedStirngForkey(@"CHENGJIAOJINE");
         nineLable.textColor = UIColorFromRGB(0x2E6ED0);
         nineLable.font = [UIFont systemFontOfSize: FIRSTFONTONE];
         [nineInfoView addSubview: nineLable];
@@ -347,7 +371,7 @@
         [cell addSubview:tenBonLineView];
         
         tenLable = [[UILabel alloc] initWithFrame: CGRectMake(1, 1, 1, 1)];
-        tenLable.text = LocatizedStirngForkey(@"CHENGJIAOJINE");
+        tenLable.text = LocatizedStirngForkey(@"PINGJUNCHENGJIAOJIA");
         tenLable.textColor = UIColorFromRGB(0x2E6ED0);
         tenLable.font = [UIFont systemFontOfSize: FIRSTFONTONE];
         [tenInfoView addSubview: tenLable];
@@ -367,33 +391,33 @@
         }
  
         //十一区
-        elevenInfoView = [[UIView alloc] initWithFrame: CGRectMake(tenLineView.maxX, 0, cellViewWidth, cell.height-1)];
-        elevenInfoView.backgroundColor = UIColorFromRGB(0x0F151B);
-        [cell addSubview:elevenInfoView];
-        
-        elevenBonLineView = [[UIView alloc] initWithFrame: CGRectMake(elevenInfoView.x, elevenInfoView.maxY, cellViewWidth, 1)];
-        elevenBonLineView.backgroundColor = UIColorFromRGB(0x141D26);
-        [cell addSubview:elevenBonLineView];
-        
-        elevenLable = [[UILabel alloc] initWithFrame: CGRectMake(1, 1, 1, 1)];
-        elevenLable.text = LocatizedStirngForkey(@"PINGJUNCHENGJIAOJIA");
-        elevenLable.textColor = UIColorFromRGB(0x2E6ED0);
-        elevenLable.font = [UIFont systemFontOfSize: FIRSTFONTONE];
-        [elevenInfoView addSubview: elevenLable];
-        [elevenLable sizeToFit];
-        
-        if([language isEqualToString:@"zh-Hans"]){
-            [elevenLable setX:(elevenInfoView.width-elevenLable.width)/2];
-            [elevenLable setY:(elevenInfoView.height-elevenLable.height)/2];
-        }else if([language isEqualToString:@"en"]){
-            elevenLable.lineBreakMode = NSLineBreakByCharWrapping;
-            elevenLable.numberOfLines = 0;
-            elevenLable.font = [UIFont systemFontOfSize: 11];
-            [elevenLable setW:elevenInfoView.width-4];
-            [elevenLable setH:elevenInfoView.height-6];
-            [elevenLable setX:2];
-            [elevenLable setY:3];
-        }
+//        elevenInfoView = [[UIView alloc] initWithFrame: CGRectMake(tenLineView.maxX, 0, cellViewWidth, cell.height-1)];
+//        elevenInfoView.backgroundColor = UIColorFromRGB(0x0F151B);
+//        [cell addSubview:elevenInfoView];
+//        
+//        elevenBonLineView = [[UIView alloc] initWithFrame: CGRectMake(elevenInfoView.x, elevenInfoView.maxY, cellViewWidth, 1)];
+//        elevenBonLineView.backgroundColor = UIColorFromRGB(0x141D26);
+//        [cell addSubview:elevenBonLineView];
+//        
+//        elevenLable = [[UILabel alloc] initWithFrame: CGRectMake(1, 1, 1, 1)];
+//        elevenLable.text = LocatizedStirngForkey(@"PINGJUNCHENGJIAOJIA");
+//        elevenLable.textColor = UIColorFromRGB(0x2E6ED0);
+//        elevenLable.font = [UIFont systemFontOfSize: FIRSTFONTONE];
+//        [elevenInfoView addSubview: elevenLable];
+//        [elevenLable sizeToFit];
+//        
+//        if([language isEqualToString:@"zh-Hans"]){
+//            [elevenLable setX:(elevenInfoView.width-elevenLable.width)/2];
+//            [elevenLable setY:(elevenInfoView.height-elevenLable.height)/2];
+//        }else if([language isEqualToString:@"en"]){
+//            elevenLable.lineBreakMode = NSLineBreakByCharWrapping;
+//            elevenLable.numberOfLines = 0;
+//            elevenLable.font = [UIFont systemFontOfSize: 11];
+//            [elevenLable setW:elevenInfoView.width-4];
+//            [elevenLable setH:elevenInfoView.height-6];
+//            [elevenLable setX:2];
+//            [elevenLable setY:3];
+//        }
         
         [self addSubview: cell];
     }

@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "XQZXCommonAlert.h"
-//#import "JHTDropSelectView.h"
-//#import "JHTDictionary.h"
 #import "HQZXCountry.h"
 typedef void (^Void_Block)(void);
 #define Void_Block() ^void ()

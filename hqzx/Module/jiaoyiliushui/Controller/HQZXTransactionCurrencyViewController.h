@@ -15,6 +15,10 @@
 @interface HQZXTransactionCurrencyViewController : UIViewController<UIScrollViewDelegate,UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, retain) UITableView *myAccTableView;
 @property (nonatomic, retain) UITableView *myAccTwoTableView;
+@property (nonatomic, retain) UITableView *mySecAccTableView;
+@property (nonatomic, retain) UITableView *mySecAccTwoTableView;
 @property (nonatomic, retain) UITableView *myAccDataTableView;
 @property (nonatomic, retain) UITableView *myAccDataTwoTableView;
+@property (nonatomic, retain) UITableView *mySecAccDataTableView;
+@property (nonatomic, retain) UITableView *mySecAccDataTwoTableView;
 @end

@@ -18,4 +18,5 @@
 
 @interface MyRecentViewController :UIViewController<SDCycleScrollViewDelegate,UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, retain) UITableView *myTableView;
+@property NSMutableArray *datas;
 @end

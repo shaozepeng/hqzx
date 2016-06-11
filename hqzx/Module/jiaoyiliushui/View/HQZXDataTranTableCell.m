@@ -140,9 +140,9 @@
         twoLable.text = LocatizedStirngForkey(@"SHANGWEIFUKUAN");
         twoLable.textColor = UIColorFromRGB(0xE0E2E2);
         if([language isEqualToString:@"zh-Hans"]){
-            twoLable.font = [UIFont systemFontOfSize: DATAFONTTHREE];
+            twoLable.font = [UIFont systemFontOfSize: DATAFONTTHREES];
         }else if([language isEqualToString:@"en"]){
-            twoLable.font = [UIFont systemFontOfSize: DATAFONTONE];
+            twoLable.font = [UIFont systemFontOfSize: DATAFONTTHREES];
         }
         [twoInfoView addSubview: twoLable];
         [twoLable sizeToFit];

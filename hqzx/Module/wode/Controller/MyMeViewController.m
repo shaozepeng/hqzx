@@ -375,8 +375,8 @@
 //            //            LivePlayPushs *wodehuobiao=[[LivePlayPushs alloc]init];
 //            [self.navigationController pushViewController:wodehuobiao animated:YES];
         } else if (indexPath.row == 1) {
-//            HQZXRMBWithdrawalsViewController *rmbtixian = [[HQZXRMBWithdrawalsViewController alloc] init];
-//            [self.navigationController pushViewController:rmbtixian animated: YES];
+            HQZXRMBWithdrawalsViewController *rmbtixian = [[HQZXRMBWithdrawalsViewController alloc] init];
+            [rootNav pushViewController:rmbtixian animated: YES];
         } else if(indexPath.row==2){
 //            JHTWoDeChuanBoViewController *wodechuanbo=[[JHTWoDeChuanBoViewController alloc]init];
 //            [self.navigationController pushViewController:wodechuanbo animated:YES];
@@ -387,7 +387,7 @@
     }
     if(indexPath.section==3){
         if(indexPath.row==0){
-            HQZXEntrustManagementViewController *weituo=[[HQZXEntrustManagementViewController alloc]init];
+            HQZXChooseCurViewController *weituo=[[HQZXChooseCurViewController alloc]init];
             [rootNav pushViewController:weituo animated:YES];
         }
         if(indexPath.row==1){

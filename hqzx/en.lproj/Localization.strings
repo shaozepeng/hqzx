@@ -185,10 +185,9 @@
 
 //委托管理
 "CHEXIAO"="Undo";
-"CAOZUO"="Operation";
-"ZHUANGTAI"="State";
-"SHIJIAN"="Time";
-"LEIBIE"="Category";
+"ZTCAOZUO"="Status/operation";
+"WEOTUOSHIJIAN"="Commission time";
+"WEITUOLEIBIE"="Delegate class";
 "WEITUOSHULIANG"="Number of commission";
 "WEITUOJINE"="Amount of commission";
 "SHOUXUFEI"="Counter Fee";
@@ -196,7 +195,6 @@
 "CHEGJIAOSHULIANG"="Number of transactions";
 "CHENGJIAOJINE"="Transaction amount";
 "PINGJUNCHENGJIAOJIA"="Average transaction price";
-"BUQUANXINXI"="Complete information";
 "YINGFUKUAN"="Already paid";
 "SHANGWEIFUKUAN"="Not yet paid";
 "LISHIWEITUO"="Historical Commission";
@@ -222,6 +220,21 @@
 "XUNIBISHULIANG"="Amount of virtual currency";
 "RENMINBISHULIANG"="RMB quantity";
 "DUIFANGZHANGHAO"="Each other account";
+
+//人民币提现、存款
+"XUANZEYINHANGKALEIXING"="Select the type of bank card";
+"QINGSHURENYINHANGKAHAO"="Please enter the bank card number";
+"QUERENYINHANGKAHAO"="Confirm bank card number";
+"SHOUKUANRENXINGMING"="Name of beneficiary";
+"QINGSHURUKAIHUZHIHANG"="Please enter a sub branch";
+"TIXIANJINE"="Cash withdrawal amount";
+"TIXIAN"="Withdrawals";
+"JIAOYITIXING"="Transaction alerts";
+"ZUIGAOXIANE"="1 for the safety of your account, every time the maximum amount of RMB cash for $5000";
+"ZUIDIXIANE"="2 is the minimum amount of $100, the fee is 5%, if you have a higher demand, please contact with the customer service website";
+"YOUSUOYANSHI"="3 withdrawals within 24 hours of arrival, bank card withdrawals from bank to bank, real-time arrival time may be delayed";
+"ZHUANRU"="To change into";
+"ZHUANCHU"="Turn out";
 
 
 

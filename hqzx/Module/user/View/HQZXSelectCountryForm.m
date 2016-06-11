@@ -88,8 +88,12 @@
 }
 
 - (IBAction)beSure:(id)sender {
-    if(!_country.country_id){
-        _country = aryCountrys[0];
+    if(aryCountrys.count>0){
+        if(!_country.country_id){
+            _country = aryCountrys[0];
+        }
+    }else{
+        return;
     }
     
     WEAK_SELF

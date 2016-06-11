@@ -237,14 +237,14 @@
     [lblskmxyb sizeToFit];
     [lblkmxyb sizeToFit];
     [lblkmrmb sizeToFit];
-    CGSize textSize551 = JHTCalcStringSizeWithFontSize(@"1888.88万", TRANSACTIONFTWO);
     NSString *buyPrice = [NSString stringWithFormat:@"￥%@",StrValueFromDictionary(buyDict, @"price")];
+    CGSize textSize566 = JHTCalcStringSizeWithFontSize(@"￥3.229", FIRSTFONTTHREE);
     CGSize textSize552 = JHTCalcStringSizeWithFontSize(buyPrice, FIRSTFONTTHREE);
     [lblbuyyivalue setAdjustsFontSizeToFitWidth:YES];
     [lblbuyyivalue sizeToFit];
-    if(textSize552.width>textSize551.width){
-        [lblbuyyivalue setW:textSize551.width];
-        [lblbuyyivalue setH:textSize551.height];
+    if(textSize552.width>textSize566.width){
+        [lblbuyyivalue setW:textSize566.width];
+        [lblbuyyivalue setH:textSize566.height];
     }
     [lblbuyyivalue setX:lblbuyyitext.maxX];
     [lblbuyyivalue setY:lblbuyyitext.y];
@@ -252,13 +252,13 @@
     CGSize textSize562 = JHTCalcStringSizeWithFontSize(sellPrice, FIRSTFONTTHREE);
     [lblsellyivalue setAdjustsFontSizeToFitWidth:YES];
     [lblsellyivalue sizeToFit];
-    if(textSize562.width>textSize551.width){
-        [lblsellyivalue setW:textSize551.width];
-        [lblsellyivalue setH:textSize551.height];
+    if(textSize562.width>textSize566.width){
+        [lblsellyivalue setW:textSize566.width];
+        [lblsellyivalue setH:textSize566.height];
     }
     [lblsellyivalue setX:lblsellyitext.maxX];
     [lblsellyivalue setY:lblbuyyitext.y];
-    CGSize textSize51 = JHTCalcStringSizeWithFontSize(@"1888.88万", FIRSTFONTTHREE);
+    CGSize textSize51 = JHTCalcStringSizeWithFontSize(@"1888.8888万", FIRSTFONTTHREE);
     CGSize textSize522 = JHTCalcStringSizeWithFontSize(StrValueFromDictionary(_dataDict, @"max_price"), FIRSTFONTTHREE);
     [lblZhuangzaigang setAdjustsFontSizeToFitWidth:YES];
     [lblZhuangzaigang sizeToFit];
@@ -266,7 +266,7 @@
         [lblZhuangzaigang setW:textSize51.width];
         [lblZhuangzaigang setH:textSize51.height];
     }
-    [lblZhuangzaigang setX:SCREEN_WIDTH*0.75];
+    [lblZhuangzaigang setX:SCREEN_WIDTH*0.7];
     [lblZhuangzaigang setY:lblZhuangzaigang1.maxY+toolView.height/10];
     CGSize textSize52 = JHTCalcStringSizeWithFontSize(StrValueFromDictionary(_dataDict, @"min_price"), FIRSTFONTTHREE);
     [lblTitle5 setAdjustsFontSizeToFitWidth:YES];
@@ -275,7 +275,7 @@
         [lblTitle5 setW:textSize51.width];
         [lblTitle5 setH:textSize51.height];
     }
-    [lblTitle5 setX:SCREEN_WIDTH*0.5];
+    [lblTitle5 setX:SCREEN_WIDTH*0.35];
     [lblTitle5 setY:lblTitle51.maxY+toolView.height/10];
     CGSize textSize22 = JHTCalcStringSizeWithFontSize(StrValueFromDictionary(_dataDict, @"volume"), FIRSTFONTTHREE);
     [lblTitle2 setAdjustsFontSizeToFitWidth:YES];
@@ -284,7 +284,7 @@
         [lblTitle2 setW:textSize51.width];
         [lblTitle2 setH:textSize51.height];
     }
-    [lblTitle2 setX:SCREEN_WIDTH*0.3];
+    [lblTitle2 setX:imageView.x+imageView.width/IMAGELEFT+COMMON_H_MARGIN];
     [lblTitle2 setY:lblTitle21.maxY+toolView.height/10];
     CGSize textSize2 = JHTCalcStringSizeWithFontSize(StrValueFromDictionary(_dataDict, @"turnover"), FIRSTFONTTHREE);
     [lblTitle3 setAdjustsFontSizeToFitWidth:YES];
@@ -298,8 +298,16 @@
     [lblTitle1 sizeToFit];
     [lblTitle1 setX:imageView.maxX + SCREEN_WIDTH/50];
     [lblTitle1 setY:imageView.y+(imageView.height-lblTitle1.height)/2];
+    
+    CGSize textSize112 = JHTCalcStringSizeWithFontSize(@"￥3.2293", FIRSTFONTTWO);
+    CGSize textSize110 = JHTCalcStringSizeWithFontSize(buyPrice, FIRSTFONTTWO);
+    [lblTitle4 setAdjustsFontSizeToFitWidth:YES];
     [lblTitle4 sizeToFit];
-    [lblTitle4 setX:SCREEN_WIDTH*0.55];
+    if(textSize110.width>textSize112.width){
+        [lblTitle4 setW:textSize112.width];
+        [lblTitle4 setH:textSize112.height];
+    }
+    [lblTitle4 setX:SCREEN_WIDTH*0.53];
     [lblTitle4 setY:lblTitle1.y];
 }
 -(void)createBBDetailView{
@@ -359,29 +367,29 @@
     toolView.backgroundColor = UIColorFromRGB(0x0D161C);
     [scrollView addSubview:toolView];
     //        #7D8285
-    lblTitle31 = [[UILabel alloc] initWithFrame: CGRectMake(1, 1, 1, 1)];
-    lblTitle31.text = LocatizedStirngForkey(@"CHENGJIAOE");
-    [toolView addSubview: lblTitle31];
-    lblTitle31.font = [UIFont systemFontOfSize: FIRSTFONTTHREE];
-    lblTitle31.textColor = UIColorFromRGB(0x7D8285);
-    [lblTitle31 sizeToFit];
-    NSString *language = [USER_DEFAULT objectForKey:kUserLanguage];
-    if([language isEqualToString:@"zh-Hans"]){
-        [lblTitle31 setX:imageView.x+imageView.width/IMAGELEFT+COMMON_H_MARGIN];
-    }else if([language isEqualToString:@"en"]){
-        [lblTitle31 setX:imageView.width/IMAGELEFT];
-    }
-    
-    [lblTitle31 setY:toolView.height/5];
-    
-    lblTitle3 = [[UILabel alloc] initWithFrame: CGRectMake(1, 1, 1, 1)];
-    lblTitle3.text = LocatizedStirngForkey(@"JIAZAIZHONGQ");
-    lblTitle3.textColor = UIColorFromRGB(0x7D8285);
-    [toolView addSubview: lblTitle3];
-    lblTitle3.font = [UIFont systemFontOfSize: FIRSTFONTTHREE];
-    [lblTitle3 sizeToFit];
-    [lblTitle3 setX:lblTitle31.x];
-    [lblTitle3 setY:lblTitle31.maxY+toolView.height/10];
+//    lblTitle31 = [[UILabel alloc] initWithFrame: CGRectMake(1, 1, 1, 1)];
+//    lblTitle31.text = LocatizedStirngForkey(@"CHENGJIAOE");
+//    [toolView addSubview: lblTitle31];
+//    lblTitle31.font = [UIFont systemFontOfSize: FIRSTFONTTHREE];
+//    lblTitle31.textColor = UIColorFromRGB(0x7D8285);
+//    [lblTitle31 sizeToFit];
+//    NSString *language = [USER_DEFAULT objectForKey:kUserLanguage];
+//    if([language isEqualToString:@"zh-Hans"]){
+//        [lblTitle31 setX:imageView.x+imageView.width/IMAGELEFT+COMMON_H_MARGIN];
+//    }else if([language isEqualToString:@"en"]){
+//        [lblTitle31 setX:imageView.width/IMAGELEFT];
+//    }
+//    
+//    [lblTitle31 setY:toolView.height/5];
+//    
+//    lblTitle3 = [[UILabel alloc] initWithFrame: CGRectMake(1, 1, 1, 1)];
+//    lblTitle3.text = LocatizedStirngForkey(@"JIAZAIZHONGQ");
+//    lblTitle3.textColor = UIColorFromRGB(0x7D8285);
+//    [toolView addSubview: lblTitle3];
+//    lblTitle3.font = [UIFont systemFontOfSize: FIRSTFONTTHREE];
+//    [lblTitle3 sizeToFit];
+//    [lblTitle3 setX:lblTitle31.x];
+//    [lblTitle3 setY:lblTitle31.maxY+toolView.height/10];
     
     lblTitle21 = [[UILabel alloc] initWithFrame: CGRectMake(1, 1, 1, 1)];
     lblTitle21.text = LocatizedStirngForkey(@"CHENGJIAOLIANG");
@@ -389,7 +397,7 @@
     lblTitle21.font = [UIFont systemFontOfSize: FIRSTFONTTHREE];
     [toolView addSubview: lblTitle21];
     [lblTitle21 sizeToFit];
-    [lblTitle21 setX:SCREEN_WIDTH*0.3];
+    [lblTitle21 setX:imageView.x+imageView.width/IMAGELEFT+COMMON_H_MARGIN];
     [lblTitle21 setY:toolView.height/5];
     
     lblTitle2 = [[UILabel alloc] initWithFrame: CGRectMake(1, 1, 1, 1)];
@@ -398,7 +406,7 @@
     lblTitle2.font = [UIFont systemFontOfSize: FIRSTFONTTHREE];
     [toolView addSubview: lblTitle2];
     [lblTitle2 sizeToFit];
-    [lblTitle2 setX:SCREEN_WIDTH*0.3];
+    [lblTitle2 setX:lblTitle21.x];
     [lblTitle2 setY:lblTitle21.maxY+toolView.height/10];
     
     lblTitle51 = [[UILabel alloc] initWithFrame: CGRectMake(1, 1, 1, 1)];
@@ -407,7 +415,7 @@
     lblTitle51.font = [UIFont systemFontOfSize: FIRSTFONTTHREE];
     [toolView addSubview: lblTitle51];
     [lblTitle51 sizeToFit];
-    [lblTitle51 setX:SCREEN_WIDTH*IMAGELEFTTWO];
+    [lblTitle51 setX:SCREEN_WIDTH*0.35];
     [lblTitle51 setY:toolView.height/5];
     
     lblTitle5 = [[UILabel alloc] initWithFrame: CGRectMake(1, 1, 1, 1)];
@@ -416,7 +424,7 @@
     lblTitle5.font = [UIFont systemFontOfSize: FIRSTFONTTHREE];
     [toolView addSubview: lblTitle5];
     [lblTitle5 sizeToFit];
-    [lblTitle5 setX:SCREEN_WIDTH*0.5];
+    [lblTitle5 setX:SCREEN_WIDTH*0.35];
     [lblTitle5 setY:lblTitle51.maxY+toolView.height/10];
     
     lblZhuangzaigang1 = [[UILabel alloc] initWithFrame: CGRectMake(1, 1, 1, 1)];
@@ -425,7 +433,7 @@
     lblZhuangzaigang1.font = [UIFont systemFontOfSize: FIRSTFONTTHREE];
     [toolView addSubview: lblZhuangzaigang1];
     [lblZhuangzaigang1 sizeToFit];
-    [lblZhuangzaigang1 setX:SCREEN_WIDTH*IMAGELEFTTHREE];
+    [lblZhuangzaigang1 setX:SCREEN_WIDTH*0.7];
     [lblZhuangzaigang1 setY:toolView.height/5];
     
     lblZhuangzaigang = [[UILabel alloc] initWithFrame: CGRectMake(1, 1, 1, 1)];
@@ -434,7 +442,7 @@
     lblZhuangzaigang.textColor = UIColorFromRGB(0x7D8285);
     [toolView addSubview: lblZhuangzaigang];
     [lblZhuangzaigang sizeToFit];
-    [lblZhuangzaigang setX:SCREEN_WIDTH*0.75];
+    [lblZhuangzaigang setX:SCREEN_WIDTH*0.7];
     [lblZhuangzaigang setY:lblZhuangzaigang1.maxY+toolView.height/10];
     
     toolTwoView = [[UIView alloc] initWithFrame: CGRectMake(0, toolView.maxY, scrollView.width, (DATRANHEIGHTONE - linetwo.maxY)*0.8)];

@@ -20,6 +20,7 @@
 #import "HQZXRealNameAuthenticationViewController.h"
 #import "HQZXUserModel.h"
 #import "HQZXEntrustManagementViewController.h"
+#import "HQZXChooseCurViewController.h"
 #import "HQZXReceivablesViewController.h"
 #import "HQZXPaymentViewController.h"
 #import "SYQrCode.h"

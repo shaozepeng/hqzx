@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NewFeature_1" translatesAutoresizingMaskIntoConstraints="NO" id="RGl-Z2-dMe">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="whiteBG.png" translatesAutoresizingMaskIntoConstraints="NO" id="RGl-Z2-dMe" customClass="FLAnimatedImageView">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
                         </subviews>
@@ -28,6 +28,11 @@
                             <constraint firstItem="RGl-Z2-dMe" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="bj2-xG-0dF"/>
                             <constraint firstItem="RGl-Z2-dMe" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="cVU-qk-WLd"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="RGl-Z2-dMe"/>
+                            </mask>
+                        </variation>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -36,6 +41,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="NewFeature_1" width="640" height="960"/>
+        <image name="whiteBG.png" width="1024" height="1024"/>
     </resources>
 </document>

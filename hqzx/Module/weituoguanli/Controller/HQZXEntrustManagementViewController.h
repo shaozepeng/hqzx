@@ -17,6 +17,8 @@
 @property (nonatomic, strong) NSArray *arrX;
 /** y方向数据*/
 @property (nonatomic, strong) NSArray *arrY;
+@property (nonatomic, strong) NSMutableArray *datas;
 @property (nonatomic, retain) UITableView *myTableView;
 @property (nonatomic, retain) UITableView *myTwoTableView;
+@property (strong, nonatomic) NSString *sysId;
 @end

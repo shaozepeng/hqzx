@@ -153,22 +153,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "hqzx/Module/user/View/HQZXSelectCountryForm.m"
-            timestampString = "486203677.176492"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "108"
-            endingLineNumber = "108"
-            landmarkName = "-showAction"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "hqzx/Module/user/Controller/HQZXRegisterViewController.m"
             timestampString = "486222320.046671"
             startingColumnNumber = "9223372036854775807"
@@ -218,11 +202,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "hqzx/Module/user/View/HQZXSelectIDForm.m"
-            timestampString = "486289161.010076"
+            timestampString = "487088655.410465"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "112"
-            endingLineNumber = "112"
+            startingLineNumber = "117"
+            endingLineNumber = "117"
             landmarkName = "-showAction"
             landmarkType = "5">
          </BreakpointContent>
@@ -362,11 +346,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "hqzx/Module/user/View/HQZXSelectIDForm.m"
-            timestampString = "486369125.830517"
+            timestampString = "487088655.410465"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "109"
-            endingLineNumber = "109"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
             landmarkName = "-showAction"
             landmarkType = "5">
          </BreakpointContent>
@@ -554,11 +538,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "hqzx/Module/weituoguanli/View/HQZXHistoryDataEnTableCell.m"
-            timestampString = "486746561.018198"
+            timestampString = "487266259.025739"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
             landmarkName = "-initWithStyle:reuseIdentifier:"
             landmarkType = "5">
          </BreakpointContent>
@@ -586,11 +570,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "hqzx/Module/weituoguanli/View/HQZXDataEnTableCell.m"
-            timestampString = "486746572.549504"
+            timestampString = "487259425.871757"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
             landmarkName = "-initWithStyle:reuseIdentifier:"
             landmarkType = "5">
          </BreakpointContent>
@@ -719,7 +703,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "100"
             endingLineNumber = "100"
-            landmarkName = "-changeData:"
+            landmarkName = "-changeData:type:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -735,7 +719,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "112"
             endingLineNumber = "112"
-            landmarkName = "-changeData:"
+            landmarkName = "-changeData:type:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -783,7 +767,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "133"
             endingLineNumber = "133"
-            landmarkName = "-changeData:"
+            landmarkName = "-changeData:type:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -992,6 +976,22 @@
             startingLineNumber = "264"
             endingLineNumber = "264"
             landmarkName = "-drawLine"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "hqzx/Module/weituoguanli/Controller/HQZXHistoryEntrustManagementViewController.m"
+            timestampString = "487266702.954158"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "120"
+            endingLineNumber = "120"
+            landmarkName = "-refData:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
