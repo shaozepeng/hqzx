@@ -189,6 +189,7 @@
 //委托管理
 "CHEXIAO"="撤消";
 "ZTCAOZUO"="状态/操作";
+"ZHUANGTAI"="状态";
 "WEOTUOSHIJIAN"="委托时间";
 "WEITUOLEIBIE"="委托类别";
 "WEITUOSHULIANG"="委托数量";
@@ -201,6 +202,10 @@
 "YINGFUKUAN"="已付款";
 "SHANGWEIFUKUAN"="尚未付款";
 "LISHIWEITUO"="历史委托";
+"WEICHENGJIAO"="未成交";
+"BUFENCHENGJIAO"="部分成交";
+"WANQUANCHENGJIAO"="完全成交";
+"YICHENGJIAO"="已成交";
 
 //我要收款、付款
 "SHOUKUANSHUOMING"="收款说明：本站已经支持往同一地址多次充值，我们将在收到三次确认以后为您充值成功。";
@@ -216,6 +221,13 @@
 "SHOUKUANZHANGHAO"="收款账号";
 "SHOUKUANJINE"="收款金额";
 "ZHEHEBITEBIXIANJIN"="折合比特币(现金)";
+"BAOCUNDAOSHOUJI"="保存到手机";
+"BAOCUNCHENGGONG"="保存成功";
+"BAOCUNSHIBAI"="保存失败";
+"BAOCUNCHENGGONG"="支付金额不能为空";
+"BAOCUNSHIBAI"="交易密码不能为空";
+"ZHEHE"="折合";
+
 
 //交易流水
 "JIAOYI"="交易";

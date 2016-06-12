@@ -73,10 +73,10 @@
         cell.backgroundColor = UIColorFromRGB(0x0F151B);
         NSString *language = [USER_DEFAULT objectForKey:kUserLanguage];
         
-        float cellViewWidth = (cell.width-9)/11;
+        float cellViewWidth = (cell.width-9)/10.5;
         
         //一区
-        oneInfoView = [[UIView alloc] initWithFrame: CGRectMake(0, 0, cellViewWidth*1.5, cell.height-1)];
+        oneInfoView = [[UIView alloc] initWithFrame: CGRectMake(0, 0, cellViewWidth*1, cell.height-1)];
         oneInfoView.backgroundColor = UIColorFromRGB(0x0F151B);
         [cell addSubview:oneInfoView];
         
@@ -84,46 +84,17 @@
         oneLineView.backgroundColor = UIColorFromRGB(0x141D26);
         [cell addSubview:oneLineView];
         
-        oneBonLineView = [[UIView alloc] initWithFrame: CGRectMake(oneInfoView.x, oneInfoView.maxY, cellViewWidth*1.5, 1)];
+        oneBonLineView = [[UIView alloc] initWithFrame: CGRectMake(oneInfoView.x, oneInfoView.maxY, cellViewWidth*1, 1)];
         oneBonLineView.backgroundColor = UIColorFromRGB(0x141D26);
         [cell addSubview:oneBonLineView];
         
-        oneLable = [[UILabel alloc] initWithFrame: CGRectMake(1, 1, 1, 1)];
-        oneLable.text = @"未成交";
-        oneLable.textColor = [UIColor redColor];
-        oneLable.font = [UIFont systemFontOfSize: DATAFONTTHREE];
-        [oneInfoView addSubview: oneLable];
-        [oneLable sizeToFit];
-        
-        if([language isEqualToString:@"zh-Hans"]){
-            [oneLable setX:oneInfoView.width/10];
-            [oneLable setY:(oneInfoView.height-oneLable.height)/2];
-        }else if([language isEqualToString:@"en"]){
-            oneLable.lineBreakMode = NSLineBreakByCharWrapping;
-            oneLable.numberOfLines = 0;
-            oneLable.font = [UIFont systemFontOfSize: DATAFONTONE];
-            [oneLable setW:(oneInfoView.width-oneInfoView.width/10)/2];
-            [oneLable setH:oneInfoView.height-6];
-            [oneLable setX:oneInfoView.width/20];
-            [oneLable setY:3];
-        }
-        
-        oneFLable = [[UILabel alloc] initWithFrame: CGRectMake(1, 1, 1, 1)];
-        oneFLable.text = @"|";
-        oneFLable.textColor = UIColorFromRGB(0x7E8286);
-        oneFLable.font = [UIFont systemFontOfSize: DATAFONTFORE];
-        [oneInfoView addSubview: oneFLable];
-        [oneFLable sizeToFit];
-        [oneFLable setX:oneLable.maxX+oneInfoView.width/25];
-        [oneFLable setY:(oneInfoView.height-oneFLable.height)/2];
-        
         oneSLable = [[UILabel alloc] initWithFrame: CGRectMake(1, 1, 1, 1)];
-        oneSLable.text = LocatizedStirngForkey(@"CHEXIAO");
+        oneSLable.text = @"已成交";
         oneSLable.textColor = [UIColor redColor];
-        oneSLable.font = [UIFont systemFontOfSize: DATAFONTFORE];
+        oneSLable.font = [UIFont systemFontOfSize: DATAFONTTHREE];
         [oneInfoView addSubview: oneSLable];
         [oneSLable sizeToFit];
-        [oneSLable setX:oneFLable.maxX+oneInfoView.width/25];
+        [oneSLable setX:(oneInfoView.width-oneSLable.width)/2];
         [oneSLable setY:(oneInfoView.height-oneSLable.height)/2];
         
         //二区
@@ -442,24 +413,33 @@
 }
 -(void)setStatus:(NSString *)value{
     _status = NilToEmpty(value);
-    
     if([_status intValue]==-1){
         if([_volume intValue]>0){
-            oneLable.text = @"部分成交";
-            oneSLable.text = @"已撤销";
+            oneSLable.text = LocatizedStirngForkey(@"BUFENCHENGJIAO");
         }else{
-            oneSLable.text = @"已撤销";
+            oneSLable.text = LocatizedStirngForkey(@"YICHENGJIAO");
         }
     }else if([_status intValue]==0){
-        if([_volume intValue]==0){
-            oneLable.text = @"未成交";
-            oneSLable.text = @"撤销";
-        }else if([_volume intValue]==[_number intValue]){
-            oneLable.text = @"完全成交";
-        }else if([_volume intValue]>0 && [_number floatValue]>[_volume floatValue]){
-            oneLable.text = @"部分成交";
-            oneSLable.text = @"撤销";
+        if([_volume intValue]==[_number intValue]){
+            oneSLable.text = LocatizedStirngForkey(@"WANQUANCHENGJIAO");
         }
+    }
+    [oneSLable sizeToFit];
+    NSString *language = [USER_DEFAULT objectForKey:kUserLanguage];
+    if([language isEqualToString:@"zh-Hans"]){
+        oneSLable.font = [UIFont systemFontOfSize: DATAFONTTHREE];
+        [oneSLable sizeToFit];
+        [oneSLable setX:(oneInfoView.width-oneSLable.width)/2];
+        [oneSLable setY:(oneInfoView.height-oneSLable.height)/2];
+    }else if([language isEqualToString:@"en"]){
+        oneSLable.font = [UIFont systemFontOfSize: DATAFONTONE];
+        oneSLable.lineBreakMode = NSLineBreakByCharWrapping;
+        oneSLable.numberOfLines = 0;
+        oneSLable.font = [UIFont systemFontOfSize: 11];
+        [oneSLable setW:oneInfoView.width-8];
+        [oneSLable setH:oneInfoView.height-6];
+        [oneSLable setX:4];
+        [oneSLable setY:3];
     }
 }
 @end

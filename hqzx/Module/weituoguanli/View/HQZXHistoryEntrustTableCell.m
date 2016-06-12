@@ -67,10 +67,10 @@
         cell.backgroundColor = UIColorFromRGB(0x0F151B);
         NSString *language = [USER_DEFAULT objectForKey:kUserLanguage];
         
-        float cellViewWidth = (cell.width-9)/11;
+        float cellViewWidth = (cell.width-9)/10.5;
         
         //一区
-        oneInfoView = [[UIView alloc] initWithFrame: CGRectMake(0, 0, cellViewWidth*1.5, cell.height-1)];
+        oneInfoView = [[UIView alloc] initWithFrame: CGRectMake(0, 0, cellViewWidth, cell.height-1)];
         oneInfoView.backgroundColor = UIColorFromRGB(0x0F151B);
         [cell addSubview:oneInfoView];
         
@@ -78,12 +78,12 @@
         oneLineView.backgroundColor = UIColorFromRGB(0x141D26);
         [cell addSubview:oneLineView];
         
-        oneBonLineView = [[UIView alloc] initWithFrame: CGRectMake(oneInfoView.x, oneInfoView.maxY, cellViewWidth*1.5, 1)];
+        oneBonLineView = [[UIView alloc] initWithFrame: CGRectMake(oneInfoView.x, oneInfoView.maxY, cellViewWidth, 1)];
         oneBonLineView.backgroundColor = UIColorFromRGB(0x141D26);
         [cell addSubview:oneBonLineView];
         
         oneLable = [[UILabel alloc] initWithFrame: CGRectMake(1, 1, 1, 1)];
-        oneLable.text = LocatizedStirngForkey(@"ZTCAOZUO");
+        oneLable.text = LocatizedStirngForkey(@"ZHUANGTAI");
         oneLable.textColor = UIColorFromRGB(0x2E6ED0);
         oneLable.font = [UIFont systemFontOfSize: FIRSTFONTONE];
         [oneInfoView addSubview: oneLable];
@@ -144,8 +144,18 @@
         threeLable.font = [UIFont systemFontOfSize: FIRSTFONTONE];
         [threeInfoView addSubview: threeLable];
         [threeLable sizeToFit];
-        [threeLable setX:(threeInfoView.width-threeLable.width)/2];
-        [threeLable setY:(threeInfoView.height-threeLable.height)/2];
+        if([language isEqualToString:@"zh-Hans"]){
+            [threeLable setX:(threeInfoView.width-threeLable.width)/2];
+            [threeLable setY:(threeInfoView.height-threeLable.height)/2];
+        }else if([language isEqualToString:@"en"]){
+            threeLable.lineBreakMode = NSLineBreakByCharWrapping;
+            threeLable.numberOfLines = 0;
+            threeLable.font = [UIFont systemFontOfSize: 11];
+            [threeLable setW:threeInfoView.width-4];
+            [threeLable setH:threeInfoView.height-6];
+            [threeLable setX:2];
+            [threeLable setY:3];
+        }
         
         //四区
         foreInfoView = [[UIView alloc] initWithFrame: CGRectMake(threeLineView.maxX, 0, cellViewWidth, cell.height-1)];

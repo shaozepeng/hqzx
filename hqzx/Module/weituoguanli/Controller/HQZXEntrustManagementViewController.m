@@ -73,16 +73,19 @@
             }];
         }else{
             [weakself.myTableView.footer noticeNoMoreData];
-//            [weakself.view makeToast:@"没有新数据啦" duration:1 position:CSToastPositionCenter];
+            [weakself.view makeToast:@"全部加载完毕" duration:1 position:CSToastPositionCenter];
         }
         
     }];
     HQZXEmptyData(self.myTableView, hqzxEmptyManager, nil);
 }
+-(void)reData{
+    [self.myTableView.header beginRefreshing];
+}
 - (void) moreWithCompletion:(Bool_Block) completion {
     [[NetHttpClient sharedHTTPClient] request: @"/coins_entrust_record.json" parameters: @{@"types":@"2",@"next_id":nextId?nextId:@"0", @"symbol": _sysId,@"auth_key":[HQZXUserModel sharedInstance].currentUser.auth_key} completion:^(id obj) {
         if (obj==nil) {
-            [self.view makeToast: @"查询服务器失败，请检查网络连接" duration: 0.5 position: CSToastPositionCenter];
+            [self.view makeToast:LocatizedStirngForkey(@"LIANJIEFUWUQISHIBAI") duration: 0.5 position: CSToastPositionCenter];
             if (completion) {
                 completion(YES);
             }
@@ -120,7 +123,7 @@
 - (void) refData:(Void_Block) completion{
     [[NetHttpClient sharedHTTPClient] request: @"/coins_entrust_record.json" parameters:@{@"types":@"2",@"next_id":@"0", @"symbol": _sysId,@"auth_key":[HQZXUserModel sharedInstance].currentUser.auth_key} completion:^(id obj) {
         if (obj==nil) {
-            [self.view makeToast: @"查询服务器失败，请检查网络连接" duration: 0.5 position: CSToastPositionCenter];
+            [self.view makeToast: LocatizedStirngForkey(@"LIANJIEFUWUQISHIBAI") duration: 0.5 position: CSToastPositionCenter];
             if (completion) {
                 completion();
             }
@@ -229,6 +232,20 @@
         cell =[tableView dequeueReusableCellWithIdentifier:@"CustomHeaderTwo"];
         HQZXDataEnTableCell *cellen = (HQZXDataEnTableCell*) cell;
         if(btbData){
+            cellen.quxiaoBlock = ^{
+                [[NetHttpClient sharedHTTPClient] request: @"/cancel_entrust.json" parameters:@{@"id":StrValueFromDictionary(btbData, @"id"),@"auth_key":[HQZXUserModel sharedInstance].currentUser.auth_key} completion:^(id obj) {
+                    [self.myTableView.header endRefreshing];
+                    if (obj==nil) {
+                        [self.view makeToast: LocatizedStirngForkey(@"LIANJIEFUWUQISHIBAI") duration: 0.5 position: CSToastPositionCenter];
+                        return;
+                    }
+                    if (![@"0" isEqualToString: StrValueFromDictionary(obj, ApiKey_ErrorCode)]) {
+                        [self.view makeToast: [obj objectForKey:@"message"] duration: 0.5 position: CSToastPositionCenter];
+                        return;
+                    }
+                    [self reData];
+                }];
+            };
             cellen.time = StrValueFromDictionary(btbData, @"time");
             cellen.tradetype = StrValueFromDictionary(btbData, @"tradetype");
             cellen.number = StrValueFromDictionary(btbData, @"number");
@@ -268,27 +285,9 @@
     CGFloat distanceFromBottom = scrollView.contentSize.height - contentYoffset;
     NSLog(@"height:%f contentYoffset:%f frame.y:%f",height,contentYoffset,scrollView.frame.origin.y);
     if (distanceFromBottom < height) {
-        if(height>SCREEN_HEIGHT-TOP_HEIGHT){
-            if([nextId isEqualToString:@"0"]){
-                [self.view makeToast:@"全部加载完毕" duration:1 position:CSToastPositionCenter];
-            }else{
-                [self.view makeToast:@"上拉加载更多" duration:1 position:CSToastPositionCenter];
-            }
+        if(![nextId isEqualToString:@"0"]){
+            [self.view makeToast:@"上拉加载更多" duration:1 position:CSToastPositionCenter];
         }
     }
 }
-//-(void)scrollViewDidScroll:(UIScrollView *)scrollView {
-//    if(scrollView.contentOffset.y < 0){
-//        NSLog(@"top*****");
-//        
-//    }else if(scrollView.contentOffset.y > 0){
-//        if([nextId isEqualToString:@"0"]){
-//            [self.view makeToast:@"全部加载完毕" duration:1 position:CSToastPositionCenter];
-//        }else{
-//            [self.view makeToast:@"上拉加载更多" duration:1 position:CSToastPositionCenter];
-//        }
-//        NSLog(@"bottom*****");
-//        
-//    }
-//}
 @end

@@ -27,6 +27,7 @@
 #import "HQZXTransactionCurrencyViewController.h"
 #import "HQZXChooseCurrencyViewController.h"
 #import "HQZXRMBWithdrawalsViewController.h"
+#import "HQZXChooseReceViewController.h"
 
 @interface MyMeViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, retain) UITableView *myTableView;

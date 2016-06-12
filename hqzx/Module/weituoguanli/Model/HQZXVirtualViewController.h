@@ -11,5 +11,6 @@
 @interface HQZXVirtualViewController : NSObject
 @property (nonatomic,copy) NSString *virtual_id;
 @property (nonatomic,copy) NSString *virtual_name;
+@property (nonatomic,copy) NSString *virtual_ename;
 @property (nonatomic,copy) NSString *virtual_logo;
 @end

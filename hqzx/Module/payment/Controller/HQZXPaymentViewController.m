@@ -25,6 +25,11 @@
     UILabel *jiaoymm;
     UITextField *txtJiaoymmText;
     UIButton *btnBuy;
+    NSMutableDictionary *dataDict;
+    NSString *price;
+    NSString *zhehe;
+    NSString *ename;
+    
 }
 @end
 
@@ -36,8 +41,38 @@
     self.title = LocatizedStirngForkey(@"WOYAOFUKUAN");
     
     [self createOperationView];
+    [self reData];
+}
+- (void)viewWillAppear:(BOOL)animated{
+    lblzhehje.text = @"0.00";
+    txtBuyText.text = @"";
+    txtJiaoymmText.text = @"";
 }
 
+-(void)reData{
+    [ProgressHUD show: [NSString stringWithFormat:@"%@...",LocatizedStirngForkey(@"QINGDENGDAI")] Interaction: NO];
+    [[NetHttpClient sharedHTTPClient] request: @"/coins_detail.json" parameters: @{@"symbol": _sysId,@"auth_key":[HQZXUserModel sharedInstance].currentUser.auth_key} completion:^(id obj) {
+        [ProgressHUD dismiss];
+        if (obj==nil) {
+            [self.view makeToast: LocatizedStirngForkey(@"LIANJIEFUWUQISHIBAI") duration: 0.5 position: CSToastPositionCenter];
+            return;
+        }
+        if (![@"0" isEqualToString: StrValueFromDictionary(obj, ApiKey_ErrorCode)]) {
+            [self.view makeToast: [obj objectForKey:@"message"] duration: 0.5 position: CSToastPositionCenter];
+            return;
+        }
+        dataDict = [[NSMutableDictionary alloc]initWithDictionary:obj];
+        price = StrValueFromDictionary(dataDict, @"price");
+        NSString *language = [USER_DEFAULT objectForKey:kUserLanguage];
+        if([language isEqualToString:@"zh-Hans"]){
+            ename = StrValueFromDictionary(dataDict, @"name");
+        }else if([language isEqualToString:@"en"]){
+            ename = StrValueFromDictionary(dataDict, @"ename");
+        }
+        zhehje.text = [NSString stringWithFormat:@"%@%@%@：",LocatizedStirngForkey(@"ZHEHE"),ename,LocatizedStirngForkey(@"SHULIANG")];
+        [zhehje sizeToFit];
+    }];
+}
 -(void)createOperationView{
     operBuyView = [[UIView alloc] initWithFrame: CGRectMake(0, TOP_HEIGHT+8, SCREEN_WIDTH, SCREEN_HEIGHT-TOP_HEIGHT-8)];
     operBuyView.backgroundColor = UIColorFromRGB(0x0F151A);
@@ -58,7 +93,7 @@
     [kmrmb sizeToFit];
     
     lblkmrmb = [[UILabel alloc] initWithFrame: CGRectMake(kmrmb.maxX, kmrmb.y, 1, 1)];
-    lblkmrmb.text = LocatizedStirngForkey(@"JIAZAIZHONGQ");
+    lblkmrmb.text = _userId;
     lblkmrmb.font = [UIFont systemFontOfSize: TRANSACTIONFONT];
     lblkmrmb.textColor = UIColorFromRGB(0x3177E0);
     [operBuyView addSubview: lblkmrmb];
@@ -72,7 +107,7 @@
     [kmxyb sizeToFit];
     
     lblkmxyb = [[UILabel alloc] initWithFrame: CGRectMake(kmxyb.maxX, kmxyb.y, 1, 1)];
-    lblkmxyb.text = LocatizedStirngForkey(@"JIAZAIZHONGQ");
+    lblkmxyb.text = _sysName;
     lblkmxyb.font = [UIFont systemFontOfSize: TRANSACTIONFONT];
     lblkmxyb.textColor = UIColorFromRGB(0xF4F4F4);
     [operBuyView addSubview: lblkmxyb];
@@ -96,14 +131,16 @@
     
     txtBuyText = [[UITextField alloc] initWithFrame:CGRectMake(mairjiag.maxX +SCREEN_WIDTH/50, kmxyb.maxY+SCREEN_WIDTH/36 ,  SCREEN_WIDTH-mairjiag.maxX -SCREEN_WIDTH/22, SCREEN_WIDTH/10)];
     [operBuyView addSubview: txtBuyText];
+    txtBuyText.keyboardType = UIKeyboardTypeDecimalPad;
     //    [txtBuyText setEnabled:NO];
     txtBuyText.textColor = UIColorFromRGB(0x767D85);
     txtBuyText.font = [UIFont systemFontOfSize:TRANSACTIONFTWO];
     txtBuyText.layer.borderColor=UIColorFromRGB(0x192631).CGColor;
     txtBuyText.layer.borderWidth= 1.0f;
+    txtBuyText.delegate = self;
     
     zhehje = [[UILabel alloc] initWithFrame: CGRectMake(txtBuyText.x+SCREEN_WIDTH/40, txtBuyText.maxY+SCREEN_WIDTH/30, 1, 1)];
-    zhehje.text = [NSString stringWithFormat:@"%@：",LocatizedStirngForkey(@"ZHEHEBITEBISHULIANG") ];
+    zhehje.text = [NSString stringWithFormat:@"%@%@%@：",LocatizedStirngForkey(@"ZHEHE"),ename,LocatizedStirngForkey(@"SHULIANG")];
     zhehje.font = [UIFont systemFontOfSize: TRANSACTIONFFORE];
     zhehje.textColor = UIColorFromRGB(0xF4F4F4);
     [operBuyView addSubview: zhehje];
@@ -127,6 +164,7 @@
     [operBuyView addSubview: txtJiaoymmText];
     //    [txtBuyText setEnabled:NO];
     txtJiaoymmText.secureTextEntry = YES;
+    txtBuyText.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
     txtJiaoymmText.textColor = UIColorFromRGB(0x767D85);
     txtJiaoymmText.font = [UIFont systemFontOfSize:TRANSACTIONFTWO];
     txtJiaoymmText.layer.borderColor=UIColorFromRGB(0x192631).CGColor;
@@ -154,7 +192,46 @@
     [operBuyView addSubview: pointValue];
 }
 -(void)shouSuccess{
-    HQZXPaySuccessViewController *paysuccess=[[HQZXPaySuccessViewController alloc]init];
-    [self.navigationController pushViewController:paysuccess animated:YES];
+    [txtBuyText resignFirstResponder];
+    [txtJiaoymmText resignFirstResponder];
+    NSString *moery = txtBuyText.text;
+    NSString *password = txtJiaoymmText.text;
+    VALIDATE_NOT_NULL(moery, LocatizedStirngForkey(@"BAOCUNCHENGGONG"));
+    VALIDATE_NOT_NULL(password, LocatizedStirngForkey(@"BAOCUNSHIBAI"));
+    [ProgressHUD show: [NSString stringWithFormat:@"%@...",LocatizedStirngForkey(@"QINGDENGDAI")] Interaction: NO];
+    [[NetHttpClient sharedHTTPClient] request: @"/collect_money.json" parameters: @{@"symbol": _sysId,@"receiver_id":_userId,@"money":moery,@"trade_pwd":password,@"auth_key":[HQZXUserModel sharedInstance].currentUser.auth_key} completion:^(id obj) {
+        [ProgressHUD dismiss];
+        if (obj==nil) {
+            [self.view makeToast: LocatizedStirngForkey(@"LIANJIEFUWUQISHIBAI") duration: 0.5 position: CSToastPositionCenter];
+            return;
+        }
+        if (![@"0" isEqualToString: StrValueFromDictionary(obj, ApiKey_ErrorCode)]) {
+            [self.view makeToast: [obj objectForKey:@"message"] duration: 0.5 position: CSToastPositionCenter];
+            return;
+        }
+        HQZXPaySuccessViewController *paysuccess=[[HQZXPaySuccessViewController alloc]init];
+        paysuccess.sysname = ename;
+        paysuccess.userId = _userId;
+        paysuccess.jine = moery;
+        paysuccess.zhehe = zhehe;
+        [self.navigationController pushViewController:paysuccess animated:YES];
+    }];
+    
+}
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    if (textField == txtBuyText) {
+//        NSString *buyStr = txtBuyText.text;
+        NSMutableString *sellStr = [[NSMutableString alloc]initWithString:txtBuyText.text];
+        if(string.length>0){
+            [sellStr replaceCharactersInRange:range withString:string];
+        }else{
+            [sellStr deleteCharactersInRange:range];
+        }
+        float share = [sellStr floatValue]/[price intValue];
+        zhehe = [NSString stringWithFormat:@"%.4f",share];
+        lblzhehje.text = zhehe;
+        [lblzhehje sizeToFit];
+    }
+    return YES;
 }
 @end

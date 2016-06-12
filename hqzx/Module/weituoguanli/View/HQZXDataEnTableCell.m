@@ -93,19 +93,22 @@
         oneLable.font = [UIFont systemFontOfSize: DATAFONTTHREE];
         [oneInfoView addSubview: oneLable];
         [oneLable sizeToFit];
+        [oneLable setX:oneInfoView.width/10];
+        [oneLable setY:(oneInfoView.height-oneLable.height)/2];
         
-        if([language isEqualToString:@"zh-Hans"]){
-            [oneLable setX:oneInfoView.width/10];
-            [oneLable setY:(oneInfoView.height-oneLable.height)/2];
-        }else if([language isEqualToString:@"en"]){
-            oneLable.lineBreakMode = NSLineBreakByCharWrapping;
-            oneLable.numberOfLines = 0;
-            oneLable.font = [UIFont systemFontOfSize: DATAFONTONE];
-            [oneLable setW:(oneInfoView.width-oneInfoView.width/10)/2];
-            [oneLable setH:oneInfoView.height-6];
-            [oneLable setX:oneInfoView.width/20];
-            [oneLable setY:3];
-        }
+//        if([language isEqualToString:@"zh-Hans"]){
+//            [oneLable setX:oneInfoView.width/10];
+//            [oneLable setY:(oneInfoView.height-oneLable.height)/2];
+//        }else if([language isEqualToString:@"en"]){
+//            oneLable.lineBreakMode = NSLineBreakByCharWrapping;
+//            oneLable.numberOfLines = 0;
+//            oneLable.font = [UIFont systemFontOfSize: DATAFONTONE];
+//            [oneLable setW:(oneInfoView.width-oneInfoView.width/10)/2];
+//            [oneLable setH:oneInfoView.height-6];
+//            [oneLable setX:oneInfoView.width/20];
+//            [oneLable setY:3];
+//        }
+        
 
         oneFLable = [[UILabel alloc] initWithFrame: CGRectMake(1, 1, 1, 1)];
         oneFLable.text = @"|";
@@ -121,6 +124,10 @@
         oneSLable.textColor = [UIColor redColor];
         oneSLable.font = [UIFont systemFontOfSize: DATAFONTFORE];
         [oneInfoView addSubview: oneSLable];
+        oneSLable.userInteractionEnabled=YES;
+        UITapGestureRecognizer *labelTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(labelTouchUpInside)];
+        
+        [oneSLable addGestureRecognizer:labelTapGestureRecognizer];
         [oneSLable sizeToFit];
         [oneSLable setX:oneFLable.maxX+oneInfoView.width/25];
         [oneSLable setY:(oneInfoView.height-oneSLable.height)/2];
@@ -175,11 +182,8 @@
         threeLable = [[UILabel alloc] initWithFrame: CGRectMake(1, 1, 1, 1)];
         threeLable.text = LocatizedStirngForkey(@"SHANGWEIFUKUAN");
         threeLable.textColor = UIColorFromRGB(0xE0E2E2);
-        if([language isEqualToString:@"zh-Hans"]){
-            threeLable.font = [UIFont systemFontOfSize: DATAFONTTHREE];
-        }else if([language isEqualToString:@"en"]){
-            threeLable.font = [UIFont systemFontOfSize: DATAFONTONE];
-        }
+        threeLable.font = [UIFont systemFontOfSize: DATAFONTTHREE];
+        
         [threeInfoView addSubview: threeLable];
         [threeLable sizeToFit];
         
@@ -371,11 +375,13 @@
     [dateFormat setDateFormat:@"yyyy-MM-dd"];
     NSString *dateString = [dateFormat stringFromDate:nd];
     twoLable.text = dateString;
+    [twoLable sizeToFit];
     
     NSDateFormatter *dateFormat2 = [[NSDateFormatter alloc] init];
     [dateFormat2 setDateFormat:@"HH:mm:ss"];
     NSString *dateString2 = [dateFormat2 stringFromDate:nd];
     twoFLable.text = dateString2;
+    [twoFLable sizeToFit];
     
 }
 -(void)setTradetype:(NSString *)value{
@@ -424,7 +430,7 @@
 }
 -(void)setDealmoney:(NSString *)value{
     _dealmoney = NilToEmpty(value);
-    nineLable.text = [NSString stringWithFormat:@"￥%.2f",[_dealmoney floatValue]];;
+    nineLable.text = [NSString stringWithFormat:@"￥%.2f",[_dealmoney floatValue]];
     [nineLable sizeToFit];
     [nineLable setX:(nineInfoView.width-nineLable.width)/2];
     [nineLable setY:(nineInfoView.height-nineLable.height)/2];
@@ -442,24 +448,47 @@
 }
 -(void)setStatus:(NSString *)value{
     _status = NilToEmpty(value);
-
-    if([_status intValue]==-1){
-        if([_volume intValue]>0){
-            oneLable.text = @"部分成交";
-            oneSLable.text = @"已撤销";
-        }else{
-            oneSLable.text = @"已撤销";
-        }
-    }else if([_status intValue]==0){
+    
+   if([_status intValue]==0){
         if([_volume intValue]==0){
-            oneLable.text = @"未成交";
-            oneSLable.text = @"撤销";
-        }else if([_volume intValue]==[_number intValue]){
-            oneLable.text = @"完全成交";
+            oneLable.text = LocatizedStirngForkey(@"WEICHENGJIAO");
+            oneSLable.text = LocatizedStirngForkey(@"CHEXIAO");
+            [oneLable sizeToFit];
+            [oneSLable sizeToFit];
+            [oneLable setX:oneInfoView.width/10];
+            [oneLable setY:(oneInfoView.height-oneLable.height)/2];
+            [oneFLable setX:oneLable.maxX+oneInfoView.width/25];
+            [oneFLable setY:(oneInfoView.height-oneFLable.height)/2];
+            [oneSLable setX:oneFLable.maxX+oneInfoView.width/25];
+            [oneSLable setY:(oneInfoView.height-oneSLable.height)/2];
         }else if([_volume intValue]>0 && [_number floatValue]>[_volume floatValue]){
-            oneLable.text = @"部分成交";
-            oneSLable.text = @"撤销";
+            oneLable.text = LocatizedStirngForkey(@"BUFENCHENGJIAO");
+            oneSLable.text = LocatizedStirngForkey(@"CHEXIAO");
+            [oneLable sizeToFit];
+            [oneSLable sizeToFit];
+            NSString *language = [USER_DEFAULT objectForKey:kUserLanguage];
+            if([language isEqualToString:@"zh-Hans"]){
+                [oneLable setX:oneInfoView.width/10];
+                [oneLable setY:(oneInfoView.height-oneLable.height)/2];
+                [oneFLable setX:oneLable.maxX+oneInfoView.width/25];
+                [oneFLable setY:(oneInfoView.height-oneFLable.height)/2];
+                [oneSLable setX:oneFLable.maxX+oneInfoView.width/25];
+                [oneSLable setY:(oneInfoView.height-oneSLable.height)/2];
+            }else if([language isEqualToString:@"en"]){
+                [oneLable setX:(oneInfoView.width-oneLable.width)/2];
+                [oneLable setY:3];
+                [oneFLable setX:oneLable.maxX+oneInfoView.width/25];
+                [oneFLable setY:3];
+                [oneSLable setX:(oneInfoView.width-oneSLable.width)/2];
+                [oneSLable setY:oneLable.maxY+3];
+            }
+            
         }
+    }
+}
+-(void)labelTouchUpInside{
+    if(self.quxiaoBlock){
+        self.quxiaoBlock();
     }
 }
 @end

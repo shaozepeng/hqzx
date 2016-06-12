@@ -21,4 +21,5 @@
 @property (nonatomic, retain) UITableView *myAccDataTwoTableView;
 @property (nonatomic, retain) UITableView *mySecAccDataTableView;
 @property (nonatomic, retain) UITableView *mySecAccDataTwoTableView;
+@property (strong, nonatomic) NSString *sysId;
 @end

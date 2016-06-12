@@ -9,5 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface HQZXReceivablesViewController : UIViewController
-
+@property (strong, nonatomic) NSString *sysId;
+@property (strong, nonatomic) NSString *sysName;
 @end

@@ -1,14 +1,14 @@
 //
-//  HQZXChooseCurViewController.m
+//  HQZXChooseReceViewController.m
 //  hqzx
 //
-//  Created by 泽鹏邵 on 16/6/9.
+//  Created by 泽鹏邵 on 16/6/11.
 //  Copyright © 2016年 泽鹏邵. All rights reserved.
 //
 
-#import "HQZXChooseCurViewController.h"
+#import "HQZXChooseReceViewController.h"
 
-@implementation HQZXChooseCurViewController{
+@implementation HQZXChooseReceViewController{
     HQZXEmptyManager *hqzxEmptyManager;
     NSMutableArray *arys;
 }
@@ -74,11 +74,10 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *CellIdentifier = @"CustomHeaderOne";
     NSUInteger section = [indexPath section];
-
-    HQZXChooseTableCell *cell = [tableView dequeueReusableCellWithIdentifier: CellIdentifier];
     
-    HQZXVirtualViewController *btbData;
+    HQZXChooseTableCell *cell = [tableView dequeueReusableCellWithIdentifier: CellIdentifier];
     NSString *language = [USER_DEFAULT objectForKey:kUserLanguage];
+    HQZXVirtualViewController *btbData;
     if(arys.count>0){
         btbData = [arys objectAtIndex:section];
     }
@@ -100,9 +99,10 @@
     if(arys.count>0){
         btbData = [arys objectAtIndex:indexPath.section];
     }
-    HQZXEntrustManagementViewController *weituo=[[HQZXEntrustManagementViewController alloc]init];
-    weituo.sysId = btbData.virtual_id;
-    [rootNav pushViewController:weituo animated:YES];
+    HQZXReceivablesViewController *shoukuan=[[HQZXReceivablesViewController alloc]init];
+    shoukuan.sysId = btbData.virtual_id;
+    shoukuan.sysName = btbData.virtual_name;
+    [rootNav pushViewController:shoukuan animated:YES];
 }
 
 @end

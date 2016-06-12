@@ -213,6 +213,8 @@
 		7AC7E8DD1CFAE7A7008CBC65 /* HQZXCertificationSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AC7E8DC1CFAE7A7008CBC65 /* HQZXCertificationSuccessViewController.m */; };
 		7AC7E8E31CFAFC83008CBC65 /* HQZXServiceAgreementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AC7E8E21CFAFC83008CBC65 /* HQZXServiceAgreementViewController.m */; };
 		7AC7E8E61CFDE130008CBC65 /* TransactionFlowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AC7E8E51CFDE130008CBC65 /* TransactionFlowViewController.m */; };
+		7AEFF4921D0C599500C51DD8 /* HQZXChooseReceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AEFF4911D0C599500C51DD8 /* HQZXChooseReceViewController.m */; };
+		7AEFF4951D0C59C400C51DD8 /* HQZXChooseReceTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AEFF4941D0C59C400C51DD8 /* HQZXChooseReceTableCell.m */; };
 		A3BA53B62F4B147D78F072FB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 99D5CE75EEDEF98094016EEB /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -592,6 +594,10 @@
 		7AC7E8E21CFAFC83008CBC65 /* HQZXServiceAgreementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HQZXServiceAgreementViewController.m; sourceTree = "<group>"; };
 		7AC7E8E41CFDE130008CBC65 /* TransactionFlowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransactionFlowViewController.h; sourceTree = "<group>"; };
 		7AC7E8E51CFDE130008CBC65 /* TransactionFlowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionFlowViewController.m; sourceTree = "<group>"; };
+		7AEFF4901D0C599500C51DD8 /* HQZXChooseReceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HQZXChooseReceViewController.h; sourceTree = "<group>"; };
+		7AEFF4911D0C599500C51DD8 /* HQZXChooseReceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HQZXChooseReceViewController.m; sourceTree = "<group>"; };
+		7AEFF4931D0C59C400C51DD8 /* HQZXChooseReceTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HQZXChooseReceTableCell.h; sourceTree = "<group>"; };
+		7AEFF4941D0C59C400C51DD8 /* HQZXChooseReceTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HQZXChooseReceTableCell.m; sourceTree = "<group>"; };
 		900AF853C030062D18990C62 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		99D5CE75EEDEF98094016EEB /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBFAF5E12ED262D2487FB31C /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1739,6 +1745,8 @@
 		7A91D9151D02D0CB0069CF54 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				7AEFF4901D0C599500C51DD8 /* HQZXChooseReceViewController.h */,
+				7AEFF4911D0C599500C51DD8 /* HQZXChooseReceViewController.m */,
 				7A91D9181D02D10F0069CF54 /* HQZXReceivablesViewController.h */,
 				7A91D9191D02D10F0069CF54 /* HQZXReceivablesViewController.m */,
 				7A91D91B1D02D8030069CF54 /* HQZXPaymentViewController.h */,
@@ -1759,6 +1767,8 @@
 		7A91D9171D02D0CB0069CF54 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				7AEFF4931D0C59C400C51DD8 /* HQZXChooseReceTableCell.h */,
+				7AEFF4941D0C59C400C51DD8 /* HQZXChooseReceTableCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2093,6 +2103,7 @@
 				7A0F70891CEDD0C500F468D2 /* CommonUtils.m in Sources */,
 				7A0F71D81CEDF52E00F468D2 /* IQBarButtonItem.m in Sources */,
 				7AC7E8041CF97D8C008CBC65 /* HQZXSelectCountryForm.m in Sources */,
+				7AEFF4951D0C59C400C51DD8 /* HQZXChooseReceTableCell.m in Sources */,
 				7AB48EC01D09BA7A00BDB0D1 /* HQZXVirtualViewController.m in Sources */,
 				7AC4C0591D0195B2004FD2F7 /* colorModel.m in Sources */,
 				7A0F71D01CEDF52E00F468D2 /* IQUITextFieldView+Additions.m in Sources */,
@@ -2185,6 +2196,7 @@
 				7A0F71B51CEDF52E00F468D2 /* BaseTextView.m in Sources */,
 				7A0F71E91CEDFA0400F468D2 /* CustomRowView.m in Sources */,
 				7A0F72411CF194E000F468D2 /* NSString+NSStringForJava.m in Sources */,
+				7AEFF4921D0C599500C51DD8 /* HQZXChooseReceViewController.m in Sources */,
 				7A713E991CF3497B009A6D71 /* NetFormParam.m in Sources */,
 				7AC4C05A1D0195B2004FD2F7 /* commond.m in Sources */,
 				7A0F71B01CEDF52E00F468D2 /* NSString+Stackoverflow.m in Sources */,

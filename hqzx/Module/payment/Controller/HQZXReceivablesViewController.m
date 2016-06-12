@@ -41,9 +41,20 @@
     
 }
 - (void)drawImage{
-    NSString *link = @"https://www.baidu.com/link?url=lV1hUtb7iigXGP4d0VcBTUTx4XLopvHysOIU3N3LJvBIWj7MuKzSyU14BAvCkeXgbhDwNpwBEpdUAXmnzeElWa&wd=&eqid=dab5812100009e37000000025731c53d";
+    NSString *jsonString;
+    NSMutableDictionary *chongDic = [[NSMutableDictionary alloc]init];
+    [chongDic setObject:_sysId forKey:@"sysid"];
+    [chongDic setObject:_sysName forKey:@"sysname"];
+    [chongDic setObject:[HQZXUserModel sharedInstance].currentUser.userId forKey:@"userid"];
     
-    UIImage *image = [UIImage generateImageWithQrCode:link QrCodeImageSize:0 insertImage:[UIImage imageNamed:@"logo"] radius:16];
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:chongDic
+                                                       options:NSJSONWritingPrettyPrinted
+                                                         error:nil];
+    if(jsonData){
+        jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    }
+    
+    UIImage *image = [UIImage generateImageWithQrCode:jsonString QrCodeImageSize:0 insertImage:[UIImage imageNamed:@"logo"] radius:16];
     [imageView setImage:image];
 }
 - (void)saveQrCodeImage:(UITapGestureRecognizer *)tap
@@ -51,12 +62,12 @@
     if (imageView.image != nil) {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
         
-        UIAlertAction *action = [UIAlertAction actionWithTitle:@"保存到手机" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        UIAlertAction *action = [UIAlertAction actionWithTitle:LocatizedStirngForkey(@"BAOCUNDAOSHOUJI") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             UIImageWriteToSavedPhotosAlbum(imageView.image, self, @selector(image:didFinishSavingWithError:contextInfo:), NULL);
         }];
         [alert addAction:action];
         
-        UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        UIAlertAction *action1 = [UIAlertAction actionWithTitle:LocatizedStirngForkey(@"QUXIAO") style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
         }];
         [alert addAction:action1];
         
@@ -67,9 +78,9 @@
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
 {
     if (error) {
-        [self.view makeToast:@"保存成功" duration:1 position:CSToastPositionCenter];
+        [self.view makeToast:LocatizedStirngForkey(@"BAOCUNCHENGGONG") duration:1 position:CSToastPositionCenter];
     }else{
-        [self.view makeToast:@"保存失败" duration:1 position:CSToastPositionCenter];
+        [self.view makeToast:LocatizedStirngForkey(@"BAOCUNSHIBAI") duration:1 position:CSToastPositionCenter];
     }
     
 }

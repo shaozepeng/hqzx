@@ -59,7 +59,7 @@
     [shenfenInfo setY:tongguorenzheng.maxY+SCREEN_WIDTH/30];
     
     nameInfo = [[UILabel alloc] initWithFrame: CGRectMake(1, 1, 1, 1)];
-    nameInfo.text = [NSString stringWithFormat:@"%@：%@",LocatizedStirngForkey(@"SHOUKUANZHANGHAO"),@"16578903456"];
+    nameInfo.text = [NSString stringWithFormat:@"%@：%@",LocatizedStirngForkey(@"SHOUKUANZHANGHAO"),_userId];
     nameInfo.font = [UIFont systemFontOfSize: SUCCESSFONTONE];
     nameInfo.textColor = UIColorFromRGB(0x6E7071);
     [self.view addSubview: nameInfo];
@@ -68,7 +68,7 @@
     [nameInfo setY:shenfenInfo.maxY+SCREEN_WIDTH/30];
     
     cardInfo = [[UILabel alloc] initWithFrame: CGRectMake(1, 1, 1, 1)];
-    cardInfo.text = [NSString stringWithFormat:@"%@：￥%@",LocatizedStirngForkey(@"SHOUKUANJINE"),@"456.88"];
+    cardInfo.text = [NSString stringWithFormat:@"%@：￥%@",LocatizedStirngForkey(@"SHOUKUANJINE"),_jine];
     cardInfo.font = [UIFont systemFontOfSize: SUCCESSFONTONE];
     cardInfo.textColor = UIColorFromRGB(0x6E7071);
     [self.view addSubview: cardInfo];
@@ -77,7 +77,7 @@
     [cardInfo setY:nameInfo.maxY+SCREEN_WIDTH/30];
     
     idInfo = [[UILabel alloc] initWithFrame: CGRectMake(1, 1, 1, 1)];
-    idInfo.text = [NSString stringWithFormat:@"%@：￥%@",LocatizedStirngForkey(@"ZHEHEBITEBIXIANJIN"),@"234.78"];
+    idInfo.text = [NSString stringWithFormat:@"%@%@%@：%@",LocatizedStirngForkey(@"ZHEHE"),_sysname,LocatizedStirngForkey(@"SHULIANG"),_zhehe];
     idInfo.font = [UIFont systemFontOfSize: SUCCESSFONTONE];
     idInfo.textColor = UIColorFromRGB(0x6E7071);
     [self.view addSubview: idInfo];

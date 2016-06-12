@@ -397,17 +397,24 @@
     }
     if(indexPath.section==4){
         if(indexPath.row==0){
-            HQZXReceivablesViewController *shoukuan=[[HQZXReceivablesViewController alloc]init];
+            HQZXChooseReceViewController *shoukuan=[[HQZXChooseReceViewController alloc]init];
             [rootNav pushViewController:shoukuan animated:YES];
         }
         if(indexPath.row==1){
             SYQrCodeScanne *VC = [[SYQrCodeScanne alloc]init];
             VC.scanneScusseBlock = ^(SYCodeType codeType, NSString *url){
-                NSLog(@"%@", url);
+                NSData *jsonData = [url dataUsingEncoding:NSUTF8StringEncoding];
+                NSError *err;
+                NSDictionary *jsondic = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                          options:NSJSONReadingMutableContainers
+                                                            error:&err];
                 if (SYCodeTypeUnknow == codeType) {
                     [self.view makeToast:LocatizedStirngForkey(@"ERWEIMAWUFASHIBIE") duration:1 position:CSToastPositionCenter];
-                }else if (SYCodeTypeLink == codeType) {
+                }else if (SYCodeTypeString == codeType) {
                     HQZXPaymentViewController *fukuan=[[HQZXPaymentViewController alloc]init];
+                    fukuan.sysId = StrValueFromDictionary(jsondic, @"sysid");
+                    fukuan.sysName = StrValueFromDictionary(jsondic, @"sysname");
+                    fukuan.userId = StrValueFromDictionary(jsondic, @"userid");
                     [rootNav pushViewController:fukuan animated:YES];
                 }else{
                     

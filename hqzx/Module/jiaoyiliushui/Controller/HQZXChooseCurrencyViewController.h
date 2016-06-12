@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "HQZXTransactionCurrencyViewController.h"
 
 @interface HQZXChooseCurrencyViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, retain) UITableView *myTableView;

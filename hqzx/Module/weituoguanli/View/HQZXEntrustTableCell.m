@@ -145,8 +145,19 @@
         threeLable.font = [UIFont systemFontOfSize: FIRSTFONTONE];
         [threeInfoView addSubview: threeLable];
         [threeLable sizeToFit];
-        [threeLable setX:(threeInfoView.width-threeLable.width)/2];
-        [threeLable setY:(threeInfoView.height-threeLable.height)/2];
+        if([language isEqualToString:@"zh-Hans"]){
+            [threeLable setX:(threeInfoView.width-threeLable.width)/2];
+            [threeLable setY:(threeInfoView.height-threeLable.height)/2];
+        }else if([language isEqualToString:@"en"]){
+            threeLable.lineBreakMode = NSLineBreakByCharWrapping;
+            threeLable.numberOfLines = 0;
+            threeLable.font = [UIFont systemFontOfSize: 11];
+            [threeLable setW:threeInfoView.width-4];
+            [threeLable setH:threeInfoView.height-6];
+            [threeLable setX:2];
+            [threeLable setY:3];
+        }
+        
         
         //四区
         foreInfoView = [[UIView alloc] initWithFrame: CGRectMake(threeLineView.maxX, 0, cellViewWidth, cell.height-1)];

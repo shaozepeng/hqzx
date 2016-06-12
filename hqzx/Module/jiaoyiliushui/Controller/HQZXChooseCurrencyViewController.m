@@ -10,6 +10,7 @@
 
 @implementation HQZXChooseCurrencyViewController{
     HQZXEmptyManager *hqzxEmptyManager;
+    NSMutableArray *arys;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -17,6 +18,25 @@
     self.view.backgroundColor = UIColorFromRGB(0x0C1319);
     self.title = LocatizedStirngForkey(@"JIAOYILIUSHUI");
     [self createTableView];
+    
+    arys = [NSMutableArray array];
+    NSArray *paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+    NSString *path=[paths objectAtIndex:0];
+    NSString *filename=[path stringByAppendingPathComponent:countryKey];
+    NSDictionary* dicPorts = [NSDictionary dictionaryWithContentsOfFile:filename];
+    if(dicPorts.count>0){
+        NSDictionary *allDict =[dicPorts objectForKey:@"config"];
+        NSArray *countrys = [allDict objectForKey:@"virtualcointype"];
+        for(NSDictionary *countryDic in countrys){
+            HQZXVirtualViewController *virtual = [[HQZXVirtualViewController alloc]init];
+            virtual.virtual_id = StrValueFromDictionary(countryDic, @"id");
+            virtual.virtual_name = StrValueFromDictionary(countryDic, @"name");
+            virtual.virtual_ename = StrValueFromDictionary(countryDic, @"ename");
+            virtual.virtual_logo = StrValueFromDictionary(countryDic, @"logo");
+            [arys addObject:virtual];
+        }
+    }
+    
     HQZXEmptyData(self.myTableView, hqzxEmptyManager, nil);
 }
 -(void)createTableView{
@@ -28,7 +48,7 @@
     tableView.delegate = self;
     tableView.backgroundColor = UIColorFromRGB(0x0C1319);
     self.myTableView = tableView;
-    
+    [self.myTableView registerClass:[HQZXChooseTableCell class] forCellReuseIdentifier:@"CustomHeaderOne"];
     [self.view addSubview:self.myTableView];
 }
 // 设置块的高度
@@ -49,30 +69,38 @@
     return 1;
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 17;
+    return arys.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell=nil;
+    static NSString *CellIdentifier = @"CustomHeaderOne";
     NSUInteger section = [indexPath section];
     
-    cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if(cell==nil){
-        cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    HQZXChooseTableCell *cell = [tableView dequeueReusableCellWithIdentifier: CellIdentifier];
+    NSString *language = [USER_DEFAULT objectForKey:kUserLanguage];
+    HQZXVirtualViewController *btbData;
+    if(arys.count>0){
+        btbData = [arys objectAtIndex:section];
     }
-    cell.backgroundColor = UIColorFromRGB(0x0F151A);
-    cell.textLabel.text=@"比特币(BTC)";
-    cell.textLabel.font = [UIFont systemFontOfSize:14];
-    cell.textLabel.textColor = [UIColor whiteColor];
-    cell.imageView.image=[UIImage imageNamed:@"icon_bibi_1"];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
+    
+    if(btbData){
+        cell.imageUrl =btbData.virtual_logo;
+        if([language isEqualToString:@"zh-Hans"]){
+            cell.name = btbData.virtual_name;
+        }else if([language isEqualToString:@"en"]){
+            cell.name = btbData.virtual_ename;
+        }
+    }
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     //push后cell选中效果消失,又动画
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    HQZXTransactionCurrencyViewController *liushui=[[HQZXTransactionCurrencyViewController alloc]init];
-    [rootNav pushViewController:liushui animated:YES];
+    HQZXVirtualViewController *btbData;
+    if(arys.count>0){
+        btbData = [arys objectAtIndex:indexPath.section];
+    }
+    HQZXTransactionCurrencyViewController *shoukuan=[[HQZXTransactionCurrencyViewController alloc]init];
+    shoukuan.sysId = btbData.virtual_id;
+    [rootNav pushViewController:shoukuan animated:YES];
 }
 @end

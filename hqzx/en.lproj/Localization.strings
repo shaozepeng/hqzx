@@ -186,6 +186,7 @@
 //委托管理
 "CHEXIAO"="Undo";
 "ZTCAOZUO"="Status/operation";
+"ZHUANGTAI"="State";
 "WEOTUOSHIJIAN"="Commission time";
 "WEITUOLEIBIE"="Delegate class";
 "WEITUOSHULIANG"="Number of commission";
@@ -198,6 +199,10 @@
 "YINGFUKUAN"="Already paid";
 "SHANGWEIFUKUAN"="Not yet paid";
 "LISHIWEITUO"="Historical Commission";
+"WEICHENGJIAO"="No deal";
+"BUFENCHENGJIAO"="Part of the deal";
+"WANQUANCHENGJIAO"="Complete deal";
+"YICHENGJIAO"="Already traded";
 
 //我要收款、付款
 "SHOUKUANSHUOMING"="Collection note: this site has been supported to the same address multiple times, we will be in the three times after the confirmation for your success.";
@@ -213,6 +218,12 @@
 "SHOUKUANZHANGHAO"="Collection account";
 "SHOUKUANJINE"="Amount Collected";
 "ZHEHEBITEBIXIANJIN"="Folding bitcoin (cash)";
+"BAOCUNDAOSHOUJI"="Save to cell phone";
+"BAOCUNCHENGGONG"="Save success";
+"BAOCUNSHIBAI"="Save failed";
+"BAOCUNCHENGGONG"="Payment amount can not be empty";
+"BAOCUNSHIBAI"="Transaction password can not be empty";
+"ZHEHE"="Equivalent";
 
 //交易流水
 "JIAOYI"="Transaction";

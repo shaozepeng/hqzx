@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "HQZXPaySuccessViewController.h"
 
-@interface HQZXPaymentViewController : UIViewController
-
+@interface HQZXPaymentViewController : UIViewController<UITextFieldDelegate>
+@property (strong, nonatomic) NSString *sysId;
+@property (strong, nonatomic) NSString *sysName;
+@property (strong, nonatomic) NSString *userId;
 @end
