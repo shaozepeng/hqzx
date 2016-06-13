@@ -32,9 +32,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7AC7E8301CFACF25008CBC65"
-            BuildableName = "hqzx-dis.app"
-            BlueprintName = "hqzx-dis"
+            BlueprintIdentifier = "7AF0ACA61D0E61D8001F1346"
+            BuildableName = "hqzx-appstore.app"
+            BlueprintName = "hqzx-appstore"
             ReferencedContainer = "container:hqzx.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -55,9 +55,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7AC7E8301CFACF25008CBC65"
-            BuildableName = "hqzx-dis.app"
-            BlueprintName = "hqzx-dis"
+            BlueprintIdentifier = "7AF0ACA61D0E61D8001F1346"
+            BuildableName = "hqzx-appstore.app"
+            BlueprintName = "hqzx-appstore"
             ReferencedContainer = "container:hqzx.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

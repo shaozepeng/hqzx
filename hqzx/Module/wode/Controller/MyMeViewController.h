@@ -12,7 +12,7 @@
 #define WOCONTROLLEEIGHT IP4566PELSE(35, 35,40,45,40)
 
 #import <UIKit/UIKit.h>
-#import <MJRefresh.h>
+#import "MJRefresh.h"
 #import "XQZXWodeTableViewCell.h"
 #import "HQZXLoginViewController.H"
 #import "HQZXModifyLoginViewController.h"

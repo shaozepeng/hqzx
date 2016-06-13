@@ -20,6 +20,14 @@
 "MEIYOUXINSHUJU"="还没有数据内容 !";
 "KXIANTU"="K线图";
 "NINYAOTUICHUMA"="您确定要退出吗?";
+"CAOZUOCHENGGONG"="操作成功";
+"BUY"="买";
+"SELL"="卖";
+"SHI"="时";
+"RI"="日";
+"ZHOU"="周";
+"YUE"="月";
+"CHENGGONG"="成功";
 
 
 /*
@@ -185,12 +193,19 @@
 "MAIMAI"="买／卖";
 "JIAGEFUHAO"="价格(￥)";
 "SHULIANG"="数量";
+"MAIRUJIAGEBUNENGWEIKONG"="买入价格不能为空";
+"MAIRUSHULIANGBUNENGWEIKONG"="买入数量不能为空";
+"JIAOYIMIMABUNENGWEIKONG"="交易密码不能为空";
+"SELLJIAGEBUNENGWEIKONG"="卖出价格不能为空";
+"SELLSHULIANGBUNENGWEIKONG"="卖出数量不能为空";
 
 //委托管理
 "CHEXIAO"="撤消";
 "ZTCAOZUO"="状态/操作";
 "ZHUANGTAI"="状态";
 "WEOTUOSHIJIAN"="委托时间";
+"SHIJIAN"="时间";
+"LEIBIE"="类别";
 "WEITUOLEIBIE"="委托类别";
 "WEITUOSHULIANG"="委托数量";
 "WEITUOJINE"="委托金额";
@@ -250,6 +265,24 @@
 "YOUSUOYANSHI"="3.提现24小时内到账，银行卡提现不同的银行，实时到账的时间可能会有所延时";
 "ZHUANRU"="转入";
 "ZHUANCHU"="转出";
+
+//刷新插件
+"MJRefreshHeaderIdleText" = "下拉可以刷新";
+"MJRefreshHeaderPullingText" = "松开立即刷新";
+"MJRefreshHeaderRefreshingText" = "正在刷新数据中...";
+
+"MJRefreshAutoFooterIdleText" = "点击或上拉加载更多";
+"MJRefreshAutoFooterRefreshingText" = "正在加载更多的数据...";
+"MJRefreshAutoFooterNoMoreDataText" = "已经全部加载完毕";
+
+"MJRefreshBackFooterIdleText" = "上拉可以加载更多";
+"MJRefreshBackFooterPullingText" = "松开立即加载更多";
+"MJRefreshBackFooterRefreshingText" = "正在加载更多的数据...";
+"MJRefreshBackFooterNoMoreDataText" = "已经全部加载完毕";
+
+"MJRefreshHeaderLastTimeText" = "最后更新：";
+"MJRefreshHeaderDateTodayText" = "今天";
+"MJRefreshHeaderNoneLastDateText" = "无记录";
 
 
 

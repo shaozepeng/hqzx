@@ -34,8 +34,8 @@
     self.window.backgroundColor = [UIColor whiteColor];
     
     //初始化更新特性图片插件
-    BOOL showNewFeature = [LCNewFeatureVC shouldShowNewFeature];
-//    BOOL showNewFeature = YES;
+//    BOOL showNewFeature = [LCNewFeatureVC shouldShowNewFeature];
+    BOOL showNewFeature = YES;
     
     self.launchOptions = launchOptions;
     //    NSDictionary *pushInfo = @{@"type":@"order_port_weather",@"load_port":@"504",@"unload_port":@"4008"};

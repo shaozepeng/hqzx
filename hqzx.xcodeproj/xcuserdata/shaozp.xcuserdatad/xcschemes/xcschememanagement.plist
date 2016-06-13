@@ -6,11 +6,32 @@
 	<dict>
 		<key>hqzx copy.xcscheme</key>
 		<dict>
+			<key>isShown</key>
+			<false/>
 			<key>orderHint</key>
-			<integer>15</integer>
+			<integer>2</integer>
+		</dict>
+		<key>hqzx-appstore.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>19</integer>
+		</dict>
+		<key>hqzx-dev copy.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>18</integer>
+		</dict>
+		<key>hqzx-dev.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
 		</dict>
 		<key>hqzx.xcscheme</key>
 		<dict>
+			<key>isShown</key>
+			<false/>
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
@@ -23,6 +44,11 @@
 			<true/>
 		</dict>
 		<key>7AC7E8301CFACF25008CBC65</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7AF0ACA61D0E61D8001F1346</key>
 		<dict>
 			<key>primary</key>
 			<true/>

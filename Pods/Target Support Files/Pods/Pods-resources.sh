@@ -58,7 +58,6 @@ install_resource()
   esac
 }
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_resource "MJRefresh/MJRefresh/MJRefresh.bundle"
   install_resource "US2FormValidator/US2FormValidationFramework/US2Localizable/da.lproj"
   install_resource "US2FormValidator/US2FormValidationFramework/US2Localizable/de.lproj"
   install_resource "US2FormValidator/US2FormValidationFramework/US2Localizable/en.lproj"
@@ -75,7 +74,6 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "${BUILT_PRODUCTS_DIR}/CTAssetsPickerController.bundle"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_resource "MJRefresh/MJRefresh/MJRefresh.bundle"
   install_resource "US2FormValidator/US2FormValidationFramework/US2Localizable/da.lproj"
   install_resource "US2FormValidator/US2FormValidationFramework/US2Localizable/de.lproj"
   install_resource "US2FormValidator/US2FormValidationFramework/US2Localizable/en.lproj"

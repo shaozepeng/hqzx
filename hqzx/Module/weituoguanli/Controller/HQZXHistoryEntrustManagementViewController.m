@@ -37,24 +37,24 @@
     [self createTableView];
     [self refData:nil];
     WEAK_SELF
-    self.myTableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+    self.myTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [weakself refData:^{
-            [weakself.myTableView.header endRefreshing];
-            [weakself.myTableView.footer resetNoMoreData];
+            [weakself.myTableView.mj_header endRefreshing];
+            [weakself.myTableView.mj_footer resetNoMoreData];
         }];
     }];
-    self.myTableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+    self.myTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         if([nextId isEqualToString:@"0"]==NO){
             [weakself moreWithCompletion:^(BOOL value) {
-                [weakself.myTableView.footer endRefreshing];
+                [weakself.myTableView.mj_footer endRefreshing];
                 if (value) {
-                    [weakself.myTableView.footer resetNoMoreData];
+                    [weakself.myTableView.mj_footer resetNoMoreData];
                 } else {
-                    [weakself.myTableView.footer noticeNoMoreData];
+                    [weakself.myTableView.mj_footer endRefreshingWithNoMoreData];
                 }
             }];
         }else{
-            [weakself.myTableView.footer noticeNoMoreData];
+            [weakself.myTableView.mj_footer endRefreshingWithNoMoreData];
             //            [weakself.view makeToast:@"没有新数据啦" duration:1 position:CSToastPositionCenter];
         }
         

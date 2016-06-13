@@ -41,7 +41,7 @@
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>ChannelId</key>
-	<string>AppStore</string>
+	<string>TEST</string>
 	<key>LSHasLocalizedDisplayName</key>
 	<true/>
 	<key>LSRequiresIPhoneOS</key>

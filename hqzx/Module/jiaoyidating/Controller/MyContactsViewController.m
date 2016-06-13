@@ -42,7 +42,7 @@
     [self createTabView];
     [self refData];
     WEAK_SELF
-    self.myTableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+    self.myTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [weakself refData];
     }];
     HQZXEmptyData(self.myTableView, hqzxEmptyManager, nil);
@@ -55,7 +55,7 @@
         autokey = @"0";
     }
     [[NetHttpClient sharedHTTPClient] request: @"/index.json" parameters:@{@"auth_key":autokey} completion:^(id obj) {
-        [self.myTableView.header endRefreshing];
+        [self.myTableView.mj_header endRefreshing];
         if (obj==nil) {
             [self.view makeToast: @"查询服务器失败，请检查网络连接" duration: 0.5 position: CSToastPositionCenter];
             return;

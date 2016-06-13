@@ -114,21 +114,21 @@
     [self createOperationView];
     [self createOperationTwoView];
     [self createTbView];
-    [self reData];
+//    [self reData];
     WEAK_SELF
-    scrollView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+    scrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [weakself reData];
     }];
     HQZXEmptyData(self.myTableView, hqzxEmptyManager, nil);
 }
 -(void)refScrollView{
-    [scrollView.header beginRefreshing];
+    [scrollView.mj_header beginRefreshing];
 }
 -(void)reData{
     [[NetHttpClient sharedHTTPClient] request: @"/coins_detail.json" parameters: @{@"symbol": self.symbol,@"auth_key":[HQZXUserModel sharedInstance].currentUser.auth_key} completion:^(id obj) {
-        [scrollView.header endRefreshing];
+        [scrollView.mj_header endRefreshing];
         if (obj==nil) {
-            [self.view makeToast: @"查询服务器失败，请检查网络连接" duration: 0.5 position: CSToastPositionCenter];
+            [self.view makeToast: LocatizedStirngForkey(@"LIANJIEFUWUQISHIBAI") duration: 0.5 position: CSToastPositionCenter];
             return;
         }
         if (![@"0" isEqualToString: StrValueFromDictionary(obj, ApiKey_ErrorCode)]) {
@@ -136,7 +136,7 @@
             return;
         }
         _dataDict = [[NSMutableDictionary alloc]initWithDictionary:obj];
-        NSString *imageUrl = [NSString stringWithFormat:@"http://coins.zhaojizi.com%@",StrValueFromDictionary(_dataDict, @"img") ];
+        NSString *imageUrl = [NSString stringWithFormat:@"%@%@",ApiPicServer,StrValueFromDictionary(_dataDict, @"img") ];
         [imageView sd_setImageWithURL: [NSURL URLWithString: imageUrl]];
         NSString *language = [USER_DEFAULT objectForKey:kUserLanguage];
         if([language isEqualToString:@"zh-Hans"]){
@@ -563,6 +563,7 @@
     [chelable setX:(cheView.width-chelable.width)/2];
     [chelable setY:(cheView.height-chelable.height)/2];
     
+    
     UIView *buyhenglinethreeView = [[UIView alloc] initWithFrame: CGRectMake(buylineforeView.maxX, toolTwoView.maxY+7, (scrollView.width-4)/3, 1)];
     buyhenglinethreeView.backgroundColor = UIColorFromRGB(0x141D25);
     [scrollView addSubview:buyhenglinethreeView];
@@ -755,7 +756,7 @@
     txtSsellText.layer.borderColor=UIColorFromRGB(0x192631).CGColor;
     txtSsellText.layer.borderWidth= 1.0f;
     txtSsellText.delegate = self;
-    
+
     szhehje = [[UILabel alloc] initWithFrame: CGRectMake(SCREEN_WIDTH/40, txtSsellText.maxY+SCREEN_WIDTH/30, 1, 1)];
     szhehje.text = [NSString stringWithFormat:@"%@：",LocatizedStirngForkey(@"ZHEHEJINE") ];
     szhehje.font = [UIFont systemFontOfSize: TRANSACTIONFTHREE];
@@ -905,7 +906,7 @@
                 bsFirst.text=@"--";
                 bsSecond.text=@"--";
             }
-            buySellLab.text=@"卖 5";
+            buySellLab.text=[NSString stringWithFormat:@"%@ 5",LocatizedStirngForkey(@"SELL") ];
         }
         if(row ==2){
             if(sellAry.count>=4){
@@ -916,7 +917,7 @@
                 bsFirst.text=@"--";
                 bsSecond.text=@"--";
             }
-            buySellLab.text=@"卖 4";
+            buySellLab.text=[NSString stringWithFormat:@"%@ 4",LocatizedStirngForkey(@"SELL") ];
         }
         if(row ==3){
             if(sellAry.count>=3){
@@ -927,7 +928,7 @@
                 bsFirst.text=@"--";
                 bsSecond.text=@"--";
             }
-            buySellLab.text=@"卖 3";
+            buySellLab.text=[NSString stringWithFormat:@"%@ 3",LocatizedStirngForkey(@"SELL") ];
         }
         if(row ==4){
             if(sellAry.count>=2){
@@ -938,7 +939,7 @@
                 bsFirst.text=@"--";
                 bsSecond.text=@"--";
             }
-            buySellLab.text=@"卖 2";
+            buySellLab.text=[NSString stringWithFormat:@"%@ 2",LocatizedStirngForkey(@"SELL") ];
         }
         if(row ==5){
             if(sellAry.count>=1){
@@ -949,14 +950,14 @@
                 bsFirst.text=@"--";
                 bsSecond.text=@"--";
             }
-            buySellLab.text=@"卖 1";
+            buySellLab.text=[NSString stringWithFormat:@"%@ 5",LocatizedStirngForkey(@"SELL") ];
             UIView * separator = [[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_WIDTH/11-1 , SCREEN_WIDTH, 1)];
             separator.backgroundColor = UIColorFromRGB(0x1B2026);
             [cell.contentView addSubview:separator];
         }
     }else{
         UILabel *buySellLab=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/16, 0, (SCREEN_WIDTH-SCREEN_WIDTH/16)/3, SCREEN_WIDTH/11)];
-        buySellLab.text=@"买 1";
+        buySellLab.text=[NSString stringWithFormat:@"%@ 1",LocatizedStirngForkey(@"BUY") ];
         buySellLab.textAlignment = NSTextAlignmentLeft;
         buySellLab.textColor=[UIColor redColor];
         buySellLab.font = [UIFont systemFontOfSize:TRANSACTIONFFORE];
@@ -989,19 +990,19 @@
             }
         }
         if(row ==6){
-            buySellLab.text=@"买 1";
+            buySellLab.text=[NSString stringWithFormat:@"%@ 1",LocatizedStirngForkey(@"BUY") ];
         }
         if(row ==7){
-            buySellLab.text=@"买 2";
+            buySellLab.text=[NSString stringWithFormat:@"%@ 2",LocatizedStirngForkey(@"BUY") ];
         }
         if(row ==8){
-            buySellLab.text=@"买 3";
+            buySellLab.text=[NSString stringWithFormat:@"%@ 3",LocatizedStirngForkey(@"BUY") ];
         }
         if(row ==9){
-            buySellLab.text=@"买 4";
+            buySellLab.text=[NSString stringWithFormat:@"%@ 4",LocatizedStirngForkey(@"BUY") ];
         }
         if(row ==10){
-            buySellLab.text=@"买 5";
+            buySellLab.text=[NSString stringWithFormat:@"%@ 5",LocatizedStirngForkey(@"BUY") ];
         }
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -1010,6 +1011,11 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     //push后cell选中效果消失,又动画
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+- (void)viewWillAppear:(BOOL)animated{
+    [self reData];
+    [self buyGe:nil];
+    [self.view resignFirstResponder];
 }
 - (void)buyGe:(UITapGestureRecognizer *)gesture {
     buyView.backgroundColor = UIColorFromRGB(0x192834);
@@ -1030,6 +1036,10 @@
     buyView.backgroundColor = UIColorFromRGB(0x0F151A);
     sellView.backgroundColor = UIColorFromRGB(0x0F151A);
     cheView.backgroundColor = UIColorFromRGB(0x192834);
+    
+    HQZXEntrustManagementViewController *weituo=[[HQZXEntrustManagementViewController alloc]init];
+    weituo.sysId = _symbol;
+    [self.navigationController pushViewController:weituo animated:YES];
 }
 -(void)doKilne{
     HQZXKlineGraphViewController *klineView = [[HQZXKlineGraphViewController alloc]init];
@@ -1077,14 +1087,15 @@
     NSString *buyText = txtBuyText.text;
     NSString *sellText = txtSellText.text;
     NSString *password = txtJiaoymmText.text;
-    VALIDATE_NOT_NULL(buyText, @"买入价格不能为空");
-    VALIDATE_NOT_NULL(sellText, @"买入数量不能为空");
-    VALIDATE_NOT_NULL(password, @"交易密码不能为空");
+    VALIDATE_NOT_NULL(buyText, LocatizedStirngForkey(@"MAIRUJIAGEBUNENGWEIKONG"));
+    VALIDATE_NOT_NULL(sellText, LocatizedStirngForkey(@"MAIRUSHULIANGBUNENGWEIKONG"));
+    VALIDATE_NOT_NULL(password, LocatizedStirngForkey(@"JIAOYIMIMABUNENGWEIKONG"));
     [ProgressHUD show: [NSString stringWithFormat:@"%@...",LocatizedStirngForkey(@"QINGDENGDAI")] Interaction: NO];
     [[NetHttpClient sharedHTTPClient] request: @"/purchase.json" parameters:@{@"symbol":_symbol, @"price":buyText, @"count":sellText, @"trade_pwd": password, @"auth_key":[HQZXUserModel sharedInstance].currentUser.auth_key} completion:^(id obj) {
         [ProgressHUD dismiss];
         if (obj) {
             if ([@"0" isEqualToString:StrValueFromDictionary(obj, ApiKey_ErrorCode)]) {
+                [self.view makeToast: LocatizedStirngForkey(@"CAOZUOCHENGGONG") duration: 0.5 position: CSToastPositionCenter];
                 [self refScrollView];
             } else {
                 [self.view makeToast:[NSString stringWithFormat:@"%@", [obj objectForKey:@"message"]] duration: 0.5 position:CSToastPositionCenter];
@@ -1098,9 +1109,9 @@
     NSString *buyText = txtSellsText.text;
     NSString *sellText = txtSsellText.text;
     NSString *password = txtsJiaoymmText.text;
-    VALIDATE_NOT_NULL(buyText, @"卖出价格不能为空");
-    VALIDATE_NOT_NULL(sellText, @"卖出数量不能为空");
-    VALIDATE_NOT_NULL(password, @"交易密码不能为空");
+    VALIDATE_NOT_NULL(buyText, LocatizedStirngForkey(@"SELLJIAGEBUNENGWEIKONG"));
+    VALIDATE_NOT_NULL(sellText, LocatizedStirngForkey(@"SELLSHULIANGBUNENGWEIKONG"));
+    VALIDATE_NOT_NULL(password, LocatizedStirngForkey(@"JIAOYIMIMABUNENGWEIKONG"));
     [ProgressHUD show: [NSString stringWithFormat:@"%@...",LocatizedStirngForkey(@"QINGDENGDAI")] Interaction: NO];
     [[NetHttpClient sharedHTTPClient] request: @"/sellout.json" parameters:@{@"symbol":_symbol, @"price":buyText, @"count":sellText, @"trade_pwd": password, @"auth_key":[HQZXUserModel sharedInstance].currentUser.auth_key} completion:^(id obj) {
         [ProgressHUD dismiss];

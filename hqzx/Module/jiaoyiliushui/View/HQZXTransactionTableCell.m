@@ -154,8 +154,19 @@
         foreLable.font = [UIFont systemFontOfSize: FIRSTFONTONE];
         [foreInfoView addSubview: foreLable];
         [foreLable sizeToFit];
-        [foreLable setX:(foreInfoView.width-foreLable.width)/2];
-        [foreLable setY:(foreInfoView.height-foreLable.height)/2];
+        if([language isEqualToString:@"zh-Hans"]){
+            [foreLable setX:(foreInfoView.width-foreLable.width)/2];
+            [foreLable setY:(foreInfoView.height-foreLable.height)/2];
+        }else if([language isEqualToString:@"en"]){
+            foreLable.lineBreakMode = NSLineBreakByCharWrapping;
+            foreLable.numberOfLines = 0;
+            foreLable.font = [UIFont systemFontOfSize: 11];
+            [foreLable setW:foreInfoView.width-4];
+            [foreLable setH:foreInfoView.height-6];
+            [foreLable setX:2];
+            [foreLable setY:3];
+        }
+        
         
         //五区
         fiveInfoView = [[UIView alloc] initWithFrame: CGRectMake(foreLineView.maxX, 0, cellViewWidth, cell.height-1)];
@@ -211,19 +222,19 @@
         sixLable.font = [UIFont systemFontOfSize: FIRSTFONTONE];
         [sixInfoView addSubview: sixLable];
         [sixLable sizeToFit];
-        
-        if([language isEqualToString:@"zh-Hans"]){
-            [sixLable setX:(sixInfoView.width-sixLable.width)/2];
-            [sixLable setY:(sixInfoView.height-sixLable.height)/2];
-        }else if([language isEqualToString:@"en"]){
-            sixLable.lineBreakMode = NSLineBreakByCharWrapping;
-            sixLable.numberOfLines = 0;
-            sixLable.font = [UIFont systemFontOfSize: 11];
-            [sixLable setW:sixInfoView.width-4];
-            [sixLable setH:sixInfoView.height-6];
-            [sixLable setX:2];
-            [sixLable setY:3];
-        }
+        [sixLable setX:(sixInfoView.width-sixLable.width)/2];
+        [sixLable setY:(sixInfoView.height-sixLable.height)/2];
+//        if([language isEqualToString:@"zh-Hans"]){
+//            
+//        }else if([language isEqualToString:@"en"]){
+//            sixLable.lineBreakMode = NSLineBreakByCharWrapping;
+//            sixLable.numberOfLines = 0;
+//            sixLable.font = [UIFont systemFontOfSize: 11];
+//            [sixLable setW:sixInfoView.width-4];
+//            [sixLable setH:sixInfoView.height-6];
+//            [sixLable setX:2];
+//            [sixLable setY:3];
+//        }
         
         
         

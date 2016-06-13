@@ -55,24 +55,24 @@
     [self createTableView];
     [self refData:nil];
     WEAK_SELF
-    self.myTableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+    self.myTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [weakself refData:^{
-            [weakself.myTableView.header endRefreshing];
-            [weakself.myTableView.footer resetNoMoreData];
+            [weakself.myTableView.mj_header endRefreshing];
+            [weakself.myTableView.mj_footer resetNoMoreData];
         }];
     }];
-    self.myTableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+    self.myTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         if([nextId isEqualToString:@"0"]==NO){
             [weakself moreWithCompletion:^(BOOL value) {
-                [weakself.myTableView.footer endRefreshing];
+                [weakself.myTableView.mj_footer endRefreshing];
                 if (value) {
-                    [weakself.myTableView.footer resetNoMoreData];
+                    [weakself.myTableView.mj_footer resetNoMoreData];
                 } else {
-                    [weakself.myTableView.footer noticeNoMoreData];
+                    [weakself.myTableView.mj_footer endRefreshingWithNoMoreData];
                 }
             }];
         }else{
-            [weakself.myTableView.footer noticeNoMoreData];
+            [weakself.myTableView.mj_footer endRefreshingWithNoMoreData];
             [weakself.view makeToast:@"全部加载完毕" duration:1 position:CSToastPositionCenter];
         }
         
@@ -80,7 +80,7 @@
     HQZXEmptyData(self.myTableView, hqzxEmptyManager, nil);
 }
 -(void)reData{
-    [self.myTableView.header beginRefreshing];
+    [self.myTableView.mj_header beginRefreshing];
 }
 - (void) moreWithCompletion:(Bool_Block) completion {
     [[NetHttpClient sharedHTTPClient] request: @"/coins_entrust_record.json" parameters: @{@"types":@"2",@"next_id":nextId?nextId:@"0", @"symbol": _sysId,@"auth_key":[HQZXUserModel sharedInstance].currentUser.auth_key} completion:^(id obj) {
@@ -234,7 +234,7 @@
         if(btbData){
             cellen.quxiaoBlock = ^{
                 [[NetHttpClient sharedHTTPClient] request: @"/cancel_entrust.json" parameters:@{@"id":StrValueFromDictionary(btbData, @"id"),@"auth_key":[HQZXUserModel sharedInstance].currentUser.auth_key} completion:^(id obj) {
-                    [self.myTableView.header endRefreshing];
+                    [self.myTableView.mj_header endRefreshing];
                     if (obj==nil) {
                         [self.view makeToast: LocatizedStirngForkey(@"LIANJIEFUWUQISHIBAI") duration: 0.5 position: CSToastPositionCenter];
                         return;

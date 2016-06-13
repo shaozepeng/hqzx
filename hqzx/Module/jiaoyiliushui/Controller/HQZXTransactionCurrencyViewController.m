@@ -21,12 +21,15 @@
     UIView *buyTwoView;
     UIView *sellView;
     UIView *sellTwoView;
+    NSString *nextId;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view addSubview: [[UIView alloc] init]];
     self.view.backgroundColor = UIColorFromRGB(0x0C1319);
     self.title = LocatizedStirngForkey(@"JIAOYILIUSHUI");
+    
+    _datas = [NSMutableArray array];
     
     [self clickButton];
     
@@ -42,8 +45,86 @@
     [self createAccTableView];
     [self createOutAccTableTwoView];
     [self createOutAccTableView];
+    [self.myAccTableView.mj_header beginRefreshing];
     HQZXEmptyData(self.myAccTableView, hqzxEmptyManager, nil);
+    HQZXEmptyData(self.mySecAccTableView, hqzxTwoEmptyManager, nil);
     HQZXEmptyData(self.myAccDataTableView, hqzxEmptyManagers, nil);
+    HQZXEmptyData(self.mySecAccDataTableView, hqzxTwoEmptyManagers, nil);
+}
+- (void) moreWithCompletion:(Bool_Block) completion stateVer:(NSString*)type uitable:(UITableView*)table{
+    [[NetHttpClient sharedHTTPClient] request: @"/coins_entrust_record.json" parameters: @{@"types":type,@"next_id":nextId?nextId:@"0", @"symbol": _sysId,@"auth_key":[HQZXUserModel sharedInstance].currentUser.auth_key} completion:^(id obj) {
+        if (obj==nil) {
+            [self.view makeToast:LocatizedStirngForkey(@"LIANJIEFUWUQISHIBAI") duration: 0.5 position: CSToastPositionCenter];
+            if (completion) {
+                completion(YES);
+            }
+            return;
+        }
+        NSString *errorCode = StrValueFromDictionary(obj, ApiKey_ErrorCode);
+        if (![@"0" isEqualToString: errorCode]) {
+            [self.view makeToast: [obj objectForKey:@"message"] duration: 0.5 position: CSToastPositionCenter];
+            if (completion) {
+                completion(YES);
+            }
+            return;
+        }
+        NSString *nextIdServer = StrValueFromDictionary(obj, @"next_id");
+        NSArray *dataArray = [obj objectForKey: @"record_list"];
+        
+        if (nextIdServer != nil) {
+            nextId = nextIdServer;
+        }
+        
+        if(dataArray!=nil && dataArray.count>0){
+            [_datas addObjectsFromArray: dataArray];
+        }
+        
+        [table reloadData];
+        if (completion) {
+            if (nextIdServer) {
+                completion(YES);
+            } else {
+                completion(NO);
+            }
+        }
+    }];
+}
+- (void) refData:(Void_Block) completion stateVer:(NSString*)type uitable:(UITableView*)table{
+    [[NetHttpClient sharedHTTPClient] request: @"/coins_trade_record.json" parameters:@{@"types":type,@"next_id":@"0", @"symbol": _sysId,@"auth_key":[HQZXUserModel sharedInstance].currentUser.auth_key} completion:^(id obj) {
+        if (obj==nil) {
+            [self.view makeToast: LocatizedStirngForkey(@"LIANJIEFUWUQISHIBAI") duration: 0.5 position: CSToastPositionCenter];
+            if (completion) {
+                completion();
+            }
+            return;
+        }
+        NSString *errorCode = StrValueFromDictionary(obj, ApiKey_ErrorCode);
+        if (![@"0" isEqualToString: errorCode]) {
+            [self.view makeToast: [obj objectForKey:@"message"] duration: 0.5 position: CSToastPositionCenter];
+            if (completion) {
+                completion();
+            }
+            return;
+        }
+        
+        NSString *nextIdServer = StrValueFromDictionary(obj, @"next_id");
+        
+        if (nextIdServer != nil) {
+            nextId = nextIdServer;
+        }
+        
+        [_datas removeAllObjects];
+        if ([obj objectForKey: @"record_list"] == nil) {
+            
+        } else {
+            [_datas addObjectsFromArray: [obj objectForKey: @"record_list"]];
+            //1 竞标中 2中标
+        }
+        [table reloadData];
+        if (completion) {
+            completion();
+        }
+    }];
 }
 -(void)clickButton{
     float bsHight = (SCREEN_WIDTH-6)/4;
@@ -118,6 +199,10 @@
     UILabel *buyTwolable = [[UILabel alloc] initWithFrame: CGRectMake(1, 1, 1, 1)];
     buyTwolable.text = LocatizedStirngForkey(@"ZHUANRU");
     buyTwolable.font = [UIFont systemFontOfSize: TRANSACTIONFTHREE];
+    NSString *language = [USER_DEFAULT objectForKey:kUserLanguage];
+    if([language isEqualToString:@"en"]){
+        buyTwolable.font = [UIFont systemFontOfSize: TRANSACTIONFONT];
+    }
     buyTwolable.textColor = [UIColor whiteColor];
     [buyTwoView addSubview: buyTwolable];
     [buyTwolable sizeToFit];
@@ -193,7 +278,7 @@
 //转入
 -(void)createAccScrollView{
     _accscroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, TOP_HEIGHT+SCREEN_WIDTH/10+16, SCREEN_WIDTH, SCREEN_HEIGHT-TOP_HEIGHT-SCREEN_WIDTH/10-16) ];
-    _accscroll.contentSize = CGSizeMake(SCREEN_WIDTH*1.5, SCREEN_HEIGHT-TOP_HEIGHT-SCREEN_WIDTH/10-16);
+    _accscroll.contentSize = CGSizeMake(SCREEN_WIDTH*1.6, SCREEN_HEIGHT-TOP_HEIGHT-SCREEN_WIDTH/10-16);
     //    _scroll.showsHorizontalScrollIndicator = NO;
     //    _scroll.showsVerticalScrollIndicator = NO;
     _accscroll.bounces = NO;
@@ -209,7 +294,7 @@
 //转出
 -(void)createTwoAccScrollView{
     _accscrollTwo = [[UIScrollView alloc] initWithFrame:CGRectMake(0, TOP_HEIGHT+SCREEN_WIDTH/10+16, SCREEN_WIDTH, SCREEN_HEIGHT-TOP_HEIGHT-SCREEN_WIDTH/10-16) ];
-    _accscrollTwo.contentSize = CGSizeMake(SCREEN_WIDTH*1.5, SCREEN_HEIGHT-TOP_HEIGHT-SCREEN_WIDTH/10-16);
+    _accscrollTwo.contentSize = CGSizeMake(SCREEN_WIDTH*1.6, SCREEN_HEIGHT-TOP_HEIGHT-SCREEN_WIDTH/10-16);
     //    _scroll.showsHorizontalScrollIndicator = NO;
     //    _scroll.showsVerticalScrollIndicator = NO;
     _accscrollTwo.bounces = NO;
@@ -248,6 +333,28 @@
     
     [self.myAccTableView registerClass:[HQZXDataTranTableCell class] forCellReuseIdentifier:@"CustomHeaderTwo"];
     [_scroll addSubview:self.myAccTableView];
+    WEAK_SELF
+    self.myAccTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [weakself refData:^{
+            [weakself.myAccTableView.mj_header endRefreshing];
+            [weakself.myAccTableView.mj_footer resetNoMoreData];
+        } stateVer:@"1" uitable:self.myAccTableView];
+    }];
+    self.myAccTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        if([nextId isEqualToString:@"0"]==NO){
+            [weakself moreWithCompletion:^(BOOL value) {
+                [weakself.myAccTableView.mj_footer endRefreshing];
+                if (value) {
+                    [weakself.myAccTableView.mj_footer resetNoMoreData];
+                } else {
+                    [weakself.myAccTableView.mj_footer endRefreshingWithNoMoreData];
+                }
+            } stateVer:@"1" uitable:self.myAccTableView];
+        }else{
+            [weakself.myAccTableView.mj_footer endRefreshingWithNoMoreData];
+            [weakself.view makeToast:@"全部加载完毕" duration:1 position:CSToastPositionCenter];
+        }
+    }];
 }
 //卖出
 -(void)createSellTableTwoView{
@@ -275,10 +382,33 @@
     
     [self.mySecAccTableView registerClass:[HQZXDataTranTableCell class] forCellReuseIdentifier:@"CustomHeaderTwo"];
     [_scrollTwo addSubview:self.mySecAccTableView];
+    WEAK_SELF
+    self.mySecAccTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [weakself refData:^{
+            [weakself.mySecAccTableView.mj_header endRefreshing];
+            [weakself.mySecAccTableView.mj_footer resetNoMoreData];
+        } stateVer:@"2" uitable:self.mySecAccTableView];
+    }];
+    self.mySecAccTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        if([nextId isEqualToString:@"0"]==NO){
+            [weakself moreWithCompletion:^(BOOL value) {
+                [weakself.mySecAccTableView.mj_footer endRefreshing];
+                if (value) {
+                    [weakself.mySecAccTableView.mj_footer resetNoMoreData];
+                } else {
+                    [weakself.mySecAccTableView.mj_footer endRefreshingWithNoMoreData];
+                }
+            } stateVer:@"2" uitable:self.mySecAccTableView];
+        }else{
+            [weakself.mySecAccTableView.mj_footer endRefreshingWithNoMoreData];
+            [weakself.view makeToast:@"全部加载完毕" duration:1 position:CSToastPositionCenter];
+        }
+    }];
+    
 }
 //转入
 -(void)createAccTableTwoView{
-    UITableView *tableAccTwoView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0 , SCREEN_WIDTH*1.5, SCREEN_WIDTH/8) style:UITableViewStyleGrouped];
+    UITableView *tableAccTwoView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0 , SCREEN_WIDTH*1.6, SCREEN_WIDTH/8) style:UITableViewStyleGrouped];
     tableAccTwoView.scrollEnabled = NO;
     tableAccTwoView.separatorStyle = UITableViewCellSelectionStyleNone;
     // 设置tableView的数据源
@@ -287,11 +417,11 @@
     tableAccTwoView.delegate = self;
     tableAccTwoView.backgroundColor = UIColorFromRGB(0x0F151A);
     self.myAccDataTwoTableView = tableAccTwoView;
-    [self.myAccDataTwoTableView registerClass:[HQZXTransferAccountsTableCell class] forCellReuseIdentifier:@"CustomAccHeaderOne"];
+    [self.myAccDataTwoTableView registerClass:[HQZXTransactionTableCell class] forCellReuseIdentifier:@"CustomAccHeaderOne"];
     [_accscroll addSubview:self.myAccDataTwoTableView];
 }
 -(void)createAccTableView{
-    UITableView *tableAccView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.myAccDataTwoTableView.maxY , SCREEN_WIDTH*1.5, SCREEN_HEIGHT-TOP_HEIGHT - SCREEN_WIDTH/8) style:UITableViewStyleGrouped];
+    UITableView *tableAccView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.myAccDataTwoTableView.maxY , SCREEN_WIDTH*1.6, SCREEN_HEIGHT-TOP_HEIGHT - SCREEN_WIDTH/8) style:UITableViewStyleGrouped];
     tableAccView.separatorStyle = UITableViewCellSelectionStyleNone;
     // 设置tableView的数据源
     tableAccView.dataSource = self;
@@ -300,12 +430,34 @@
     tableAccView.backgroundColor = UIColorFromRGB(0x0F151A);
     self.myAccDataTableView = tableAccView;
     
-    [self.myAccDataTableView registerClass:[HQZXDataAccTableCell class] forCellReuseIdentifier:@"CustomAccHeaderTwo"];
+    [self.myAccDataTableView registerClass:[HQZXDataTranTableCell class] forCellReuseIdentifier:@"CustomAccHeaderTwo"];
     [_accscroll addSubview:self.myAccDataTableView];
+    WEAK_SELF
+    self.myAccDataTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [weakself refData:^{
+            [weakself.myAccDataTableView.mj_header endRefreshing];
+            [weakself.myAccDataTableView.mj_footer resetNoMoreData];
+        } stateVer:@"3" uitable:self.myAccDataTableView];
+    }];
+    self.myAccDataTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        if([nextId isEqualToString:@"0"]==NO){
+            [weakself moreWithCompletion:^(BOOL value) {
+                [weakself.myAccDataTableView.mj_footer endRefreshing];
+                if (value) {
+                    [weakself.myAccDataTableView.mj_footer resetNoMoreData];
+                } else {
+                    [weakself.myAccDataTableView.mj_footer endRefreshingWithNoMoreData];
+                }
+            } stateVer:@"3" uitable:self.myAccDataTableView];
+        }else{
+            [weakself.myAccDataTableView.mj_footer endRefreshingWithNoMoreData];
+            [weakself.view makeToast:@"全部加载完毕" duration:1 position:CSToastPositionCenter];
+        }
+    }];
 }
 //转出
 -(void)createOutAccTableTwoView{
-    UITableView *tableOutAccTwoView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0 , SCREEN_WIDTH*1.5, SCREEN_WIDTH/8) style:UITableViewStyleGrouped];
+    UITableView *tableOutAccTwoView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0 , SCREEN_WIDTH*1.6, SCREEN_WIDTH/8) style:UITableViewStyleGrouped];
     tableOutAccTwoView.scrollEnabled = NO;
     tableOutAccTwoView.separatorStyle = UITableViewCellSelectionStyleNone;
     // 设置tableView的数据源
@@ -314,11 +466,11 @@
     tableOutAccTwoView.delegate = self;
     tableOutAccTwoView.backgroundColor = UIColorFromRGB(0x0F151A);
     self.mySecAccDataTwoTableView = tableOutAccTwoView;
-    [self.mySecAccDataTwoTableView registerClass:[HQZXTransferAccountsTableCell class] forCellReuseIdentifier:@"CustomAccHeaderOne"];
+    [self.mySecAccDataTwoTableView registerClass:[HQZXTransactionTableCell class] forCellReuseIdentifier:@"CustomAccHeaderOne"];
     [_accscrollTwo addSubview:self.mySecAccDataTwoTableView];
 }
 -(void)createOutAccTableView{
-    UITableView *tableOutAccView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.myAccDataTwoTableView.maxY , SCREEN_WIDTH*1.5, SCREEN_HEIGHT-TOP_HEIGHT - SCREEN_WIDTH/8) style:UITableViewStyleGrouped];
+    UITableView *tableOutAccView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.myAccDataTwoTableView.maxY , SCREEN_WIDTH*1.6, SCREEN_HEIGHT-TOP_HEIGHT - SCREEN_WIDTH/8) style:UITableViewStyleGrouped];
     tableOutAccView.separatorStyle = UITableViewCellSelectionStyleNone;
     // 设置tableView的数据源
     tableOutAccView.dataSource = self;
@@ -327,8 +479,31 @@
     tableOutAccView.backgroundColor = UIColorFromRGB(0x0F151A);
     self.mySecAccDataTableView = tableOutAccView;
     
-    [self.mySecAccDataTableView registerClass:[HQZXDataAccTableCell class] forCellReuseIdentifier:@"CustomAccHeaderTwo"];
+    [self.mySecAccDataTableView registerClass:[HQZXDataTranTableCell class] forCellReuseIdentifier:@"CustomAccHeaderTwo"];
     [_accscrollTwo addSubview:self.mySecAccDataTableView];
+    WEAK_SELF
+    self.mySecAccDataTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [weakself refData:^{
+            [weakself.mySecAccDataTableView.mj_header endRefreshing];
+            [weakself.mySecAccDataTableView.mj_footer resetNoMoreData];
+        } stateVer:@"4" uitable:self.mySecAccDataTableView];
+    }];
+    self.mySecAccDataTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        if([nextId isEqualToString:@"0"]==NO){
+            [weakself moreWithCompletion:^(BOOL value) {
+                [weakself.mySecAccDataTableView.mj_footer endRefreshing];
+                if (value) {
+                    [weakself.mySecAccDataTableView.mj_footer resetNoMoreData];
+                } else {
+                    [weakself.mySecAccDataTableView.mj_footer endRefreshingWithNoMoreData];
+                }
+            } stateVer:@"4" uitable:self.mySecAccDataTableView];
+        }else{
+            [weakself.mySecAccDataTableView.mj_footer endRefreshingWithNoMoreData];
+            [weakself.view makeToast:@"全部加载完毕" duration:1 position:CSToastPositionCenter];
+        }
+    }];
+    
 }
 // 设置块的高度
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -349,19 +524,19 @@
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     if([tableView isEqual:self.myAccTableView]){
-        return 17;
+        return _datas.count;
     }else if([tableView isEqual:self.myAccTwoTableView]){
         return 1;
     }else if([tableView isEqual:self.mySecAccTableView]){
-        return 17;
+        return _datas.count;
     }else if([tableView isEqual:self.mySecAccTwoTableView]){
         return 1;
     }else if([tableView isEqual:self.myAccDataTableView]){
-        return 17;
+        return _datas.count;
     }else if([tableView isEqual:self.myAccDataTwoTableView]){
         return 1;
     }else if([tableView isEqual:self.mySecAccDataTableView]){
-        return 17;
+        return _datas.count;
     }else if([tableView isEqual:self.mySecAccDataTwoTableView]){
         return 1;
     }
@@ -372,18 +547,70 @@
     NSUInteger section = [indexPath section];
     if([tableView isEqual:self.myAccTableView]){
         cell =[tableView dequeueReusableCellWithIdentifier:@"CustomHeaderTwo"];
+        id btbData;
+        if(_datas.count>0){
+            btbData = [_datas objectAtIndex:section];
+        }
+        HQZXDataTranTableCell *cellen = (HQZXDataTranTableCell*) cell;
+        if(btbData){
+            cellen.state = @"1";
+            cellen.time = StrValueFromDictionary(btbData, @"time");
+            cellen.volume = StrValueFromDictionary(btbData, @"volume");
+            cellen.money = StrValueFromDictionary(btbData, @"dealmoney");
+            cellen.price = StrValueFromDictionary(btbData, @"price");
+            cellen.fee = StrValueFromDictionary(btbData, @"fee");
+        }
     }else if([tableView isEqual:self.myAccTwoTableView]){
         cell =[tableView dequeueReusableCellWithIdentifier:@"CustomHeaderOne"];
     }else if([tableView isEqual:self.mySecAccTableView]){
         cell =[tableView dequeueReusableCellWithIdentifier:@"CustomHeaderTwo"];
+        id btbData;
+        if(_datas.count>0){
+            btbData = [_datas objectAtIndex:section];
+        }
+        HQZXDataTranTableCell *cellen = (HQZXDataTranTableCell*) cell;
+        if(btbData){
+            cellen.state = @"2";
+            cellen.time = StrValueFromDictionary(btbData, @"time");
+            cellen.volume = StrValueFromDictionary(btbData, @"volume");
+            cellen.money = StrValueFromDictionary(btbData, @"dealmoney");
+            cellen.price = StrValueFromDictionary(btbData, @"price");
+            cellen.fee = StrValueFromDictionary(btbData, @"fee");
+        }
     }else if([tableView isEqual:self.mySecAccTwoTableView]){
         cell =[tableView dequeueReusableCellWithIdentifier:@"CustomHeaderOne"];
     }else if([tableView isEqual:self.myAccDataTableView]){
         cell =[tableView dequeueReusableCellWithIdentifier:@"CustomAccHeaderTwo"];
+        id btbData;
+        if(_datas.count>0){
+            btbData = [_datas objectAtIndex:section];
+        }
+        HQZXDataTranTableCell *cellen = (HQZXDataTranTableCell*) cell;
+        if(btbData){
+            cellen.state = @"3";
+            cellen.time = StrValueFromDictionary(btbData, @"time");
+            cellen.volume = StrValueFromDictionary(btbData, @"volume");
+            cellen.money = StrValueFromDictionary(btbData, @"money");
+            cellen.price = StrValueFromDictionary(btbData, @"price");
+            cellen.fee = StrValueFromDictionary(btbData, @"fee");
+        }
     }else if([tableView isEqual:self.myAccDataTwoTableView]){
         cell =[tableView dequeueReusableCellWithIdentifier:@"CustomAccHeaderOne"];
     }else if([tableView isEqual:self.mySecAccDataTableView]){
         cell =[tableView dequeueReusableCellWithIdentifier:@"CustomAccHeaderTwo"];
+        id btbData;
+        if(_datas.count>0){
+            btbData = [_datas objectAtIndex:section];
+        }
+        HQZXDataTranTableCell *cellen = (HQZXDataTranTableCell*) cell;
+        if(btbData){
+            cellen.state = @"4";
+            cellen.time = StrValueFromDictionary(btbData, @"time");
+            cellen.volume = StrValueFromDictionary(btbData, @"volume");
+            cellen.money = StrValueFromDictionary(btbData, @"money");
+            cellen.price = StrValueFromDictionary(btbData, @"price");
+            cellen.fee = StrValueFromDictionary(btbData, @"fee");
+        }
     }else if([tableView isEqual:self.mySecAccDataTwoTableView]){
         cell =[tableView dequeueReusableCellWithIdentifier:@"CustomAccHeaderOne"];
     }
@@ -410,6 +637,8 @@
     _scrollTwo.hidden = YES;
     _accscroll.hidden = YES;
     _accscrollTwo.hidden = YES;
+    [self.myAccTableView.mj_header beginRefreshing];
+    
     
 }
 - (void)buytwoGe:(UITapGestureRecognizer *)gesture {
@@ -421,6 +650,8 @@
     _scrollTwo.hidden = NO;
     _accscroll.hidden = YES;
     _accscrollTwo.hidden = YES;
+    [self.mySecAccTableView.mj_header beginRefreshing];
+    
     
 }
 - (void)sellGe:(UITapGestureRecognizer *)gesture {
@@ -432,6 +663,8 @@
     _scrollTwo.hidden = YES;
     _accscroll.hidden = NO;
     _accscrollTwo.hidden = YES;
+    [self.myAccDataTableView.mj_header beginRefreshing];
+    
 }
 
 - (void)selltwoGe:(UITapGestureRecognizer *)gesture {
@@ -443,5 +676,6 @@
     _scrollTwo.hidden = YES;
     _accscroll.hidden = YES;
     _accscrollTwo.hidden = NO;
+    [self.mySecAccDataTableView.mj_header beginRefreshing];
 }
 @end

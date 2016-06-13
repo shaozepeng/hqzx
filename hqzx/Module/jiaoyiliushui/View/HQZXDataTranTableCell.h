@@ -6,19 +6,16 @@
 //  Copyright © 2016年 泽鹏邵. All rights reserved.
 //
 #define DATAFONTTHREES IP4566PELSE(12, 11,13,14,13)
+#define DATAFONTTHREEST IP4566PELSE(10, 9,11,12,11)
 
 #import <Foundation/Foundation.h>
 
 @interface HQZXDataTranTableCell : UITableViewCell
 @property long rowNum;
-@property (strong, nonatomic) NSString *imageUrl;
-@property (strong, nonatomic) NSString *title1;
-@property (strong, nonatomic) NSString *title2;
-@property (strong, nonatomic) NSString *title3;
-@property (strong, nonatomic) NSString *toubiaoshu;
-@property (strong, nonatomic) NSString *zhuangzaigang;
-@property (strong, nonatomic) NSString *toubiaozhuangtai;
-@property (strong, nonatomic) NSString *kaibiaohaisheng;
-@property(nonatomic, strong) void (^buquanBlock)();
-@property(nonatomic, strong) void (^quxiaoBlock)();
+@property (strong, nonatomic) NSString *state;
+@property (strong, nonatomic) NSString *time;
+@property (strong, nonatomic) NSString *volume;
+@property (strong, nonatomic) NSString *money;
+@property (strong, nonatomic) NSString *price;
+@property (strong, nonatomic) NSString *fee;
 @end

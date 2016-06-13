@@ -30,11 +30,11 @@
     [self initPicScroller];
     [self createTabView];
     [self refData];
-//    WEAK_SELF
-//    self.myTableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-//        [weakself refData];
-//    }];
-//    self.myTableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+    WEAK_SELF
+    self.myTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [weakself refData];
+    }];
+//    self.myTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
 //        [weakself refData];
 //    }];
     HQZXEmptyData(self.myTableView, hqzxEmptyManager, nil);
@@ -47,7 +47,7 @@
         autokey = @"0";
     }
     [[NetHttpClient sharedHTTPClient] request: @"/index.json" parameters:@{@"auth_key":autokey} completion:^(id obj) {
-        [self.myTableView.header endRefreshing];
+        [self.myTableView.mj_header endRefreshing];
         if (obj==nil) {
             [self.view makeToast: @"查询服务器失败，请检查网络连接" duration: 0.5 position: CSToastPositionCenter];
             return;
@@ -90,10 +90,6 @@
     tableView.dataSource = self;
     // 设置tableView的委托
     tableView.delegate = self;
-    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
-    [refreshControl addTarget:self action:@selector(refData) forControlEvents:UIControlEventValueChanged];
-    
-    [tableView addSubview:refreshControl];
     tableView.backgroundColor = UIColorFromRGB(0x0C1319);
     [tableView registerClass:[XQZXFirstPageTableViewCell class] forCellReuseIdentifier:@"wohuoCell"];
     self.myTableView = tableView;

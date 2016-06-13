@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'F238DCA0DEF7EE1D188E7222'
+               BlueprintIdentifier = '10EFA01217978546475B541F'
                BlueprintName = 'uiview-frame-helpers'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libuiview-frame-helpers.a'>

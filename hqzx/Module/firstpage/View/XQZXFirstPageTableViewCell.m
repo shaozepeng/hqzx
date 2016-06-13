@@ -176,7 +176,7 @@
     return self;
 }
 - (void)setImageUrl:(NSString *)imageUrl {
-    _imageUrl = [NSString stringWithFormat:@"http://coins.zhaojizi.com%@",imageUrl ];
+    _imageUrl = [NSString stringWithFormat:@"%@%@",ApiPicServer,imageUrl ];
     [imageView sd_setImageWithURL: [NSURL URLWithString: _imageUrl]];
 }
 

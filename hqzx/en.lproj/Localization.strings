@@ -20,6 +20,14 @@
 "MEIYOUXINSHUJU"="There is no data content!";
 "KXIANTU"="K line graph";
 "NINYAOTUICHUMA"="Are you sure you want to quit?";
+"CAOZUOCHENGGONG"="Successful operation";
+"BUY"="Buy";
+"SELL"="Sell";
+"SHI"="Time";
+"RI"="Day";
+"ZHOU"="Week";
+"YUE"="Month";
+"CHENGGONG"="Success";
 
 
 /*
@@ -182,6 +190,11 @@
 "MAIMAI"="Buy / sell";
 "JIAGEFUHAO"="The price (￥)";
 "SHULIANG"="Number";
+"MAIRUJIAGEBUNENGWEIKONG"="Buy price can not be empty";
+"MAIRUSHULIANGBUNENGWEIKONG"="Buy the number can not be empty";
+"JIAOYIMIMABUNENGWEIKONG"="Transaction password can not be empty";
+"SELLJIAGEBUNENGWEIKONG"="Selling price can not be empty";
+"SELLSHULIANGBUNENGWEIKONG"="Sell the number can not be empty";
 
 //委托管理
 "CHEXIAO"="Undo";
@@ -246,6 +259,24 @@
 "YOUSUOYANSHI"="3 withdrawals within 24 hours of arrival, bank card withdrawals from bank to bank, real-time arrival time may be delayed";
 "ZHUANRU"="To change into";
 "ZHUANCHU"="Turn out";
+
+//刷新插件
+"MJRefreshHeaderIdleText" = "Pull down to refresh";
+"MJRefreshHeaderPullingText" = "Release to refresh";
+"MJRefreshHeaderRefreshingText" = "Loading...";
+
+"MJRefreshAutoFooterIdleText" = "Tap or pull up to load more";
+"MJRefreshAutoFooterRefreshingText" = "Loading...";
+"MJRefreshAutoFooterNoMoreDataText" = "No more data";
+
+"MJRefreshBackFooterIdleText" = "Pull up to load more";
+"MJRefreshBackFooterPullingText" = "Release to load more.";
+"MJRefreshBackFooterRefreshingText" = "Loading...";
+"MJRefreshBackFooterNoMoreDataText" = "No more data";
+
+"MJRefreshHeaderLastTimeText" = "Last update:";
+"MJRefreshHeaderDateTodayText" = "Today";
+"MJRefreshHeaderNoneLastDateText" = "No record";
 
 
 

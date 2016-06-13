@@ -138,11 +138,11 @@
         
         twoLable = [[UILabel alloc] initWithFrame: CGRectMake(1, 1, 1, 1)];
         twoLable.text = LocatizedStirngForkey(@"SHANGWEIFUKUAN");
-        twoLable.textColor = UIColorFromRGB(0xE0E2E2);
+        twoLable.textColor = UIColorFromRGB(0x008B00);
         if([language isEqualToString:@"zh-Hans"]){
             twoLable.font = [UIFont systemFontOfSize: DATAFONTTHREES];
         }else if([language isEqualToString:@"en"]){
-            twoLable.font = [UIFont systemFontOfSize: DATAFONTTHREES];
+            twoLable.font = [UIFont systemFontOfSize: DATAFONTTHREEST];
         }
         [twoInfoView addSubview: twoLable];
         [twoLable sizeToFit];
@@ -243,8 +243,8 @@
         [cell addSubview:sixBonLineView];
         
         sixLable = [[UILabel alloc] initWithFrame: CGRectMake(1, 1, 1, 1)];
-        sixLable.text = @"￥100.99";
-        sixLable.textColor = UIColorFromRGB(0xE0E2E2);
+        sixLable.text = LocatizedStirngForkey(@"CHENGGONG");
+        sixLable.textColor = UIColorFromRGB(0x008B00);
         sixLable.font = [UIFont systemFontOfSize: DATAFONTTHREE];
         [sixInfoView addSubview: sixLable];
         [sixLable sizeToFit];
@@ -375,4 +375,67 @@
     }
     return self;
 }
+-(void)setState:(NSString *)value{
+    _state = NilToEmpty(value);
+    if([_state isEqualToString:@"1"]){
+        twoLable.text = LocatizedStirngForkey(@"MAIRU");
+    }else if([_state isEqualToString:@"2"]){
+        twoLable.text = LocatizedStirngForkey(@"MAICHU");
+    }else if([_state isEqualToString:@"3"]){
+        twoLable.text = LocatizedStirngForkey(@"ZHUANRU");
+    }else if([_state isEqualToString:@"4"]){
+        twoLable.text = LocatizedStirngForkey(@"ZHUANCHU");
+    }
+    [twoLable sizeToFit];
+    
+    [twoLable setX:(twoInfoView.width-twoLable.width)/2];
+    [twoLable setY:(twoInfoView.height-twoLable.height)/2];
+}
+-(void)setTime:(NSString *)value{
+    _time = NilToEmpty(value);
+    NSDate *nd = [NSDate dateWithTimeIntervalSince1970:[_time integerValue]];
+    
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"yyyy-MM-dd"];
+    NSString *dateString = [dateFormat stringFromDate:nd];
+    threeLable.text = dateString;
+    [threeLable sizeToFit];
+    
+    NSDateFormatter *dateFormat2 = [[NSDateFormatter alloc] init];
+    [dateFormat2 setDateFormat:@"HH:mm:ss"];
+    NSString *dateString2 = [dateFormat2 stringFromDate:nd];
+    threeFLable.text = dateString2;
+    [threeFLable sizeToFit];
+    
+}
+-(void)setVolume:(NSString *)value{
+    _volume = NilToEmpty(value);
+    fiveLable.text = _volume;
+    [fiveLable sizeToFit];
+    [fiveLable setX:(fiveInfoView.width-fiveLable.width)/2];
+    [fiveLable setY:(fiveInfoView.height-fiveLable.height)/2];
+    
+}
+-(void)setMoney:(NSString *)value{
+    _money = NilToEmpty(value);
+    foreLable.text = [NSString stringWithFormat:@"￥%@",_money];
+    [foreLable sizeToFit];
+    [foreLable setX:(foreInfoView.width-foreLable.width)/2];
+    [foreLable setY:(foreInfoView.height-foreLable.height)/2];
+}
+-(void)setPrice:(NSString *)value{
+    _price = NilToEmpty(value);
+    sevenLable.text = [NSString stringWithFormat:@"￥%@",_price];
+    [sevenLable sizeToFit];
+    [sevenLable setX:(sevenInfoView.width-sevenLable.width)/2];
+    [sevenLable setY:(sevenInfoView.height-sevenLable.height)/2];
+}
+-(void)setFee:(NSString *)value{
+    _fee = NilToEmpty(value);
+    eightLable.text = [NSString stringWithFormat:@"￥%@",_fee];
+    [eightLable sizeToFit];
+    [eightLable setX:(eightInfoView.width-eightLable.width)/2];
+    [eightLable setY:(eightInfoView.height-eightLable.height)/2];
+}
+    
 @end
