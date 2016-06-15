@@ -10,6 +10,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface HQZXServiceAgreementViewController : UIViewController
+@interface HQZXServiceAgreementViewController : UIViewController<UIWebViewDelegate>
 
 @end

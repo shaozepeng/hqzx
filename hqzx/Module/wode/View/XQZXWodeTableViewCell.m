@@ -17,6 +17,7 @@
     UILabel *tishi;
     UIImageView *shipimageView;
     UIImageView *ownerimageView;
+    UIView *cell;
 }
 @end
 
@@ -26,20 +27,20 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         self.backgroundColor = TableBgColor;
-        UIView *cell = [[UIView alloc] initWithFrame: CGRectMake(0, 0, SCREEN_WIDTH, WOCELLHEIGHT)];
+        cell = [[UIView alloc] initWithFrame: CGRectMake(0, 0, SCREEN_WIDTH, WOCELLHEIGHT)];
         cell.backgroundColor = UIColorFromRGB(0x0E151B);
         
-        UIImage *myIcon = [UIImage imageNamed:@"icon_th"];
-        infoView = [[UIView alloc] initWithFrame: CGRectMake(COMMON_H_MARGIN+10, 10, cell.width - COMMON_H_MARGIN*2, cell.height*0.9 - 1)];
+//        UIImage *myIcon = [UIImage imageNamed:@"icon_th"];
+        infoView = [[UIView alloc] initWithFrame: CGRectMake(COMMON_H_MARGIN, 5, cell.width - COMMON_H_MARGIN*2, cell.height*0.9 - 1)];
         [cell addSubview: infoView];
-        imageView = [[UIImageView alloc] initWithFrame: CGRectMake(0, 0, myIcon.size.width*WOCELLPROPO, myIcon.size.width*WOCELLPROPO)];
-        [imageView setImage:myIcon];
-        imageView.layer.masksToBounds = YES;
-        imageView.layer.cornerRadius = imageView.width/2;
-        imageView.contentMode = UIViewContentModeScaleAspectFill;
-        [infoView addSubview: imageView];
+//        imageView = [[UIImageView alloc] initWithFrame: CGRectMake(0, 0, myIcon.size.width*WOCELLPROPO, myIcon.size.width*WOCELLPROPO)];
+//        [imageView setImage:myIcon];
+//        imageView.layer.masksToBounds = YES;
+//        imageView.layer.cornerRadius = imageView.width/2;
+//        imageView.contentMode = UIViewContentModeScaleAspectFill;
+//        [infoView addSubview: imageView];
         
-        lblTitle1 = [[UILabel alloc] initWithFrame: CGRectMake(imageView.maxX, cell.height/4, 1, 1)];
+        lblTitle1 = [[UILabel alloc] initWithFrame: CGRectMake(SCREEN_WIDTH/30, cell.height/4, 1, 1)];
         lblTitle1.text = @" ";
         [infoView addSubview: lblTitle1];
         lblTitle1.font = [UIFont systemFontOfSize: WOCELLFONT];
@@ -47,7 +48,7 @@
         [lblTitle1 sizeToFit];
         [infoView addSubview: lblTitle1];
         
-        lblTitle2 = [[UILabel alloc] initWithFrame: CGRectMake(imageView.maxX, cell.height/2+8, 1, 1)];
+        lblTitle2 = [[UILabel alloc] initWithFrame: CGRectMake(SCREEN_WIDTH/30, cell.height/2+8, 1, 1)];
         lblTitle2.text = @" ";
         lblTitle2.textColor = [UIColor whiteColor];
         [infoView addSubview: lblTitle2];
@@ -62,7 +63,7 @@
 //        tishilab.font = [UIFont systemFontOfSize: WOCELLFONT];
 //        [tishilab sizeToFit];
         
-        tishi = [[UILabel alloc] initWithFrame: CGRectMake(imageView.maxX, cell.height/2+16, 1, 1)];
+        tishi = [[UILabel alloc] initWithFrame: CGRectMake(SCREEN_WIDTH/30, cell.height/2+16, 1, 1)];
         tishi.text = @" ";
         tishi.textColor = UIColorFromRGB(0x244E8E);
         [infoView addSubview: tishi];
@@ -90,8 +91,8 @@
     _title1 = value;
     lblTitle1.text = [NSString stringWithFormat:@"%@：%@",LocatizedStirngForkey(@"DELUMING"),_title1];
     [lblTitle1 sizeToFit];
-    [lblTitle1 setX: imageView.maxX + 15];
-    [lblTitle1 setY:imageView.y+imageView.height/15];
+    [lblTitle1 setX: SCREEN_WIDTH/30];
+    [lblTitle1 setY:cell.height/15];
 }
 -(void)setChuanname:(NSString *)value{
     _chuanname = value;
@@ -109,8 +110,8 @@
     _title2 = value;
     lblTitle2.text = [NSString stringWithFormat:@"%@：%@",LocatizedStirngForkey(@"NICHENG"),_title2];
     [lblTitle2 sizeToFit];
-    [lblTitle2 setX: imageView.maxX + 15];
-    [lblTitle2 setY:lblTitle1.maxY+imageView.height/15];
+    [lblTitle2 setX: SCREEN_WIDTH/30];
+    [lblTitle2 setY:lblTitle1.maxY+cell.height/15];
 }
 - (void)setState:(NSString *)value {
     _state = value;
@@ -121,8 +122,8 @@
         [attributedStr addAttribute:NSForegroundColorAttributeName value:UIColorFromRGB(0x439AFE) range:NSMakeRange(4, _state.length-4)];
     tishi.attributedText = attributedStr;
     [tishi sizeToFit];
-    [tishi setX: imageView.maxX + 15];
-    [tishi setY:lblTitle2.maxY+imageView.height/15];
+    [tishi setX: SCREEN_WIDTH/30];
+    [tishi setY:lblTitle2.maxY+cell.height/15];
 }
 - (void)awakeFromNib {
 }

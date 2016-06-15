@@ -11,4 +11,5 @@
 @interface HQZXReceivablesViewController : UIViewController
 @property (strong, nonatomic) NSString *sysId;
 @property (strong, nonatomic) NSString *sysName;
+@property (strong, nonatomic) NSString *sysLogo;
 @end

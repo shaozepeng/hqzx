@@ -34,8 +34,8 @@
     self.window.backgroundColor = [UIColor whiteColor];
     
     //初始化更新特性图片插件
-//    BOOL showNewFeature = [LCNewFeatureVC shouldShowNewFeature];
-    BOOL showNewFeature = YES;
+    BOOL showNewFeature = [LCNewFeatureVC shouldShowNewFeature];
+//    BOOL showNewFeature = YES;
     
     self.launchOptions = launchOptions;
     //    NSDictionary *pushInfo = @{@"type":@"order_port_weather",@"load_port":@"504",@"unload_port":@"4008"};
@@ -53,6 +53,12 @@
     [self initIQKeyboardManager];
     
     [self playStopNet];
+    if([USER_DEFAULT objectForKey:CURRENT_USER_KEY]){
+        HQZXUser *currentUser = [HQZXUserModel sharedInstance].currentUser;
+        NSLog(@"%@",currentUser);
+    }
+//    NSData *sdf = [USER_DEFAULT objectForKey:CURRENT_USER_KEY];
+//    NSDictionary *userDic = [NSKeyedUnarchiver unarchiveObjectWithData:sdf];
     return YES;
 }
 - (void) initNewFeatureVC {
@@ -136,6 +142,11 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    [self playStopNet];
+    if([USER_DEFAULT objectForKey:CURRENT_USER_KEY]){
+        HQZXUser *currentUser = [HQZXUserModel sharedInstance].currentUser;
+        NSLog(@"%@",currentUser);
+    }
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {

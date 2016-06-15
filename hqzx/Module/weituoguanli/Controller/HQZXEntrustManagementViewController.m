@@ -73,7 +73,7 @@
             }];
         }else{
             [weakself.myTableView.mj_footer endRefreshingWithNoMoreData];
-            [weakself.view makeToast:@"全部加载完毕" duration:1 position:CSToastPositionCenter];
+            [weakself.view makeToast:LocatizedStirngForkey(MJRefreshBackFooterNoMoreDataText) duration:1 position:CSToastPositionCenter];
         }
         
     }];
@@ -233,18 +233,31 @@
         HQZXDataEnTableCell *cellen = (HQZXDataEnTableCell*) cell;
         if(btbData){
             cellen.quxiaoBlock = ^{
-                [[NetHttpClient sharedHTTPClient] request: @"/cancel_entrust.json" parameters:@{@"id":StrValueFromDictionary(btbData, @"id"),@"auth_key":[HQZXUserModel sharedInstance].currentUser.auth_key} completion:^(id obj) {
-                    [self.myTableView.mj_header endRefreshing];
-                    if (obj==nil) {
-                        [self.view makeToast: LocatizedStirngForkey(@"LIANJIEFUWUQISHIBAI") duration: 0.5 position: CSToastPositionCenter];
-                        return;
-                    }
-                    if (![@"0" isEqualToString: StrValueFromDictionary(obj, ApiKey_ErrorCode)]) {
-                        [self.view makeToast: [obj objectForKey:@"message"] duration: 0.5 position: CSToastPositionCenter];
-                        return;
-                    }
-                    [self reData];
-                }];
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:LocatizedStirngForkey(@"TISHI") message:LocatizedStirngForkey(@"NINQUEDINGYAOCHEXIAOMA") preferredStyle: UIAlertControllerStyleAlert];
+                
+                [alert addAction:[UIAlertAction actionWithTitle:LocatizedStirngForkey(@"QUXIAO") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                    //点击按钮的响应事件；
+                }]];
+                [alert addAction:[UIAlertAction actionWithTitle:LocatizedStirngForkey(@"QUEDING") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                    //点击按钮的响应事件；
+                    [[NetHttpClient sharedHTTPClient] request: @"/cancel_entrust.json" parameters:@{@"id":StrValueFromDictionary(btbData, @"id"),@"auth_key":[HQZXUserModel sharedInstance].currentUser.auth_key} completion:^(id obj) {
+                        [self.myTableView.mj_header endRefreshing];
+                        if (obj==nil) {
+                            [self.view makeToast: LocatizedStirngForkey(@"LIANJIEFUWUQISHIBAI") duration: 0.5 position: CSToastPositionCenter];
+                            return;
+                        }
+                        if (![@"0" isEqualToString: StrValueFromDictionary(obj, ApiKey_ErrorCode)]) {
+                            [self.view makeToast: [obj objectForKey:@"message"] duration: 0.5 position: CSToastPositionCenter];
+                            return;
+                        }
+                        [self.view makeToast: LocatizedStirngForkey(@"CAOZUOCHENGGONG") duration: 0.5 position: CSToastPositionCenter];
+                        [self reData];
+                    }];
+                }]];
+                
+                //弹出提示框；
+                [[rootNav.viewControllers objectAtIndex: 0] presentViewController:alert animated:true completion:nil];
+                
             };
             cellen.time = StrValueFromDictionary(btbData, @"time");
             cellen.tradetype = StrValueFromDictionary(btbData, @"tradetype");
@@ -286,7 +299,7 @@
     NSLog(@"height:%f contentYoffset:%f frame.y:%f",height,contentYoffset,scrollView.frame.origin.y);
     if (distanceFromBottom < height) {
         if(![nextId isEqualToString:@"0"]){
-            [self.view makeToast:@"上拉加载更多" duration:1 position:CSToastPositionCenter];
+            [self.view makeToast:LocatizedStirngForkey(MJRefreshBackFooterIdleText) duration:1 position:CSToastPositionCenter];
         }
     }
 }

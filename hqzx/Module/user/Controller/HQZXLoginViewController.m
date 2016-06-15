@@ -299,7 +299,7 @@
         }
 //        [self cloudLanding];
         
-        [self.navigationController popViewControllerAnimated: YES];
+//        [self.navigationController popViewControllerAnimated: YES];
         
         [USER_DEFAULT setObject: phoneNo forKey: lastLoginUserNameKey];
         [weakself dismissViewControllerAnimated: YES completion:^{

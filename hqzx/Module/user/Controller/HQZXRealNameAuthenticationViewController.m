@@ -254,20 +254,22 @@
             if ([@"0" isEqualToString:StrValueFromDictionary(obj, ApiKey_ErrorCode)]) {
                 NSData *arc = [NSKeyedArchiver archivedDataWithRootObject: obj];
                 [USER_DEFAULT setObject: arc forKey: CURRENT_USER_KEY];
-                
+                HQZXUser *currentUser = [HQZXUserModel sharedInstance].currentUser;
+                NSString *userId = currentUser.userId;
+                [self.view makeToast:LocatizedStirngForkey(@"RENZHENGCHENGGONG") duration: 0.5 position:CSToastPositionCenter];
                 if (weakself.successBlock) {
                     [weakself dismissViewControllerAnimated: YES completion:^{
                         weakself.successBlock();
                     }];
-
                 }else{
                     HQZXCertificationSuccessViewController *certificationSuccess = [[HQZXCertificationSuccessViewController alloc]init];
                     certificationSuccess.name = username;
                     certificationSuccess.cardId = cardNo;
                     certificationSuccess.cardType = card.card_name;
-                    [self.navigationController pushViewController:certificationSuccess animated: YES];
+                    UINavigationController *textNav = [[UINavigationController alloc] initWithRootViewController: certificationSuccess];
+                    [CommonUtils setNavigationControllerStyle: textNav];
+                    [self presentViewController:textNav animated:YES completion:nil];
                 }
-                [self.view makeToast:LocatizedStirngForkey(@"RENZHENGCHENGGONG") duration: 0.5 position:CSToastPositionCenter];
             } else {
                 [self.view makeToast:[NSString stringWithFormat:@"%@", [obj objectForKey:@"message"]] duration: 0.5 position:CSToastPositionCenter];
             }

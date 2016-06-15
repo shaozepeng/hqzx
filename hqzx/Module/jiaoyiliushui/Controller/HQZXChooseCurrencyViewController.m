@@ -16,7 +16,7 @@
     [super viewDidLoad];
     [self.view addSubview: [[UIView alloc] init]];
     self.view.backgroundColor = UIColorFromRGB(0x0C1319);
-    self.title = LocatizedStirngForkey(@"JIAOYILIUSHUI");
+    self.title = LocatizedStirngForkey(@"XUANZEBIZHONG");
     [self createTableView];
     
     arys = [NSMutableArray array];

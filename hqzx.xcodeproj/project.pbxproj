@@ -155,6 +155,8 @@
 		7A71EB491D085BB400526510 /* HQZXSelectBankForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A71EB481D085BB400526510 /* HQZXSelectBankForm.m */; };
 		7A71EB4C1D085BE300526510 /* HQZXBank.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A71EB4B1D085BE300526510 /* HQZXBank.m */; };
 		7A71EB521D09717500526510 /* HQZXChooseCurViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A71EB511D09717500526510 /* HQZXChooseCurViewController.m */; };
+		7A766F591D1065A700DD2EAE /* HQZXAboutMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A766F581D1065A700DD2EAE /* HQZXAboutMeViewController.m */; };
+		7A766F5A1D1065A700DD2EAE /* HQZXAboutMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A766F581D1065A700DD2EAE /* HQZXAboutMeViewController.m */; };
 		7A91D9041D02D06E0069CF54 /* backImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A91D8ED1D02D06E0069CF54 /* backImage.png */; };
 		7A91D9051D02D06E0069CF54 /* 85923.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A91D8EF1D02D06E0069CF54 /* 85923.png */; };
 		7A91D9061D02D06E0069CF54 /* 85923Select.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A91D8F01D02D06E0069CF54 /* 85923Select.png */; };
@@ -462,6 +464,12 @@
 		7AF0AD8C1D0E61D8001F1346 /* close_black@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A0F71501CEDF52E00F468D2 /* close_black@2x.png */; };
 		7AF0AD8D1D0E61D8001F1346 /* check_black@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A0F714C1CEDF52E00F468D2 /* check_black@2x.png */; };
 		7AF0AD8E1D0E61D8001F1346 /* ToolNetWorkView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A0F70DE1CEDF52E00F468D2 /* ToolNetWorkView.xib */; };
+		7AF0AD981D0EF769001F1346 /* HQZXPresentRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AF0AD971D0EF769001F1346 /* HQZXPresentRecordViewController.m */; };
+		7AF0AD991D0EF769001F1346 /* HQZXPresentRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AF0AD971D0EF769001F1346 /* HQZXPresentRecordViewController.m */; };
+		7AF0AD9C1D0EF88F001F1346 /* HQZXPresentTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AF0AD9B1D0EF88F001F1346 /* HQZXPresentTableCell.m */; };
+		7AF0AD9D1D0EF88F001F1346 /* HQZXPresentTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AF0AD9B1D0EF88F001F1346 /* HQZXPresentTableCell.m */; };
+		7AF0ADA01D0EF8AF001F1346 /* HQZXDataPreTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AF0AD9F1D0EF8AF001F1346 /* HQZXDataPreTableCell.m */; };
+		7AF0ADA11D0EF8AF001F1346 /* HQZXDataPreTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AF0AD9F1D0EF8AF001F1346 /* HQZXDataPreTableCell.m */; };
 		A3BA53B62F4B147D78F072FB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 99D5CE75EEDEF98094016EEB /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -741,6 +749,8 @@
 		7A71EB4B1D085BE300526510 /* HQZXBank.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HQZXBank.m; sourceTree = "<group>"; };
 		7A71EB501D09717500526510 /* HQZXChooseCurViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HQZXChooseCurViewController.h; sourceTree = "<group>"; };
 		7A71EB511D09717500526510 /* HQZXChooseCurViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HQZXChooseCurViewController.m; sourceTree = "<group>"; };
+		7A766F571D1065A700DD2EAE /* HQZXAboutMeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HQZXAboutMeViewController.h; sourceTree = "<group>"; };
+		7A766F581D1065A700DD2EAE /* HQZXAboutMeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HQZXAboutMeViewController.m; sourceTree = "<group>"; };
 		7A91D8ED1D02D06E0069CF54 /* backImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backImage.png; sourceTree = "<group>"; };
 		7A91D8EF1D02D06E0069CF54 /* 85923.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 85923.png; sourceTree = "<group>"; };
 		7A91D8F01D02D06E0069CF54 /* 85923Select.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 85923Select.png; sourceTree = "<group>"; };
@@ -885,6 +895,12 @@
 		7AF0AC921D0D7A31001F1346 /* UIView+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MJExtension.m"; sourceTree = "<group>"; };
 		7AF0AD941D0E61D8001F1346 /* hqzx-appstore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "hqzx-appstore.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AF0AD951D0E61D8001F1346 /* hqzx-appstore.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "hqzx-appstore.plist"; path = "/Users/shaozp/Desktop/hqzx-app-ios/hqzx-appstore.plist"; sourceTree = "<absolute>"; };
+		7AF0AD961D0EF769001F1346 /* HQZXPresentRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HQZXPresentRecordViewController.h; sourceTree = "<group>"; };
+		7AF0AD971D0EF769001F1346 /* HQZXPresentRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HQZXPresentRecordViewController.m; sourceTree = "<group>"; };
+		7AF0AD9A1D0EF88F001F1346 /* HQZXPresentTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HQZXPresentTableCell.h; sourceTree = "<group>"; };
+		7AF0AD9B1D0EF88F001F1346 /* HQZXPresentTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HQZXPresentTableCell.m; sourceTree = "<group>"; };
+		7AF0AD9E1D0EF8AF001F1346 /* HQZXDataPreTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HQZXDataPreTableCell.h; sourceTree = "<group>"; };
+		7AF0AD9F1D0EF8AF001F1346 /* HQZXDataPreTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HQZXDataPreTableCell.m; sourceTree = "<group>"; };
 		900AF853C030062D18990C62 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		99D5CE75EEDEF98094016EEB /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBFAF5E12ED262D2487FB31C /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1027,6 +1043,7 @@
 		7A0F70281CECA47400F468D2 /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				7A766F531D10653D00DD2EAE /* guanyuwomen */,
 				7A91D9441D04298D0069CF54 /* RMBtixian */,
 				7A91D9141D02D0CB0069CF54 /* payment */,
 				7A91D92E1D031C960069CF54 /* jiaoyiliushui */,
@@ -2009,6 +2026,40 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		7A766F531D10653D00DD2EAE /* guanyuwomen */ = {
+			isa = PBXGroup;
+			children = (
+				7A766F541D10653D00DD2EAE /* Controller */,
+				7A766F551D10653D00DD2EAE /* Model */,
+				7A766F561D10653D00DD2EAE /* View */,
+			);
+			name = guanyuwomen;
+			path = hqzx/Module/guanyuwomen;
+			sourceTree = SOURCE_ROOT;
+		};
+		7A766F541D10653D00DD2EAE /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				7A766F571D1065A700DD2EAE /* HQZXAboutMeViewController.h */,
+				7A766F581D1065A700DD2EAE /* HQZXAboutMeViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		7A766F551D10653D00DD2EAE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7A766F561D10653D00DD2EAE /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		7A91D8EC1D02D06E0069CF54 /* Qrcode */ = {
 			isa = PBXGroup;
 			children = (
@@ -2145,6 +2196,8 @@
 			children = (
 				7A91D9481D0429D10069CF54 /* HQZXRMBWithdrawalsViewController.h */,
 				7A91D9491D0429D10069CF54 /* HQZXRMBWithdrawalsViewController.m */,
+				7AF0AD961D0EF769001F1346 /* HQZXPresentRecordViewController.h */,
+				7AF0AD971D0EF769001F1346 /* HQZXPresentRecordViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2163,6 +2216,10 @@
 			children = (
 				7A71EB471D085BB400526510 /* HQZXSelectBankForm.h */,
 				7A71EB481D085BB400526510 /* HQZXSelectBankForm.m */,
+				7AF0AD9A1D0EF88F001F1346 /* HQZXPresentTableCell.h */,
+				7AF0AD9B1D0EF88F001F1346 /* HQZXPresentTableCell.m */,
+				7AF0AD9E1D0EF8AF001F1346 /* HQZXDataPreTableCell.h */,
+				7AF0AD9F1D0EF8AF001F1346 /* HQZXDataPreTableCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2619,6 +2676,7 @@
 				7A0F71DF1CEDF52E00F468D2 /* UIImage+LC.m in Sources */,
 				7AF0ACA31D0D7A31001F1346 /* UIScrollView+MJExtension.m in Sources */,
 				7A71EB4C1D085BE300526510 /* HQZXBank.m in Sources */,
+				7A766F591D1065A700DD2EAE /* HQZXAboutMeViewController.m in Sources */,
 				7AC7E8D41CFAD5E5008CBC65 /* HQZXRealNameAuthenticationViewController.m in Sources */,
 				7A0F71C61CEDF52E00F468D2 /* DoAlertView.m in Sources */,
 				7AC4C0201D01367A004FD2F7 /* HQZXEmptyManager.m in Sources */,
@@ -2646,7 +2704,10 @@
 				7A0F72201CF09EBE00F468D2 /* HRCoverView.m in Sources */,
 				7A0F71B11CEDF52E00F468D2 /* BaseGradientView.m in Sources */,
 				7A0F70931CEDF17000F468D2 /* NSDate+Helper.m in Sources */,
+				7AF0AD981D0EF769001F1346 /* HQZXPresentRecordViewController.m in Sources */,
+				7AF0ADA01D0EF8AF001F1346 /* HQZXDataPreTableCell.m in Sources */,
 				7A0F70971CEDF1AA00F468D2 /* UIDevice+IdentifierAddition.m in Sources */,
+				7AF0AD9C1D0EF88F001F1346 /* HQZXPresentTableCell.m in Sources */,
 				7A0F71D71CEDF52E00F468D2 /* IQTextView.m in Sources */,
 				7A0F71921CEDF52E00F468D2 /* UIDevice+Extend.m in Sources */,
 				7A91D93D1D031F490069CF54 /* HQZXTransferAccountsTableCell.m in Sources */,
@@ -2801,6 +2862,7 @@
 				7AF0ACAD1D0E61D8001F1346 /* UIImage+LC.m in Sources */,
 				7AF0ACAE1D0E61D8001F1346 /* UIScrollView+MJExtension.m in Sources */,
 				7AF0ACAF1D0E61D8001F1346 /* HQZXBank.m in Sources */,
+				7A766F5A1D1065A700DD2EAE /* HQZXAboutMeViewController.m in Sources */,
 				7AF0ACB01D0E61D8001F1346 /* HQZXRealNameAuthenticationViewController.m in Sources */,
 				7AF0ACB11D0E61D8001F1346 /* DoAlertView.m in Sources */,
 				7AF0ACB21D0E61D8001F1346 /* HQZXEmptyManager.m in Sources */,
@@ -2828,7 +2890,10 @@
 				7AF0ACC81D0E61D8001F1346 /* HRCoverView.m in Sources */,
 				7AF0ACC91D0E61D8001F1346 /* BaseGradientView.m in Sources */,
 				7AF0ACCA1D0E61D8001F1346 /* NSDate+Helper.m in Sources */,
+				7AF0AD991D0EF769001F1346 /* HQZXPresentRecordViewController.m in Sources */,
+				7AF0ADA11D0EF8AF001F1346 /* HQZXDataPreTableCell.m in Sources */,
 				7AF0ACCB1D0E61D8001F1346 /* UIDevice+IdentifierAddition.m in Sources */,
+				7AF0AD9D1D0EF88F001F1346 /* HQZXPresentTableCell.m in Sources */,
 				7AF0ACCC1D0E61D8001F1346 /* IQTextView.m in Sources */,
 				7AF0ACCD1D0E61D8001F1346 /* UIDevice+Extend.m in Sources */,
 				7AF0ACCE1D0E61D8001F1346 /* HQZXTransferAccountsTableCell.m in Sources */,

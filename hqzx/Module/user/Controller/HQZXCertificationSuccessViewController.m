@@ -20,6 +20,8 @@
     
     self.view.backgroundColor = UIColorFromRGB(0x0C1319);
     self.title = LocatizedStirngForkey(@"RENZHENGCHENGGONG");
+
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(popToRootView)];
     
     NSString *language = [USER_DEFAULT objectForKey:kUserLanguage];
     
@@ -60,7 +62,7 @@
     [shenfenInfo setY:tongguorenzheng.maxY+SCREEN_WIDTH/30];
     
     nameInfo = [[UILabel alloc] initWithFrame: CGRectMake(1, 1, 1, 1)];
-    nameInfo.text = [NSString stringWithFormat:@"%@：%@",LocatizedStirngForkey(@"XINGMING"),@"罗大佑"];
+    nameInfo.text = [NSString stringWithFormat:@"%@：%@",LocatizedStirngForkey(@"XINGMING"),_name];
     nameInfo.font = [UIFont systemFontOfSize: SUCCESSFONTONE];
     nameInfo.textColor = UIColorFromRGB(0x6E7071);
     [self.view addSubview: nameInfo];
@@ -69,7 +71,7 @@
     [nameInfo setY:shenfenInfo.maxY+SCREEN_WIDTH/30];
     
     cardInfo = [[UILabel alloc] initWithFrame: CGRectMake(1, 1, 1, 1)];
-    cardInfo.text = [NSString stringWithFormat:@"%@：%@",LocatizedStirngForkey(@"ZHENGJIANLEIXING"),@"身份证"];
+    cardInfo.text = [NSString stringWithFormat:@"%@：%@",LocatizedStirngForkey(@"ZHENGJIANLEIXING"),_cardType];
     cardInfo.font = [UIFont systemFontOfSize: SUCCESSFONTONE];
     cardInfo.textColor = UIColorFromRGB(0x6E7071);
     [self.view addSubview: cardInfo];
@@ -78,7 +80,8 @@
     [cardInfo setY:nameInfo.maxY+SCREEN_WIDTH/30];
     
     idInfo = [[UILabel alloc] initWithFrame: CGRectMake(1, 1, 1, 1)];
-    idInfo.text = [NSString stringWithFormat:@"%@：%@",LocatizedStirngForkey(@"ZHENGJIANHAOMA"),@"**************3467"];
+    NSString *temp2 = [_cardId substringFromIndex:[_cardId length]-4];
+    idInfo.text = [NSString stringWithFormat:@"%@：***************%@",LocatizedStirngForkey(@"ZHENGJIANHAOMA"),temp2];
     idInfo.font = [UIFont systemFontOfSize: SUCCESSFONTONE];
     idInfo.textColor = UIColorFromRGB(0x6E7071);
     [self.view addSubview: idInfo];
@@ -94,6 +97,14 @@
 //    [timeInfo sizeToFit];
 //    [timeInfo setX:renImageView.maxX+SCREEN_WIDTH/30 ];
 //    [timeInfo setY:idInfo.maxY+SCREEN_WIDTH/30];
+}
+-(void)popToRootView{
+//    [self.navigationController popViewControllerAnimated:YES];
+    NSMutableDictionary *parameter = [[NSMutableDictionary alloc]init];
+    [parameter setValue:@"2" forKey:@"selectPlu"];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"changeLanguage"
+                                                        object:self
+                                                      userInfo:parameter];
 }
 -(void)setName:(NSString *)value{
     _name = NilToEmpty(value);

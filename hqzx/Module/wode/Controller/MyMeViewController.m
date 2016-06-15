@@ -45,13 +45,13 @@
     [self createTabView];
     [self refData];
     WEAK_SELF
-    self.myTableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+    self.myTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [weakself refData];
     }];
 }
 -(void)refData{
     [[NetHttpClient sharedHTTPClient] request:@"/account_detail.json" parameters: @{@"auth_key":[HQZXUserModel sharedInstance].currentUser.auth_key} completion:^(id obj) {
-        [self.myTableView.header endRefreshing];
+        [self.myTableView.mj_header endRefreshing];
         NSString *errorCode = StrValueFromDictionary(obj, ApiKey_ErrorCode);
         if ([@"0" isEqualToString: errorCode]) {
             dataDict = [[NSDictionary alloc]init];
@@ -68,7 +68,7 @@
     self.tabBarController.navigationItem.backBarButtonItem = temporaryBarButtonItem;
 }
 -(void)createTabView{
-    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, TOP_HEIGHT+8, SCREEN_WIDTH, SCREEN_HEIGHT - TOP_HEIGHT - self.tabBarController.tabBar.height-28) style:UITableViewStyleGrouped];
+    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, TOP_HEIGHT+8, SCREEN_WIDTH, SCREEN_HEIGHT - TOP_HEIGHT - self.tabBarController.tabBar.height-8) style:UITableViewStyleGrouped];
     tableView.separatorStyle = UITableViewCellSelectionStyleNone;
     
 //    tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
@@ -85,12 +85,12 @@
     [self.view addSubview:self.myTableView];
 //    [self.myTableView setSeparatorColor:[UIColor clearColor]];
 
-    self.myTableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+    self.myTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [self refTable];
     }];
 }
 -(void)refTable{
-    [self.myTableView.header endRefreshing];
+    [self.myTableView.mj_header endRefreshing];
 }
 // 设置块的高度
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -132,19 +132,19 @@
     else if(section==5){
         return 3;
     }
+//    else if(section==6){
+//        return 1;
+//    }
     else if(section==6){
         return 1;
     }
     else if(section==7){
         return 1;
     }
-    else if(section==8){
-        return 1;
-    }
     return 0;
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 9;
+    return 8;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
 //    [tableView setSeparatorColor:[UIColor clearColor]];
@@ -304,17 +304,17 @@
             cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
         }
     }
+//    if(indexPath.section==6){
+//        if(row==0){
+//            cell.textLabel.text=LocatizedStirngForkey(@"XIAOXIZHONGXIN");
+//            cell.imageView.image=[UIImage imageNamed:@"icon_tishi"];
+//            cell.textLabel.textColor = [UIColor whiteColor];
+//            cell.textLabel.font = [UIFont systemFontOfSize:WOCONTROLLERFONT];
+//            cell.backgroundColor = UIColorFromRGB(0x0E151B);
+//            cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
+//        }
+//    }
     if(indexPath.section==6){
-        if(row==0){
-            cell.textLabel.text=LocatizedStirngForkey(@"XIAOXIZHONGXIN");
-            cell.imageView.image=[UIImage imageNamed:@"icon_tishi"];
-            cell.textLabel.textColor = [UIColor whiteColor];
-            cell.textLabel.font = [UIFont systemFontOfSize:WOCONTROLLERFONT];
-            cell.backgroundColor = UIColorFromRGB(0x0E151B);
-            cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
-        }
-    }
-    if(indexPath.section==7){
         if(row==0){
             cell.textLabel.text=LocatizedStirngForkey(@"GUANYUWOMEN");
             cell.imageView.image=[UIImage imageNamed:@"icon_about"];
@@ -325,7 +325,7 @@
         }
     }
     
-    if(indexPath.section==8){
+    if(indexPath.section==7){
         if(row==0){
             cell.textLabel.text=@"";
             cell.imageView.image=[UIImage imageNamed:@""];
@@ -467,19 +467,19 @@
             [rootNav pushViewController:wodexinyongpingjia animated:YES];
         }
     }
-    if(indexPath.section==6){
-        if (indexPath.row == 0) {
+//    if(indexPath.section==6){
+//        if (indexPath.row == 0) {
 //            JHTWoDeXiaoXiViewController *xiaoxi = [[JHTWoDeXiaoXiViewController alloc] init];
 //            [self.navigationController pushViewController:xiaoxi animated: YES];
+//        }
+//    }
+    if(indexPath.section==6){
+        if (indexPath.row == 0) {
+            HQZXAboutMeViewController *women = [[HQZXAboutMeViewController alloc] init];
+            [rootNav pushViewController:women animated: YES];
         }
     }
     if(indexPath.section==7){
-        if (indexPath.row == 0) {
-            //            JHTWoDeXiaoXiViewController *xiaoxi = [[JHTWoDeXiaoXiViewController alloc] init];
-            //            [self.navigationController pushViewController:xiaoxi animated: YES];
-        }
-    }
-    if(indexPath.section==8){
        if(indexPath.row==0){
            UIAlertController *alert = [UIAlertController alertControllerWithTitle:LocatizedStirngForkey(@"TISHI") message:LocatizedStirngForkey(@"NINYAOTUICHUMA") preferredStyle: UIAlertControllerStyleAlert];
            
@@ -491,9 +491,13 @@
                if ([HQZXUserModel sharedInstance].isLogined) {
                    [[HQZXUserModel sharedInstance] logout];
                    HQZXLoginViewController *vc = [[HQZXLoginViewController alloc] init];
-                   WEAK_SELF
+//                   WEAK_SELF
                    vc.cancellationBlock = ^{
-                       [weakself refData];
+                       NSMutableDictionary *parameter = [[NSMutableDictionary alloc]init];
+                       [parameter setValue:@"2" forKey:@"selectPlu"];
+                       [[NSNotificationCenter defaultCenter] postNotificationName:@"changeLanguage"
+                                                                           object:self
+                                                                         userInfo:parameter];
                    };
                    UINavigationController *textNav = [[UINavigationController alloc] initWithRootViewController: vc];
                    [CommonUtils setNavigationControllerStyle: textNav];

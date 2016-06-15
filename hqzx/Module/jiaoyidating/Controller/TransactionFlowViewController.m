@@ -1117,6 +1117,7 @@
         [ProgressHUD dismiss];
         if (obj) {
             if ([@"0" isEqualToString:StrValueFromDictionary(obj, ApiKey_ErrorCode)]) {
+                [self.view makeToast: LocatizedStirngForkey(@"CAOZUOCHENGGONG") duration: 0.5 position: CSToastPositionCenter];
                 [self refScrollView];
             } else {
                 [self.view makeToast:[NSString stringWithFormat:@"%@", [obj objectForKey:@"message"]] duration: 0.5 position:CSToastPositionCenter];

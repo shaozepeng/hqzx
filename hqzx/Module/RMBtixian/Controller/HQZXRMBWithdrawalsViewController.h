@@ -11,6 +11,7 @@
 
 #import <Foundation/Foundation.h>
 #import "HQZXSelectBankForm.h"
+#import "HQZXPresentRecordViewController.h"
 
 @interface HQZXRMBWithdrawalsViewController : UIViewController
 

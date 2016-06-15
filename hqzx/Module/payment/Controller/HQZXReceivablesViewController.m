@@ -53,8 +53,9 @@
     if(jsonData){
         jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
     }
-    
-    UIImage *image = [UIImage generateImageWithQrCode:jsonString QrCodeImageSize:0 insertImage:[UIImage imageNamed:@"logo"] radius:16];
+//    NSString *imageUrl = [NSString stringWithFormat:@"%@%@",ApiPicServer,_sysLogo ];
+    UIImage *image = [UIImage generateImageWithQrCode:jsonString QrCodeImageSize:0];
+//    UIImage *image = [UIImage generateImageWithQrCode:jsonString QrCodeImageSize:0 insertImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString: imageUrl]]] radius:16];
     [imageView setImage:image];
 }
 - (void)saveQrCodeImage:(UITapGestureRecognizer *)tap

@@ -17,7 +17,7 @@
 SYNTHESIZE_SINGLETON_FOR_CLASS(HQZXUserModel)
 
 -(HQZXUser*) currentUser {
-    if (_currentUser == nil) {
+//    if (_currentUser == nil) {
         NSData *userData = [USER_DEFAULT objectForKey:CURRENT_USER_KEY];
         if (userData) {
             NSDictionary *userDic = [NSKeyedUnarchiver unarchiveObjectWithData:userData];
@@ -39,7 +39,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(HQZXUserModel)
 //            _currentUser.userStatus = StrValue(userDic, @"user_status");
 //            _currentUser.timestamp = StrValue(userDic, @"timestamp");
         }
-    }
+//    }
     return _currentUser;
 }
 

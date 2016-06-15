@@ -352,7 +352,7 @@
             } stateVer:@"1" uitable:self.myAccTableView];
         }else{
             [weakself.myAccTableView.mj_footer endRefreshingWithNoMoreData];
-            [weakself.view makeToast:@"全部加载完毕" duration:1 position:CSToastPositionCenter];
+            [weakself.view makeToast:LocatizedStirngForkey(MJRefreshBackFooterNoMoreDataText) duration:1 position:CSToastPositionCenter];
         }
     }];
 }
@@ -401,7 +401,7 @@
             } stateVer:@"2" uitable:self.mySecAccTableView];
         }else{
             [weakself.mySecAccTableView.mj_footer endRefreshingWithNoMoreData];
-            [weakself.view makeToast:@"全部加载完毕" duration:1 position:CSToastPositionCenter];
+            [weakself.view makeToast:LocatizedStirngForkey(MJRefreshBackFooterNoMoreDataText) duration:1 position:CSToastPositionCenter];
         }
     }];
     
@@ -451,7 +451,7 @@
             } stateVer:@"3" uitable:self.myAccDataTableView];
         }else{
             [weakself.myAccDataTableView.mj_footer endRefreshingWithNoMoreData];
-            [weakself.view makeToast:@"全部加载完毕" duration:1 position:CSToastPositionCenter];
+            [weakself.view makeToast:LocatizedStirngForkey(MJRefreshBackFooterNoMoreDataText) duration:1 position:CSToastPositionCenter];
         }
     }];
 }
@@ -500,7 +500,7 @@
             } stateVer:@"4" uitable:self.mySecAccDataTableView];
         }else{
             [weakself.mySecAccDataTableView.mj_footer endRefreshingWithNoMoreData];
-            [weakself.view makeToast:@"全部加载完毕" duration:1 position:CSToastPositionCenter];
+            [weakself.view makeToast:LocatizedStirngForkey(MJRefreshBackFooterNoMoreDataText) duration:1 position:CSToastPositionCenter];
         }
     }];
     

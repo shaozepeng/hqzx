@@ -448,43 +448,52 @@
 }
 -(void)setStatus:(NSString *)value{
     _status = NilToEmpty(value);
-    
-   if([_status intValue]==0){
-        if([_volume intValue]==0){
-            oneLable.text = LocatizedStirngForkey(@"WEICHENGJIAO");
-            oneSLable.text = LocatizedStirngForkey(@"CHEXIAO");
-            [oneLable sizeToFit];
-            [oneSLable sizeToFit];
-            [oneLable setX:oneInfoView.width/10];
-            [oneLable setY:(oneInfoView.height-oneLable.height)/2];
-            [oneFLable setX:oneLable.maxX+oneInfoView.width/25];
-            [oneFLable setY:(oneInfoView.height-oneFLable.height)/2];
-            [oneSLable setX:oneFLable.maxX+oneInfoView.width/25];
-            [oneSLable setY:(oneInfoView.height-oneSLable.height)/2];
-        }else if([_volume intValue]>0 && [_number floatValue]>[_volume floatValue]){
-            oneLable.text = LocatizedStirngForkey(@"BUFENCHENGJIAO");
-            oneSLable.text = LocatizedStirngForkey(@"CHEXIAO");
-            [oneLable sizeToFit];
-            [oneSLable sizeToFit];
-            NSString *language = [USER_DEFAULT objectForKey:kUserLanguage];
-            if([language isEqualToString:@"zh-Hans"]){
-                [oneLable setX:oneInfoView.width/10];
-                [oneLable setY:(oneInfoView.height-oneLable.height)/2];
-                [oneFLable setX:oneLable.maxX+oneInfoView.width/25];
-                [oneFLable setY:(oneInfoView.height-oneFLable.height)/2];
-                [oneSLable setX:oneFLable.maxX+oneInfoView.width/25];
-                [oneSLable setY:(oneInfoView.height-oneSLable.height)/2];
-            }else if([language isEqualToString:@"en"]){
-                [oneLable setX:(oneInfoView.width-oneLable.width)/2];
-                [oneLable setY:3];
-                [oneFLable setX:oneLable.maxX+oneInfoView.width/25];
-                [oneFLable setY:3];
-                [oneSLable setX:(oneInfoView.width-oneSLable.width)/2];
-                [oneSLable setY:oneLable.maxY+3];
-            }
-            
-        }
-    }
+    oneLable.text = _status;
+    oneSLable.text = LocatizedStirngForkey(@"CHEXIAO");
+    [oneLable sizeToFit];
+    [oneSLable sizeToFit];
+    [oneLable setX:oneInfoView.width/10];
+    [oneLable setY:(oneInfoView.height-oneLable.height)/2];
+    [oneFLable setX:oneLable.maxX+oneInfoView.width/25];
+    [oneFLable setY:(oneInfoView.height-oneFLable.height)/2];
+    [oneSLable setX:oneFLable.maxX+oneInfoView.width/25];
+    [oneSLable setY:(oneInfoView.height-oneSLable.height)/2];
+//   if([_status intValue]==0){
+//        if([_volume intValue]==0){
+//            oneLable.text = LocatizedStirngForkey(@"WEICHENGJIAO");
+//            oneSLable.text = LocatizedStirngForkey(@"CHEXIAO");
+//            [oneLable sizeToFit];
+//            [oneSLable sizeToFit];
+//            [oneLable setX:oneInfoView.width/10];
+//            [oneLable setY:(oneInfoView.height-oneLable.height)/2];
+//            [oneFLable setX:oneLable.maxX+oneInfoView.width/25];
+//            [oneFLable setY:(oneInfoView.height-oneFLable.height)/2];
+//            [oneSLable setX:oneFLable.maxX+oneInfoView.width/25];
+//            [oneSLable setY:(oneInfoView.height-oneSLable.height)/2];
+//        }else if([_volume intValue]>0 && [_number floatValue]>[_volume floatValue]){
+//            oneLable.text = LocatizedStirngForkey(@"BUFENCHENGJIAO");
+//            oneSLable.text = LocatizedStirngForkey(@"CHEXIAO");
+//            [oneLable sizeToFit];
+//            [oneSLable sizeToFit];
+//            NSString *language = [USER_DEFAULT objectForKey:kUserLanguage];
+//            if([language isEqualToString:@"zh-Hans"]){
+//                [oneLable setX:oneInfoView.width/10];
+//                [oneLable setY:(oneInfoView.height-oneLable.height)/2];
+//                [oneFLable setX:oneLable.maxX+oneInfoView.width/25];
+//                [oneFLable setY:(oneInfoView.height-oneFLable.height)/2];
+//                [oneSLable setX:oneFLable.maxX+oneInfoView.width/25];
+//                [oneSLable setY:(oneInfoView.height-oneSLable.height)/2];
+//            }else if([language isEqualToString:@"en"]){
+//                [oneLable setX:(oneInfoView.width-oneLable.width)/2];
+//                [oneLable setY:3];
+//                [oneFLable setX:oneLable.maxX+oneInfoView.width/25];
+//                [oneFLable setY:3];
+//                [oneSLable setX:(oneInfoView.width-oneSLable.width)/2];
+//                [oneSLable setY:oneLable.maxY+3];
+//            }
+//            
+//        }
+//    }
 }
 -(void)labelTouchUpInside{
     if(self.quxiaoBlock){

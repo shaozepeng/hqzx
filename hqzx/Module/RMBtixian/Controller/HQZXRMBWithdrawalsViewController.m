@@ -39,9 +39,27 @@
     self.view.backgroundColor = UIColorFromRGB(0x0C1319);
     self.title = LocatizedStirngForkey(@"RENMINBITIXIAN");
     
+    UIBarButtonItem *temporaryBarButtonItem = [[UIBarButtonItem alloc] init];
+    UIButton *zhuBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    zhuBtn.frame = CGRectMake(0, 0, SCREEN_WIDTH/6, 44);
+    [zhuBtn setTintColor:[UIColor whiteColor]];
+    [zhuBtn setTitle:LocatizedStirngForkey(@"TIXIANJILU") forState:UIControlStateNormal];
+    zhuBtn.titleLabel.font = [UIFont systemFontOfSize: LISHIFONT];
+    [zhuBtn setTitleColor:UIColorFromRGB(0x439AFE) forState:UIControlStateNormal];
+    [zhuBtn addTarget:self action:@selector(history) forControlEvents:UIControlEventTouchUpInside];
+    
+    [temporaryBarButtonItem setCustomView:zhuBtn];
+    
+    UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc]
+                                       initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
+                                       target:nil action:nil];
+    negativeSpacer.width = -12;
+    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:negativeSpacer, temporaryBarButtonItem, nil];
+    
     [self createTopBody];
     [self createFillBody];
 }
+
 -(void)createTopBody{
     topLineView = [[UIView alloc] initWithFrame: CGRectMake(0, TOP_HEIGHT+8, SCREEN_WIDTH, 1)];
     topLineView.backgroundColor = UIColorFromRGB(0x192631);
@@ -111,6 +129,7 @@
     bankId.textColor = UIColorFromRGB(0x767D85);
     bankId.font = [UIFont systemFontOfSize:WITHFONTTWO];
     bankId.clearButtonMode = UITextFieldViewModeWhileEditing;
+    bankId.keyboardType = UIKeyboardTypeNumberPad;
     
     NSMutableParagraphStyle *style = [bankId.defaultTextAttributes[NSParagraphStyleAttributeName] mutableCopy];
     style.minimumLineHeight = bankId.font.lineHeight - (bankId.font.lineHeight - [UIFont systemFontOfSize:LOGINFONTONE].lineHeight) / 2.0 ;
@@ -133,6 +152,7 @@
     cmBankId.textColor = UIColorFromRGB(0x767D85);
     cmBankId.font = [UIFont systemFontOfSize:WITHFONTTWO];
     cmBankId.clearButtonMode = UITextFieldViewModeWhileEditing;
+    cmBankId.keyboardType = UIKeyboardTypeNumberPad;
     
     NSMutableParagraphStyle *style1 = [cmBankId.defaultTextAttributes[NSParagraphStyleAttributeName] mutableCopy];
     style1.minimumLineHeight = cmBankId.font.lineHeight - (cmBankId.font.lineHeight - [UIFont systemFontOfSize:LOGINFONTONE].lineHeight) / 2.0 ;
@@ -198,6 +218,7 @@
     moneyText.textColor = UIColorFromRGB(0x767D85);
     moneyText.font = [UIFont systemFontOfSize:WITHFONTTWO];
     moneyText.clearButtonMode = UITextFieldViewModeWhileEditing;
+    cmBankId.keyboardType = UIKeyboardTypeDecimalPad;
     
     NSMutableParagraphStyle *style4 = [moneyText.defaultTextAttributes[NSParagraphStyleAttributeName] mutableCopy];
     style4.minimumLineHeight = moneyText.font.lineHeight - (moneyText.font.lineHeight - [UIFont systemFontOfSize:LOGINFONTONE].lineHeight) / 2.0 ;
@@ -217,9 +238,11 @@
     
     passwordText = [[UITextField alloc] initWithFrame:CGRectMake(iconBankId.maxX+SCREEN_WIDTH/30 , line4.maxY, SCREEN_WIDTH- iconPassword.maxX - SCREEN_WIDTH/15, lineHeight)];
     [form addSubview: passwordText];
+    passwordText.secureTextEntry = YES;
     passwordText.textColor = UIColorFromRGB(0x767D85);
     passwordText.font = [UIFont systemFontOfSize:WITHFONTTWO];
     passwordText.clearButtonMode = UITextFieldViewModeWhileEditing;
+    cmBankId.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
     
     NSMutableParagraphStyle *style5 = [passwordText.defaultTextAttributes[NSParagraphStyleAttributeName] mutableCopy];
     style5.minimumLineHeight = passwordText.font.lineHeight - (passwordText.font.lineHeight - [UIFont systemFontOfSize:LOGINFONTONE].lineHeight) / 2.0 ;
@@ -279,7 +302,40 @@
     [self.view addSubview: yanValue];
 }
 -(void)tijiao{
+    NSString *kahao = bankId.text;
+    NSString *quekahao = cmBankId.text;
+    NSString *xingming = nameText.text;
+    NSString *zhihang = branchText.text;
+    NSString *tijine = moneyText.text;
+    NSString *password = passwordText.text;
+    VALIDATE_NOT_NULL(commBank.bank_id, LocatizedStirngForkey(@"XUANZEYINHANGKALEIXING"));
+    VALIDATE_NOT_NULL(kahao, LocatizedStirngForkey(@"YINGHANGKABUNENGWEIKONG"));
+    VALIDATE_NOT_NULL(quekahao, LocatizedStirngForkey(@"QUEYINGHANGKABUNENGWEIKONG"));
+    VALIDATE_NOT_NULL(xingming, LocatizedStirngForkey(@"SHOUKUANRENXINGMINGBUNENGWEIKONG"));
+    VALIDATE_NOT_NULL(zhihang, LocatizedStirngForkey(@"KAIHUZHIHANGBUNENGWEIKONG"));
+    VALIDATE_NOT_NULL(tijine, LocatizedStirngForkey(@"TIXIANJINEBUNENGWEIKONG"));
+    VALIDATE_NOT_NULL(password, LocatizedStirngForkey(@"JIAOYIMIMABUNENGWEIKONG"));
     
+    [ProgressHUD show: [NSString stringWithFormat:@"%@...",LocatizedStirngForkey(@"QINGDENGDAI")] Interaction: NO];
+    [[NetHttpClient sharedHTTPClient] request: @"/rmb_extract_apply.json" parameters:@{@"bank":commBank.bank_id, @"bank_card1":kahao, @"bank_card2": quekahao,@"name": xingming,@"bank_name": zhihang,@"amount": tijine,@"trade_pwd": password,@"auth_key":[HQZXUserModel sharedInstance].currentUser.auth_key} completion:^(id obj) {
+        [ProgressHUD dismiss];
+        if (obj) {
+            if ([@"0" isEqualToString:StrValueFromDictionary(obj, ApiKey_ErrorCode)]) {
+                [self.view makeToast: LocatizedStirngForkey(@"CAOZUOCHENGGONG") duration: 0.5 position: CSToastPositionCenter];
+                bankId.text = @"";
+                cmBankId.text = @"";
+                nameText.text = @"";
+                branchText.text = @"";
+                moneyText.text = @"";
+                passwordText.text = @"";
+                seceltLab.text = LocatizedStirngForkey(@"XUANZEYINHANGKALEIXING");
+            } else {
+                [self.view makeToast: [obj objectForKey:@"message"] duration: 0.5 position: CSToastPositionCenter];
+            }
+        } else {
+            [self.view makeToast:LocatizedStirngForkey(@"LIANJIEFUWUQISHIBAI") duration: 0.5 position:CSToastPositionCenter];
+        }
+    }];
 }
 -(void)selectBank{
     HQZXSelectBankForm *selectCountForm = [[HQZXSelectBankForm alloc] initWithPlaceHolder: LocatizedStirngForkey(@"XUANZEYINHANGKALEIXING")];
@@ -296,5 +352,9 @@
         }];
     };
     [weakSelectForm showAction];
+}
+-(void)history{
+    HQZXPresentRecordViewController *historyView=[[HQZXPresentRecordViewController alloc]init];
+    [self.navigationController pushViewController:historyView animated:YES];
 }
 @end

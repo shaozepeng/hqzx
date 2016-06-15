@@ -11,6 +11,7 @@
  */
 
 //form
+
 "QUEDING"="Determine";
 "QUXIAO"="Cancel";
 "JIAZAIZHONGQ"="Load...";
@@ -28,6 +29,16 @@
 "ZHOU"="Week";
 "YUE"="Month";
 "CHENGGONG"="Success";
+"XUANZEBIZHONG"="Choose a currency";
+
+/*
+ ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝协议区＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+ */
+
+//注册协议
+"ZHUCEXIEYIONE"="1. The user clicks on the global online registration page for the agreed to register button and complete the registration procedure and obtain the global online account and password, depending on the user and global online has reached the global online user agreement (hereinafter referred to as' the agreement '), the user enters the world online using a ring ball corresponding transaction service cost agreement all agreed.";
+"ZHUCEXIEYITWO"="2. World online and users have been carefully read the contents of the global online user agreement all terms and global online released the statement of the law and the rules of operation, to the terms of this Agreement and the aforementioned services, legal statement and operating rules have been known, understood and accepted. Agreed to it as the basis to determine the rights and obligations of the two parties. Universal online 'legal declaration' as a necessary part of this agreement, the user acceptance of this Agreement shall be deemed to accept universal online, the full content of the legal statement. This agreement includes the text of this agreement, as well as all kinds of rules, statements and instructions that may be issued in the future or in the future. All rules, declarations, and instructions are an integral part of the agreement, and the text of the agreement has the same legal effect.";
+"ZHUCEXIEYITHREE"="3 this Agreement does not involve the legal relations and legal disputes arising from the virtual currency transaction between the global online users and other users.First, the definition of terms";
 
 
 /*
@@ -105,6 +116,7 @@
 "HUOQUYANZHENGMA"="Get Verification Code";
 "WOYIYUEDU"="I Have Read And Agreed";
 "HUANQIUZAIXIANXIEYI"="《Global Online Service Agreement》";
+"HUANQIUZAIXIANXIEYITWO"="Global Online Service Agreement";
 "ZHUCECHENGGONG"="login was successful";
 
 //注册验证
@@ -163,7 +175,7 @@
 //认证成功
 "XUANZEGUOJIA"="SelectCountry";
 "RENZHENGCHENGGONG"="Certification Success";
-"YITONGGUORENZHENG"="Has Been Through The Global Online Network Mission Certification";
+"YITONGGUORENZHENG"="Has passed the global online real name authentication";
 "NINDESHENFENXINXI"="Your Identity Information";
 "XINGMING"="Name";
 "ZHENGJIANLEIXING"="Document Type";
@@ -216,6 +228,7 @@
 "BUFENCHENGJIAO"="Part of the deal";
 "WANQUANCHENGJIAO"="Complete deal";
 "YICHENGJIAO"="Already traded";
+"NINQUEDINGYAOCHEXIAOMA"="Are you sure you want to cancel?";
 
 //我要收款、付款
 "SHOUKUANSHUOMING"="Collection note: this site has been supported to the same address multiple times, we will be in the three times after the confirmation for your success.";
@@ -229,7 +242,7 @@
 "FUKUANCHENGGONG"="Payment success";
 "NINDEFUKUANXINXI"="Your payment information";
 "SHOUKUANZHANGHAO"="Collection account";
-"SHOUKUANJINE"="Amount Collected";
+"SHOUKUANJINE"="Payment amount";
 "ZHEHEBITEBIXIANJIN"="Folding bitcoin (cash)";
 "BAOCUNDAOSHOUJI"="Save to cell phone";
 "BAOCUNCHENGGONG"="Save success";
@@ -259,6 +272,20 @@
 "YOUSUOYANSHI"="3 withdrawals within 24 hours of arrival, bank card withdrawals from bank to bank, real-time arrival time may be delayed";
 "ZHUANRU"="To change into";
 "ZHUANCHU"="Turn out";
+"TIXIANJILU"="Present record";
+"ERSHIBITIXIANJILU"="Recent twenty recent record";
+"YINGHANGKABUNENGWEIKONG"="Bank card number can not be empty";
+"QUEYINGHANGKABUNENGWEIKONG"="Confirm the bank card number can not be empty";
+"SHOUKUANRENXINGMINGBUNENGWEIKONG"="The beneficiary's name cannot be empty";
+"KAIHUZHIHANGBUNENGWEIKONG"="Bank account can not be empty";
+"TIXIANJINEBUNENGWEIKONG"="The amount can not be empty";
+
+//提现记录
+"TIXIANSHIJIAN"="Present time";
+"TIXIANZHANGHU"="Cash withdrawal account";
+"YINHANGKALEIXING"="Bank card type";
+"YINHANGKAHAO"="Card No";
+"TIXIANJINE"="Cash withdrawal amount";
 
 //刷新插件
 "MJRefreshHeaderIdleText" = "Pull down to refresh";

@@ -1,13 +1,13 @@
 //
-//  HQZXHistoryDataEnTableCell.m
+//  HQZXDataPreTableCell.m
 //  hqzx
 //
-//  Created by 泽鹏邵 on 16/6/4.
+//  Created by 泽鹏邵 on 16/6/13.
 //  Copyright © 2016年 泽鹏邵. All rights reserved.
 //
 
-#import "HQZXHistoryDataEnTableCell.h"
-@interface HQZXHistoryDataEnTableCell (){
+#import "HQZXDataPreTableCell.h"
+@interface HQZXDataPreTableCell (){
     UIView *infoView;
     UIView *oneInfoView;
     UIView *twoInfoView;
@@ -48,9 +48,8 @@
     UILabel *oneFLable;
     UILabel *oneSLable;
     UILabel *twoLable;
-    UILabel *twoFLable;
     UILabel *threeLable;
-    UILabel *threeFLable;
+    UILabel *twoFLable;
     UILabel *foreLable;
     UILabel *fiveLable;
     UILabel *sixLable;
@@ -61,44 +60,71 @@
     UILabel *elevenLable;
 }
 @end
-
-
-@implementation HQZXHistoryDataEnTableCell
+@implementation HQZXDataPreTableCell
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self.rowNum = -1;
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         self.backgroundColor = TableBgColor;
-        UIView *cell = [[UIView alloc] initWithFrame: CGRectMake(0, 0, SCREEN_WIDTH*2.2, SCREEN_WIDTH/8)];
+        UIView *cell = [[UIView alloc] initWithFrame: CGRectMake(0, 0, SCREEN_WIDTH*2, SCREEN_WIDTH/8)];
         cell.backgroundColor = UIColorFromRGB(0x0F151B);
         NSString *language = [USER_DEFAULT objectForKey:kUserLanguage];
         
-        float cellViewWidth = (cell.width-9)/10.5;
+        float cellViewWidth = (cell.width-6)/7;
         
         //一区
-        oneInfoView = [[UIView alloc] initWithFrame: CGRectMake(0, 0, cellViewWidth*1, cell.height-1)];
-        oneInfoView.backgroundColor = UIColorFromRGB(0x0F151B);
-        [cell addSubview:oneInfoView];
+        //        oneInfoView = [[UIView alloc] initWithFrame: CGRectMake(0, 0, cellViewWidth, cell.height-1)];
+        //        oneInfoView.backgroundColor = UIColorFromRGB(0x0F151B);
+        //        [cell addSubview:oneInfoView];
+        //
+        //        oneLineView = [[UIView alloc] initWithFrame: CGRectMake(oneInfoView.maxX, 0, 1, cell.height-1)];
+        //        oneLineView.backgroundColor = UIColorFromRGB(0x141D26);
+        //        [cell addSubview:oneLineView];
+        //
+        //        oneBonLineView = [[UIView alloc] initWithFrame: CGRectMake(oneInfoView.x, oneInfoView.maxY, cellViewWidth, 1)];
+        //        oneBonLineView.backgroundColor = UIColorFromRGB(0x141D26);
+        //        [cell addSubview:oneBonLineView];
         
-        oneLineView = [[UIView alloc] initWithFrame: CGRectMake(oneInfoView.maxX, 0, 1, cell.height-1)];
-        oneLineView.backgroundColor = UIColorFromRGB(0x141D26);
-        [cell addSubview:oneLineView];
+        //        oneLable = [[UILabel alloc] initWithFrame: CGRectMake(1, 1, 1, 1)];
+        //        oneLable.text = LocatizedStirngForkey(@"BUQUANXINXI");
+        //        oneLable.textColor = [UIColor redColor];
+        //        oneLable.font = [UIFont systemFontOfSize: DATAFONTTHREE];
+        //        [oneInfoView addSubview: oneLable];
+        //        [oneLable sizeToFit];
         
-        oneBonLineView = [[UIView alloc] initWithFrame: CGRectMake(oneInfoView.x, oneInfoView.maxY, cellViewWidth*1, 1)];
-        oneBonLineView.backgroundColor = UIColorFromRGB(0x141D26);
-        [cell addSubview:oneBonLineView];
+        //        if([language isEqualToString:@"zh-Hans"]){
+        //            [oneLable setX:oneInfoView.width/10];
+        //            [oneLable setY:(oneInfoView.height-oneLable.height)/2];
+        //        }else if([language isEqualToString:@"en"]){
+        //            oneLable.lineBreakMode = NSLineBreakByCharWrapping;
+        //            oneLable.numberOfLines = 0;
+        //            oneLable.font = [UIFont systemFontOfSize: DATAFONTONE];
+        //            [oneLable setW:(oneInfoView.width-oneInfoView.width/10)/2];
+        //            [oneLable setH:oneInfoView.height-6];
+        //            [oneLable setX:oneInfoView.width/20];
+        //            [oneLable setY:3];
+        //        }
+        //
+        //        oneFLable = [[UILabel alloc] initWithFrame: CGRectMake(1, 1, 1, 1)];
+        //        oneFLable.text = @"|";
+        //        oneFLable.textColor = UIColorFromRGB(0x7E8286);
+        //        oneFLable.font = [UIFont systemFontOfSize: DATAFONTFORE];
+        //        [oneInfoView addSubview: oneFLable];
+        //        [oneFLable sizeToFit];
+        //        [oneFLable setX:oneLable.maxX+oneInfoView.width/25];
+        //        [oneFLable setY:(oneInfoView.height-oneFLable.height)/2];
         
-        oneSLable = [[UILabel alloc] initWithFrame: CGRectMake(1, 1, 1, 1)];
-        oneSLable.text = @"已成交";
-        oneSLable.textColor = [UIColor redColor];
-        oneSLable.font = [UIFont systemFontOfSize: DATAFONTTHREE];
-        [oneInfoView addSubview: oneSLable];
-        [oneSLable sizeToFit];
-        [oneSLable setX:(oneInfoView.width-oneSLable.width)/2];
-        [oneSLable setY:(oneInfoView.height-oneSLable.height)/2];
+        //        oneSLable = [[UILabel alloc] initWithFrame: CGRectMake(1, 1, 1, 1)];
+        //        oneSLable.text = LocatizedStirngForkey(@"CHEXIAO");
+        //        oneSLable.textColor = [UIColor redColor];
+        //        oneSLable.font = [UIFont systemFontOfSize: DATAFONTFORE];
+        //        [oneInfoView addSubview: oneSLable];
+        //        [oneSLable sizeToFit];
+        //        [oneSLable setX:(oneInfoView.width-oneSLable.width)/2];
+        //        [oneSLable setY:(oneInfoView.height-oneSLable.height)/2];
         
         //二区
-        twoInfoView = [[UIView alloc] initWithFrame: CGRectMake(oneLineView.maxX, 0, cellViewWidth*1.5, cell.height-1)];
+        twoInfoView = [[UIView alloc] initWithFrame: CGRectMake(0, 0, cellViewWidth, cell.height-1)];
         twoInfoView.backgroundColor = UIColorFromRGB(0x0F151B);
         [cell addSubview:twoInfoView];
         
@@ -106,7 +132,7 @@
         twoLineView.backgroundColor = UIColorFromRGB(0x141D26);
         [cell addSubview:twoLineView];
         
-        twoBonLineView = [[UIView alloc] initWithFrame: CGRectMake(twoInfoView.x, twoInfoView.maxY, cellViewWidth*1.5, 1)];
+        twoBonLineView = [[UIView alloc] initWithFrame: CGRectMake(twoInfoView.x, twoInfoView.maxY, cellViewWidth, 1)];
         twoBonLineView.backgroundColor = UIColorFromRGB(0x141D26);
         [cell addSubview:twoBonLineView];
         
@@ -126,13 +152,12 @@
         [twoInfoView addSubview: twoFLable];
         [twoFLable sizeToFit];
         [twoFLable setX:(twoInfoView.width-twoFLable.width)/2];
-        [twoFLable setY:twoLable.maxY+3];
-        
+        [twoFLable setY:twoFLable.maxY+3];
         
         
         
         //三区
-        threeInfoView = [[UIView alloc] initWithFrame: CGRectMake(twoLineView.maxX, 0, cellViewWidth*1, cell.height-1)];
+        threeInfoView = [[UIView alloc] initWithFrame: CGRectMake(twoLineView.maxX, 0, cellViewWidth, cell.height-1)];
         threeInfoView.backgroundColor = UIColorFromRGB(0x0F151B);
         [cell addSubview:threeInfoView];
         
@@ -140,18 +165,18 @@
         threeLineView.backgroundColor = UIColorFromRGB(0x141D26);
         [cell addSubview:threeLineView];
         
-        threeBonLineView = [[UIView alloc] initWithFrame: CGRectMake(threeInfoView.x, threeInfoView.maxY, cellViewWidth*1, 1)];
+        threeBonLineView = [[UIView alloc] initWithFrame: CGRectMake(threeInfoView.x, threeInfoView.maxY, cellViewWidth, 1)];
         threeBonLineView.backgroundColor = UIColorFromRGB(0x141D26);
         [cell addSubview:threeBonLineView];
         
         threeLable = [[UILabel alloc] initWithFrame: CGRectMake(1, 1, 1, 1)];
         threeLable.text = LocatizedStirngForkey(@"SHANGWEIFUKUAN");
         threeLable.textColor = UIColorFromRGB(0xE0E2E2);
-        if([language isEqualToString:@"zh-Hans"]){
-            threeLable.font = [UIFont systemFontOfSize: DATAFONTTHREE];
-        }else if([language isEqualToString:@"en"]){
-            threeLable.font = [UIFont systemFontOfSize: DATAFONTONE];
-        }
+//        if([language isEqualToString:@"zh-Hans"]){
+        threeLable.font = [UIFont systemFontOfSize: DATAFONTTHREES];
+//        }else if([language isEqualToString:@"en"]){
+//            threeLable.font = [UIFont systemFontOfSize: DATAFONTTHREEST];
+//        }
         [threeInfoView addSubview: threeLable];
         [threeLable sizeToFit];
         
@@ -221,7 +246,7 @@
         [cell addSubview:sixBonLineView];
         
         sixLable = [[UILabel alloc] initWithFrame: CGRectMake(1, 1, 1, 1)];
-        sixLable.text = @"￥100.99";
+        sixLable.text = LocatizedStirngForkey(@"CHENGGONG");
         sixLable.textColor = UIColorFromRGB(0xE0E2E2);
         sixLable.font = [UIFont systemFontOfSize: DATAFONTTHREE];
         [sixInfoView addSubview: sixLable];
@@ -272,7 +297,7 @@
         
         eightLable = [[UILabel alloc] initWithFrame: CGRectMake(1, 1, 1, 1)];
         eightLable.text = @"￥100.99";
-        eightLable.textColor = UIColorFromRGB(0xE0E2E2);
+        eightLable.textColor = UIColorFromRGB(0x008B00);
         eightLable.font = [UIFont systemFontOfSize: DATAFONTTHREE];
         [eightInfoView addSubview: eightLable];
         [eightLable sizeToFit];
@@ -283,164 +308,153 @@
         
         
         //九区
-        nineInfoView = [[UIView alloc] initWithFrame: CGRectMake(eightLineView.maxX, 0, cellViewWidth, cell.height-1)];
-        nineInfoView.backgroundColor = UIColorFromRGB(0x0F151B);
-        [cell addSubview:nineInfoView];
-        
-        nineLineView = [[UIView alloc] initWithFrame: CGRectMake(nineInfoView.maxX, 0, 1, cell.height-1)];
-        nineLineView.backgroundColor = UIColorFromRGB(0x141D26);
-        [cell addSubview:nineLineView];
-        
-        nineBonLineView = [[UIView alloc] initWithFrame: CGRectMake(nineInfoView.x, nineInfoView.maxY, cellViewWidth, 1)];
-        nineBonLineView.backgroundColor = UIColorFromRGB(0x141D26);
-        [cell addSubview:nineBonLineView];
-        
-        nineLable = [[UILabel alloc] initWithFrame: CGRectMake(1, 1, 1, 1)];
-        nineLable.text = @"1002";
-        nineLable.textColor = UIColorFromRGB(0xE0E2E2);
-        nineLable.font = [UIFont systemFontOfSize: DATAFONTTHREE];
-        [nineInfoView addSubview: nineLable];
-        [nineLable sizeToFit];
-        
-        [nineLable setX:(nineInfoView.width-nineLable.width)/2];
-        [nineLable setY:(nineInfoView.height-nineLable.height)/2];
-        
-        
-        
-        //十区
-        tenInfoView = [[UIView alloc] initWithFrame: CGRectMake(nineLineView.maxX, 0, cellViewWidth, cell.height-1)];
-        tenInfoView.backgroundColor = UIColorFromRGB(0x0F151B);
-        [cell addSubview:tenInfoView];
-        
-        tenLineView = [[UIView alloc] initWithFrame: CGRectMake(tenInfoView.maxX, 0, 1, cell.height-1)];
-        tenLineView.backgroundColor = UIColorFromRGB(0x141D26);
-        [cell addSubview:tenLineView];
-        
-        tenBonLineView = [[UIView alloc] initWithFrame: CGRectMake(tenInfoView.x, tenInfoView.maxY, cellViewWidth, 1)];
-        tenBonLineView.backgroundColor = UIColorFromRGB(0x141D26);
-        [cell addSubview:tenBonLineView];
-        
-        tenLable = [[UILabel alloc] initWithFrame: CGRectMake(1, 1, 1, 1)];
-        tenLable.text = @"￥100.99";
-        tenLable.textColor = UIColorFromRGB(0xE0E2E2);
-        tenLable.font = [UIFont systemFontOfSize: DATAFONTTHREE];
-        [tenInfoView addSubview: tenLable];
-        [tenLable sizeToFit];
-        
-        [tenLable setX:(tenInfoView.width-tenLable.width)/2];
-        [tenLable setY:(tenInfoView.height-tenLable.height)/2];
+        //        nineInfoView = [[UIView alloc] initWithFrame: CGRectMake(eightLineView.maxX, 0, cellViewWidth, cell.height-1)];
+        //        nineInfoView.backgroundColor = UIColorFromRGB(0x0F151B);
+        //        [cell addSubview:nineInfoView];
+        //
+        //        nineLineView = [[UIView alloc] initWithFrame: CGRectMake(nineInfoView.maxX, 0, 1, cell.height-1)];
+        //        nineLineView.backgroundColor = UIColorFromRGB(0x141D26);
+        //        [cell addSubview:nineLineView];
+        //
+        //        nineBonLineView = [[UIView alloc] initWithFrame: CGRectMake(nineInfoView.x, nineInfoView.maxY, cellViewWidth, 1)];
+        //        nineBonLineView.backgroundColor = UIColorFromRGB(0x141D26);
+        //        [cell addSubview:nineBonLineView];
+        //
+        //        nineLable = [[UILabel alloc] initWithFrame: CGRectMake(1, 1, 1, 1)];
+        //        nineLable.text = @"1002";
+        //        nineLable.textColor = UIColorFromRGB(0xE0E2E2);
+        //        nineLable.font = [UIFont systemFontOfSize: DATAFONTTHREE];
+        //        [nineInfoView addSubview: nineLable];
+        //        [nineLable sizeToFit];
+        //
+        //        [nineLable setX:(nineInfoView.width-nineLable.width)/2];
+        //        [nineLable setY:(nineInfoView.height-nineLable.height)/2];
+        //
+        //
+        //
+        //        //十区
+        //        tenInfoView = [[UIView alloc] initWithFrame: CGRectMake(nineLineView.maxX, 0, cellViewWidth, cell.height-1)];
+        //        tenInfoView.backgroundColor = UIColorFromRGB(0x0F151B);
+        //        [cell addSubview:tenInfoView];
+        //
+        //        tenLineView = [[UIView alloc] initWithFrame: CGRectMake(tenInfoView.maxX, 0, 1, cell.height-1)];
+        //        tenLineView.backgroundColor = UIColorFromRGB(0x141D26);
+        //        [cell addSubview:tenLineView];
+        //
+        //        tenBonLineView = [[UIView alloc] initWithFrame: CGRectMake(tenInfoView.x, tenInfoView.maxY, cellViewWidth, 1)];
+        //        tenBonLineView.backgroundColor = UIColorFromRGB(0x141D26);
+        //        [cell addSubview:tenBonLineView];
+        //
+        //        tenLable = [[UILabel alloc] initWithFrame: CGRectMake(1, 1, 1, 1)];
+        //        tenLable.text = @"￥100.99";
+        //        tenLable.textColor = UIColorFromRGB(0xE0E2E2);
+        //        tenLable.font = [UIFont systemFontOfSize: DATAFONTTHREE];
+        //        [tenInfoView addSubview: tenLable];
+        //        [tenLable sizeToFit];
+        //
+        //        [tenLable setX:(tenInfoView.width-tenLable.width)/2];
+        //        [tenLable setY:(tenInfoView.height-tenLable.height)/2];
+        //
+        //        //十一区
+        //        elevenInfoView = [[UIView alloc] initWithFrame: CGRectMake(tenLineView.maxX, 0, cellViewWidth, cell.height-1)];
+        //        elevenInfoView.backgroundColor = UIColorFromRGB(0x0F151B);
+        //        [cell addSubview:elevenInfoView];
+        //
+        //        elevenBonLineView = [[UIView alloc] initWithFrame: CGRectMake(elevenInfoView.x, elevenInfoView.maxY, cellViewWidth, 1)];
+        //        elevenBonLineView.backgroundColor = UIColorFromRGB(0x141D26);
+        //        [cell addSubview:elevenBonLineView];
+        //
+        //        elevenLable = [[UILabel alloc] initWithFrame: CGRectMake(1, 1, 1, 1)];
+        //        elevenLable.text = @"￥100.99";
+        //        elevenLable.textColor = UIColorFromRGB(0xE0E2E2);
+        //        elevenLable.font = [UIFont systemFontOfSize: DATAFONTTHREE];
+        //        [elevenInfoView addSubview: elevenLable];
+        //        [elevenLable sizeToFit];
+        //
+        //        [elevenLable setX:(elevenInfoView.width-elevenLable.width)/2];
+        //        [elevenLable setY:(elevenInfoView.height-elevenLable.height)/2];
         
         [self addSubview: cell];
     }
     return self;
 }
--(void)setTime:(NSString *)value{
-    _time = NilToEmpty(value);
-    NSDate *nd = [NSDate dateWithTimeIntervalSince1970:[_time integerValue]];
+
+-(void)setCreate_time:(NSString *)value{
+    _create_time = NilToEmpty(value);
+    NSDate *nd = [NSDate dateWithTimeIntervalSince1970:[_create_time integerValue]];
     
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat:@"yyyy-MM-dd"];
     NSString *dateString = [dateFormat stringFromDate:nd];
     twoLable.text = dateString;
+    [twoLable sizeToFit];
     
     NSDateFormatter *dateFormat2 = [[NSDateFormatter alloc] init];
     [dateFormat2 setDateFormat:@"HH:mm:ss"];
     NSString *dateString2 = [dateFormat2 stringFromDate:nd];
     twoFLable.text = dateString2;
+    [twoFLable sizeToFit];
     
 }
--(void)setTradetype:(NSString *)value{
-    _tradetype = NilToEmpty(value);
-    threeLable.text = _tradetype;
+-(void)setName:(NSString *)value{
+    _name = NilToEmpty(value);
+    threeLable.text = _name;
     [threeLable sizeToFit];
     [threeLable setX:(threeInfoView.width-threeLable.width)/2];
     [threeLable setY:(threeInfoView.height-threeLable.height)/2];
     
 }
--(void)setNumber:(NSString *)value{
-    _number = NilToEmpty(value);
-    foreLable.text = _number;
+-(void)setBank:(NSString *)value{
+    _bank = NilToEmpty(value);
+    NSArray *paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+    NSString *path=[paths objectAtIndex:0];
+    NSString *filename=[path stringByAppendingPathComponent:countryKey];
+    NSDictionary* dicPorts = [NSDictionary dictionaryWithContentsOfFile:filename];
+    if(dicPorts.count>0){
+        NSDictionary *allDict =[dicPorts objectForKey:@"config"];
+        NSArray *countrys = [allDict objectForKey:@"bank_list"];
+        for(NSDictionary *countryDic in countrys){
+            if([_bank isEqualToString:StrValueFromDictionary(countryDic, @"id")]){
+                NSString *language = [USER_DEFAULT objectForKey:kUserLanguage];
+                if([language isEqualToString:@"zh-Hans"]){
+                    foreLable.text = StrValueFromDictionary(countryDic, @"name");
+                }else if([language isEqualToString:@"en"]){
+                    foreLable.text = StrValueFromDictionary(countryDic, @"ename");
+                }
+            }
+        }
+    }
     [foreLable sizeToFit];
     [foreLable setX:(foreInfoView.width-foreLable.width)/2];
     [foreLable setY:(foreInfoView.height-foreLable.height)/2];
 }
--(void)setPrice:(NSString *)value{
-    _price = NilToEmpty(value);
-    float jiage = [_price floatValue]*[_number floatValue];
-    fiveLable.text = [NSString stringWithFormat:@"￥%.2f",jiage];
+-(void)setBank_card:(NSString *)value{
+    _bank_card = NilToEmpty(value);
+    NSString *temp2 = [_bank_card substringFromIndex:[_bank_card length]-4];
+    fiveLable.text = [NSString stringWithFormat:@"******%@",temp2];
     [fiveLable sizeToFit];
     [fiveLable setX:(fiveInfoView.width-fiveLable.width)/2];
     [fiveLable setY:(fiveInfoView.height-fiveLable.height)/2];
-    
-    sevenLable.text = [NSString stringWithFormat:@"￥%@",_price];
+}
+-(void)setMoney:(NSString *)value{
+    _money = NilToEmpty(value);
+    sixLable.text = [NSString stringWithFormat:@"￥%@",_money];
+    [sixLable sizeToFit];
+    [sixLable setX:(sixInfoView.width-sixLable.width)/2];
+    [sixLable setY:(sixInfoView.height-sixLable.height)/2];
+}
+-(void)setFee:(NSString *)value{
+    _fee = NilToEmpty(value);
+    sevenLable.text = [NSString stringWithFormat:@"￥%@",_fee];
     [sevenLable sizeToFit];
     [sevenLable setX:(sevenInfoView.width-sevenLable.width)/2];
     [sevenLable setY:(sevenInfoView.height-sevenLable.height)/2];
 }
--(void)setFee:(NSString *)value{
-    _fee = NilToEmpty(value);
-    float shouxu = [_price floatValue]*[_fee floatValue]/100;
-    sixLable.text = [NSString stringWithFormat:@"￥%.2f",shouxu];
-    [sixLable sizeToFit];
-    
-    [sixLable setX:(sixInfoView.width-sixLable.width)/2];
-    [sixLable setY:(sixInfoView.height-sixLable.height)/2];
-}
--(void)setVolume:(NSString *)value{
-    _volume = NilToEmpty(value);
-    eightLable.text = _volume;
+-(void)setState:(NSString *)value{
+    _state = NilToEmpty(value);
+    eightLable.text = _state;
     [eightLable sizeToFit];
     [eightLable setX:(eightInfoView.width-eightLable.width)/2];
     [eightLable setY:(eightInfoView.height-eightLable.height)/2];
-}
--(void)setDealmoney:(NSString *)value{
-    _dealmoney = NilToEmpty(value);
-    nineLable.text = [NSString stringWithFormat:@"￥%.2f",[_dealmoney floatValue]];;
-    [nineLable sizeToFit];
-    [nineLable setX:(nineInfoView.width-nineLable.width)/2];
-    [nineLable setY:(nineInfoView.height-nineLable.height)/2];
-    float volm;
-    if([_volume intValue]==0){
-        volm = 0.00;
-    }else{
-        volm = [_dealmoney floatValue]/[_volume floatValue];
-    }
-    
-    tenLable.text = [NSString stringWithFormat:@"￥%.2f",volm];
-    [tenLable sizeToFit];
-    [tenLable setX:(tenInfoView.width-tenLable.width)/2];
-    [tenLable setY:(tenInfoView.height-tenLable.height)/2];
-}
--(void)setStatus:(NSString *)value{
-    _status = NilToEmpty(value);
-//    if([_status intValue]==-1){
-//        if([_volume intValue]>0){
-//            oneSLable.text = LocatizedStirngForkey(@"BUFENCHENGJIAO");
-//        }else{
-//            oneSLable.text = LocatizedStirngForkey(@"YICHENGJIAO");
-//        }
-//    }else if([_status intValue]==0){
-//        if([_volume intValue]==[_number intValue]){
-//            oneSLable.text = LocatizedStirngForkey(@"WANQUANCHENGJIAO");
-//        }
-//    }
-    oneSLable.text = _status;
-    [oneSLable sizeToFit];
-    NSString *language = [USER_DEFAULT objectForKey:kUserLanguage];
-    if([language isEqualToString:@"zh-Hans"]){
-        oneSLable.font = [UIFont systemFontOfSize: DATAFONTTHREE];
-        [oneSLable sizeToFit];
-        [oneSLable setX:(oneInfoView.width-oneSLable.width)/2];
-        [oneSLable setY:(oneInfoView.height-oneSLable.height)/2];
-    }else if([language isEqualToString:@"en"]){
-        oneSLable.font = [UIFont systemFontOfSize: DATAFONTONE];
-        oneSLable.lineBreakMode = NSLineBreakByCharWrapping;
-        oneSLable.numberOfLines = 0;
-        oneSLable.font = [UIFont systemFontOfSize: 11];
-        [oneSLable setW:oneInfoView.width-8];
-        [oneSLable setH:oneInfoView.height-6];
-        [oneSLable setX:4];
-        [oneSLable setY:3];
-    }
 }
 @end

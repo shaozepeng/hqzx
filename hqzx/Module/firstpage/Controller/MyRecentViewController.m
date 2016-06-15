@@ -83,8 +83,7 @@
     self.tabBarController.navigationItem.rightBarButtonItem = temporaryBarButtonItem;
 }
 -(void)createTabView{
-    
-    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, TOP_HEIGHT+SCREEN_WIDTH * 0.35 , SCREEN_WIDTH, SCREEN_HEIGHT-TOP_HEIGHT-SCREEN_WIDTH * 0.35) style:UITableViewStyleGrouped];
+    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, TOP_HEIGHT+SCREEN_WIDTH * 0.35 , SCREEN_WIDTH, SCREEN_HEIGHT-TOP_HEIGHT-SCREEN_WIDTH * 0.35 - self.tabBarController.tabBar.height) style:UITableViewStyleGrouped];
     tableView.separatorStyle = UITableViewCellSelectionStyleNone;
     // 设置tableView的数据源
     tableView.dataSource = self;

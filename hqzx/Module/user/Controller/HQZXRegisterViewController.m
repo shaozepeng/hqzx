@@ -533,15 +533,14 @@
     [[NetHttpClient sharedHTTPClient] request: @"/register.json" parameters:@{@"mobile":phoneNo, @"pwd":passwordQue, @"country": commitCountry.country_id,@"codetype": codeType,@"code": validateNo,@"recommend": tuijian} completion:^(id obj) {
         [ProgressHUD dismiss];
         if (obj) {
-            if ([@"0" isEqualToString:[obj objectForKey:ApiKey_ErrorCode]]) {
+            if ([@"0" isEqualToString:StrValueFromDictionary(obj, ApiKey_ErrorCode)]) {
                 [USER_DEFAULT removeObjectForKey: UD_KEY_VALIDATENO_ID];
                 [self.navigationController popViewControllerAnimated: YES];
-                HQZXLoginViewController *userLogin = [[HQZXLoginViewController alloc] init];
-                [self.navigationController pushViewController: userLogin animated: YES];
+//                HQZXLoginViewController *userLogin = [[HQZXLoginViewController alloc] init];
+//                [self.navigationController pushViewController: userLogin animated: YES];
                 if (self.success) {
                     self.success(txtPhone.text);
                 }
-                return;
             } else {
                 [self.view makeToast:LocatizedStirngForkey(@"ZHUCECHENGGONG") duration: 0.5 position:CSToastPositionCenter];
             }

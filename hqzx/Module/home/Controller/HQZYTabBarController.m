@@ -16,6 +16,7 @@
     self.tabBar.translucent = NO;
     self.delegate = self;
     UIView * mView=[[UIView alloc] initWithFrame:CGRectMake(0, 0,SCREEN_WIDTH, self.tabBar.frame.size.height)];//这是整个tabbar的颜色
+    NSLog(@"%f",self.tabBar.frame.size.height);
     [mView setBackgroundColor:UIColorFromRGB(0x1D2228)];
     [self.tabBar insertSubview:mView atIndex:1];
     mView.alpha=0.8;

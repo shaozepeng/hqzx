@@ -16,7 +16,7 @@
     [super viewDidLoad];
     [self.view addSubview: [[UIView alloc] init]];
     self.view.backgroundColor = UIColorFromRGB(0x0C1319);
-    self.title = LocatizedStirngForkey(@"JIAOYILIUSHUI");
+    self.title = LocatizedStirngForkey(@"XUANZEBIZHONG");
     [self createTableView];
     
     arys = [NSMutableArray array];
@@ -102,6 +102,7 @@
     HQZXReceivablesViewController *shoukuan=[[HQZXReceivablesViewController alloc]init];
     shoukuan.sysId = btbData.virtual_id;
     shoukuan.sysName = btbData.virtual_name;
+    shoukuan.sysLogo = btbData.virtual_logo;
     [rootNav pushViewController:shoukuan animated:YES];
 }
 

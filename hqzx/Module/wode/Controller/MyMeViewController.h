@@ -8,7 +8,7 @@
 
 #define WOCONTROLLERFONT IP4566PELSE(12, 12,14,15,14)
 #define WOCONTDETAILFONT IP4566PELSE(11, 11,12,13,12)
-#define WOCONTROLLERPROPO IP4566PELSE(85, 82,90,100,90)
+#define WOCONTROLLERPROPO IP4566PELSE(75, 72,80,90,80)
 #define WOCONTROLLEEIGHT IP4566PELSE(35, 35,40,45,40)
 
 #import <UIKit/UIKit.h>
@@ -28,6 +28,7 @@
 #import "HQZXChooseCurrencyViewController.h"
 #import "HQZXRMBWithdrawalsViewController.h"
 #import "HQZXChooseReceViewController.h"
+#import "HQZXAboutMeViewController.h"
 
 @interface MyMeViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, retain) UITableView *myTableView;

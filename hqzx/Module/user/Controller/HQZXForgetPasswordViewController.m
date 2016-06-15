@@ -401,11 +401,10 @@
         if (obj) {
             if ([@"0" isEqualToString:StrValueFromDictionary(obj, ApiKey_ErrorCode)]) {
                 [USER_DEFAULT removeObjectForKey: UD_KEY_VALIDATENO_ID_FINDPWD];
-                [self.navigationController popViewControllerAnimated: YES];
                 if (self.success) {
                     self.success(txtPhone.text);
                 }
-                return;
+                [self.navigationController popViewControllerAnimated: YES];
             } else {
                 [self.view makeToast:[NSString stringWithFormat:@"%@", [obj objectForKey:@"message"]] duration: 0.5 position:CSToastPositionCenter];
             }

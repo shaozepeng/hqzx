@@ -383,7 +383,6 @@
                     self.success(txtPhone.text);
                 }
                 [self.view makeToast:LocatizedStirngForkey(@"XIUGAICHENGGONG") duration: 0.5 position:CSToastPositionCenter];
-                return;
             } else {
                 [self.view makeToast:[NSString stringWithFormat:@"%@", [obj objectForKey:@"message"]] duration: 0.5 position:CSToastPositionCenter];
             }
