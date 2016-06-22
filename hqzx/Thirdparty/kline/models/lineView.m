@@ -262,7 +262,7 @@
     getdata.req_type = self.req_type;
     NSString *dayK;
     if([self.req_type isEqualToString:@"s"]){
-        dayK = [NSString stringWithFormat:@"%d",5];
+        dayK = [NSString stringWithFormat:@"%d",60];
     }else if([self.req_type isEqualToString:@"d"]){
         dayK = [NSString stringWithFormat:@"%d",24*60];
     }else if([self.req_type isEqualToString:@"w"]){

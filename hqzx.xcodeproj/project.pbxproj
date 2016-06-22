@@ -157,6 +157,38 @@
 		7A71EB521D09717500526510 /* HQZXChooseCurViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A71EB511D09717500526510 /* HQZXChooseCurViewController.m */; };
 		7A766F591D1065A700DD2EAE /* HQZXAboutMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A766F581D1065A700DD2EAE /* HQZXAboutMeViewController.m */; };
 		7A766F5A1D1065A700DD2EAE /* HQZXAboutMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A766F581D1065A700DD2EAE /* HQZXAboutMeViewController.m */; };
+		7A766F611D1151CC00DD2EAE /* HQZXRMBCongZhiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A766F601D1151CC00DD2EAE /* HQZXRMBCongZhiViewController.m */; };
+		7A766F621D1151CC00DD2EAE /* HQZXRMBCongZhiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A766F601D1151CC00DD2EAE /* HQZXRMBCongZhiViewController.m */; };
+		7A766F651D11A70C00DD2EAE /* HQZXRMBRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A766F641D11A70C00DD2EAE /* HQZXRMBRecordViewController.m */; };
+		7A766F661D11A70C00DD2EAE /* HQZXRMBRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A766F641D11A70C00DD2EAE /* HQZXRMBRecordViewController.m */; };
+		7A766F691D11A75200DD2EAE /* HQZXRMBRecordTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A766F681D11A75200DD2EAE /* HQZXRMBRecordTableCell.m */; };
+		7A766F6A1D11A75200DD2EAE /* HQZXRMBRecordTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A766F681D11A75200DD2EAE /* HQZXRMBRecordTableCell.m */; };
+		7A766F6D1D11A76D00DD2EAE /* HQZXDataRecordTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A766F6C1D11A76D00DD2EAE /* HQZXDataRecordTableCell.m */; };
+		7A766F6E1D11A76D00DD2EAE /* HQZXDataRecordTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A766F6C1D11A76D00DD2EAE /* HQZXDataRecordTableCell.m */; };
+		7A766F791D1290B400DD2EAE /* HQZXChooseVirtualViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A766F781D1290B400DD2EAE /* HQZXChooseVirtualViewController.m */; };
+		7A766F7A1D1290B400DD2EAE /* HQZXChooseVirtualViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A766F781D1290B400DD2EAE /* HQZXChooseVirtualViewController.m */; };
+		7A766F7D1D12910200DD2EAE /* HQZXChooseViTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A766F7C1D12910200DD2EAE /* HQZXChooseViTableCell.m */; };
+		7A766F7E1D12910200DD2EAE /* HQZXChooseViTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A766F7C1D12910200DD2EAE /* HQZXChooseViTableCell.m */; };
+		7A766F811D12920200DD2EAE /* HQZXVirtualCurrencyRechargeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A766F801D12920200DD2EAE /* HQZXVirtualCurrencyRechargeViewController.m */; };
+		7A766F821D12920200DD2EAE /* HQZXVirtualCurrencyRechargeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A766F801D12920200DD2EAE /* HQZXVirtualCurrencyRechargeViewController.m */; };
+		7A766F851D12B39800DD2EAE /* HQZXCashWithdrawalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A766F841D12B39800DD2EAE /* HQZXCashWithdrawalViewController.m */; };
+		7A766F861D12B39800DD2EAE /* HQZXCashWithdrawalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A766F841D12B39800DD2EAE /* HQZXCashWithdrawalViewController.m */; };
+		7A766F891D12B3BC00DD2EAE /* HQZXChooseCaseWithVewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A766F881D12B3BC00DD2EAE /* HQZXChooseCaseWithVewController.m */; };
+		7A766F8A1D12B3BC00DD2EAE /* HQZXChooseCaseWithVewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A766F881D12B3BC00DD2EAE /* HQZXChooseCaseWithVewController.m */; };
+		7A766F8D1D12B3D500DD2EAE /* HQZXChooseCaseTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A766F8C1D12B3D500DD2EAE /* HQZXChooseCaseTableCell.m */; };
+		7A766F8E1D12B3D500DD2EAE /* HQZXChooseCaseTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A766F8C1D12B3D500DD2EAE /* HQZXChooseCaseTableCell.m */; };
+		7A766F911D12E33300DD2EAE /* HQZXVirtualRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A766F901D12E33300DD2EAE /* HQZXVirtualRecordViewController.m */; };
+		7A766F921D12E33300DD2EAE /* HQZXVirtualRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A766F901D12E33300DD2EAE /* HQZXVirtualRecordViewController.m */; };
+		7A766F951D12E38200DD2EAE /* HQZXXNRecordTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A766F941D12E38200DD2EAE /* HQZXXNRecordTableCell.m */; };
+		7A766F961D12E38200DD2EAE /* HQZXXNRecordTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A766F941D12E38200DD2EAE /* HQZXXNRecordTableCell.m */; };
+		7A766F991D12E3A800DD2EAE /* HQZXXNDataRecordTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A766F981D12E3A800DD2EAE /* HQZXXNDataRecordTableCell.m */; };
+		7A766F9A1D12E3A800DD2EAE /* HQZXXNDataRecordTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A766F981D12E3A800DD2EAE /* HQZXXNDataRecordTableCell.m */; };
+		7A766F9D1D13008200DD2EAE /* HQZXCashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A766F9C1D13008200DD2EAE /* HQZXCashViewController.m */; };
+		7A766F9E1D13008200DD2EAE /* HQZXCashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A766F9C1D13008200DD2EAE /* HQZXCashViewController.m */; };
+		7A766FA11D1300B200DD2EAE /* HQZXCashWiTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A766FA01D1300B200DD2EAE /* HQZXCashWiTableCell.m */; };
+		7A766FA21D1300B200DD2EAE /* HQZXCashWiTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A766FA01D1300B200DD2EAE /* HQZXCashWiTableCell.m */; };
+		7A766FA51D1300D300DD2EAE /* HQZXDataCashWiTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A766FA41D1300D300DD2EAE /* HQZXDataCashWiTableCell.m */; };
+		7A766FA61D1300D300DD2EAE /* HQZXDataCashWiTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A766FA41D1300D300DD2EAE /* HQZXDataCashWiTableCell.m */; };
 		7A91D9041D02D06E0069CF54 /* backImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A91D8ED1D02D06E0069CF54 /* backImage.png */; };
 		7A91D9051D02D06E0069CF54 /* 85923.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A91D8EF1D02D06E0069CF54 /* 85923.png */; };
 		7A91D9061D02D06E0069CF54 /* 85923Select.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A91D8F01D02D06E0069CF54 /* 85923Select.png */; };
@@ -751,6 +783,38 @@
 		7A71EB511D09717500526510 /* HQZXChooseCurViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HQZXChooseCurViewController.m; sourceTree = "<group>"; };
 		7A766F571D1065A700DD2EAE /* HQZXAboutMeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HQZXAboutMeViewController.h; sourceTree = "<group>"; };
 		7A766F581D1065A700DD2EAE /* HQZXAboutMeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HQZXAboutMeViewController.m; sourceTree = "<group>"; };
+		7A766F5F1D1151CC00DD2EAE /* HQZXRMBCongZhiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HQZXRMBCongZhiViewController.h; sourceTree = "<group>"; };
+		7A766F601D1151CC00DD2EAE /* HQZXRMBCongZhiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HQZXRMBCongZhiViewController.m; sourceTree = "<group>"; };
+		7A766F631D11A70C00DD2EAE /* HQZXRMBRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HQZXRMBRecordViewController.h; path = ../Model/HQZXRMBRecordViewController.h; sourceTree = "<group>"; };
+		7A766F641D11A70C00DD2EAE /* HQZXRMBRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HQZXRMBRecordViewController.m; path = ../Model/HQZXRMBRecordViewController.m; sourceTree = "<group>"; };
+		7A766F671D11A75200DD2EAE /* HQZXRMBRecordTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HQZXRMBRecordTableCell.h; sourceTree = "<group>"; };
+		7A766F681D11A75200DD2EAE /* HQZXRMBRecordTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HQZXRMBRecordTableCell.m; sourceTree = "<group>"; };
+		7A766F6B1D11A76D00DD2EAE /* HQZXDataRecordTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HQZXDataRecordTableCell.h; sourceTree = "<group>"; };
+		7A766F6C1D11A76D00DD2EAE /* HQZXDataRecordTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HQZXDataRecordTableCell.m; sourceTree = "<group>"; };
+		7A766F771D1290B400DD2EAE /* HQZXChooseVirtualViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HQZXChooseVirtualViewController.h; sourceTree = "<group>"; };
+		7A766F781D1290B400DD2EAE /* HQZXChooseVirtualViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HQZXChooseVirtualViewController.m; sourceTree = "<group>"; };
+		7A766F7B1D12910200DD2EAE /* HQZXChooseViTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HQZXChooseViTableCell.h; sourceTree = "<group>"; };
+		7A766F7C1D12910200DD2EAE /* HQZXChooseViTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HQZXChooseViTableCell.m; sourceTree = "<group>"; };
+		7A766F7F1D12920200DD2EAE /* HQZXVirtualCurrencyRechargeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HQZXVirtualCurrencyRechargeViewController.h; sourceTree = "<group>"; };
+		7A766F801D12920200DD2EAE /* HQZXVirtualCurrencyRechargeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HQZXVirtualCurrencyRechargeViewController.m; sourceTree = "<group>"; };
+		7A766F831D12B39800DD2EAE /* HQZXCashWithdrawalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HQZXCashWithdrawalViewController.h; sourceTree = "<group>"; };
+		7A766F841D12B39800DD2EAE /* HQZXCashWithdrawalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HQZXCashWithdrawalViewController.m; sourceTree = "<group>"; };
+		7A766F871D12B3BC00DD2EAE /* HQZXChooseCaseWithVewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HQZXChooseCaseWithVewController.h; sourceTree = "<group>"; };
+		7A766F881D12B3BC00DD2EAE /* HQZXChooseCaseWithVewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HQZXChooseCaseWithVewController.m; sourceTree = "<group>"; };
+		7A766F8B1D12B3D500DD2EAE /* HQZXChooseCaseTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HQZXChooseCaseTableCell.h; sourceTree = "<group>"; };
+		7A766F8C1D12B3D500DD2EAE /* HQZXChooseCaseTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HQZXChooseCaseTableCell.m; sourceTree = "<group>"; };
+		7A766F8F1D12E33300DD2EAE /* HQZXVirtualRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HQZXVirtualRecordViewController.h; sourceTree = "<group>"; };
+		7A766F901D12E33300DD2EAE /* HQZXVirtualRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HQZXVirtualRecordViewController.m; sourceTree = "<group>"; };
+		7A766F931D12E38200DD2EAE /* HQZXXNRecordTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HQZXXNRecordTableCell.h; sourceTree = "<group>"; };
+		7A766F941D12E38200DD2EAE /* HQZXXNRecordTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HQZXXNRecordTableCell.m; sourceTree = "<group>"; };
+		7A766F971D12E3A800DD2EAE /* HQZXXNDataRecordTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HQZXXNDataRecordTableCell.h; sourceTree = "<group>"; };
+		7A766F981D12E3A800DD2EAE /* HQZXXNDataRecordTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HQZXXNDataRecordTableCell.m; sourceTree = "<group>"; };
+		7A766F9B1D13008200DD2EAE /* HQZXCashViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HQZXCashViewController.h; sourceTree = "<group>"; };
+		7A766F9C1D13008200DD2EAE /* HQZXCashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HQZXCashViewController.m; sourceTree = "<group>"; };
+		7A766F9F1D1300B200DD2EAE /* HQZXCashWiTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HQZXCashWiTableCell.h; sourceTree = "<group>"; };
+		7A766FA01D1300B200DD2EAE /* HQZXCashWiTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HQZXCashWiTableCell.m; sourceTree = "<group>"; };
+		7A766FA31D1300D300DD2EAE /* HQZXDataCashWiTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HQZXDataCashWiTableCell.h; sourceTree = "<group>"; };
+		7A766FA41D1300D300DD2EAE /* HQZXDataCashWiTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HQZXDataCashWiTableCell.m; sourceTree = "<group>"; };
 		7A91D8ED1D02D06E0069CF54 /* backImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backImage.png; sourceTree = "<group>"; };
 		7A91D8EF1D02D06E0069CF54 /* 85923.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 85923.png; sourceTree = "<group>"; };
 		7A91D8F01D02D06E0069CF54 /* 85923Select.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 85923Select.png; sourceTree = "<group>"; };
@@ -1043,7 +1107,10 @@
 		7A0F70281CECA47400F468D2 /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				7A766F6F1D12901300DD2EAE /* xunibichongzhi */,
+				7A766F731D12901C00DD2EAE /* xunibitixian */,
 				7A766F531D10653D00DD2EAE /* guanyuwomen */,
+				7A766F5B1D1100E700DD2EAE /* RMBcongzhi */,
 				7A91D9441D04298D0069CF54 /* RMBtixian */,
 				7A91D9141D02D0CB0069CF54 /* payment */,
 				7A91D92E1D031C960069CF54 /* jiaoyiliushui */,
@@ -2060,6 +2127,131 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		7A766F5B1D1100E700DD2EAE /* RMBcongzhi */ = {
+			isa = PBXGroup;
+			children = (
+				7A766F5C1D1100E700DD2EAE /* Controller */,
+				7A766F5D1D1100E700DD2EAE /* Model */,
+				7A766F5E1D1100E700DD2EAE /* View */,
+			);
+			path = RMBcongzhi;
+			sourceTree = "<group>";
+		};
+		7A766F5C1D1100E700DD2EAE /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				7A766F5F1D1151CC00DD2EAE /* HQZXRMBCongZhiViewController.h */,
+				7A766F601D1151CC00DD2EAE /* HQZXRMBCongZhiViewController.m */,
+				7A766F631D11A70C00DD2EAE /* HQZXRMBRecordViewController.h */,
+				7A766F641D11A70C00DD2EAE /* HQZXRMBRecordViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		7A766F5D1D1100E700DD2EAE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7A766F5E1D1100E700DD2EAE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7A766F671D11A75200DD2EAE /* HQZXRMBRecordTableCell.h */,
+				7A766F681D11A75200DD2EAE /* HQZXRMBRecordTableCell.m */,
+				7A766F6B1D11A76D00DD2EAE /* HQZXDataRecordTableCell.h */,
+				7A766F6C1D11A76D00DD2EAE /* HQZXDataRecordTableCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7A766F6F1D12901300DD2EAE /* xunibichongzhi */ = {
+			isa = PBXGroup;
+			children = (
+				7A766F701D12901300DD2EAE /* Controller */,
+				7A766F711D12901300DD2EAE /* Model */,
+				7A766F721D12901300DD2EAE /* View */,
+			);
+			path = xunibichongzhi;
+			sourceTree = "<group>";
+		};
+		7A766F701D12901300DD2EAE /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				7A766F771D1290B400DD2EAE /* HQZXChooseVirtualViewController.h */,
+				7A766F781D1290B400DD2EAE /* HQZXChooseVirtualViewController.m */,
+				7A766F7F1D12920200DD2EAE /* HQZXVirtualCurrencyRechargeViewController.h */,
+				7A766F801D12920200DD2EAE /* HQZXVirtualCurrencyRechargeViewController.m */,
+				7A766F8F1D12E33300DD2EAE /* HQZXVirtualRecordViewController.h */,
+				7A766F901D12E33300DD2EAE /* HQZXVirtualRecordViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		7A766F711D12901300DD2EAE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7A766F721D12901300DD2EAE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7A766F7B1D12910200DD2EAE /* HQZXChooseViTableCell.h */,
+				7A766F7C1D12910200DD2EAE /* HQZXChooseViTableCell.m */,
+				7A766F931D12E38200DD2EAE /* HQZXXNRecordTableCell.h */,
+				7A766F941D12E38200DD2EAE /* HQZXXNRecordTableCell.m */,
+				7A766F971D12E3A800DD2EAE /* HQZXXNDataRecordTableCell.h */,
+				7A766F981D12E3A800DD2EAE /* HQZXXNDataRecordTableCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7A766F731D12901C00DD2EAE /* xunibitixian */ = {
+			isa = PBXGroup;
+			children = (
+				7A766F741D12901C00DD2EAE /* Controller */,
+				7A766F751D12901C00DD2EAE /* Model */,
+				7A766F761D12901C00DD2EAE /* View */,
+			);
+			path = xunibitixian;
+			sourceTree = "<group>";
+		};
+		7A766F741D12901C00DD2EAE /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				7A766F871D12B3BC00DD2EAE /* HQZXChooseCaseWithVewController.h */,
+				7A766F881D12B3BC00DD2EAE /* HQZXChooseCaseWithVewController.m */,
+				7A766F831D12B39800DD2EAE /* HQZXCashWithdrawalViewController.h */,
+				7A766F841D12B39800DD2EAE /* HQZXCashWithdrawalViewController.m */,
+				7A766F9B1D13008200DD2EAE /* HQZXCashViewController.h */,
+				7A766F9C1D13008200DD2EAE /* HQZXCashViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		7A766F751D12901C00DD2EAE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7A766F761D12901C00DD2EAE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7A766F8B1D12B3D500DD2EAE /* HQZXChooseCaseTableCell.h */,
+				7A766F8C1D12B3D500DD2EAE /* HQZXChooseCaseTableCell.m */,
+				7A766F9F1D1300B200DD2EAE /* HQZXCashWiTableCell.h */,
+				7A766FA01D1300B200DD2EAE /* HQZXCashWiTableCell.m */,
+				7A766FA31D1300D300DD2EAE /* HQZXDataCashWiTableCell.h */,
+				7A766FA41D1300D300DD2EAE /* HQZXDataCashWiTableCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		7A91D8EC1D02D06E0069CF54 /* Qrcode */ = {
 			isa = PBXGroup;
 			children = (
@@ -2675,11 +2867,13 @@
 				7A0F71B61CEDF52E00F468D2 /* CoreFMDB.m in Sources */,
 				7A0F71DF1CEDF52E00F468D2 /* UIImage+LC.m in Sources */,
 				7AF0ACA31D0D7A31001F1346 /* UIScrollView+MJExtension.m in Sources */,
+				7A766F611D1151CC00DD2EAE /* HQZXRMBCongZhiViewController.m in Sources */,
 				7A71EB4C1D085BE300526510 /* HQZXBank.m in Sources */,
 				7A766F591D1065A700DD2EAE /* HQZXAboutMeViewController.m in Sources */,
 				7AC7E8D41CFAD5E5008CBC65 /* HQZXRealNameAuthenticationViewController.m in Sources */,
 				7A0F71C61CEDF52E00F468D2 /* DoAlertView.m in Sources */,
 				7AC4C0201D01367A004FD2F7 /* HQZXEmptyManager.m in Sources */,
+				7A766FA11D1300B200DD2EAE /* HQZXCashWiTableCell.m in Sources */,
 				7A0F70891CEDD0C500F468D2 /* CommonUtils.m in Sources */,
 				7A0F71D81CEDF52E00F468D2 /* IQBarButtonItem.m in Sources */,
 				7AC7E8041CF97D8C008CBC65 /* HQZXSelectCountryForm.m in Sources */,
@@ -2695,7 +2889,9 @@
 				7AF0AC9D1D0D7A31001F1346 /* MJRefreshBackStateFooter.m in Sources */,
 				7AC4C0231D018CE0004FD2F7 /* HQZXKlineGraphViewController.m in Sources */,
 				7A0F71881CEDF52E00F468D2 /* NSString+ArcFile.m in Sources */,
+				7A766F851D12B39800DD2EAE /* HQZXCashWithdrawalViewController.m in Sources */,
 				7A0F71AF1CEDF52E00F468D2 /* NSObject+Update.m in Sources */,
+				7A766F691D11A75200DD2EAE /* HQZXRMBRecordTableCell.m in Sources */,
 				7A0F71941CEDF52E00F468D2 /* UIImage+Color.m in Sources */,
 				7A0F71901CEDF52E00F468D2 /* NSString+Password.m in Sources */,
 				7A0F71AD1CEDF52E00F468D2 /* NSObject+Save.m in Sources */,
@@ -2703,8 +2899,10 @@
 				7AF0AC981D0D7A31001F1346 /* MJRefreshAutoGifFooter.m in Sources */,
 				7A0F72201CF09EBE00F468D2 /* HRCoverView.m in Sources */,
 				7A0F71B11CEDF52E00F468D2 /* BaseGradientView.m in Sources */,
+				7A766F951D12E38200DD2EAE /* HQZXXNRecordTableCell.m in Sources */,
 				7A0F70931CEDF17000F468D2 /* NSDate+Helper.m in Sources */,
 				7AF0AD981D0EF769001F1346 /* HQZXPresentRecordViewController.m in Sources */,
+				7A766F991D12E3A800DD2EAE /* HQZXXNDataRecordTableCell.m in Sources */,
 				7AF0ADA01D0EF8AF001F1346 /* HQZXDataPreTableCell.m in Sources */,
 				7A0F70971CEDF1AA00F468D2 /* UIDevice+IdentifierAddition.m in Sources */,
 				7AF0AD9C1D0EF88F001F1346 /* HQZXPresentTableCell.m in Sources */,
@@ -2723,8 +2921,10 @@
 				7AF0AC9F1D0D7A31001F1346 /* MJRefreshNormalHeader.m in Sources */,
 				7A91D92A1D030F850069CF54 /* HQZXHistoryEntrustTableCell.m in Sources */,
 				7A71EB491D085BB400526510 /* HQZXSelectBankForm.m in Sources */,
+				7A766FA51D1300D300DD2EAE /* HQZXDataCashWiTableCell.m in Sources */,
 				7AF0ACA41D0D7A31001F1346 /* UIScrollView+MJRefresh.m in Sources */,
 				7A0F71A81CEDF52E00F468D2 /* NSObject+BaseModelCommon.m in Sources */,
+				7A766F791D1290B400DD2EAE /* HQZXChooseVirtualViewController.m in Sources */,
 				7A0F718B1CEDF52E00F468D2 /* CALayer+Transition.m in Sources */,
 				7A0F718E1CEDF52E00F468D2 /* NSObject+Extend.m in Sources */,
 				7A0F71DB1CEDF52E00F468D2 /* IQUIView+IQIgnoreGroup.m in Sources */,
@@ -2738,6 +2938,7 @@
 				7AC4C05C1D0195B2004FD2F7 /* getData.m in Sources */,
 				7A6D05011CF6ECDE00D9CDF3 /* HQZXModifyTransactionViewController.m in Sources */,
 				7A0F71DC1CEDF52E00F468D2 /* IQUIView+IQKeyboardToolbar.m in Sources */,
+				7A766F7D1D12910200DD2EAE /* HQZXChooseViTableCell.m in Sources */,
 				7A0F71A41CEDF52E00F468D2 /* UINavigationController+Appearance.m in Sources */,
 				7AF0ACA51D0D7A31001F1346 /* UIView+MJExtension.m in Sources */,
 				7AC7E8E31CFAFC83008CBC65 /* HQZXServiceAgreementViewController.m in Sources */,
@@ -2763,6 +2964,7 @@
 				7A0F71C01CEDF52E00F468D2 /* NSData+Param.m in Sources */,
 				7AC7E80D1CF98338008CBC65 /* HQZXCommDefs.m in Sources */,
 				7A0F719D1CEDF52E00F468D2 /* CoreNavigationController.m in Sources */,
+				7A766F8D1D12B3D500DD2EAE /* HQZXChooseCaseTableCell.m in Sources */,
 				7A91D9271D030F330069CF54 /* HQZXHistoryEntrustManagementViewController.m in Sources */,
 				7A0F71D11CEDF52E00F468D2 /* IQUIView+Hierarchy.m in Sources */,
 				7A0F71BA1CEDF52E00F468D2 /* FMDatabasePool.m in Sources */,
@@ -2773,6 +2975,7 @@
 				7A91D9341D031D640069CF54 /* HQZXTransactionCurrencyViewController.m in Sources */,
 				7A0F71D31CEDF52E00F468D2 /* IQUIWindow+Hierarchy.m in Sources */,
 				7AC4C05B1D0195B2004FD2F7 /* UIColor+helper.m in Sources */,
+				7A766F6D1D11A76D00DD2EAE /* HQZXDataRecordTableCell.m in Sources */,
 				7A0F71BF1CEDF52E00F468D2 /* NSData+MimeType.m in Sources */,
 				7A713EB61CF34BB6009A6D71 /* HQZXUserModel.m in Sources */,
 				7A0F72271CF18DF500F468D2 /* MyRecentViewController.m in Sources */,
@@ -2792,13 +2995,16 @@
 				7AEFF4921D0C599500C51DD8 /* HQZXChooseReceViewController.m in Sources */,
 				7A713E991CF3497B009A6D71 /* NetFormParam.m in Sources */,
 				7AC4C05A1D0195B2004FD2F7 /* commond.m in Sources */,
+				7A766F911D12E33300DD2EAE /* HQZXVirtualRecordViewController.m in Sources */,
 				7AF0AC991D0D7A31001F1346 /* MJRefreshAutoNormalFooter.m in Sources */,
 				7A0F71B01CEDF52E00F468D2 /* NSString+Stackoverflow.m in Sources */,
 				7A91D90A1D02D06E0069CF54 /* SYQrCodeScanne.m in Sources */,
 				7A0F71E51CEDF52E00F468D2 /* UIImage+ResizeMagick.m in Sources */,
 				7A91D9371D031EF40069CF54 /* HQZXTransactionTableCell.m in Sources */,
+				7A766F891D12B3BC00DD2EAE /* HQZXChooseCaseWithVewController.m in Sources */,
 				7A0F708E1CEDF0FB00F468D2 /* README.md in Sources */,
 				7A713EA41CF34AAF009A6D71 /* NSString+MD5.m in Sources */,
+				7A766F651D11A70C00DD2EAE /* HQZXRMBRecordViewController.m in Sources */,
 				7A0F71931CEDF52E00F468D2 /* UIFont+Extend.m in Sources */,
 				7A91D90C1D02D06E0069CF54 /* UIImage+SYQrCodeDiversification.m in Sources */,
 				7A91D92D1D030FA50069CF54 /* HQZXHistoryDataEnTableCell.m in Sources */,
@@ -2816,7 +3022,9 @@
 				7A0F71BB1CEDF52E00F468D2 /* FMDatabaseQueue.m in Sources */,
 				7A0F71BD1CEDF52E00F468D2 /* CoreHttp.m in Sources */,
 				7AC7E80A1CF97F5A008CBC65 /* HQZXCommonAlert.m in Sources */,
+				7A766F811D12920200DD2EAE /* HQZXVirtualCurrencyRechargeViewController.m in Sources */,
 				7A0F71A71CEDF52E00F468D2 /* NSDictionary+Sqlite.m in Sources */,
+				7A766F9D1D13008200DD2EAE /* HQZXCashViewController.m in Sources */,
 				7A0F718D1CEDF52E00F468D2 /* NSDate+Extend.m in Sources */,
 				7AC7E8D71CFADFDC008CBC65 /* HQZXSelectIDForm.m in Sources */,
 				7A0F71BE1CEDF52E00F468D2 /* NSString+CoreHttp.m in Sources */,
@@ -2861,11 +3069,13 @@
 				7AF0ACAC1D0E61D8001F1346 /* CoreFMDB.m in Sources */,
 				7AF0ACAD1D0E61D8001F1346 /* UIImage+LC.m in Sources */,
 				7AF0ACAE1D0E61D8001F1346 /* UIScrollView+MJExtension.m in Sources */,
+				7A766F621D1151CC00DD2EAE /* HQZXRMBCongZhiViewController.m in Sources */,
 				7AF0ACAF1D0E61D8001F1346 /* HQZXBank.m in Sources */,
 				7A766F5A1D1065A700DD2EAE /* HQZXAboutMeViewController.m in Sources */,
 				7AF0ACB01D0E61D8001F1346 /* HQZXRealNameAuthenticationViewController.m in Sources */,
 				7AF0ACB11D0E61D8001F1346 /* DoAlertView.m in Sources */,
 				7AF0ACB21D0E61D8001F1346 /* HQZXEmptyManager.m in Sources */,
+				7A766FA21D1300B200DD2EAE /* HQZXCashWiTableCell.m in Sources */,
 				7AF0ACB31D0E61D8001F1346 /* CommonUtils.m in Sources */,
 				7AF0ACB41D0E61D8001F1346 /* IQBarButtonItem.m in Sources */,
 				7AF0ACB51D0E61D8001F1346 /* HQZXSelectCountryForm.m in Sources */,
@@ -2881,7 +3091,9 @@
 				7AF0ACBF1D0E61D8001F1346 /* MJRefreshBackStateFooter.m in Sources */,
 				7AF0ACC01D0E61D8001F1346 /* HQZXKlineGraphViewController.m in Sources */,
 				7AF0ACC11D0E61D8001F1346 /* NSString+ArcFile.m in Sources */,
+				7A766F861D12B39800DD2EAE /* HQZXCashWithdrawalViewController.m in Sources */,
 				7AF0ACC21D0E61D8001F1346 /* NSObject+Update.m in Sources */,
+				7A766F6A1D11A75200DD2EAE /* HQZXRMBRecordTableCell.m in Sources */,
 				7AF0ACC31D0E61D8001F1346 /* UIImage+Color.m in Sources */,
 				7AF0ACC41D0E61D8001F1346 /* NSString+Password.m in Sources */,
 				7AF0ACC51D0E61D8001F1346 /* NSObject+Save.m in Sources */,
@@ -2889,8 +3101,10 @@
 				7AF0ACC71D0E61D8001F1346 /* MJRefreshAutoGifFooter.m in Sources */,
 				7AF0ACC81D0E61D8001F1346 /* HRCoverView.m in Sources */,
 				7AF0ACC91D0E61D8001F1346 /* BaseGradientView.m in Sources */,
+				7A766F961D12E38200DD2EAE /* HQZXXNRecordTableCell.m in Sources */,
 				7AF0ACCA1D0E61D8001F1346 /* NSDate+Helper.m in Sources */,
 				7AF0AD991D0EF769001F1346 /* HQZXPresentRecordViewController.m in Sources */,
+				7A766F9A1D12E3A800DD2EAE /* HQZXXNDataRecordTableCell.m in Sources */,
 				7AF0ADA11D0EF8AF001F1346 /* HQZXDataPreTableCell.m in Sources */,
 				7AF0ACCB1D0E61D8001F1346 /* UIDevice+IdentifierAddition.m in Sources */,
 				7AF0AD9D1D0EF88F001F1346 /* HQZXPresentTableCell.m in Sources */,
@@ -2909,8 +3123,10 @@
 				7AF0ACD81D0E61D8001F1346 /* MJRefreshNormalHeader.m in Sources */,
 				7AF0ACD91D0E61D8001F1346 /* HQZXHistoryEntrustTableCell.m in Sources */,
 				7AF0ACDA1D0E61D8001F1346 /* HQZXSelectBankForm.m in Sources */,
+				7A766FA61D1300D300DD2EAE /* HQZXDataCashWiTableCell.m in Sources */,
 				7AF0ACDB1D0E61D8001F1346 /* UIScrollView+MJRefresh.m in Sources */,
 				7AF0ACDC1D0E61D8001F1346 /* NSObject+BaseModelCommon.m in Sources */,
+				7A766F7A1D1290B400DD2EAE /* HQZXChooseVirtualViewController.m in Sources */,
 				7AF0ACDD1D0E61D8001F1346 /* CALayer+Transition.m in Sources */,
 				7AF0ACDE1D0E61D8001F1346 /* NSObject+Extend.m in Sources */,
 				7AF0ACDF1D0E61D8001F1346 /* IQUIView+IQIgnoreGroup.m in Sources */,
@@ -2924,6 +3140,7 @@
 				7AF0ACE71D0E61D8001F1346 /* getData.m in Sources */,
 				7AF0ACE81D0E61D8001F1346 /* HQZXModifyTransactionViewController.m in Sources */,
 				7AF0ACE91D0E61D8001F1346 /* IQUIView+IQKeyboardToolbar.m in Sources */,
+				7A766F7E1D12910200DD2EAE /* HQZXChooseViTableCell.m in Sources */,
 				7AF0ACEA1D0E61D8001F1346 /* UINavigationController+Appearance.m in Sources */,
 				7AF0ACEB1D0E61D8001F1346 /* UIView+MJExtension.m in Sources */,
 				7AF0ACEC1D0E61D8001F1346 /* HQZXServiceAgreementViewController.m in Sources */,
@@ -2949,6 +3166,7 @@
 				7AF0AD001D0E61D8001F1346 /* NSData+Param.m in Sources */,
 				7AF0AD011D0E61D8001F1346 /* HQZXCommDefs.m in Sources */,
 				7AF0AD021D0E61D8001F1346 /* CoreNavigationController.m in Sources */,
+				7A766F8E1D12B3D500DD2EAE /* HQZXChooseCaseTableCell.m in Sources */,
 				7AF0AD031D0E61D8001F1346 /* HQZXHistoryEntrustManagementViewController.m in Sources */,
 				7AF0AD041D0E61D8001F1346 /* IQUIView+Hierarchy.m in Sources */,
 				7AF0AD051D0E61D8001F1346 /* FMDatabasePool.m in Sources */,
@@ -2959,6 +3177,7 @@
 				7AF0AD0A1D0E61D8001F1346 /* HQZXTransactionCurrencyViewController.m in Sources */,
 				7AF0AD0B1D0E61D8001F1346 /* IQUIWindow+Hierarchy.m in Sources */,
 				7AF0AD0C1D0E61D8001F1346 /* UIColor+helper.m in Sources */,
+				7A766F6E1D11A76D00DD2EAE /* HQZXDataRecordTableCell.m in Sources */,
 				7AF0AD0D1D0E61D8001F1346 /* NSData+MimeType.m in Sources */,
 				7AF0AD0E1D0E61D8001F1346 /* HQZXUserModel.m in Sources */,
 				7AF0AD0F1D0E61D8001F1346 /* MyRecentViewController.m in Sources */,
@@ -2978,13 +3197,16 @@
 				7AF0AD1D1D0E61D8001F1346 /* HQZXChooseReceViewController.m in Sources */,
 				7AF0AD1E1D0E61D8001F1346 /* NetFormParam.m in Sources */,
 				7AF0AD1F1D0E61D8001F1346 /* commond.m in Sources */,
+				7A766F921D12E33300DD2EAE /* HQZXVirtualRecordViewController.m in Sources */,
 				7AF0AD201D0E61D8001F1346 /* MJRefreshAutoNormalFooter.m in Sources */,
 				7AF0AD211D0E61D8001F1346 /* NSString+Stackoverflow.m in Sources */,
 				7AF0AD221D0E61D8001F1346 /* SYQrCodeScanne.m in Sources */,
 				7AF0AD231D0E61D8001F1346 /* UIImage+ResizeMagick.m in Sources */,
 				7AF0AD241D0E61D8001F1346 /* HQZXTransactionTableCell.m in Sources */,
+				7A766F8A1D12B3BC00DD2EAE /* HQZXChooseCaseWithVewController.m in Sources */,
 				7AF0AD251D0E61D8001F1346 /* README.md in Sources */,
 				7AF0AD261D0E61D8001F1346 /* NSString+MD5.m in Sources */,
+				7A766F661D11A70C00DD2EAE /* HQZXRMBRecordViewController.m in Sources */,
 				7AF0AD271D0E61D8001F1346 /* UIFont+Extend.m in Sources */,
 				7AF0AD281D0E61D8001F1346 /* UIImage+SYQrCodeDiversification.m in Sources */,
 				7AF0AD291D0E61D8001F1346 /* HQZXHistoryDataEnTableCell.m in Sources */,
@@ -3002,7 +3224,9 @@
 				7AF0AD351D0E61D8001F1346 /* FMDatabaseQueue.m in Sources */,
 				7AF0AD361D0E61D8001F1346 /* CoreHttp.m in Sources */,
 				7AF0AD371D0E61D8001F1346 /* HQZXCommonAlert.m in Sources */,
+				7A766F821D12920200DD2EAE /* HQZXVirtualCurrencyRechargeViewController.m in Sources */,
 				7AF0AD381D0E61D8001F1346 /* NSDictionary+Sqlite.m in Sources */,
+				7A766F9E1D13008200DD2EAE /* HQZXCashViewController.m in Sources */,
 				7AF0AD391D0E61D8001F1346 /* NSDate+Extend.m in Sources */,
 				7AF0AD3A1D0E61D8001F1346 /* HQZXSelectIDForm.m in Sources */,
 				7AF0AD3B1D0E61D8001F1346 /* NSString+CoreHttp.m in Sources */,
@@ -3168,7 +3392,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hqzx.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "e7cea9a3-82da-4493-a51d-53fdfc2c2605";
+				PROVISIONING_PROFILE = "6682453f-7cdb-4a0b-9293-9b5d57fbafae";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -3187,7 +3411,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hqzx.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "e7cea9a3-82da-4493-a51d-53fdfc2c2605";
+				PROVISIONING_PROFILE = "6682453f-7cdb-4a0b-9293-9b5d57fbafae";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

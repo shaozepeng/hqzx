@@ -101,7 +101,13 @@
     }
     HQZXReceivablesViewController *shoukuan=[[HQZXReceivablesViewController alloc]init];
     shoukuan.sysId = btbData.virtual_id;
-    shoukuan.sysName = btbData.virtual_name;
+    NSString *language = [USER_DEFAULT objectForKey:kUserLanguage];
+    if([language isEqualToString:@"zh-Hans"]){
+        shoukuan.sysName = btbData.virtual_name;
+    }else if([language isEqualToString:@"en"]){
+        shoukuan.sysName = btbData.virtual_ename;
+    }
+    
     shoukuan.sysLogo = btbData.virtual_logo;
     [rootNav pushViewController:shoukuan animated:YES];
 }

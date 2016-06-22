@@ -29,6 +29,9 @@
 "YUE"="月";
 "CHENGGONG"="成功";
 "XUANZEBIZHONG"="选择币种";
+"KEBUY"="可买";
+"KESELL"="可卖";
+"DONGJIE"="冻结";
 
 
 /*
@@ -167,7 +170,9 @@
 "SHEZHIXIUGAIJIAOYIMIMA"="设置/修改交易密码";
 "JIAOYIMIMA"="交易密码";
 "QUERENJIAOYIMIMA"="确认交易密码";
-"KAIFATISHIDENGLUXIUGAI"="开发提示：这里手机号码默认就是登陆的手机号码，并且不可以修改";
+"KAIFATISHIDENGLUXIUGAIAA"="敬告：登录密码不要与交易密码或其他网站密码一致，由此产生的账号被盗，本站概不负责。";
+"KAIFATISHIDENGLUXIUGAI"="敬告：交易密码不要与登录密码或其他网站密码一致，由此产生的账号被盗，本站概不负责。";
+
 
 //实名认证
 "QINGSHURUXINGMING"="请输入姓名";
@@ -236,7 +241,8 @@
 "NINQUEDINGYAOCHEXIAOMA"="您确定要撤消吗?";
 
 //我要收款、付款
-"SHOUKUANSHUOMING"="收款说明：本站已经支持往同一地址多次充值，我们将在收到三次确认以后为您充值成功。";
+"SHOUKUAN"="收款";
+"SHOUKUANSHUOMING"="收款说明：打开此页面二维码后，付款者使用APP中的”我要付款“功能，进入扫友页面，对准此二维码进行扫描，直到识别出内容后弹出支付界面后，输入实际要支付的金额后进行确认付款操作即可！";
 "ERWEIMAKUANG"="将二维码置入框中，即可自动扫描";
 "ERWEIMAWUFASHIBIE"="二维码无法识别";
 "QUERENFUKUAN"="确认付款";
@@ -264,17 +270,18 @@
 "RENMINBISHULIANG"="人民币数量";
 "DUIFANGZHANGHAO"="对方帐号";
 
-//人民币提现、存款
+//人民币提现
 "XUANZEYINHANGKALEIXING"="选择银行卡类型";
 "QINGSHURENYINHANGKAHAO"="请输入银行卡号";
+"LIANGCIYINHANGKAHAOBUYIZHI"="两次银行卡号不一致";
 "QUERENYINHANGKAHAO"="确认银行卡号";
 "SHOUKUANRENXINGMING"="收款人姓名";
 "QINGSHURUKAIHUZHIHANG"="请输入开户支行";
 "TIXIANJINE"="提现金额";
 "TIXIAN"="提现";
-"JIAOYITIXING"="交易提醒";
-"ZUIGAOXIANE"="1.为了您的帐户安全，每次人民币提现的最高限额为￥5000";
-"ZUIDIXIANE"="2.提现的最低限额为￥100，提现手续费为5%，如果你有更高的需求，请与网站客服联系";
+"JIAOYITIXING"="人民币提现须知";
+"ZUIGAOXIANE"="重要提示：为了您的帐户安全，每次人民币提现的最高限额为￥ 5000 、提现的最低限额为￥ 100 ，提现手续费5% ，如果您有更高的需求，请与网站客服联系，银行卡提现不同的银行，实际到帐时间可能会有所延时。";
+"ZUIDIXIANE"="2.提现的最低限额为￥100，提现手续费为5%，如果您有更高的需求，请与网站客服联系";
 "YOUSUOYANSHI"="3.提现24小时内到账，银行卡提现不同的银行，实时到账的时间可能会有所延时";
 "ZHUANRU"="转入";
 "ZHUANCHU"="转出";
@@ -312,6 +319,49 @@
 "MJRefreshHeaderDateTodayText" = "今天";
 "MJRefreshHeaderNoneLastDateText" = "无记录";
 
+//人民币存款
+"WANGYINCHGONGZHI" = "网银充值";
+"ZHIFUBAOCHONGZHI" = "支付宝充值";
+"ZHIFUBAO" = "支付宝";
+"CHONGZHIZHANGHAO" = "充值帐号";
+"CHONGZHIJINE" = "充值金额";
+"CHONGZHIRENXINGMING" = "充值人姓名";
+"SHOUJIHAO" = "手机号";
+"BEIZHU" = "备注";
+"CHONGZHI" = "充值";
+"CHONGZHIJILU" = "充值记录";
+"CHONGZHIZHANGHAOBUNENGWEIKONG" = "充值帐号不能为空";
+"CHONGZHIJINEBUNENGWEIKONG" = "充值金额不能为空";
+"CHONGZHIRENXINGMINGBUNENGWEIKONG" = "充值人姓名不能为空";
+"SHOUJIHAOBUNENGWEIKONG" = "手机号不能为空";
+"YINGHANGKACAOZUOBUZOURUXIA" = "网银充值操作须知";
+"YINGHANGKACHONGZHIXIEYI" = "请您按如下步骤操作：\n1.注意：银行卡汇款目前仅支持100.0元以上汇款,100.0元以下暂不支持，100.0元以下汇款一律不予处理。\n 2.(转账汇款时请一定在“备注/附言/摘要”栏目里填写此数字，此数字只可使用一次，每次汇款请填写新生成的数字)\n3. 然后根据要求和提示完成汇款。";
+"ZHIFUBAOQINGNINANLIUCHENG" = "支付宝充值操作须知";
+"ZHIFUBAOFUKUANXIEYI" = "请您按如下步骤操作：\n1. 登录您的支付账号，进入'我要付款'。\n2、汇款成功后，系统会自动将您汇款金额充值到您的账户中，若因为没有正确备注而未充值到账的，请联系客服解决。\n3、建议使用支付宝和银行卡充值，充值时请在备注中按照要求注明信息!。\n4、在充值汇款的时候请务必按照系统要求在“付款说明”或“收款人附言”中注明附言，不然系统将无法识别导致充值失败。\n5、请不要用过期的未支付的链接进行充值，一律采用即时支付的方式进行汇款。";
+"CHONGZHISHIJIAN" = "充值时间";
+"CHONGZHIFANGSHI" = "充值方式";
+"DINGDNAHAO" = "订单号";
+"CHONGZHIJINE" = "充值金额";
+"SHOUKUANRENZHANGHAO" = "收款人账号";
+"SHOUKUANZHANGHAO" = "收款账号";
+"SHOUKUANRENXINGMING" = "收款人姓名";
+"FUYANNEIRONG" = "附言内容";
+"SHOUKUANRENKAIHUHANG" = "收款人开户行";
+"BEIZHUFUYANZAIYAO" = "转账汇款时请一定在'备注/附言/摘要'栏目里填写此数字，此数字只可使用一次，每次汇款请填写新生成的数字。";
+
+
+//虚拟币
+"QIANBAODIZHI" = "钱包地址";
+"FUZHI" = "复制";
+"FUZHISHIBAI" = "复制失败";
+"YIFUZHI" = "已复制";
+"CHONGZHISHUOMING" = "虚拟币充值须知";
+"CHONGZHICHAIYAO" = "重要提示：本站已经支持往同一地址多次充值，我们将在收到3次确认以后为您充值成功。";
+"ZHUANCHUSHULIANG" = "转出数量";
+"QIANBAODIZHIBUNENGWEIKONG" = "钱包地址不能为空";
+"ZHUANCHUSHULIANGBUNENGWEIKONG" = "转出数量不能为空";
+"TIXIANSHUOMING" = "虚拟币提现须知";
+"XINIBITIXIANGUIZE" = "重要提示：为了您的帐户安全，每笔提现最小数量0.00100000，最大数量100.00000000， 如果您有更高的需求，请与网站客服联系。请注意如果您提现的数量过大或过小，或者小数点后位数过多，网络(非本站)会收取手续费，一般为 0.0001。因此您收到的虚拟币是提现数量扣除支付手续费后的数量。\n** 本站客服不会要求用QQ远程控制您的电脑,所有要求远程的都是骗子。短信验证码、谷歌验证码非常重要，请勿透露给任何人，包括本站的客服。";
 
 
 

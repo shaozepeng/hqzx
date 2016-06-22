@@ -10,7 +10,7 @@
 #define TRANFONTTWO  IP4566PELSE(12, 12,13,14,13)
 #define TRANFONTBUTONE  IP4566PELSE(15, 15,16,16,16)
 #define TRANFONTLABEL  IP4566PELSE(14, 14,15,16,15)
-#define TRANFONTHEIGHT  IP4566PELSE(10, 5,5,5,5)
+#define TRANFONTHEIGHT  IP4566PELSE(10, 6,6,6,6)
 
 typedef void (^Id_Block)(id obj);
 #define Id_Block() ^void (id obj)

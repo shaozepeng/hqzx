@@ -234,6 +234,29 @@
  */
 - (void)openScanning
 {
+    //判断相机是否能够使用
+    AVAuthorizationStatus status = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
+    if(status == AVAuthorizationStatusDenied || status == AVAuthorizationStatusRestricted){
+        // denied 权限被否认 restricted 权限被限制
+        [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                            message:@"请在设备的设置-隐私-相机中允许访问相机。"
+                                                           delegate:self
+                                                  cancelButtonTitle:@"确定"
+                                                  otherButtonTitles:nil];
+            [alert show];
+            return;
+        }];
+    } else if(status == AVAuthorizationStatusNotDetermined){
+        // not determined 第一次使用，则会弹出是否打开权限
+        [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if(!granted){
+                    return;
+                }
+            });
+        }];
+    }
     // 1.创建捕捉会话
     AVCaptureSession *session = [[AVCaptureSession alloc]init];
     [session setSessionPreset:AVCaptureSessionPresetHigh];

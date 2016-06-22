@@ -35,7 +35,6 @@
     [self createScrollView];
     [self createTableTwoView];
     [self createTableView];
-    [self refData:nil];
     WEAK_SELF
     self.myTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [weakself refData:^{
@@ -59,6 +58,7 @@
         }
         
     }];
+    [self.myTableView.mj_header beginRefreshing];
     HQZXEmptyData(self.myTableView, hqzxEmptyManager, nil);
 }
 - (void) moreWithCompletion:(Bool_Block) completion {

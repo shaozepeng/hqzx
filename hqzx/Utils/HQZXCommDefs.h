@@ -21,9 +21,10 @@
 #import <Toast/UIView+Toast.h>
 
 #define TESTSTR(_TEST, _PRODUCT) (APPTEST?(_TEST):(_PRODUCT))
-//#define ApiServer TESTSTR(@"test.api.jianghai56.com", @"api.jianghai56.com")
-#define ApiServer TESTSTR(@"api.globalonline.cc",@"api.50f.cn")
-#define ApiPicServer TESTSTR(@"api.globalonline.cc",@"http://coins.zhaojizi.com")
+//#define ApiServer TESTSTR(@"api.globalonline.cc",@"api.50f.cn")
+//#define ApiPicServer TESTSTR(@"http://v.globalonline.cc",@"http://coins.zhaojizi.com")
+#define ApiServer TESTSTR(@"api.globalonline.cc",@"api.globalonline.cc")
+#define ApiPicServer TESTSTR(@"http://v.globalonline.cc",@"http://v.globalonline.cc")
 
 #define AppScheme  [[[[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleURLTypes"] objectAtIndex:0] objectForKey: @"CFBundleURLSchemes"] objectAtIndex:0]
 //#define ApiServer @"api.jianghai56.com"

@@ -19,7 +19,14 @@
     [super viewDidLoad];
     [self.view addSubview: [[UIView alloc] init]];
     self.view.backgroundColor = UIColorFromRGB(0x0C1319);
-    self.title = LocatizedStirngForkey(@"WOYAOSHOUKUAN");
+    NSString *language = [USER_DEFAULT objectForKey:kUserLanguage];
+    
+    if([language isEqualToString:@"zh-Hans"]){
+        self.title = [NSString stringWithFormat:@"%@%@",_sysName,LocatizedStirngForkey(@"SHOUKUAN")];
+    }else if([language isEqualToString:@"en"]){
+        self.title = [NSString stringWithFormat:@"%@ %@",_sysName,LocatizedStirngForkey(@"SHOUKUAN")];
+    }
+    
     
     imageView = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/5, TOP_HEIGHT+SCREEN_WIDTH/5, SCREEN_WIDTH/5*3, SCREEN_WIDTH/5*3)];
     imageView.userInteractionEnabled = YES;
@@ -30,7 +37,7 @@
     [imageView addGestureRecognizer:tap];
     [self drawImage];
     
-    CGRect pointValueRect = CGRectMake(SCREEN_WIDTH/24, imageView.maxY+SCREEN_WIDTH/TRANFONTHEIGHT ,SCREEN_WIDTH-SCREEN_WIDTH/12, 50);
+    CGRect pointValueRect = CGRectMake(SCREEN_WIDTH/24, imageView.maxY+SCREEN_WIDTH/TRANFONTHEIGHT ,SCREEN_WIDTH-SCREEN_WIDTH/12, SCREEN_WIDTH/4);
     UILabel *pointValue = [[UILabel alloc] initWithFrame:pointValueRect];
     pointValue.font = [UIFont systemFontOfSize:TRANFONTTWO];
     pointValue.textColor = UIColorFromRGB(0x666B70);

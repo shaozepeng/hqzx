@@ -16,11 +16,24 @@
     //    nav.navigationBar.translucent = NO;
     //顶部状态栏样式
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
     nav.navigationBar.barTintColor = UIColorFromRGB(0x1D2228);
-    NSDictionary *attributes=[NSDictionary dictionaryWithObjectsAndKeys:COL_TEXT_GREEN_WHITE,NSForegroundColorAttributeName,nil];
+//    nav.navigationBar.frame = CGRectMake(0, 20, SCREEN_WIDTH, 20);
+    NSDictionary *attributes;
+    NSString *language = [USER_DEFAULT objectForKey:kUserLanguage];
+    if([language isEqualToString:@"zh-Hans"]){
+        attributes=[NSDictionary dictionaryWithObjectsAndKeys:COL_TEXT_GREEN_WHITE,NSForegroundColorAttributeName,[UIFont fontWithName:@"AmericanTypewriter" size:NAVTITLEFONTZH], UITextAttributeFont,nil];
+
+    }else if([language isEqualToString:@"en"]){
+        attributes=[NSDictionary dictionaryWithObjectsAndKeys:COL_TEXT_GREEN_WHITE,NSForegroundColorAttributeName,[UIFont fontWithName:@"AmericanTypewriter" size:NAVTITLEFONTEN], UITextAttributeFont,nil];
+
+    }
 //    [nav.navigationBar setShadowImage:[UIImage Help_imageWithColor:[UIColor clearColor]]]
     [nav.navigationBar setTitleTextAttributes:attributes];
+
+    
     nav.navigationBar.tintColor = COL_TEXT_GREEN_WHITE;
+//    nav.navigationBar.backItem.leftBarButtonItem.
     // 透明度设置为0.3
     nav.navigationBar.alpha = 0.300;
     // 设置为半透明

@@ -29,6 +29,9 @@
 #import "HQZXRMBWithdrawalsViewController.h"
 #import "HQZXChooseReceViewController.h"
 #import "HQZXAboutMeViewController.h"
+#import "HQZXRMBCongZhiViewController.h"
+#import "HQZXChooseVirtualViewController.h"
+#import "HQZXChooseCaseWithVewController.h"
 
 @interface MyMeViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, retain) UITableView *myTableView;

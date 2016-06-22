@@ -37,7 +37,7 @@
     //检查表是否存在，如果不存在，直接返回
     if(![self checkTableExists]){
         
-        NSLog(@"错误：你操作的模型%@在数据库中没有对应的数据表！",[self modelName]);
+        NSLog(@"错误：您操作的模型%@在数据库中没有对应的数据表！",[self modelName]);
         return NO;
     }
     

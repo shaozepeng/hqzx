@@ -6,7 +6,9 @@
 //  Copyright © 2016年 泽鹏邵. All rights reserved.
 //
 
-//static const NSString *URLScheme = @"jianghai56://";
+#define NAVTITLEFONTZH  IP4566PELSE(15, 15,16,17,16)
+#define NAVTITLEFONTEN  IP4566PELSE(13, 13,14,15,14)
+
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>

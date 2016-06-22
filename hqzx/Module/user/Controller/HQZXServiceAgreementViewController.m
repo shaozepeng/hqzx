@@ -25,9 +25,9 @@
     NSString *path;
     NSString *language = [USER_DEFAULT objectForKey:kUserLanguage];
     if([language isEqualToString:@"zh-Hans"]){
-        path = @"http://api.50f.cn/page/service_agreement_zh.html";
+        path = [NSString stringWithFormat:@"http://%@%@",ApiServer,@"/page/service_agreement_zh.html" ];
     }else if([language isEqualToString:@"en"]){
-        path = @"http://api.50f.cn/page/service_agreement_en.html";
+        path = [NSString stringWithFormat:@"http://%@%@",ApiServer,@"/page/service_agreement_en.html" ];
     }
     
     NSURL *url = [[NSURL alloc] initWithString:path];

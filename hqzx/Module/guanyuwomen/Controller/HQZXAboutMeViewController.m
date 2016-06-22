@@ -14,7 +14,7 @@
     [self.view addSubview: [[UIView alloc] init]];
     self.view.backgroundColor = UIColorFromRGB(0x0C1319);
     //    self.title = LocatizedStirngForkey(@"RENZHENGCHENGGONG");
-    self.title = LocatizedStirngForkey(@"HUANQIUZAIXIANXIEYITWO");
+    self.title = LocatizedStirngForkey(@"GUANYUWOMEN");
     
     UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, TOP_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - TOP_HEIGHT)];
     [self.view addSubview: webView];
@@ -23,9 +23,9 @@
     NSString *path;
     NSString *language = [USER_DEFAULT objectForKey:kUserLanguage];
     if([language isEqualToString:@"zh-Hans"]){
-        path = @"http://api.50f.cn/page/about_us_zh.html";
+        path = [NSString stringWithFormat:@"http://%@%@",ApiServer,@"/page/about_us_zh.html" ];
     }else if([language isEqualToString:@"en"]){
-        path = @"http://api.50f.cn/page/about_us_en.html";
+        path = [NSString stringWithFormat:@"http://%@%@",ApiServer,@"/page/about_us_en.html" ];
     }
     
     NSURL *url = [[NSURL alloc] initWithString:path];

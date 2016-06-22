@@ -141,9 +141,20 @@
         NSString *language = [USER_DEFAULT objectForKey:kUserLanguage];
         if([language isEqualToString:@"zh-Hans"]){
             lblTitle1.text = StrValueFromDictionary(_dataDict, @"name");
+            self.title = [NSString stringWithFormat:@"%@%@",StrValueFromDictionary(_dataDict, @"name"),LocatizedStirngForkey(@"JIAOYI")];
+            kmxyb.text = [NSString stringWithFormat:@"%@%@：",LocatizedStirngForkey(@"KEBUY"),StrValueFromDictionary(_dataDict, @"name") ];
+            skmrmb.text = [NSString stringWithFormat:@"%@%@：",LocatizedStirngForkey(@"KESELL"),StrValueFromDictionary(_dataDict, @"name") ];
+            skmxyb.text = [NSString stringWithFormat:@"%@%@：",LocatizedStirngForkey(@"DONGJIE"),StrValueFromDictionary(_dataDict, @"name") ];
         }else if([language isEqualToString:@"en"]){
             lblTitle1.text = StrValueFromDictionary(_dataDict, @"ename");
+            self.title = [NSString stringWithFormat:@"%@ %@",StrValueFromDictionary(_dataDict, @"ename"),LocatizedStirngForkey(@"JIAOYI")];
+            kmxyb.text = [NSString stringWithFormat:@"%@ %@：",LocatizedStirngForkey(@"KEBUY"),StrValueFromDictionary(_dataDict, @"ename") ];
+            skmrmb.text = [NSString stringWithFormat:@"%@ %@：",LocatizedStirngForkey(@"KESELL"),StrValueFromDictionary(_dataDict, @"ename") ];
+            skmxyb.text = [NSString stringWithFormat:@"%@ %@：",LocatizedStirngForkey(@"DONGJIE"),StrValueFromDictionary(_dataDict, @"ename") ];
         }
+        [kmxyb sizeToFit];
+        [skmrmb sizeToFit];
+        [skmxyb sizeToFit];
         NSString *pricedt = StrValueFromDictionary(_dataDict, @"price");
         NSString *pricedt2;
         if(pricedt.length>0){
@@ -214,10 +225,10 @@
         }else{
             lblskmxyb.text = @"0";
         }
-        txtBuyText.text = pricedt2;
+        txtBuyText.text = procesd?procesd:@"0.0000";
 //        NSString *balance = coins;
         txtSellText.text = @"";
-        txtSellsText.text = pricedt2;
+        txtSellsText.text = StrValueFromDictionary(buyDict, @"price");
         txtSsellText.text = @"";
         
 //        float sooNy = [pricedt2 floatValue]*[coins intValue];
@@ -234,8 +245,11 @@
     [lblszhehje sizeToFit];
     [lblzhehje sizeToFit];
     [lblskmrmb sizeToFit];
+    [lblskmrmb setX:skmrmb.maxX];
     [lblskmxyb sizeToFit];
+    [lblskmxyb setX:skmxyb.maxX];
     [lblkmxyb sizeToFit];
+    [lblkmxyb setX:kmxyb.maxX];
     [lblkmrmb sizeToFit];
     NSString *buyPrice = [NSString stringWithFormat:@"￥%@",StrValueFromDictionary(buyDict, @"price")];
     CGSize textSize566 = JHTCalcStringSizeWithFontSize(@"￥3.229", FIRSTFONTTHREE);
@@ -901,7 +915,8 @@
             if(sellAry.count>=5){
                 NSDictionary *rowDict = [sellAry objectAtIndex:4];
                 bsFirst.text=StrValueFromDictionary(rowDict, @"price");
-                bsSecond.text=StrValueFromDictionary(rowDict, @"quantity");
+                float sell1 = [StrValueFromDictionary(rowDict, @"quantity") floatValue];
+                bsSecond.text=[NSString stringWithFormat:@"%.4f",sell1];
             }else{
                 bsFirst.text=@"--";
                 bsSecond.text=@"--";
@@ -912,7 +927,8 @@
             if(sellAry.count>=4){
                 NSDictionary *rowDict = [sellAry objectAtIndex:3];
                 bsFirst.text=StrValueFromDictionary(rowDict, @"price");
-                bsSecond.text=StrValueFromDictionary(rowDict, @"quantity");
+                float sell1 = [StrValueFromDictionary(rowDict, @"quantity") floatValue];
+                bsSecond.text=[NSString stringWithFormat:@"%.4f",sell1];
             }else{
                 bsFirst.text=@"--";
                 bsSecond.text=@"--";
@@ -923,7 +939,8 @@
             if(sellAry.count>=3){
                 NSDictionary *rowDict = [sellAry objectAtIndex:2];
                 bsFirst.text=StrValueFromDictionary(rowDict, @"price");
-                bsSecond.text=StrValueFromDictionary(rowDict, @"quantity");
+                float sell1 = [StrValueFromDictionary(rowDict, @"quantity") floatValue];
+                bsSecond.text=[NSString stringWithFormat:@"%.4f",sell1];
             }else{
                 bsFirst.text=@"--";
                 bsSecond.text=@"--";
@@ -934,7 +951,8 @@
             if(sellAry.count>=2){
                 NSDictionary *rowDict = [sellAry objectAtIndex:1];
                 bsFirst.text=StrValueFromDictionary(rowDict, @"price");
-                bsSecond.text=StrValueFromDictionary(rowDict, @"quantity");
+                float sell1 = [StrValueFromDictionary(rowDict, @"quantity") floatValue];
+                bsSecond.text=[NSString stringWithFormat:@"%.4f",sell1];
             }else{
                 bsFirst.text=@"--";
                 bsSecond.text=@"--";
@@ -945,12 +963,13 @@
             if(sellAry.count>=1){
                 NSDictionary *rowDict = [sellAry objectAtIndex:0];
                 bsFirst.text=StrValueFromDictionary(rowDict, @"price");
-                bsSecond.text=StrValueFromDictionary(rowDict, @"quantity");
+                float sell1 = [StrValueFromDictionary(rowDict, @"quantity") floatValue];
+                bsSecond.text=[NSString stringWithFormat:@"%.4f",sell1];
             }else{
                 bsFirst.text=@"--";
                 bsSecond.text=@"--";
             }
-            buySellLab.text=[NSString stringWithFormat:@"%@ 5",LocatizedStirngForkey(@"SELL") ];
+            buySellLab.text=[NSString stringWithFormat:@"%@ 1",LocatizedStirngForkey(@"SELL") ];
             UIView * separator = [[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_WIDTH/11-1 , SCREEN_WIDTH, 1)];
             separator.backgroundColor = UIColorFromRGB(0x1B2026);
             [cell.contentView addSubview:separator];
@@ -982,7 +1001,8 @@
                 if((row-5)<=buyAry.count){
                     NSDictionary *rowDict = [buyAry objectAtIndex:i];
                     bsFirst.text=StrValueFromDictionary(rowDict, @"price");
-                    bsSecond.text=StrValueFromDictionary(rowDict, @"quantity");
+                    float sell1 = [StrValueFromDictionary(rowDict, @"quantity") floatValue];
+                    bsSecond.text=[NSString stringWithFormat:@"%.4f",sell1];
                 }else{
                     bsFirst.text=@"--";
                     bsSecond.text=@"--";

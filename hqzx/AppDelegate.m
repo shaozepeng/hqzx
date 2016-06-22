@@ -65,8 +65,8 @@
     // 进入主界面按钮
     UIButton *enterBtn = [[UIButton alloc] init];
     [enterBtn setBackgroundColor: nil];
-    [enterBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [enterBtn setTitleColor:UIColorFromRGB(0x027FC9) forState:UIControlStateHighlighted];
+    [enterBtn setTitleColor:UIColorFromRGB(0x939393) forState:UIControlStateNormal];
+    [enterBtn setTitleColor:UIColorFromRGB(0x696969) forState:UIControlStateHighlighted];
     enterBtn.titleLabel.font = [UIFont systemFontOfSize: 14.0];
     [enterBtn setTitle:@"点击进入" forState:UIControlStateNormal];
     
@@ -75,7 +75,7 @@
     enterBtn.layer.cornerRadius = 4.5;
     // 设置颜色空间为rgb，用于生成ColorRef
     
-    enterBtn.layer.borderColor = [UIColor whiteColor].CGColor;
+    enterBtn.layer.borderColor = UIColorFromRGB(0x939393).CGColor;
     
     float height = 28.0f;
     [enterBtn setFrame:(CGRect){10.0f, SCREEN_SIZE.height - height - 10, SCREEN_SIZE.width - 20.0f, height}];

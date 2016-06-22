@@ -119,7 +119,7 @@
     [form addSubview: line4];
     
     //银行卡号
-    iconBankId = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_country"]];
+    iconBankId = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_price_dz"]];
     [form addSubview: iconBankId];
     [iconBankId setY: (lineHeight - iconBankId.height) / 2.0];
     iconBankId.x = SCREEN_WIDTH/30;
@@ -142,7 +142,7 @@
                                                                                      }];
     
     //确认银行卡号
-    cmIconBankId = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_country"]];
+    cmIconBankId = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_price_dz"]];
     [form addSubview: cmIconBankId];
     [cmIconBankId setY: (lineHeight - cmIconBankId.height) / 2.0 +line.maxY];
     cmIconBankId.x = SCREEN_WIDTH/30;
@@ -164,7 +164,7 @@
                                                                                 NSParagraphStyleAttributeName : style1
                                                                                 }];
     //收款人姓名
-    iconName = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_country"]];
+    iconName = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_men"]];
     [form addSubview: iconName];
     [iconName setY: (lineHeight - iconName.height) / 2.0 +line1.maxY];
     iconName.x = SCREEN_WIDTH/30;
@@ -186,7 +186,7 @@
                                                                                   }];
     
     //开户支行
-    iconBranch = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_country"]];
+    iconBranch = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_kaihuzh"]];
     [form addSubview: iconBranch];
     [iconBranch setY: (lineHeight - iconBranch.height) / 2.0 +line2.maxY];
     iconBranch.x = SCREEN_WIDTH/30;
@@ -208,7 +208,7 @@
                                                                                   }];
     
     //提现金额
-    iconMoney = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_country"]];
+    iconMoney = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_monIn"]];
     [form addSubview: iconMoney];
     [iconMoney setY: (lineHeight - iconMoney.height) / 2.0 +line3.maxY];
     iconMoney.x = SCREEN_WIDTH/30;
@@ -218,7 +218,7 @@
     moneyText.textColor = UIColorFromRGB(0x767D85);
     moneyText.font = [UIFont systemFontOfSize:WITHFONTTWO];
     moneyText.clearButtonMode = UITextFieldViewModeWhileEditing;
-    cmBankId.keyboardType = UIKeyboardTypeDecimalPad;
+    moneyText.keyboardType = UIKeyboardTypeDecimalPad;
     
     NSMutableParagraphStyle *style4 = [moneyText.defaultTextAttributes[NSParagraphStyleAttributeName] mutableCopy];
     style4.minimumLineHeight = moneyText.font.lineHeight - (moneyText.font.lineHeight - [UIFont systemFontOfSize:LOGINFONTONE].lineHeight) / 2.0 ;
@@ -231,7 +231,7 @@
                                                                                     }];
     
     //交易密码
-    iconPassword = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_country"]];
+    iconPassword = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_secret"]];
     [form addSubview: iconPassword];
     [iconPassword setY: (lineHeight - iconPassword.height) / 2.0 +line4.maxY];
     iconPassword.x = SCREEN_WIDTH/30;
@@ -242,7 +242,7 @@
     passwordText.textColor = UIColorFromRGB(0x767D85);
     passwordText.font = [UIFont systemFontOfSize:WITHFONTTWO];
     passwordText.clearButtonMode = UITextFieldViewModeWhileEditing;
-    cmBankId.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
+    passwordText.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
     
     NSMutableParagraphStyle *style5 = [passwordText.defaultTextAttributes[NSParagraphStyleAttributeName] mutableCopy];
     style5.minimumLineHeight = passwordText.font.lineHeight - (passwordText.font.lineHeight - [UIFont systemFontOfSize:LOGINFONTONE].lineHeight) / 2.0 ;
@@ -273,8 +273,14 @@
     pointValue.text = LocatizedStirngForkey(@"JIAOYITIXING");
     [pointValue sizeToFit];
     [self.view addSubview: pointValue];
-    
-    CGRect huValueRect = CGRectMake(SCREEN_WIDTH/24, pointValue.maxY+5 ,SCREEN_WIDTH-SCREEN_WIDTH/12, SCREEN_WIDTH/14);
+    NSString *language = [USER_DEFAULT objectForKey:kUserLanguage];
+    float heighttwo = 0.0;
+    if([language isEqualToString:@"zh-Hans"]){
+        heighttwo = SCREEN_WIDTH/8;
+    }else if([language isEqualToString:@"en"]){
+        heighttwo = SCREEN_WIDTH/5;
+    }
+    CGRect huValueRect = CGRectMake(SCREEN_WIDTH/24, pointValue.maxY+5 ,SCREEN_WIDTH-SCREEN_WIDTH/12, heighttwo);
     UILabel *huValue = [[UILabel alloc] initWithFrame:huValueRect];
     huValue.font = [UIFont systemFontOfSize:WITHFONTONE];
     huValue.textColor = UIColorFromRGB(0x666B70);
@@ -283,23 +289,23 @@
     huValue.text = LocatizedStirngForkey(@"ZUIGAOXIANE");
     [self.view addSubview: huValue];
     
-    CGRect dihuValueRect = CGRectMake(SCREEN_WIDTH/24, huValue.maxY+5 ,SCREEN_WIDTH-SCREEN_WIDTH/12, SCREEN_WIDTH/14);
-    UILabel *dihuValue = [[UILabel alloc] initWithFrame:dihuValueRect];
-    dihuValue.font = [UIFont systemFontOfSize:WITHFONTONE];
-    dihuValue.textColor = UIColorFromRGB(0x666B70);
-    dihuValue.lineBreakMode = NSLineBreakByCharWrapping;
-    dihuValue.numberOfLines = 0;//上面两行设置多行显示
-    dihuValue.text = LocatizedStirngForkey(@"ZUIDIXIANE");
-    [self.view addSubview: dihuValue];
-    
-    CGRect yanValueRect = CGRectMake(SCREEN_WIDTH/24, dihuValue.maxY+5 ,SCREEN_WIDTH-SCREEN_WIDTH/12, SCREEN_WIDTH/14);
-    UILabel *yanValue = [[UILabel alloc] initWithFrame:yanValueRect];
-    yanValue.font = [UIFont systemFontOfSize:WITHFONTONE];
-    yanValue.textColor = UIColorFromRGB(0x666B70);
-    yanValue.lineBreakMode = NSLineBreakByCharWrapping;
-    yanValue.numberOfLines = 0;//上面两行设置多行显示
-    yanValue.text = LocatizedStirngForkey(@"YOUSUOYANSHI");
-    [self.view addSubview: yanValue];
+//    CGRect dihuValueRect = CGRectMake(SCREEN_WIDTH/24, huValue.maxY+5 ,SCREEN_WIDTH-SCREEN_WIDTH/12, SCREEN_WIDTH/14);
+//    UILabel *dihuValue = [[UILabel alloc] initWithFrame:dihuValueRect];
+//    dihuValue.font = [UIFont systemFontOfSize:WITHFONTONE];
+//    dihuValue.textColor = UIColorFromRGB(0x666B70);
+//    dihuValue.lineBreakMode = NSLineBreakByCharWrapping;
+//    dihuValue.numberOfLines = 0;//上面两行设置多行显示
+//    dihuValue.text = LocatizedStirngForkey(@"ZUIDIXIANE");
+//    [self.view addSubview: dihuValue];
+//    
+//    CGRect yanValueRect = CGRectMake(SCREEN_WIDTH/24, dihuValue.maxY+5 ,SCREEN_WIDTH-SCREEN_WIDTH/12, SCREEN_WIDTH/14);
+//    UILabel *yanValue = [[UILabel alloc] initWithFrame:yanValueRect];
+//    yanValue.font = [UIFont systemFontOfSize:WITHFONTONE];
+//    yanValue.textColor = UIColorFromRGB(0x666B70);
+//    yanValue.lineBreakMode = NSLineBreakByCharWrapping;
+//    yanValue.numberOfLines = 0;//上面两行设置多行显示
+//    yanValue.text = LocatizedStirngForkey(@"YOUSUOYANSHI");
+//    [self.view addSubview: yanValue];
 }
 -(void)tijiao{
     NSString *kahao = bankId.text;
@@ -311,6 +317,10 @@
     VALIDATE_NOT_NULL(commBank.bank_id, LocatizedStirngForkey(@"XUANZEYINHANGKALEIXING"));
     VALIDATE_NOT_NULL(kahao, LocatizedStirngForkey(@"YINGHANGKABUNENGWEIKONG"));
     VALIDATE_NOT_NULL(quekahao, LocatizedStirngForkey(@"QUEYINGHANGKABUNENGWEIKONG"));
+    if(![kahao isEqualToString:quekahao]){
+        [self.view makeToast: LocatizedStirngForkey(@"LIANGCIYINHANGKAHAOBUYIZHI") duration: 0.5 position: CSToastPositionCenter];
+        return;
+    }
     VALIDATE_NOT_NULL(xingming, LocatizedStirngForkey(@"SHOUKUANRENXINGMINGBUNENGWEIKONG"));
     VALIDATE_NOT_NULL(zhihang, LocatizedStirngForkey(@"KAIHUZHIHANGBUNENGWEIKONG"));
     VALIDATE_NOT_NULL(tijine, LocatizedStirngForkey(@"TIXIANJINEBUNENGWEIKONG"));

@@ -426,21 +426,23 @@
 //    }
     oneSLable.text = _status;
     [oneSLable sizeToFit];
-    NSString *language = [USER_DEFAULT objectForKey:kUserLanguage];
-    if([language isEqualToString:@"zh-Hans"]){
-        oneSLable.font = [UIFont systemFontOfSize: DATAFONTTHREE];
-        [oneSLable sizeToFit];
-        [oneSLable setX:(oneInfoView.width-oneSLable.width)/2];
-        [oneSLable setY:(oneInfoView.height-oneSLable.height)/2];
-    }else if([language isEqualToString:@"en"]){
-        oneSLable.font = [UIFont systemFontOfSize: DATAFONTONE];
-        oneSLable.lineBreakMode = NSLineBreakByCharWrapping;
-        oneSLable.numberOfLines = 0;
-        oneSLable.font = [UIFont systemFontOfSize: 11];
-        [oneSLable setW:oneInfoView.width-8];
-        [oneSLable setH:oneInfoView.height-6];
-        [oneSLable setX:4];
-        [oneSLable setY:3];
-    }
+    [oneSLable setX:(oneInfoView.width-oneSLable.width)/2];
+    [oneSLable setY:(oneInfoView.height-oneSLable.height)/2];
+//    NSString *language = [USER_DEFAULT objectForKey:kUserLanguage];
+//    if([language isEqualToString:@"zh-Hans"]){
+//        oneSLable.font = [UIFont systemFontOfSize: DATAFONTTHREE];
+//        [oneSLable sizeToFit];
+//        [oneSLable setX:(oneInfoView.width-oneSLable.width)/2];
+//        [oneSLable setY:(oneInfoView.height-oneSLable.height)/2];
+//    }else if([language isEqualToString:@"en"]){
+//        oneSLable.font = [UIFont systemFontOfSize: DATAFONTONE];
+//        oneSLable.lineBreakMode = NSLineBreakByCharWrapping;
+//        oneSLable.numberOfLines = 0;
+//        oneSLable.font = [UIFont systemFontOfSize: 11];
+//        [oneSLable setW:oneInfoView.width-8];
+//        [oneSLable setH:oneInfoView.height-6];
+//        [oneSLable setX:4];
+//        [oneSLable setY:3];
+//    }
 }
 @end

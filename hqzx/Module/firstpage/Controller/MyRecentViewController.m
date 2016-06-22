@@ -18,6 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view addSubview:[[UIView alloc] init]];
+//    self.navigationController.navigationBar.frame = CGRectMake(0, 20, SCREEN_WIDTH, 20);
     
     _datas = [NSMutableArray array];
     isTouch =YES;

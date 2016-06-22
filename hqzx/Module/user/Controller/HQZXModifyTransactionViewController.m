@@ -260,8 +260,8 @@
     //初始化UILabel
     CGRect pointValueRect = CGRectMake(SCREEN_WIDTH/24, btnRegister.maxY+SCREEN_WIDTH/TRANFONTHEIGHT ,SCREEN_WIDTH-SCREEN_WIDTH/12, 100);
     UILabel *pointValue = [[UILabel alloc] initWithFrame:pointValueRect];
-    pointValue.font = [UIFont systemFontOfSize:TRANFONTLABEL];
-    pointValue.textColor = UIColorFromRGB(0x666B70);
+    pointValue.font = [UIFont systemFontOfSize:TRANFONTTWO];
+    pointValue.textColor = [UIColor redColor];
     pointValue.lineBreakMode = NSLineBreakByCharWrapping;
     pointValue.numberOfLines = 0;//上面两行设置多行显示
     pointValue.text = LocatizedStirngForkey(@"KAIFATISHIDENGLUXIUGAI");

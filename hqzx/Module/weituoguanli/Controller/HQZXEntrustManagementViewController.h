@@ -6,7 +6,7 @@
 //  Copyright © 2016年 泽鹏邵. All rights reserved.
 //
 
-#define LISHIFONT IP4566PELSE(11, 10,12,13,12)
+#define LISHIFONT IP4566PELSE(13, 12,14,15,14)
 
 #import <Foundation/Foundation.h>
 #import "HQZXEntrustTableCell.h"

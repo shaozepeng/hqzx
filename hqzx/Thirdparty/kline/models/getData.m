@@ -45,7 +45,8 @@
 //                }
 //                
 //            }];
-        [self changeData:array type:reType];
+        NSArray *reversedArray = [[array reverseObjectEnumerator] allObjects];
+        [self changeData:reversedArray type:reType];
         self.status.text = @"";
         self.isFinish = YES;
 //            NSURL *nurl = [NSURL URLWithString:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
@@ -141,7 +142,7 @@
         
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
         if([refType isEqualToString:@"s"]){
-            [dateFormat setDateFormat:@"HH:mm"];
+            [dateFormat setDateFormat:@"yyyy/MM/dd HH:mm"];
         }else{
             [dateFormat setDateFormat:@"yyyy/MM/dd"];
         }

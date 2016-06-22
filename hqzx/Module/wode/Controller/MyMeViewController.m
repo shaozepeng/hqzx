@@ -181,7 +181,8 @@
             cell.textLabel.textColor = [UIColor whiteColor];
             cell.textLabel.font = [UIFont systemFontOfSize:WOCONTROLLERFONT];
             cell.backgroundColor = UIColorFromRGB(0x0E151B);
-            cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
+//            cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
     }
     if(indexPath.section==2){
@@ -371,18 +372,18 @@
     }
     if(indexPath.section==2){
         if(indexPath.row==0){
-//            JHTWodeHuoBiaoViewController *wodehuobiao=[[JHTWodeHuoBiaoViewController alloc]init];
-//            //            LivePlayPushs *wodehuobiao=[[LivePlayPushs alloc]init];
-//            [self.navigationController pushViewController:wodehuobiao animated:YES];
+            HQZXRMBCongZhiViewController *chongzhi=[[HQZXRMBCongZhiViewController alloc]init];
+            //            LivePlayPushs *wodehuobiao=[[LivePlayPushs alloc]init];
+            [rootNav pushViewController:chongzhi animated:YES];
         } else if (indexPath.row == 1) {
             HQZXRMBWithdrawalsViewController *rmbtixian = [[HQZXRMBWithdrawalsViewController alloc] init];
             [rootNav pushViewController:rmbtixian animated: YES];
         } else if(indexPath.row==2){
-//            JHTWoDeChuanBoViewController *wodechuanbo=[[JHTWoDeChuanBoViewController alloc]init];
-//            [self.navigationController pushViewController:wodechuanbo animated:YES];
+            HQZXChooseVirtualViewController *xnchong=[[HQZXChooseVirtualViewController alloc]init];
+            [rootNav pushViewController:xnchong animated:YES];
         } else if(indexPath.row==3){
-//            JHTChuanboDiaoduViewController *chuanboDiaodu=[[JHTChuanboDiaoduViewController alloc]init];
-//            [self.navigationController pushViewController:chuanboDiaodu animated:YES];
+            HQZXChooseCaseWithVewController *tixina=[[HQZXChooseCaseWithVewController alloc]init];
+            [rootNav pushViewController:tixina animated:YES];
         }
     }
     if(indexPath.section==3){

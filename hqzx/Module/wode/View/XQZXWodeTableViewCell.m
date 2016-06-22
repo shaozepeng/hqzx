@@ -41,7 +41,7 @@
 //        [infoView addSubview: imageView];
         
         lblTitle1 = [[UILabel alloc] initWithFrame: CGRectMake(SCREEN_WIDTH/30, cell.height/4, 1, 1)];
-        lblTitle1.text = @" ";
+        lblTitle1.text = LocatizedStirngForkey(@"JIAZAIZHONGQ");
         [infoView addSubview: lblTitle1];
         lblTitle1.font = [UIFont systemFontOfSize: WOCELLFONT];
         lblTitle1.textColor = [UIColor whiteColor];
@@ -49,7 +49,7 @@
         [infoView addSubview: lblTitle1];
         
         lblTitle2 = [[UILabel alloc] initWithFrame: CGRectMake(SCREEN_WIDTH/30, cell.height/2+8, 1, 1)];
-        lblTitle2.text = @" ";
+        lblTitle2.text = LocatizedStirngForkey(@"JIAZAIZHONGQ");
         lblTitle2.textColor = [UIColor whiteColor];
         [infoView addSubview: lblTitle2];
         lblTitle2.font = [UIFont systemFontOfSize: WOCELLFONT];
@@ -64,7 +64,7 @@
 //        [tishilab sizeToFit];
         
         tishi = [[UILabel alloc] initWithFrame: CGRectMake(SCREEN_WIDTH/30, cell.height/2+16, 1, 1)];
-        tishi.text = @" ";
+        tishi.text = LocatizedStirngForkey(@"JIAZAIZHONGQ");
         tishi.textColor = UIColorFromRGB(0x244E8E);
         [infoView addSubview: tishi];
         tishi.font = [UIFont systemFontOfSize: WOCELLFONT];

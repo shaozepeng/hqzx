@@ -30,7 +30,7 @@
     self.title = LocatizedStirngForkey(@"KXIANTU");
     
     // 时k按钮
-    timeDay = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/10, TOP_HEIGHT+70, SCREEN_WIDTH/5.7, SCREEN_WIDTH/13)];
+    timeDay = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/10, TOP_HEIGHT+50, SCREEN_WIDTH/5.7, SCREEN_WIDTH/13)];
 //    LocatizedStirngForkey(@"XINGYUNBIJIAOYI")
     timeDay.titleLabel.font = [UIFont systemFontOfSize: TRANSACTIONFTHREE];
     [timeDay setTitle:[NSString stringWithFormat:@"%@K",LocatizedStirngForkey(@"SHI") ] forState:UIControlStateNormal];
@@ -38,21 +38,21 @@
     [self setButtonAttr:timeDay];
     [self.view addSubview:timeDay];
     // 日k按钮
-    btnDay = [[UIButton alloc] initWithFrame:CGRectMake(timeDay.maxX+SCREEN_WIDTH/30,TOP_HEIGHT+70, timeDay.width, timeDay.height)];
+    btnDay = [[UIButton alloc] initWithFrame:CGRectMake(timeDay.maxX+SCREEN_WIDTH/30,TOP_HEIGHT+50, timeDay.width, timeDay.height)];
     [btnDay setTitle:[NSString stringWithFormat:@"%@K",LocatizedStirngForkey(@"RI") ] forState:UIControlStateNormal];
     [btnDay addTarget:self action:@selector(kDayLine) forControlEvents:UIControlEventTouchUpInside];
     [self setButtonAttr:btnDay];
     btnDay.titleLabel.font = [UIFont systemFontOfSize: TRANSACTIONFTHREE];
     [self.view addSubview:btnDay];
     // 周k按钮
-    btnWeek = [[UIButton alloc] initWithFrame:CGRectMake(btnDay.maxX+SCREEN_WIDTH/30, TOP_HEIGHT+70, timeDay.width, timeDay.height)];
+    btnWeek = [[UIButton alloc] initWithFrame:CGRectMake(btnDay.maxX+SCREEN_WIDTH/30, TOP_HEIGHT+50, timeDay.width, timeDay.height)];
     [btnWeek setTitle:[NSString stringWithFormat:@"%@K",LocatizedStirngForkey(@"ZHOU") ] forState:UIControlStateNormal];
     btnWeek.titleLabel.font = [UIFont systemFontOfSize: TRANSACTIONFTHREE];
     [btnWeek addTarget:self action:@selector(kWeekLine) forControlEvents:UIControlEventTouchUpInside];
     [self setButtonAttr:btnWeek];
     [self.view addSubview:btnWeek];
     // 月k按钮
-    btnMonth = [[UIButton alloc] initWithFrame:CGRectMake(btnWeek.maxX+SCREEN_WIDTH/30, TOP_HEIGHT+70, timeDay.width, timeDay.height)];
+    btnMonth = [[UIButton alloc] initWithFrame:CGRectMake(btnWeek.maxX+SCREEN_WIDTH/30, TOP_HEIGHT+50, timeDay.width, timeDay.height)];
     btnMonth.titleLabel.font = [UIFont systemFontOfSize: TRANSACTIONFTHREE];
     [btnMonth setTitle:[NSString stringWithFormat:@"%@K",LocatizedStirngForkey(@"YUE") ] forState:UIControlStateNormal];
     [btnMonth addTarget:self action:@selector(kMonthLine) forControlEvents:UIControlEventTouchUpInside];
@@ -78,7 +78,8 @@
     lineview = [[lineView alloc] init];
     lineview.syloy = _symbol;
     CGRect frame = self.view.frame;
-    frame.origin = CGPointMake(0, TOP_HEIGHT+120);
+    frame.origin = CGPointMake(0, TOP_HEIGHT+100);
+//    frame.size = CGSizeMake(SCREEN_WIDTH-10, 200);
     frame.size = CGSizeMake(310, 200);
     lineview.frame = frame;
     //lineview.backgroundColor = [UIColor blueColor];

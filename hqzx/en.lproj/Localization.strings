@@ -30,6 +30,9 @@
 "YUE"="Month";
 "CHENGGONG"="Success";
 "XUANZEBIZHONG"="Choose a currency";
+"KEBUY"="Can buy";
+"KESELL"="Can be sold";
+"DONGJIE"="Frozen";
 
 /*
  ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝协议区＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
@@ -81,7 +84,7 @@
 "XUNIBITIXIAN"="Virtual Cash Withdrawal";
 "WEITUOGUANLI"="Entrust Management";
 "JIAOYILIUSHUI"="Transaction Flow";
-"WOYAOSHOUKUAN"="I Want To Register";
+"WOYAOSHOUKUAN"="I Want Collection";
 "WOYAOFUKUAN"="I Want To Pay";
 "SHIMINGRENZHENG"="Real Name Authentication";
 "XIUGAIDENGLUMIMA"="Modify Login Password";
@@ -163,7 +166,8 @@
 "SHEZHIXIUGAIJIAOYIMIMA"="Set/Modify Transaction Password";
 "JIAOYIMIMA"="Transaction Password";
 "QUERENJIAOYIMIMA"="Confirm Transaction Password";
-"KAIFATISHIDENGLUXIUGAI"="Development Tips: Here Is The Default Phone Number Landing Phone Number, And Can Not Be Modified";
+"KAIFATISHIDENGLUXIUGAI"="Warning: the same trading password do not login password or other sites password, the resulting account stolen, this station is not liable. ";
+"KAIFATISHIDENGLUXIUGAIAA"="Warning: the same password login password do not trading password or other sites, the resulting account stolen, the station not liable. ";
 
 //实名认证
 "QINGSHURUXINGMING"="Please Enter Your Name";
@@ -223,7 +227,7 @@
 "PINGJUNCHENGJIAOJIA"="Average transaction price";
 "YINGFUKUAN"="Already paid";
 "SHANGWEIFUKUAN"="Not yet paid";
-"LISHIWEITUO"="Historical Commission";
+"LISHIWEITUO"="Historical";
 "WEICHENGJIAO"="No deal";
 "BUFENCHENGJIAO"="Part of the deal";
 "WANQUANCHENGJIAO"="Complete deal";
@@ -231,7 +235,8 @@
 "NINQUEDINGYAOCHEXIAOMA"="Are you sure you want to cancel?";
 
 //我要收款、付款
-"SHOUKUANSHUOMING"="Collection note: this site has been supported to the same address multiple times, we will be in the three times after the confirmation for your success.";
+"SHOUKUAN"="Receivables";
+"SHOUKUANSHUOMING"="Payment instructions: open this page two-dimensional code, the payment use app 'I want to pay' function, enter the scan friends page, alignment, the two-dimensional code scanning, until the recognition the content after the pop-up payment interface, input the actual payment amount after confirmation of payment can be operated.";
 "ERWEIMAKUANG"="The two-dimensional code into the box, you can automatically scan";
 "ERWEIMAWUFASHIBIE"="Two-dimensional code can not be identified";
 "QUERENFUKUAN"="confirm the payment";
@@ -259,6 +264,7 @@
 "DUIFANGZHANGHAO"="Each other account";
 
 //人民币提现、存款
+"LIANGCIYINHANGKAHAOBUYIZHI"="Two bank card number is not consistent";
 "XUANZEYINHANGKALEIXING"="Select the type of bank card";
 "QINGSHURENYINHANGKAHAO"="Please enter the bank card number";
 "QUERENYINHANGKAHAO"="Confirm bank card number";
@@ -267,12 +273,12 @@
 "TIXIANJINE"="Cash withdrawal amount";
 "TIXIAN"="Withdrawals";
 "JIAOYITIXING"="Transaction alerts";
-"ZUIGAOXIANE"="1 for the safety of your account, every time the maximum amount of RMB cash for $5000";
+"ZUIGAOXIANE"="Important note: in order to secure your account, every time the RMB provided now the maximum amount of RMB 5000, now the minimum amount is RMB 100, provided a cash handling fee of 5%, if you have a higher demand, please contact customer service site, bank Mikati different banks, the actual to the account between may delay.";
 "ZUIDIXIANE"="2 is the minimum amount of $100, the fee is 5%, if you have a higher demand, please contact with the customer service website";
 "YOUSUOYANSHI"="3 withdrawals within 24 hours of arrival, bank card withdrawals from bank to bank, real-time arrival time may be delayed";
 "ZHUANRU"="To change into";
 "ZHUANCHU"="Turn out";
-"TIXIANJILU"="Present record";
+"TIXIANJILU"="Record";
 "ERSHIBITIXIANJILU"="Recent twenty recent record";
 "YINGHANGKABUNENGWEIKONG"="Bank card number can not be empty";
 "QUEYINGHANGKABUNENGWEIKONG"="Confirm the bank card number can not be empty";
@@ -304,6 +310,49 @@
 "MJRefreshHeaderLastTimeText" = "Last update:";
 "MJRefreshHeaderDateTodayText" = "Today";
 "MJRefreshHeaderNoneLastDateText" = "No record";
+
+//人民币存款
+"WANGYINCHGONGZHI" = "Online banking recharge";
+"ZHIFUBAOCHONGZHI" = "Alipay recharge";
+"CHONGZHIZHANGHAO" = "Recharge account";
+"CHONGZHIJINE" = "Amount of charge";
+"CHONGZHIRENXINGMING" = "Name of person";
+"SHOUJIHAO" = "Cell phone number";
+"BEIZHU" = "Remarks";
+"CHONGZHI" = "Recharge";
+"CHONGZHIJILU" = "Record";
+"CHONGZHIZHANGHAOBUNENGWEIKONG" = "Recharge account can not be empty";
+"CHONGZHIJINEBUNENGWEIKONG" = "Recharge amount can not be empty";
+"CHONGZHIRENXINGMINGBUNENGWEIKONG" = "Name cannot be empty";
+"SHOUJIHAOBUNENGWEIKONG" = "Cell phone number can not be empty";
+"YINGHANGKACAOZUOBUZOURUXIA" = "Online banking recharge instructions";
+"YINGHANGKACHONGZHIXIEYI" = " please follow the steps below:\n1. Note: bank card transfer is currently only support more than 100 yuan remittances, 100 yuan of the following temporary support, 100 yuan of the following remittances will not be treated. \n 2.(remittance, please must in the column of 'remarks / PS / abstract' fill in the number, this number can only be used once, each remittance, please fill in the new generation of digital) \n3. Then according to the requirements and instructions to complete the transfer.";
+"ZHIFUBAOQINGNINANLIUCHENG" = "Alipay prepaid operating instructions";
+"ZHIFUBAOFUKUANXIEYI" = "Please follow the steps below: \n1. login to your payment account, enter 'I want to pay'. \n2, remittance success, the system will automatically send you the amount of money into your account, if there is no correct notes without recharge to the account, please contact customer service. \n3, recommend the use of Alipay and bank card recharge, recharge please indicate the information in accordance with the requirements in the remarks!. \n4, when remittance charge please must according to the system requirements in the 'payment' or 'payee postscript' indicate the postscript, otherwise the system will not recognize resulted in the failure of recharge. \n5, please do not use the expired link to recharge, all the way to use instant payment remittance.";
+"CHONGZHISHIJIAN" = "Recharge time";
+"CHONGZHIFANGSHI" = "Recharge method";
+"DINGDNAHAO" = "Order No";
+"CHONGZHIJINE" = "Amount of charge";
+"SHOUKUANRENZHANGHAO" = "Beneficiary account no";
+"SHOUKUANZHANGHAO" = "Collection account";
+"SHOUKUANRENXINGMING" = "Name of beneficiary";
+"FUYANNEIRONG" = "Postscript content";
+"SHOUKUANRENKAIHUHANG" = "Beneficiary bank";
+"ZHIFUBAO" = "Alipay";
+"BEIZHUFUYANZAIYAO" = "Remittance, please make sure that in the column of 'remarks / PS / abstract' fill in the number, this number can only be used once, and each remittance, please fill in the new generation of digital.";
+
+//虚拟币
+"QIANBAODIZHI" = "Wallet address";
+"FUZHI" = "Copy";
+"FUZHISHIBAI" = "Copy failed";
+"YIFUZHI" = "Already copied";
+"CHONGZHISHUOMING" = "Notes on virtual currency recharge";
+"CHONGZHICHAIYAO" = "Important note: this site has been supported to the same address multiple times, we will be in the 3 times after the confirmation for your success.";
+"ZHUANCHUSHULIANG" = "Transfer quantity";
+"QIANBAODIZHIBUNENGWEIKONG" = "Purse address can not be empty";
+"ZHUANCHUSHULIANGBUNENGWEIKONG" = "Turn out the number can not be empty";
+"TIXIANSHUOMING" = "Notes to the virtual currency";
+"XINIBITIXIANGUIZE" = "Important note: for your account security, the minimum number of each proposed minimum number of 0.00100000, the maximum number of 100, if you have a higher demand, please contact the website customer service. Please note that if you are too large or too small, or too much after the decimal point, the network (not the station) will charge a fee, usually 0.0001. So you receive the virtual currency is to raise the amount of cash paid after deduction of the number of. \n** the customer service will not be required to use QQ remote control of your computer, all the requirements of the remote is a liar. SMS verification code, Google verification code is very important, do not disclose to anyone, including the customer service.";
 
 
 
